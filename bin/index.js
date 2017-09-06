@@ -1,17 +1,9 @@
-/*
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-*/
-/*
-import { Hello } from "./components/Hello";
-*/
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var ReactDOM = require("react-dom");
+var Hello_1 = require("./components/Hello");
 window.onload = function () {
-    console.log("Test Fucker!");
-    /*
-        ReactDOM.render(
-            <Hello compiler="TypeScript" framework="React" />,
-            document.getElementById("example")
-        );
-    */
+    ReactDOM.render(React.createElement(Hello_1.Hello, { compiler: "TypeScript", framework: "React" }), document.getElementById("example"));
 };
 //# sourceMappingURL=index.js.map
