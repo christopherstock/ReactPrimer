@@ -6576,6 +6576,7 @@ __export(__webpack_require__(185));
 __export(__webpack_require__(186));
 __export(__webpack_require__(187));
 __export(__webpack_require__(188));
+__export(__webpack_require__(189));
 
 
 /***/ }),
@@ -9777,6 +9778,8 @@ window.onload = function () {
     ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example1"));
     // render the TIC TAC TOE example
     ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
+    // render the CLICKER example
+    ReactDOM.render(React.createElement(rp.Main, { fieldSizeX: "12", fieldSizeY: "18" }), document.getElementById('example3'));
 };
 
 
@@ -22613,8 +22616,6 @@ var rp = __webpack_require__(50);
 /*******************************************************************************************************************
 *   Represents the Tic Tac Toe game.
 *
-*   TODO ASAP remove history!
-*
 *   @author  Christopher Stock
 *   @version 1.0
 *******************************************************************************************************************/
@@ -22704,6 +22705,48 @@ var Game = /** @class */ (function (_super) {
     return Game;
 }(React.Component));
 exports.Game = Game;
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(20);
+/*******************************************************************************************************************
+*   Represents the 'clicker' game.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var Main = /** @class */ (function (_super) {
+    __extends(Main, _super);
+    function Main() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /***************************************************************************************************************
+    *   Renders the 'clicker' main game component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
+    Main.prototype.render = function () {
+        return React.createElement("h1", null, "Fucker!");
+    };
+    return Main;
+}(React.Component));
+exports.Main = Main;
 
 
 /***/ })

@@ -9,3 +9,7 @@
     export * from './components/tictactoe/BoardState';
     export * from './components/tictactoe/Game';
     export * from './components/tictactoe/GameState';
+
+    export * from './components/clicker/Main';
+    export * from './components/clicker/MainProps';
+    export * from './components/clicker/MainState';

@@ -20,4 +20,10 @@
             <rp.Game />,
             document.getElementById('example2')
         );
+
+        // render the CLICKER example
+        ReactDOM.render(
+            <rp.Main fieldSizeX="12" fieldSizeY="18" />,
+            document.getElementById('example3')
+        );
     };
