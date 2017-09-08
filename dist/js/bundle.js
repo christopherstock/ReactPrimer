@@ -22477,6 +22477,8 @@ exports.__esModule = true;
 var React = __webpack_require__(20);
 /*******************************************************************************************************************
 *   Represents a Square of the Tic Tac Toe board.
+*   Though Square is fully controlled by the Board class,
+*   Square is specified as a "controlled component".
 *
 *   TODO introduce square state
 *
@@ -22510,7 +22512,7 @@ var Square = /** @class */ (function (_super) {
     Square.prototype.render = function () {
         var _this = this;
         console.log("Square.render()");
-        return (React.createElement("button", { className: "square", onClick: function () { return _this.props.onClick(); } }, this.props.value));
+        return (React.createElement("button", { className: "square", onClick: function () { return _this.props.onClick(); }, value: this.props.value }, this.props.value));
     };
     return Square;
 }(React.Component));
@@ -22544,6 +22546,9 @@ var rp = __webpack_require__(50);
 *******************************************************************************************************************/
 var Board = /** @class */ (function (_super) {
     __extends(Board, _super);
+    /***************************************************************************************************************
+    *   Creates a new Board.
+    ***************************************************************************************************************/
     function Board() {
         var _this = _super.call(this) || this;
         var defaultSquares = [
