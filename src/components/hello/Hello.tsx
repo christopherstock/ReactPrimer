@@ -11,7 +11,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Hello extends React.Component<rp.HelloProps, undefined>
+    export class Hello extends React.Component<rp.HelloProps, null>
     {
         /***************************************************************************************************************
         *   Renders this component.

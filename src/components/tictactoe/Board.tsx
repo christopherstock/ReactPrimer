@@ -22,9 +22,6 @@
             this.state = {
                 squares: defaultSquares,
                 xIsNext: true,
-/*
-                history: [ defaultSquares, ],
-*/
             };
         }
 

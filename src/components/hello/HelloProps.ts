@@ -1,6 +1,6 @@
 
     /*******************************************************************************************************************
-    *   The interface that specifies two test fields.
+    *   The react properties of the Hello component.
     *
     *   @author  Christopher Stock
     *   @version 1.0
