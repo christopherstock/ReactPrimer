@@ -9752,13 +9752,21 @@ module.exports = getHostComponentFromComposite;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(98);
-var rp = __webpack_require__(185);
+var TicTacToe_1 = __webpack_require__(187);
 /*******************************************************************************************************************
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
-    // render the React DOM
-    ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example"));
+    /*
+            // render the HELLO REACT example
+            ReactDOM.render
+            (
+                <rp.Hello compiler="the TypeScript Compiler" framework="the React Framework" />,
+                document.getElementById("example")
+            );
+    */
+    // render the TIC TAC TOE example
+    ReactDOM.render(React.createElement(TicTacToe_1.Game, null), document.getElementById('example'));
 };
 
 
@@ -22389,7 +22397,10 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 184 */
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22406,42 +22417,61 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(49);
-/*******************************************************************************************************************
-*   'HelloProps' describes the shape of props. State is never set so we use the 'undefined' type.
-*******************************************************************************************************************/
-var Hello = /** @class */ (function (_super) {
-    __extends(Hello, _super);
-    function Hello() {
+var Square = /** @class */ (function (_super) {
+    __extends(Square, _super);
+    function Square() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /***************************************************************************************************************
-    *   Renders this component.
-    ***************************************************************************************************************/
-    Hello.prototype.render = function () {
-        return React.createElement("h1", null,
-            "Hello from ",
-            this.props.compiler,
-            React.createElement("br", null),
-            "and from the ",
-            this.props.framework,
-            "!");
+    Square.prototype.render = function () {
+        return (React.createElement("button", { className: "square" }));
     };
-    return Hello;
+    return Square;
 }(React.Component));
-exports.Hello = Hello;
-
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(184));
+exports.Square = Square;
+var Board = /** @class */ (function (_super) {
+    __extends(Board, _super);
+    function Board() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Board.prototype.renderSquare = function (i) {
+        return React.createElement(Square, null);
+    };
+    Board.prototype.render = function () {
+        var status = 'Next player: X';
+        return (React.createElement("div", null,
+            React.createElement("div", { className: "status" }, status),
+            React.createElement("div", { className: "board-row" },
+                this.renderSquare(0),
+                this.renderSquare(1),
+                this.renderSquare(2)),
+            React.createElement("div", { className: "board-row" },
+                this.renderSquare(3),
+                this.renderSquare(4),
+                this.renderSquare(5)),
+            React.createElement("div", { className: "board-row" },
+                this.renderSquare(6),
+                this.renderSquare(7),
+                this.renderSquare(8))));
+    };
+    return Board;
+}(React.Component));
+exports.Board = Board;
+var Game = /** @class */ (function (_super) {
+    __extends(Game, _super);
+    function Game() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Game.prototype.render = function () {
+        return (React.createElement("div", { className: "game" },
+            React.createElement("div", { className: "game-board" },
+                React.createElement(Board, null)),
+            React.createElement("div", { className: "game-info" },
+                React.createElement("div", null),
+                React.createElement("ol", null))));
+    };
+    return Game;
+}(React.Component));
+exports.Game = Game;
 
 
 /***/ })
