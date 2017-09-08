@@ -22391,7 +22391,29 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 184 */
+/* 184 */,
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(191));
+__export(__webpack_require__(192));
+__export(__webpack_require__(193));
+__export(__webpack_require__(194));
+
+
+/***/ }),
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22442,25 +22464,7 @@ exports.Hello = Hello;
 
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(184));
-__export(__webpack_require__(188));
-__export(__webpack_require__(189));
-__export(__webpack_require__(190));
-
-
-/***/ }),
-/* 186 */,
-/* 187 */,
-/* 188 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22496,13 +22500,23 @@ var Square = /** @class */ (function (_super) {
     Square.prototype.render = function () {
         return (React.createElement("button", { className: "square" }));
     };
+    /***************************************************************************************************************
+    *   Renders the current square field.
+    *
+    *   @param i The id if the square field to render.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
+    Square.renderSquare = function (i) {
+        return React.createElement(Square, null);
+    };
     return Square;
 }(React.Component));
 exports.Square = Square;
 
 
 /***/ }),
-/* 189 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22532,16 +22546,6 @@ var Board = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /***************************************************************************************************************
-    *   Renders the current square field.
-    *
-    *   @param i The id if the square field to render.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Board.prototype.renderSquare = function (i) {
-        return React.createElement(rp.Square, null);
-    };
-    /***************************************************************************************************************
     *   Renders this component.
     *
     *   @return The rendered React element.
@@ -22551,17 +22555,17 @@ var Board = /** @class */ (function (_super) {
         return (React.createElement("div", null,
             React.createElement("div", { className: "status" }, status),
             React.createElement("div", { className: "board-row" },
-                this.renderSquare(0),
-                this.renderSquare(1),
-                this.renderSquare(2)),
+                rp.Square.renderSquare(0),
+                rp.Square.renderSquare(1),
+                rp.Square.renderSquare(2)),
             React.createElement("div", { className: "board-row" },
-                this.renderSquare(3),
-                this.renderSquare(4),
-                this.renderSquare(5)),
+                rp.Square.renderSquare(3),
+                rp.Square.renderSquare(4),
+                rp.Square.renderSquare(5)),
             React.createElement("div", { className: "board-row" },
-                this.renderSquare(6),
-                this.renderSquare(7),
-                this.renderSquare(8))));
+                rp.Square.renderSquare(6),
+                rp.Square.renderSquare(7),
+                rp.Square.renderSquare(8))));
     };
     return Board;
 }(React.Component));
@@ -22569,7 +22573,7 @@ exports.Board = Board;
 
 
 /***/ }),
-/* 190 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

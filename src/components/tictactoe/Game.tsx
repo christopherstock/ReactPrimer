@@ -1,25 +1,32 @@
 
     import * as React from 'react';
-    import * as rp    from '../rp';
+    import * as rp    from '../../rp';
 
     /*******************************************************************************************************************
-    *   This components renders a H1 that contains a HELLO REACT string.
-    *
-    *   The properties are set with the interface HelloProps.
-    *   State is never set so we use the 'undefined' type.
+    *   Represents the Tic Tac Toe game.
     *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Hello extends React.Component<rp.HelloProps, undefined>
+    export class Game extends React.Component
     {
         /***************************************************************************************************************
         *   Renders this component.
         *
         *   @return The rendered React element.
         ***************************************************************************************************************/
-        render() : JSX.Element
+        public render()
         {
-            return <h1>Hello from {this.props.compiler}<br/>and from the {this.props.framework}!</h1>;
+            return(
+                <div className="game">
+                <div className="game-board">
+                <rp.Board />
+                </div>
+                <div className="game-info">
+                <div>{/* status */}</div>
+                <ol>{/* TODO */}</ol>
+                </div>
+                </div>
+            );
         }
     }

@@ -1,7 +1,7 @@
 
-    export * from './components/Hello';
-    export * from './components/HelloProps';
+    export * from './components/hello/Hello';
+    export * from './components/hello/HelloProps';
 
-    export * from './components/Square';
-    export * from './components/Board';
-    export * from './components/Game';
+    export * from './components/tictactoe/Square';
+    export * from './components/tictactoe/Board';
+    export * from './components/tictactoe/Game';
