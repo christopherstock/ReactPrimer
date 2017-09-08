@@ -7,4 +7,9 @@
     *******************************************************************************************************************/
     export interface BoardProps
     {
+        /** All square values. */
+        squares             :Array<string>;
+
+        /** The callback to invoke when being clicked. */
+        onClick             :any;
     }

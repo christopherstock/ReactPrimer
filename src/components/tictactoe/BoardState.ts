@@ -12,9 +12,4 @@
 
         /** Indicates if X has the next turn. */
         xIsNext             :boolean;
-
-        /** Stores the squares of each turn. */
-/*
-        history             :Array<Array<string>>;
-*/
     }

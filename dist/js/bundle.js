@@ -22558,16 +22558,7 @@ var Board = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Board.prototype.render = function () {
-        var winner = this.calculateWinner(this.state.squares);
-        var status = null;
-        if (winner) {
-            status = 'Winner: ' + winner;
-        }
-        else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
         return (React.createElement("div", null,
-            React.createElement("div", { className: "status" }, status),
             React.createElement("div", { className: "board-row" },
                 this.renderSquare(0),
                 this.renderSquare(1),
@@ -22591,64 +22582,7 @@ var Board = /** @class */ (function (_super) {
     Board.prototype.renderSquare = function (i) {
         var _this = this;
         console.log("Board.renderSquare()");
-        return React.createElement(rp.Square, { value: this.state.squares[i], onClick: function () { return _this.handleBoardClick(i); } });
-    };
-    /***************************************************************************************************************
-    *   Being invoked when any square of the board is clicked.
-    *
-    *   @param i The id if the square field to render.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Board.prototype.handleBoardClick = function (i) {
-        console.log("Handle board click");
-        // check if one player has won
-        if (this.calculateWinner(this.state.squares)) {
-            console.log("The game is already won!");
-            return;
-        }
-        // break if the current field is already filled
-        if (this.state.squares[i] != null) {
-            console.log("This field is already busy!");
-            return;
-        }
-        // copy squares & history, toggle one square, append history and update state
-        var squares = this.state.squares.slice();
-        squares[i] = (this.state.xIsNext ? 'X' : 'O');
-        /*
-                    const history = this.state.history.slice();
-                    history.push( squares );
-        */
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext
-        });
-    };
-    /***************************************************************************************************************
-    *   Checks if one party has won.
-    *
-    *   @param squares All fields of the board to check for a winner.
-    *
-    *   @return X O or null depending on the current winner.
-    ***************************************************************************************************************/
-    Board.prototype.calculateWinner = function (squares) {
-        var lines = [
-            [0, 1, 2,],
-            [3, 4, 5,],
-            [6, 7, 8,],
-            [0, 3, 6,],
-            [1, 4, 7,],
-            [2, 5, 8,],
-            [0, 4, 8,],
-            [2, 4, 6,],
-        ];
-        for (var i = 0; i < lines.length; i++) {
-            var _a = lines[i], a = _a[0], b = _a[1], c = _a[2];
-            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                return squares[a];
-            }
-        }
-        return null;
+        return React.createElement(rp.Square, { value: this.props.squares[i], onClick: function () { return _this.props.onClick(i); } });
     };
     return Board;
 }(React.Component));
@@ -22688,19 +22622,44 @@ var Game = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     function Game() {
-        return _super.call(this) || this;
-        /*
-                    this.state =
+        var _this = _super.call(this) || this;
+        /***************************************************************************************************************
+        *   Being invoked when any square of the board is clicked.
+        *
+        *   @param i The id if the square field to render.
+        *
+        *   @return The rendered React element.
+        ***************************************************************************************************************/
+        _this.handleBoardClick = function (i) {
+            console.log("Handle board click");
+            var history = _this.state.history;
+            var current = history[history.length - 1];
+            var squares = current.squares.slice();
+            if (_this.calculateWinner(squares) || squares[i]) {
+                return;
+            }
+            squares[i] = (_this.state.xIsNext ? 'X' : 'O');
+            _this.setState({
+                history: history.concat([
                     {
-                        history:
-                        [
-                            {
-                                squares: new Array<string>( 9 ),
-                            }
-                        ],
-                        xIsNext: true,
-                    };
-        */
+                        squares: squares,
+                        onClick: null
+                    }
+                ]),
+                xIsNext: !_this.state.xIsNext
+            });
+        };
+        _this.state =
+            {
+                history: [
+                    {
+                        squares: new Array(9),
+                        onClick: null
+                    },
+                ],
+                xIsNext: true
+            };
+        return _this;
     }
     /***************************************************************************************************************
     *   Renders the game component.
@@ -22708,12 +22667,49 @@ var Game = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Game.prototype.render = function () {
+        var _this = this;
+        var history = this.state.history;
+        var current = history[history.length - 1];
+        var winner = this.calculateWinner(current.squares);
+        var status = null;
+        if (winner) {
+            status = 'Winner: ' + winner;
+        }
+        else {
+            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
         return (React.createElement("div", { className: "game" },
             React.createElement("div", { className: "game-board" },
-                React.createElement(rp.Board, null)),
+                React.createElement(rp.Board, { squares: current.squares, onClick: function (i) { return _this.handleBoardClick(i); } })),
             React.createElement("div", { className: "game-info" },
-                React.createElement("div", null),
+                React.createElement("div", null, status),
                 React.createElement("ol", null))));
+    };
+    /***************************************************************************************************************
+    *   Checks if one party has won.
+    *
+    *   @param squares All fields of the board to check for a winner.
+    *
+    *   @return X O or null depending on the current winner.
+    ***************************************************************************************************************/
+    Game.prototype.calculateWinner = function (squares) {
+        var lines = [
+            [0, 1, 2,],
+            [3, 4, 5,],
+            [6, 7, 8,],
+            [0, 3, 6,],
+            [1, 4, 7,],
+            [2, 5, 8,],
+            [0, 4, 8,],
+            [2, 4, 6,],
+        ];
+        for (var i = 0; i < lines.length; i++) {
+            var _a = lines[i], a = _a[0], b = _a[1], c = _a[2];
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a];
+            }
+        }
+        return null;
     };
     return Game;
 }(React.Component));
