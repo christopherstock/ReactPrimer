@@ -22611,6 +22611,8 @@ var rp = __webpack_require__(50);
 /*******************************************************************************************************************
 *   Represents the Tic Tac Toe game.
 *
+*   TODO ASAP remove history!
+*
 *   @author  Christopher Stock
 *   @version 1.0
 *******************************************************************************************************************/
@@ -22632,31 +22634,19 @@ var Game = /** @class */ (function (_super) {
         ***************************************************************************************************************/
         _this.handleBoardClick = function (i) {
             console.log("Handle board click");
-            var history = _this.state.history;
-            var current = history[history.length - 1];
-            var squares = current.squares.slice();
+            var squares = _this.state.squares.slice();
             if (_this.calculateWinner(squares) || squares[i]) {
                 return;
             }
             squares[i] = (_this.state.xIsNext ? 'X' : 'O');
             _this.setState({
-                history: history.concat([
-                    {
-                        squares: squares,
-                        onClick: null
-                    }
-                ]),
+                squares: squares,
                 xIsNext: !_this.state.xIsNext
             });
         };
         _this.state =
             {
-                history: [
-                    {
-                        squares: new Array(9),
-                        onClick: null
-                    },
-                ],
+                squares: new Array(9),
                 xIsNext: true
             };
         return _this;
@@ -22668,9 +22658,7 @@ var Game = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     Game.prototype.render = function () {
         var _this = this;
-        var history = this.state.history;
-        var current = history[history.length - 1];
-        var winner = this.calculateWinner(current.squares);
+        var winner = this.calculateWinner(this.state.squares);
         var status = null;
         if (winner) {
             status = 'Winner: ' + winner;
@@ -22680,7 +22668,7 @@ var Game = /** @class */ (function (_super) {
         }
         return (React.createElement("div", { className: "game" },
             React.createElement("div", { className: "game-board" },
-                React.createElement(rp.Board, { squares: current.squares, onClick: function (i) { return _this.handleBoardClick(i); } })),
+                React.createElement(rp.Board, { squares: this.state.squares, onClick: function (i) { return _this.handleBoardClick(i); } })),
             React.createElement("div", { className: "game-info" },
                 React.createElement("div", null, status),
                 React.createElement("ol", null))));

@@ -5,6 +5,8 @@
     /*******************************************************************************************************************
     *   Represents the Tic Tac Toe game.
     *
+    *   TODO ASAP remove history!
+    *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
@@ -21,13 +23,7 @@
 
             this.state =
             {
-                history:
-                [
-                    {
-                        squares: new Array<string>( 9 ),
-                        onClick: null,
-                    },
-                ],
+                squares: new Array<string>( 9 ),
                 xIsNext: true,
             };
         }
@@ -39,9 +35,7 @@
         ***************************************************************************************************************/
         public render()
         {
-            const history = this.state.history;
-            const current = history[history.length - 1];
-            const winner  = this.calculateWinner( current.squares );
+            const winner  = this.calculateWinner( this.state.squares );
 
             let status = null;
             if ( winner )
@@ -50,14 +44,14 @@
             }
             else
             {
-                status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+                status = 'Next player: ' + ( this.state.xIsNext ? 'X' : 'O' );
             }
 
             return(
                 <div className="game">
                 <div className="game-board">
                 <rp.Board
-                    squares={ current.squares }
+                    squares={ this.state.squares }
                     onClick={ ( i:any ) => this.handleBoardClick( i ) }
                 />
                 </div>
@@ -80,9 +74,7 @@
         {
             console.log( "Handle board click" );
 
-            const history = this.state.history;
-            const current = history[ history.length - 1 ];
-            const squares = current.squares.slice();
+            const squares = this.state.squares.slice();
             if ( this.calculateWinner( squares ) || squares[ i ] )
             {
                 return;
@@ -92,14 +84,7 @@
 
             this.setState(
                 {
-                    history: history.concat(
-                        [
-                            {
-                                squares: squares,
-                                onClick: null,
-                            }
-                        ]
-                    ),
+                    squares: squares,
                     xIsNext: !this.state.xIsNext,
                 }
             );
