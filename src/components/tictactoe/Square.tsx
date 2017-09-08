@@ -8,7 +8,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Square extends React.Component
+    export class Square extends React.Component<rp.SquareProps, undefined>
     {
         /***************************************************************************************************************
         *   Renders this component.
@@ -19,7 +19,7 @@
         {
             return (
                 <button className="square">
-                {/* TODO */}
+                    {this.props.value}
                 </button>
             );
         }
@@ -33,6 +33,6 @@
         ***************************************************************************************************************/
         public static renderSquare( i:any )
         {
-            return <Square />;
+            return <Square value={i} />;
         }
     }

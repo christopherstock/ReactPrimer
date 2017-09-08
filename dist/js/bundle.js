@@ -22498,7 +22498,7 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.prototype.render = function () {
-        return (React.createElement("button", { className: "square" }));
+        return (React.createElement("button", { className: "square" }, this.props.value));
     };
     /***************************************************************************************************************
     *   Renders the current square field.
@@ -22508,7 +22508,7 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.renderSquare = function (i) {
-        return React.createElement(Square, null);
+        return React.createElement(Square, { value: i });
     };
     return Square;
 }(React.Component));
