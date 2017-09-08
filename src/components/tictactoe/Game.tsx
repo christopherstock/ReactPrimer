@@ -8,7 +8,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Game extends React.Component
+    export class Game extends React.Component<any, rp.GameState>
     {
         /***************************************************************************************************************
         *   Constructs the game component.
