@@ -7,8 +7,6 @@
     *   Though Square is fully controlled by the Board class,
     *   Square is specified as a "controlled component".
     *
-    *   TODO introduce square state
-    *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
@@ -43,7 +41,11 @@
             console.log( "Square.render()" );
 
             return (
-                <button className="square" onClick={() => this.props.onClick()} value={this.props.value}>
+                <button
+                    className="square"
+                    value={ this.props.value }
+                    onClick={ this.props.onClick }
+                >
                     { this.props.value }
                 </button>
             );

@@ -22480,8 +22480,6 @@ var React = __webpack_require__(20);
 *   Though Square is fully controlled by the Board class,
 *   Square is specified as a "controlled component".
 *
-*   TODO introduce square state
-*
 *   @author  Christopher Stock
 *   @version 1.0
 *******************************************************************************************************************/
@@ -22510,9 +22508,8 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.prototype.render = function () {
-        var _this = this;
         console.log("Square.render()");
-        return (React.createElement("button", { className: "square", onClick: function () { return _this.props.onClick(); }, value: this.props.value }, this.props.value));
+        return (React.createElement("button", { className: "square", value: this.props.value, onClick: this.props.onClick }, this.props.value));
     };
     return Square;
 }(React.Component));
