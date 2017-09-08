@@ -9,4 +9,7 @@
     {
         /** The array that stores all states for all squares. */
         squares             :Array<string>;
+
+        /** Indicates if X has the next turn. */
+        xIsNext             :boolean;
     }

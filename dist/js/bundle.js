@@ -22477,8 +22477,12 @@ exports.__esModule = true;
 var React = __webpack_require__(20);
 /*******************************************************************************************************************
 *   Represents a Square of the Tic Tac Toe board.
+*
 *   Though Square is fully controlled by the Board class,
 *   Square is specified as a "controlled component".
+*
+*   This class could also be turned into a "functional component" by turning
+*   the class body into a sole function. .. but of course we don't want that in our TypeScript code!
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -22494,13 +22498,6 @@ var Square = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         console.log("Square.constructor()");
         return _this;
-        /*
-                    console.dir( props );
-        
-                    this.state = {
-                        value: props.value,
-                    };
-        */
     }
     /***************************************************************************************************************
     *   Renders this component.
@@ -22554,7 +22551,8 @@ var Board = /** @class */ (function (_super) {
             "6", "7", "8",
         ];
         _this.state = {
-            squares: defaultSquares
+            squares: defaultSquares,
+            xIsNext: true
         };
         return _this;
     }
@@ -22564,7 +22562,7 @@ var Board = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Board.prototype.render = function () {
-        var status = 'Next player: X';
+        var status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         return (React.createElement("div", null,
             React.createElement("div", { className: "status" }, status),
             React.createElement("div", { className: "board-row" },
@@ -22601,9 +22599,10 @@ var Board = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     Board.prototype.handleBoardClick = function (i) {
         var squares = this.state.squares.slice();
-        squares[i] = 'X';
+        squares[i] = (this.state.xIsNext ? 'X' : 'O');
         this.setState({
-            squares: squares
+            squares: squares,
+            xIsNext: !this.state.xIsNext
         });
     };
     return Board;

@@ -25,6 +25,7 @@
 
             this.state = {
                 squares: defaultSquares,
+                xIsNext: true,
             };
         }
 
@@ -35,7 +36,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            const status = 'Next player: X';
+            const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
             return (
                 <div>
@@ -71,7 +72,7 @@
             console.log( "Board.renderSquare()" );
 
             return <rp.Square
-                value={ this.state.squares[ i ] }
+                value={   this.state.squares[ i ]          }
                 onClick={ () => this.handleBoardClick( i ) }
             />;
         }
@@ -86,10 +87,11 @@
         private handleBoardClick( i:any )
         {
             const squares = this.state.squares.slice();
-            squares[ i ] = 'X';
+            squares[ i ] = ( this.state.xIsNext ? 'X' : 'O' );
             this.setState(
                 {
-                    squares: squares
+                    squares: squares,
+                    xIsNext: !this.state.xIsNext,
                 }
             );
         }

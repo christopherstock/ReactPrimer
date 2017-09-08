@@ -4,8 +4,12 @@
 
     /*******************************************************************************************************************
     *   Represents a Square of the Tic Tac Toe board.
+    *
     *   Though Square is fully controlled by the Board class,
     *   Square is specified as a "controlled component".
+    *
+    *   This class could also be turned into a "functional component" by turning
+    *   the class body into a sole function. .. but of course we don't want that in our TypeScript code!
     *
     *   @author  Christopher Stock
     *   @version 1.0
@@ -22,13 +26,6 @@
             super( props );
 
             console.log( "Square.constructor()" );
-/*
-            console.dir( props );
-
-            this.state = {
-                value: props.value,
-            };
-*/
         }
 
         /***************************************************************************************************************
@@ -43,7 +40,7 @@
             return (
                 <button
                     className="square"
-                    value={ this.props.value }
+                    value={   this.props.value   }
                     onClick={ this.props.onClick }
                 >
                     { this.props.value }
