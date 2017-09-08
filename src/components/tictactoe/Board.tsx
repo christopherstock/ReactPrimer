@@ -65,8 +65,29 @@
         ***************************************************************************************************************/
         public renderSquare( i:any )
         {
-            console.log( "renderSquare()" );
+            console.log( "Board.renderSquare()" );
 
-            return <rp.Square value={ this.state.squares[ i ] }  />;
+            return <rp.Square
+                value={ this.state.squares[ i ] }
+                onClick={ () => this.handleBoardClick( i ) }
+            />;
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked when any square of the board is clicked.
+        *
+        *   @param i The id if the square field to render.
+        *
+        *   @return The rendered React element.
+        ***************************************************************************************************************/
+        private handleBoardClick( i:any )
+        {
+            const squares = this.state.squares.slice();
+            squares[ i ] = 'X';
+            this.setState(
+                {
+                    squares: squares
+                }
+            );
         }
     }

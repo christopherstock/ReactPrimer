@@ -7,6 +7,9 @@
     *******************************************************************************************************************/
     export interface SquareProps
     {
-        /** The single value. */
+        /** The current square value. */
         value       :string;
+
+        /** The value of the onClick attribute for the square div. */
+        onClick     :any;
     }

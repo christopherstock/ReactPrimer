@@ -5,6 +5,8 @@
     /*******************************************************************************************************************
     *   Represents a Square of the Tic Tac Toe board.
     *
+    *   TODO introduce square state
+    *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
@@ -20,11 +22,13 @@
             super( props );
 
             console.log( "Square.constructor()" );
+/*
             console.dir( props );
 
             this.state = {
                 value: props.value,
             };
+*/
         }
 
         /***************************************************************************************************************
@@ -37,19 +41,9 @@
             console.log( "Square.render()" );
 
             return (
-                <button className="square" onClick={ this.onClickSquare }>
-                    {this.state.value}
+                <button className="square" onClick={() => this.props.onClick()}>
+                    { this.props.value }
                 </button>
             );
         }
-
-        /***************************************************************************************************************
-        *   Being invoked when a square is clicked.
-        ***************************************************************************************************************/
-        private onClickSquare=()=>
-        {
-            console.log( "Square.onClickSquare()" );
-
-            this.setState( { value: 'X' } )
-        };
     }
