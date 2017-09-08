@@ -5,6 +5,8 @@
     /*******************************************************************************************************************
     *   This components renders a H1 that contains a HELLO REACT string.
     *
+    *   TODO HIGH High-order component ankucken!
+    *
     *   The properties are set with the interface HelloProps.
     *   State is never set so we use the 'undefined' type.
     *
