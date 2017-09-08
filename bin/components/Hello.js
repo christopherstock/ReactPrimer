@@ -12,7 +12,13 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var React = require("react");
 /*******************************************************************************************************************
-*   'HelloProps' describes the shape of props. State is never set so we use the 'undefined' type.
+*   This components renders a H1 that contains a HELLO REACT string.
+*
+*   The properties are set with the interface HelloProps.
+*   State is never set so we use the 'undefined' type.
+*
+*   @author  Christopher Stock
+*   @version 1.0
 *******************************************************************************************************************/
 var Hello = /** @class */ (function (_super) {
     __extends(Hello, _super);
@@ -21,6 +27,8 @@ var Hello = /** @class */ (function (_super) {
     }
     /***************************************************************************************************************
     *   Renders this component.
+    *
+    *   @return The rendered React element.
     ***************************************************************************************************************/
     Hello.prototype.render = function () {
         return React.createElement("h1", null,

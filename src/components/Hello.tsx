@@ -3,12 +3,20 @@
     import * as rp    from '../rp';
 
     /*******************************************************************************************************************
-    *   'HelloProps' describes the shape of props. State is never set so we use the 'undefined' type.
+    *   This components renders a H1 that contains a HELLO REACT string.
+    *
+    *   The properties are set with the interface HelloProps.
+    *   State is never set so we use the 'undefined' type.
+    *
+    *   @author  Christopher Stock
+    *   @version 1.0
     *******************************************************************************************************************/
     export class Hello extends React.Component<rp.HelloProps, undefined>
     {
         /***************************************************************************************************************
         *   Renders this component.
+        *
+        *   @return The rendered React element.
         ***************************************************************************************************************/
         render() : JSX.Element
         {

@@ -9752,21 +9752,15 @@ module.exports = getHostComponentFromComposite;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(98);
-var TicTacToe_1 = __webpack_require__(187);
+var rp = __webpack_require__(185);
 /*******************************************************************************************************************
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
-    /*
-            // render the HELLO REACT example
-            ReactDOM.render
-            (
-                <rp.Hello compiler="the TypeScript Compiler" framework="the React Framework" />,
-                document.getElementById("example")
-            );
-    */
+    // render the HELLO REACT example
+    ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example1"));
     // render the TIC TAC TOE example
-    ReactDOM.render(React.createElement(TicTacToe_1.Game, null), document.getElementById('example'));
+    ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
 };
 
 
@@ -22397,8 +22391,71 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 184 */,
-/* 185 */,
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(49);
+/*******************************************************************************************************************
+*   This components renders a H1 that contains a HELLO REACT string.
+*
+*   The properties are set with the interface HelloProps.
+*   State is never set so we use the 'undefined' type.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var Hello = /** @class */ (function (_super) {
+    __extends(Hello, _super);
+    function Hello() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /***************************************************************************************************************
+    *   Renders this component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
+    Hello.prototype.render = function () {
+        return React.createElement("h1", null,
+            "Hello from ",
+            this.props.compiler,
+            React.createElement("br", null),
+            "and from the ",
+            this.props.framework,
+            "!");
+    };
+    return Hello;
+}(React.Component));
+exports.Hello = Hello;
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(184));
+__export(__webpack_require__(187));
+
+
+/***/ }),
 /* 186 */,
 /* 187 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -22417,25 +22474,54 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(49);
+/*******************************************************************************************************************
+*   Represents a Square of the Tic Tac Toe board.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
 var Square = /** @class */ (function (_super) {
     __extends(Square, _super);
     function Square() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /***************************************************************************************************************
+    *   Renders this component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
     Square.prototype.render = function () {
         return (React.createElement("button", { className: "square" }));
     };
     return Square;
 }(React.Component));
 exports.Square = Square;
+/*******************************************************************************************************************
+*   Represents the Tic Tac Toe board.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
 var Board = /** @class */ (function (_super) {
     __extends(Board, _super);
     function Board() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /***************************************************************************************************************
+    *   Renders the current square field.
+    *
+    *   @param i The id if the square field to render.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
     Board.prototype.renderSquare = function (i) {
         return React.createElement(Square, null);
     };
+    /***************************************************************************************************************
+    *   Renders this component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
     Board.prototype.render = function () {
         var status = 'Next player: X';
         return (React.createElement("div", null,
@@ -22456,11 +22542,22 @@ var Board = /** @class */ (function (_super) {
     return Board;
 }(React.Component));
 exports.Board = Board;
+/*******************************************************************************************************************
+*   Represents the Tic Tac Toe game.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
 var Game = /** @class */ (function (_super) {
     __extends(Game, _super);
     function Game() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /***************************************************************************************************************
+    *   Renders this component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
     Game.prototype.render = function () {
         return (React.createElement("div", { className: "game" },
             React.createElement("div", { className: "game-board" },
