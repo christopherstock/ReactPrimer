@@ -8,8 +8,25 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Square extends React.Component<rp.SquareProps, undefined>
+    export class Square extends React.Component<rp.SquareProps, any>
     {
+        /***************************************************************************************************************
+        *   Creates a new square element.
+        *
+        *   @param props The properties for this square element.
+        ***************************************************************************************************************/
+        public constructor( props:rp.SquareProps )
+        {
+            super( props );
+
+            console.log( "Square constructor being invoked.. " );
+            console.dir( props );
+
+            this.state = {
+                value: props.value,
+            };
+        }
+
         /***************************************************************************************************************
         *   Renders this component.
         *
@@ -17,9 +34,11 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
+            console.log( "Square.render()" );
+
             return (
                 <button className="square" onClick={ this.onClickSquare }>
-                    {this.props.value}
+                    {this.state.value}
                 </button>
             );
         }
@@ -33,6 +52,8 @@
         ***************************************************************************************************************/
         public static renderSquare( i:any )
         {
+            console.log( "static renderSquare" );
+
             return <Square value={i} />;
         }
 
@@ -41,6 +62,8 @@
         ***************************************************************************************************************/
         private onClickSquare=()=>
         {
-            alert( 'onClickSquare' );
+            console.log( "onClickSquare" );
+
+            this.setState( { value: 'X' } )
         };
     }

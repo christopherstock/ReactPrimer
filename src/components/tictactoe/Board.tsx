@@ -23,19 +23,19 @@
                 <div>
                     <div className="status">{status}</div>
                     <div className="board-row">
-                        {rp.Square.renderSquare(0)}
-                        {rp.Square.renderSquare(1)}
-                        {rp.Square.renderSquare(2)}
+                        { rp.Square.renderSquare( 0 ) }
+                        { rp.Square.renderSquare( 1 ) }
+                        { rp.Square.renderSquare( 2 ) }
                     </div>
                     <div className="board-row">
-                        {rp.Square.renderSquare(3)}
-                        {rp.Square.renderSquare(4)}
-                        {rp.Square.renderSquare(5)}
+                        { rp.Square.renderSquare( 3 ) }
+                        { rp.Square.renderSquare( 4 ) }
+                        { rp.Square.renderSquare( 5 ) }
                     </div>
                     <div className="board-row">
-                        {rp.Square.renderSquare(6)}
-                        {rp.Square.renderSquare(7)}
-                        {rp.Square.renderSquare(8)}
+                        { rp.Square.renderSquare( 6 ) }
+                        { rp.Square.renderSquare( 7 ) }
+                        { rp.Square.renderSquare( 8 ) }
                     </div>
                 </div>
             );

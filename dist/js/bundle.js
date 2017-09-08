@@ -22489,13 +22489,24 @@ var React = __webpack_require__(49);
 *******************************************************************************************************************/
 var Square = /** @class */ (function (_super) {
     __extends(Square, _super);
-    function Square() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    /***************************************************************************************************************
+    *   Creates a new square element.
+    *
+    *   @param props The properties for this square element.
+    ***************************************************************************************************************/
+    function Square(props) {
+        var _this = _super.call(this, props) || this;
         /***************************************************************************************************************
         *   Being invoked when a square is clicked.
         ***************************************************************************************************************/
         _this.onClickSquare = function () {
-            alert('onClickSquare');
+            console.log("onClickSquare");
+            _this.setState({ value: 'X' });
+        };
+        console.log("Square constructor being invoked.. ");
+        console.dir(props);
+        _this.state = {
+            value: props.value,
         };
         return _this;
     }
@@ -22505,7 +22516,8 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.prototype.render = function () {
-        return (React.createElement("button", { className: "square", onClick: this.onClickSquare }, this.props.value));
+        console.log("Square.render()");
+        return (React.createElement("button", { className: "square", onClick: this.onClickSquare }, this.state.value));
     };
     /***************************************************************************************************************
     *   Renders the current square field.
@@ -22515,6 +22527,7 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.renderSquare = function (i) {
+        console.log("static renderSquare");
         return React.createElement(Square, { value: i });
     };
     return Square;
