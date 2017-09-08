@@ -18,7 +18,7 @@
         public render() : JSX.Element
         {
             return (
-                <button className="square">
+                <button className="square" onClick={ this.onClickSquare }>
                     {this.props.value}
                 </button>
             );
@@ -35,4 +35,12 @@
         {
             return <Square value={i} />;
         }
+
+        /***************************************************************************************************************
+        *   Being invoked when a square is clicked.
+        ***************************************************************************************************************/
+        private onClickSquare=()=>
+        {
+            alert( 'onClickSquare' );
+        };
     }

@@ -22490,7 +22490,14 @@ var React = __webpack_require__(49);
 var Square = /** @class */ (function (_super) {
     __extends(Square, _super);
     function Square() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /***************************************************************************************************************
+        *   Being invoked when a square is clicked.
+        ***************************************************************************************************************/
+        _this.onClickSquare = function () {
+            alert('onClickSquare');
+        };
+        return _this;
     }
     /***************************************************************************************************************
     *   Renders this component.
@@ -22498,7 +22505,7 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.prototype.render = function () {
-        return (React.createElement("button", { className: "square" }, this.props.value));
+        return (React.createElement("button", { className: "square", onClick: this.onClickSquare }, this.props.value));
     };
     /***************************************************************************************************************
     *   Renders the current square field.
