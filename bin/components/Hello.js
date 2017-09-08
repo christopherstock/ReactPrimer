@@ -27,7 +27,8 @@ var Hello = /** @class */ (function (_super) {
         return React.createElement("h1", null,
             "Hello from ",
             this.props.compiler,
-            " and from the ",
+            React.createElement("br", null),
+            "and from the ",
             this.props.framework,
             "!");
     };
