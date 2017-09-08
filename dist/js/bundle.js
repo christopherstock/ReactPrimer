@@ -22452,12 +22452,15 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(184));
-__export(__webpack_require__(187));
+__export(__webpack_require__(188));
+__export(__webpack_require__(189));
+__export(__webpack_require__(190));
 
 
 /***/ }),
 /* 186 */,
-/* 187 */
+/* 187 */,
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22496,6 +22499,27 @@ var Square = /** @class */ (function (_super) {
     return Square;
 }(React.Component));
 exports.Square = Square;
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(49);
+var rp = __webpack_require__(185);
 /*******************************************************************************************************************
 *   Represents the Tic Tac Toe board.
 *
@@ -22515,7 +22539,7 @@ var Board = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Board.prototype.renderSquare = function (i) {
-        return React.createElement(Square, null);
+        return React.createElement(rp.Square, null);
     };
     /***************************************************************************************************************
     *   Renders this component.
@@ -22542,6 +22566,27 @@ var Board = /** @class */ (function (_super) {
     return Board;
 }(React.Component));
 exports.Board = Board;
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(49);
+var rp = __webpack_require__(185);
 /*******************************************************************************************************************
 *   Represents the Tic Tac Toe game.
 *
@@ -22561,7 +22606,7 @@ var Game = /** @class */ (function (_super) {
     Game.prototype.render = function () {
         return (React.createElement("div", { className: "game" },
             React.createElement("div", { className: "game-board" },
-                React.createElement(Board, null)),
+                React.createElement(rp.Board, null)),
             React.createElement("div", { className: "game-info" },
                 React.createElement("div", null),
                 React.createElement("ol", null))));
