@@ -22558,7 +22558,14 @@ var Board = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Board.prototype.render = function () {
-        var status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        var winner = this.calculateWinner(this.state.squares);
+        var status = null;
+        if (winner) {
+            status = 'Winner: ' + winner;
+        }
+        else {
+            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
         return (React.createElement("div", null,
             React.createElement("div", { className: "status" }, status),
             React.createElement("div", { className: "board-row" },
@@ -22595,17 +22602,42 @@ var Board = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     Board.prototype.handleBoardClick = function (i) {
         console.log("Handle board click");
+        // check if one player has won
+        if (this.calculateWinner(this.state.squares)) {
+            console.log("The game is already won!");
+            return;
+        }
         // break if the current field is already filled
         if (this.state.squares[i] != null) {
             console.log("This field is already busy!");
             return;
         }
+        // copy squares, toggle one and update state
         var squares = this.state.squares.slice();
         squares[i] = (this.state.xIsNext ? 'X' : 'O');
         this.setState({
             squares: squares,
             xIsNext: !this.state.xIsNext
         });
+    };
+    Board.prototype.calculateWinner = function (squares) {
+        var lines = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+        for (var i = 0; i < lines.length; i++) {
+            var _a = lines[i], a = _a[0], b = _a[1], c = _a[2];
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a];
+            }
+        }
+        return null;
     };
     return Board;
 }(React.Component));
