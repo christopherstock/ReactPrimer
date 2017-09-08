@@ -11,13 +11,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the 'undefined' type.
+/***********************************************************************************************************************
+*   'HelloProps' describes the shape of props.
+*   State is never set so we use the 'undefined' type.
+***********************************************************************************************************************/
 var Hello = /** @class */ (function (_super) {
     __extends(Hello, _super);
     function Hello() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /*******************************************************************************************************************
+    *   Renders this component.
+    *******************************************************************************************************************/
     Hello.prototype.render = function () {
         return React.createElement("h1", null,
             "Hello from ",
