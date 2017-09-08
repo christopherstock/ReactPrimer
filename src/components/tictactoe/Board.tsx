@@ -17,11 +17,7 @@
         {
             super();
 
-            const defaultSquares:Array<string> = [
-                "0", "1", "2",
-                "3", "4", "5",
-                "6", "7", "8",
-            ];
+            const defaultSquares:Array<string> = new Array<string>( 9 );
 
             this.state = {
                 squares: defaultSquares,
@@ -86,8 +82,20 @@
         ***************************************************************************************************************/
         private handleBoardClick( i:any )
         {
+            console.log( "Handle board click" );
+
+            // break if the current field is already filled
+            if ( this.state.squares[ i ] != null )
+            {
+                console.log( "This field is already busy!" );
+
+                return;
+            }
+
             const squares = this.state.squares.slice();
+
             squares[ i ] = ( this.state.xIsNext ? 'X' : 'O' );
+
             this.setState(
                 {
                     squares: squares,

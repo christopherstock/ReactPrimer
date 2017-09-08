@@ -22545,11 +22545,7 @@ var Board = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function Board() {
         var _this = _super.call(this) || this;
-        var defaultSquares = [
-            "0", "1", "2",
-            "3", "4", "5",
-            "6", "7", "8",
-        ];
+        var defaultSquares = new Array(9);
         _this.state = {
             squares: defaultSquares,
             xIsNext: true
@@ -22598,6 +22594,12 @@ var Board = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Board.prototype.handleBoardClick = function (i) {
+        console.log("Handle board click");
+        // break if the current field is already filled
+        if (this.state.squares[i] != null) {
+            console.log("This field is already busy!");
+            return;
+        }
         var squares = this.state.squares.slice();
         squares[i] = (this.state.xIsNext ? 'X' : 'O');
         this.setState({
