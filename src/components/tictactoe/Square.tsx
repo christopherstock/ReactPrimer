@@ -19,7 +19,7 @@
         {
             super( props );
 
-            console.log( "Square constructor being invoked.. " );
+            console.log( "Square.constructor()" );
             console.dir( props );
 
             this.state = {
@@ -44,25 +44,11 @@
         }
 
         /***************************************************************************************************************
-        *   Renders the current square field.
-        *
-        *   @param i The id if the square field to render.
-        *
-        *   @return The rendered React element.
-        ***************************************************************************************************************/
-        public static renderSquare( i:any )
-        {
-            console.log( "static renderSquare" );
-
-            return <Square value={i} />;
-        }
-
-        /***************************************************************************************************************
         *   Being invoked when a square is clicked.
         ***************************************************************************************************************/
         private onClickSquare=()=>
         {
-            console.log( "onClickSquare" );
+            console.log( "Square.onClickSquare()" );
 
             this.setState( { value: 'X' } )
         };

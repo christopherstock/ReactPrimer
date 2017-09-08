@@ -22500,10 +22500,10 @@ var Square = /** @class */ (function (_super) {
         *   Being invoked when a square is clicked.
         ***************************************************************************************************************/
         _this.onClickSquare = function () {
-            console.log("onClickSquare");
+            console.log("Square.onClickSquare()");
             _this.setState({ value: 'X' });
         };
-        console.log("Square constructor being invoked.. ");
+        console.log("Square.constructor()");
         console.dir(props);
         _this.state = {
             value: props.value,
@@ -22518,17 +22518,6 @@ var Square = /** @class */ (function (_super) {
     Square.prototype.render = function () {
         console.log("Square.render()");
         return (React.createElement("button", { className: "square", onClick: this.onClickSquare }, this.state.value));
-    };
-    /***************************************************************************************************************
-    *   Renders the current square field.
-    *
-    *   @param i The id if the square field to render.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Square.renderSquare = function (i) {
-        console.log("static renderSquare");
-        return React.createElement(Square, { value: i });
     };
     return Square;
 }(React.Component));
@@ -22563,7 +22552,16 @@ var rp = __webpack_require__(185);
 var Board = /** @class */ (function (_super) {
     __extends(Board, _super);
     function Board() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        var defaultSquares = [
+            "0", "1", "2",
+            "3", "4", "5",
+            "6", "7", "8",
+        ];
+        _this.state = {
+            squares: defaultSquares,
+        };
+        return _this;
     }
     /***************************************************************************************************************
     *   Renders this component.
@@ -22575,17 +22573,28 @@ var Board = /** @class */ (function (_super) {
         return (React.createElement("div", null,
             React.createElement("div", { className: "status" }, status),
             React.createElement("div", { className: "board-row" },
-                rp.Square.renderSquare(0),
-                rp.Square.renderSquare(1),
-                rp.Square.renderSquare(2)),
+                this.renderSquare(0),
+                this.renderSquare(1),
+                this.renderSquare(2)),
             React.createElement("div", { className: "board-row" },
-                rp.Square.renderSquare(3),
-                rp.Square.renderSquare(4),
-                rp.Square.renderSquare(5)),
+                this.renderSquare(3),
+                this.renderSquare(4),
+                this.renderSquare(5)),
             React.createElement("div", { className: "board-row" },
-                rp.Square.renderSquare(6),
-                rp.Square.renderSquare(7),
-                rp.Square.renderSquare(8))));
+                this.renderSquare(6),
+                this.renderSquare(7),
+                this.renderSquare(8))));
+    };
+    /***************************************************************************************************************
+    *   Renders the current square field.
+    *
+    *   @param i The id if the square field to render.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
+    Board.prototype.renderSquare = function (i) {
+        console.log("renderSquare()");
+        return React.createElement(rp.Square, { value: this.state.squares[i] });
     };
     return Board;
 }(React.Component));
