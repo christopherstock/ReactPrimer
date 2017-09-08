@@ -9752,9 +9752,12 @@ module.exports = getHostComponentFromComposite;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(98);
-var Hello_1 = __webpack_require__(184);
+var helloComponent = __webpack_require__(184);
+/*******************************************************************************************************************
+*   Being invoked when all components of the HTML page is fully loaded.
+*******************************************************************************************************************/
 window.onload = function () {
-    ReactDOM.render(React.createElement(Hello_1.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example"));
+    ReactDOM.render(React.createElement(helloComponent.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example"));
 };
 
 
@@ -22402,18 +22405,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(49);
-/***********************************************************************************************************************
-*   'HelloProps' describes the shape of props.
-*   State is never set so we use the 'undefined' type.
-***********************************************************************************************************************/
+/*******************************************************************************************************************
+*   'HelloProps' describes the shape of props. State is never set so we use the 'undefined' type.
+*******************************************************************************************************************/
 var Hello = /** @class */ (function (_super) {
     __extends(Hello, _super);
     function Hello() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /*******************************************************************************************************************
+    /***************************************************************************************************************
     *   Renders this component.
-    *******************************************************************************************************************/
+    ***************************************************************************************************************/
     Hello.prototype.render = function () {
         return React.createElement("h1", null,
             "Hello from ",
