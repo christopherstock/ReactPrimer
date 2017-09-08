@@ -22612,14 +22612,25 @@ var Board = /** @class */ (function (_super) {
             console.log("This field is already busy!");
             return;
         }
-        // copy squares, toggle one and update state
+        // copy squares & history, toggle one square, append history and update state
         var squares = this.state.squares.slice();
         squares[i] = (this.state.xIsNext ? 'X' : 'O');
+        /*
+                    const history = this.state.history.slice();
+                    history.push( squares );
+        */
         this.setState({
             squares: squares,
             xIsNext: !this.state.xIsNext
         });
     };
+    /***************************************************************************************************************
+    *   Checks if one party has won.
+    *
+    *   @param squares All fields of the board to check for a winner.
+    *
+    *   @return X O or null depending on the current winner.
+    ***************************************************************************************************************/
     Board.prototype.calculateWinner = function (squares) {
         var lines = [
             [0, 1, 2],
@@ -22671,11 +22682,28 @@ var rp = __webpack_require__(50);
 *******************************************************************************************************************/
 var Game = /** @class */ (function (_super) {
     __extends(Game, _super);
+    /***************************************************************************************************************
+    *   Constructs the game component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
     function Game() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.call(this) || this;
+        /*
+                    this.state =
+                    {
+                        history:
+                        [
+                            {
+                                squares: new Array<string>( 9 ),
+                            }
+                        ],
+                        xIsNext: true,
+                    };
+        */
     }
     /***************************************************************************************************************
-    *   Renders this component.
+    *   Renders the game component.
     *
     *   @return The rendered React element.
     ***************************************************************************************************************/

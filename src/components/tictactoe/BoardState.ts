@@ -1,15 +1,20 @@
 
     /*******************************************************************************************************************
-    *   The interface that specifies the properties for the Board class.
+    *   The interface that specifies the state for the Board class.
     *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export interface BoardProps
+    export interface BoardState
     {
-        /** The array that stores all states for all squares. */
+        /** All square values. */
         squares             :Array<string>;
 
         /** Indicates if X has the next turn. */
         xIsNext             :boolean;
+
+        /** Stores the squares of each turn. */
+/*
+        history             :Array<Array<string>>;
+*/
     }

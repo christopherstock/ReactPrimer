@@ -8,7 +8,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Board extends React.Component<null, rp.BoardProps>
+    export class Board extends React.Component<null, rp.BoardState>
     {
         /***************************************************************************************************************
         *   Creates a new Board.
@@ -22,6 +22,9 @@
             this.state = {
                 squares: defaultSquares,
                 xIsNext: true,
+/*
+                history: [ defaultSquares, ],
+*/
             };
         }
 
@@ -110,17 +113,31 @@
                 return;
             }
 
-            // copy squares, toggle one and update state
+            // copy squares & history, toggle one square, append history and update state
             const squares = this.state.squares.slice();
             squares[ i ] = ( this.state.xIsNext ? 'X' : 'O' );
+/*
+            const history = this.state.history.slice();
+            history.push( squares );
+*/
             this.setState(
                 {
                     squares: squares,
                     xIsNext: !this.state.xIsNext,
+/*
+                    history: history,
+*/
                 }
             );
         }
 
+        /***************************************************************************************************************
+        *   Checks if one party has won.
+        *
+        *   @param squares All fields of the board to check for a winner.
+        *
+        *   @return X O or null depending on the current winner.
+        ***************************************************************************************************************/
         private calculateWinner( squares:Array<string> ) : string
         {
             const lines = [
