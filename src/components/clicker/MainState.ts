@@ -7,6 +7,6 @@
     *******************************************************************************************************************/
     export interface MainState
     {
-        /** All square values. */
+        /** All values for each field. */
         field               :Array<Array<string>>;
     }

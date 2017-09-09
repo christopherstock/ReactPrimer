@@ -21,9 +21,17 @@
             document.getElementById('example2')
         );
 
+        let playerName = "Christopher";
+        let fieldSizeX = 12;
+        let fieldSizeY = 18;
+
         // render the CLICKER example
         ReactDOM.render(
-            <rp.Main fieldSizeX="12" fieldSizeY="18" />,
+            <rp.Main
+                playerName={ playerName }
+                fieldSizeX={ 12 }
+                fieldSizeY={ 18 }
+            />,
             document.getElementById('example3')
         );
     };

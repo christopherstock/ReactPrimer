@@ -7,9 +7,12 @@
     *******************************************************************************************************************/
     export interface MainProps
     {
-        /** Playfield size x */
-        fieldSizeX:string;
+        /** The name of the player. */
+        playerName      :string;
 
-        /** Playfield size y */
-        fieldSizeY:string;
+        /** The gamefield dimension x. */
+        fieldSizeX      :number;
+
+        /** The gamefield dimension y. */
+        fieldSizeY      :number;
     }

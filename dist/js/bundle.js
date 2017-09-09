@@ -787,7 +787,7 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 
@@ -1285,7 +1285,7 @@ var _prodInvariant = __webpack_require__(3),
 var CallbackQueue = __webpack_require__(62);
 var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(63);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var Transaction = __webpack_require__(28);
 
 var invariant = __webpack_require__(1);
@@ -2476,6 +2476,16 @@ module.exports = PooledClass;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2610,7 +2620,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2654,7 +2664,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2826,7 +2836,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2947,16 +2957,6 @@ DOMLazyTree.queueHTML = queueHTML;
 DOMLazyTree.queueText = queueText;
 
 module.exports = DOMLazyTree;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(16);
-
 
 /***/ }),
 /* 21 */
@@ -5235,7 +5235,7 @@ module.exports = getEventModifierState;
 
 
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var Danger = __webpack_require__(119);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
@@ -5534,7 +5534,7 @@ var _prodInvariant = __webpack_require__(3);
 var ReactPropTypesSecret = __webpack_require__(71);
 var propTypesFactory = __webpack_require__(56);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(1);
@@ -6596,7 +6596,7 @@ __export(__webpack_require__(189));
 
 
 
-var _prodInvariant = __webpack_require__(17),
+var _prodInvariant = __webpack_require__(18),
     _assign = __webpack_require__(4);
 
 var ReactNoopUpdateQueue = __webpack_require__(52);
@@ -8609,7 +8609,7 @@ module.exports = instantiateReactComponent;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 
 var invariant = __webpack_require__(1);
 
@@ -9200,9 +9200,9 @@ module.exports = getActiveElement;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var DOMProperty = __webpack_require__(13);
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
@@ -9212,7 +9212,7 @@ var ReactFeatureFlags = __webpack_require__(63);
 var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactMarkupChecksum = __webpack_require__(177);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdateQueue = __webpack_require__(47);
 var ReactUpdates = __webpack_require__(11);
 
@@ -9767,7 +9767,7 @@ module.exports = getHostComponentFromComposite;
 "use strict";
 
 exports.__esModule = true;
-var React = __webpack_require__(20);
+var React = __webpack_require__(16);
 var ReactDOM = __webpack_require__(99);
 var rp = __webpack_require__(50);
 /*******************************************************************************************************************
@@ -9778,8 +9778,11 @@ window.onload = function () {
     ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example1"));
     // render the TIC TAC TOE example
     ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
+    var playerName = "Christopher";
+    var fieldSizeX = 12;
+    var fieldSizeY = 18;
     // render the CLICKER example
-    ReactDOM.render(React.createElement(rp.Main, { fieldSizeX: "12", fieldSizeY: "18" }), document.getElementById('example3'));
+    ReactDOM.render(React.createElement(rp.Main, { playerName: playerName, fieldSizeX: 12, fieldSizeY: 18 }), document.getElementById('example3'));
 };
 
 
@@ -9997,7 +10000,7 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var invariant = __webpack_require__(1);
 
@@ -10114,7 +10117,7 @@ module.exports = PooledClass;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var REACT_ELEMENT_TYPE = __webpack_require__(53);
@@ -10535,7 +10538,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactPropTypeLocationNames = __webpack_require__(90);
 var ReactPropTypesSecret = __webpack_require__(91);
@@ -12220,7 +12223,7 @@ module.exports = factory;
  */
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactElement = __webpack_require__(14);
 
@@ -12280,7 +12283,7 @@ module.exports = __webpack_require__(100);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDefaultInjection = __webpack_require__(101);
 var ReactMount = __webpack_require__(81);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdates = __webpack_require__(11);
 var ReactVersion = __webpack_require__(179);
 
@@ -14570,7 +14573,7 @@ module.exports = ReactComponentBrowserEnvironment;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ExecutionEnvironment = __webpack_require__(6);
 
 var createNodesFromMarkup = __webpack_require__(120);
@@ -14989,7 +14992,7 @@ var _prodInvariant = __webpack_require__(3),
 
 var AutoFocusUtils = __webpack_require__(125);
 var CSSPropertyOperations = __webpack_require__(126);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var DOMNamespaces = __webpack_require__(40);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(70);
@@ -17001,7 +17004,7 @@ module.exports = ReactDOMInput;
 
 var _assign = __webpack_require__(4);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMSelect = __webpack_require__(72);
 
@@ -17300,7 +17303,7 @@ var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var ReactChildReconciler = __webpack_require__(140);
 
 var emptyFunction = __webpack_require__(9);
@@ -17745,7 +17748,7 @@ module.exports = ReactMultiChild;
 
 
 
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 
 var instantiateReactComponent = __webpack_require__(73);
 var KeyEscapeUtils = __webpack_require__(46);
@@ -17907,14 +17910,14 @@ module.exports = ReactChildReconciler;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactComponentEnvironment = __webpack_require__(43);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactErrorUtils = __webpack_require__(35);
 var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactNodeTypes = __webpack_require__(74);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(142);
@@ -19356,7 +19359,7 @@ module.exports = ReactServerUpdateQueue;
 
 var _assign = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -19565,7 +19568,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var DOMChildrenOperations = __webpack_require__(39);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var escapeTextContentForBrowser = __webpack_require__(31);
@@ -22426,7 +22429,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(20);
+var React = __webpack_require__(16);
 /*******************************************************************************************************************
 *   This components renders a H1 that contains a HELLO REACT string.
 *
@@ -22479,7 +22482,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(20);
+var React = __webpack_require__(16);
 /*******************************************************************************************************************
 *   Represents a Square of the Tic Tac Toe board.
 *
@@ -22535,7 +22538,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(20);
+var React = __webpack_require__(16);
 var rp = __webpack_require__(50);
 /*******************************************************************************************************************
 *   Represents the Tic Tac Toe board.
@@ -22611,7 +22614,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(20);
+var React = __webpack_require__(16);
 var rp = __webpack_require__(50);
 /*******************************************************************************************************************
 *   Represents the Tic Tac Toe game.
@@ -22724,8 +22727,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(20);
+var React = __webpack_require__(16);
 /*******************************************************************************************************************
+*   TODO ASAP Enumeration for all field states.
+*
 *   Represents the 'clicker' game.
 *
 *   @author  Christopher Stock
@@ -22742,7 +22747,35 @@ var Main = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Main.prototype.render = function () {
-        return React.createElement("h1", null, "Fucker!");
+        var acclaim = React.createElement("h1", null,
+            "Welcome ",
+            this.props.playerName);
+        var headline = React.createElement("h2", null,
+            "Your board is ",
+            this.props.fieldSizeX,
+            " x ",
+            this.props.fieldSizeY);
+        var columns = new Array(this.props.fieldSizeX);
+        console.log("Columns length: " + columns.length);
+        for (var _i = 0, columns_1 = columns; _i < columns_1.length; _i++) {
+            var column = columns_1[_i];
+            column = new Array(this.props.fieldSizeY);
+            console.log(" Row length: " + column.length);
+            for (var _a = 0, column_1 = column; _a < column_1.length; _a++) {
+                var cell = column_1[_a];
+                cell = React.createElement("div", null, "Fucker!");
+            }
+        }
+        var testers = ["Test1", "Test2", "Test3", "Test4", "Test5",];
+        return React.createElement("div", null,
+            acclaim,
+            headline,
+            testers.map(function (n) {
+                return React.createElement("p", { key: n }, n);
+            }),
+            columns.map(function (n) {
+                return React.createElement("div", null, "muuh");
+            }));
     };
     return Main;
 }(React.Component));
