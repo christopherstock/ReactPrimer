@@ -22755,26 +22755,24 @@ var Main = /** @class */ (function (_super) {
             this.props.fieldSizeX,
             " x ",
             this.props.fieldSizeY);
-        var columns = new Array(this.props.fieldSizeX);
-        console.log("Columns length: " + columns.length);
-        for (var _i = 0, columns_1 = columns; _i < columns_1.length; _i++) {
-            var column = columns_1[_i];
-            column = new Array(this.props.fieldSizeY);
-            console.log(" Row length: " + column.length);
-            for (var _a = 0, column_1 = column; _a < column_1.length; _a++) {
-                var cell = column_1[_a];
-                cell = React.createElement("div", null, "Fucker!");
+        var fields = new Array(this.props.fieldSizeX);
+        console.log("Columns length: " + fields.length);
+        for (var i = 0; i < fields.length; ++i) {
+            fields[i] = new Array(this.props.fieldSizeY);
+            console.log(" Row length: " + fields[i].length);
+            for (var j = 0; j < fields[i].length; ++j) {
+                fields[i][j] = React.createElement("div", null, "Fucker!");
             }
         }
-        var testers = ["Test1", "Test2", "Test3", "Test4", "Test5",];
-        return React.createElement("div", null,
+        return React.createElement("div", { className: "clickerBoard" },
             acclaim,
             headline,
-            testers.map(function (n) {
-                return React.createElement("p", { key: n }, n);
-            }),
-            columns.map(function (n) {
-                return React.createElement("div", null, "muuh");
+            fields.map(function (n) {
+                console.log("Ficki Fuck Fuck!");
+                return React.createElement("div", { className: "clickerColumn" }, n.map(function (n) {
+                    console.log("Ficki Fuck Fuck 2!");
+                    return React.createElement("div", { className: "clickerField" }, "Muuh!");
+                }));
             }));
     };
     return Main;

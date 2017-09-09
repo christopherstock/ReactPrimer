@@ -22,38 +22,42 @@
             let acclaim:JSX.Element  = <h1>Welcome { this.props.playerName }</h1>;
             let headline:JSX.Element = <h2>Your board is { this.props.fieldSizeX } x { this.props.fieldSizeY }</h2>;
 
-            let columns:Array<Array<JSX.Element>> = new Array<Array<JSX.Element>>( this.props.fieldSizeX );
-            console.log( "Columns length: " + columns.length );
+            let fields:Array<Array<JSX.Element>> = new Array<Array<JSX.Element>>( this.props.fieldSizeX );
+            console.log( "Columns length: " + fields.length );
 
-            for ( let column of columns )
+            for ( let i:number = 0; i < fields.length; ++i )
             {
-                column = new Array<JSX.Element>( this.props.fieldSizeY );
-                console.log( " Row length: " + column.length );
+                fields[i] = new Array<JSX.Element>( this.props.fieldSizeY );
+                console.log( " Row length: " + fields[i].length );
 
-                for ( let cell of column )
+                for ( let j:number = 0; j < fields[i].length; ++j )
                 {
-                    cell = <div>Fucker!</div>
+                    fields[ i ][ j ] = <div>Fucker!</div>;
                 }
             }
 
-            let testers = [ "Test1", "Test2", "Test3", "Test4", "Test5",  ];
-
-            return <div>
+            return <div className="clickerBoard">
                 { acclaim  }
                 { headline }
                 {
-                    testers.map(
+                    fields.map(
                         function( n )
                         {
-                            return <p key={n}>{n}</p>
-                        }
-                    )
-                }
-                {
-                    columns.map(
-                        function( n )
-                        {
-                            return <div>muuh</div>
+                            console.log( "Ficki Fuck Fuck!" );
+
+                            return <div className="clickerColumn">
+                                {
+                                    n.map
+                                    (
+                                        function( n )
+                                        {
+                                            console.log( "Ficki Fuck Fuck 2!" );
+
+                                            return <div className="clickerField">Muuh!</div>;
+                                        }
+                                    )
+                                }
+                            </div>;
                         }
                     )
                 }
