@@ -8,6 +8,10 @@
     *******************************************************************************************************************/
     window.onload = function()
     {
+        // TODO create Main.main() ?
+
+        // TODO acclaim and create title dynamically
+
         // render the HELLO REACT example
         ReactDOM.render
         (
@@ -21,16 +25,17 @@
             document.getElementById('example2')
         );
 
-        let playerName = "Christopher";
-        let fieldSizeX = 12;
-        let fieldSizeY = 18;
+        // TODO outsource to Settings class () ?
+        let playerName:string = "Christopher";
+        let fieldSizeX:number = 16;
+        let fieldSizeY:number = 22;
 
         // render the CLICKER example
         ReactDOM.render(
-            <rp.Main
+            <rp.Clicker
                 playerName={ playerName }
-                fieldSizeX={ 12 }
-                fieldSizeY={ 18 }
+                fieldSizeX={ fieldSizeX }
+                fieldSizeY={ fieldSizeY }
             />,
             document.getElementById('example3')
         );

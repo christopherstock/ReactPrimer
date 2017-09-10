@@ -62,7 +62,7 @@
         ***************************************************************************************************************/
         public renderSquare( i:any )
         {
-            console.log( "Board.renderSquare()" );
+            // console.log( "Board.renderSquare()" );
 
             return <rp.Square
                 value={   this.props.squares[ i ]       }

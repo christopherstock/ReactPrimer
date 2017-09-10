@@ -25,7 +25,7 @@
         {
             super( props );
 
-            console.log( "Square.constructor()" );
+            // console.log( "Square.constructor()" );
         }
 
         /***************************************************************************************************************
@@ -35,7 +35,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            console.log( "Square.render()" );
+            // console.log( "Square.render()" );
 
             return (
                 <button

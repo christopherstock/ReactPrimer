@@ -17,7 +17,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-
+            console.log( "render ClickerBoard" );
 
 
             // TODO turn into array[][] ?
@@ -34,13 +34,6 @@
                     fields[ i ][ j ] = <div>Fucker!</div>;
                 }
             }
-
-
-
-
-
-
-
 
 
 

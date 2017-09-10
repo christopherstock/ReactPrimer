@@ -6577,7 +6577,7 @@ __export(__webpack_require__(187));
 __export(__webpack_require__(188));
 __export(__webpack_require__(189));
 __export(__webpack_require__(83));
-__export(__webpack_require__(190));
+__export(__webpack_require__(191));
 
 
 /***/ }),
@@ -9796,6 +9796,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
+        console.log("render ClickerBoard");
         // TODO turn into array[][] ?
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns length: " + fields.length);
@@ -9834,15 +9835,18 @@ var rp = __webpack_require__(50);
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
+    // TODO create Main.main() ?
+    // TODO acclaim and create title dynamically
     // render the HELLO REACT example
     ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example1"));
     // render the TIC TAC TOE example
     ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
+    // TODO outsource to Settings class () ?
     var playerName = "Christopher";
-    var fieldSizeX = 12;
-    var fieldSizeY = 18;
+    var fieldSizeX = 16;
+    var fieldSizeY = 22;
     // render the CLICKER example
-    ReactDOM.render(React.createElement(rp.Main, { playerName: playerName, fieldSizeX: 12, fieldSizeY: 18 }), document.getElementById('example3'));
+    ReactDOM.render(React.createElement(rp.Clicker, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('example3'));
 };
 
 
@@ -22565,9 +22569,8 @@ var Square = /** @class */ (function (_super) {
     *   @param props The properties for this square element.
     ***************************************************************************************************************/
     function Square(props) {
-        var _this = _super.call(this, props) || this;
-        console.log("Square.constructor()");
-        return _this;
+        return _super.call(this, props) || this;
+        // console.log( "Square.constructor()" );
     }
     /***************************************************************************************************************
     *   Renders this component.
@@ -22575,7 +22578,7 @@ var Square = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Square.prototype.render = function () {
-        console.log("Square.render()");
+        // console.log( "Square.render()" );
         return (React.createElement("button", { className: "square", value: this.props.value, onClick: this.props.onClick }, this.props.value));
     };
     return Square;
@@ -22650,8 +22653,8 @@ var Board = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     Board.prototype.renderSquare = function (i) {
+        // console.log( "Board.renderSquare()" );
         var _this = this;
-        console.log("Board.renderSquare()");
         return React.createElement(rp.Square, { value: this.props.squares[i], onClick: function () { return _this.props.onClick(i); } });
     };
     return Board;
@@ -22773,7 +22776,8 @@ exports.Game = Game;
 
 
 /***/ }),
-/* 190 */
+/* 190 */,
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22799,9 +22803,9 @@ var rp = __webpack_require__(50);
 *   @author  Christopher Stock
 *   @version 1.0
 *******************************************************************************************************************/
-var Main = /** @class */ (function (_super) {
-    __extends(Main, _super);
-    function Main() {
+var Clicker = /** @class */ (function (_super) {
+    __extends(Clicker, _super);
+    function Clicker() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /***************************************************************************************************************
@@ -22809,7 +22813,7 @@ var Main = /** @class */ (function (_super) {
     *
     *   @return The rendered React element.
     ***************************************************************************************************************/
-    Main.prototype.render = function () {
+    Clicker.prototype.render = function () {
         var acclaim = React.createElement("h1", null,
             "Welcome ",
             this.props.playerName);
@@ -22824,9 +22828,9 @@ var Main = /** @class */ (function (_super) {
             headline,
             React.createElement(rp.ClickerBoard, { fieldSizeX: this.props.fieldSizeX, fieldSizeY: this.props.fieldSizeY }));
     };
-    return Main;
+    return Clicker;
 }(React.Component));
-exports.Main = Main;
+exports.Clicker = Clicker;
 
 
 /***/ })
