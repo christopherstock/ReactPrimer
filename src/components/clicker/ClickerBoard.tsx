@@ -82,12 +82,18 @@
                             (
                                 function( n )
                                 {
-                                    return <div className="clickerField">{ n }</div>;
+//                                    return <div className="clickerField" onClick={ this.onFieldClicked }>{ n }</div>;
+                                    return <div className="clickerField" onClick={ () => this.onFieldClicked() }>{ n }</div>;
                                 }
                             )
                         }
                     </div>;
                 }
             )
+        }
+
+        private onFieldClicked=()=>
+        {
+            console.log( "onFieldClicked" );
         }
     }

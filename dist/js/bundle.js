@@ -22748,6 +22748,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
+        _this.onFieldClicked = function () {
+            console.log("onFieldClicked");
+        };
         // TODO extract to createField()
         var fields = new Array(_this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
@@ -22787,7 +22790,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.renderBoard = function (fields) {
         return fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                return React.createElement("div", { className: "clickerField" }, n);
+                var _this = this;
+                //                                    return <div className="clickerField" onClick={ this.onFieldClicked }>{ n }</div>;
+                return React.createElement("div", { className: "clickerField", onClick: function () { return _this.onFieldClicked(); } }, n);
             }));
         });
     };
