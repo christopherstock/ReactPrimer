@@ -22741,8 +22741,13 @@ var React = __webpack_require__(14);
 *******************************************************************************************************************/
 var ClickerBoard = /** @class */ (function (_super) {
     __extends(ClickerBoard, _super);
-    function ClickerBoard() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    /***************************************************************************************************************
+    *   Renders the 'clicker' board component.
+    *
+    *   @return The rendered Board.
+    ***************************************************************************************************************/
+    function ClickerBoard(props) {
+        return _super.call(this, props) || this;
     }
     /***************************************************************************************************************
     *   Renders the 'clicker' board component.
@@ -22752,6 +22757,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.render = function () {
         console.log("render ClickerBoard");
         // TODO fields should not be of type JSX.Element but of type number !!
+        // TODO enumeration for all possible field values
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
         var fieldId = 0;

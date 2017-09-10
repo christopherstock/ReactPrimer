@@ -7,4 +7,12 @@
     *******************************************************************************************************************/
     export interface ClickerBoardState
     {
+
+
+
+        /** Contains all values for all fields. */
+        fields               :Array<Array<JSX.Element>>;
+
+
+
     }
