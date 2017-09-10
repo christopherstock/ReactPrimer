@@ -10,6 +10,8 @@
     *   The properties are set with the interface HelloProps.
     *   State is never set so we use the 'undefined' type.
     *
+    *   WORD Jeder grafische Bestandteil unsere Webapplikation kann mit React als eine eigene und unabhängige Komponente konzeptioniert werden.
+    *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
@@ -22,6 +24,6 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            return <h1>Hello from {this.props.compiler}<br/>and from the {this.props.framework}!</h1>;
+            return <h1>Hello from {this.props.compiler}<br/>and from {this.props.framework}!</h1>;
         }
     }

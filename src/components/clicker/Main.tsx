@@ -22,45 +22,15 @@
             let acclaim:JSX.Element  = <h1>Welcome { this.props.playerName }</h1>;
             let headline:JSX.Element = <h2>Your board is { this.props.fieldSizeX } x { this.props.fieldSizeY }</h2>;
 
-            let fields:Array<Array<JSX.Element>> = new Array<Array<JSX.Element>>( this.props.fieldSizeX );
-            console.log( "Columns length: " + fields.length );
+            // TODO show state, score etc.
 
-            for ( let i:number = 0; i < fields.length; ++i )
-            {
-                fields[i] = new Array<JSX.Element>( this.props.fieldSizeY );
-                console.log( " Row length: " + fields[i].length );
-
-                for ( let j:number = 0; j < fields[i].length; ++j )
-                {
-                    fields[ i ][ j ] = <div>Fucker!</div>;
-                }
-            }
-
-            return <div className="clickerBoard">
+            return <div className="mainContainer">
                 { acclaim  }
                 { headline }
-                { this.renderBoard( fields ) }
+                <rp.ClickerBoard
+                    fieldSizeX={ this.props.fieldSizeX }
+                    fieldSizeY={ this.props.fieldSizeY }
+                />
             </div>;
-        }
-
-        private renderBoard( fields:Array<Array<JSX.Element>> ) : JSX.Element[]
-        {
-            return fields.map(
-                function( n )
-                {
-                    return <div className="clickerColumn">
-                        {
-                            n.map
-                            (
-                                function( n )
-                                {
-                                    return <div className="clickerField">Muuh!</div>;
-                                }
-                            )
-                        }
-                    </div>;
-                }
-            )
-
         }
     }

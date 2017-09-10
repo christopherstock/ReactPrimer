@@ -9,21 +9,36 @@
         font:               14px "Century Gothic", Futura, sans-serif;
     }
 
-    div.clickerField
-    {
-        border:             1px solid #505050;
-    }
 
-    div.clickerBoard
+    div.mainContainer
     {
         margin:             25px auto 25px auto;
         display:            inline-block;
+    }
+
+
+    div.clickerBoard
+    {
     }
 
     div.clickerColumn
     {
         float:              left;
     }
+
+    div.clickerField
+    {
+        border:             1px solid #505050;
+    }
+
+    div.clickerField:hover
+    {
+        background:         #ff0000;
+    }
+
+
+
+
 
     ol, ul
     {
