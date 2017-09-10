@@ -22747,7 +22747,24 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     function ClickerBoard(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        // TODO extract to createField()
+        var fields = new Array(_this.props.fieldSizeX);
+        console.log("Columns: " + fields.length);
+        var fieldId = 0;
+        for (var i = 0; i < fields.length; ++i) {
+            fields[i] = new Array(_this.props.fieldSizeY);
+            console.log("Rows: " + fields[i].length);
+            for (var j = 0; j < fields[i].length; ++j) {
+                fields[i][j] = React.createElement("div", null, fieldId++);
+            }
+        }
+        // assign state directly
+        _this.state =
+            {
+                fields: fields
+            };
+        return _this;
     }
     /***************************************************************************************************************
     *   Renders the 'clicker' board component.
@@ -22758,17 +22775,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         console.log("render ClickerBoard");
         // TODO fields should not be of type JSX.Element but of type number !!
         // TODO enumeration for all possible field values
-        var fields = new Array(this.props.fieldSizeX);
-        console.log("Columns: " + fields.length);
-        var fieldId = 0;
-        for (var i = 0; i < fields.length; ++i) {
-            fields[i] = new Array(this.props.fieldSizeY);
-            console.log("Rows: " + fields[i].length);
-            for (var j = 0; j < fields[i].length; ++j) {
-                fields[i][j] = React.createElement("div", null, fieldId++);
-            }
-        }
-        return React.createElement("div", { className: "clickerBoard" }, this.renderBoard(fields));
+        return React.createElement("div", { className: "clickerBoard" }, this.renderBoard(this.state.fields));
     };
     /***************************************************************************************************************
     *   Renders the gamefield into an one-dimensional JSX element array so it can be rendered.

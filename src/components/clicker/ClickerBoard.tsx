@@ -19,23 +19,7 @@
         {
             super( props );
 
-
-
-
-        }
-
-        /***************************************************************************************************************
-        *   Renders the 'clicker' board component.
-        *
-        *   @return The rendered Board.
-        ***************************************************************************************************************/
-        public render() : JSX.Element
-        {
-            console.log( "render ClickerBoard" );
-
-            // TODO fields should not be of type JSX.Element but of type number !!
-
-            // TODO enumeration for all possible field values
+            // TODO extract to createField()
 
             let fields:JSX.Element[][] = new Array<Array<JSX.Element>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
@@ -53,10 +37,29 @@
                 }
             }
 
+            // assign state directly
+            this.state =
+            {
+                fields: fields,
+            };
+        }
+
+        /***************************************************************************************************************
+        *   Renders the 'clicker' board component.
+        *
+        *   @return The rendered Board.
+        ***************************************************************************************************************/
+        public render() : JSX.Element
+        {
+            console.log( "render ClickerBoard" );
+
+            // TODO fields should not be of type JSX.Element but of type number !!
+
+            // TODO enumeration for all possible field values
 
 
             return <div className="clickerBoard">
-                { this.renderBoard( fields ) }
+                { this.renderBoard( this.state.fields ) }
             </div>;
         }
 
