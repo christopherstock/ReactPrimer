@@ -72,18 +72,20 @@
         ***************************************************************************************************************/
         private renderBoard( fields:JSX.Element[][] ) : JSX.Element[]
         {
+            let thisInstance:ClickerBoard = this;
+
             return fields.map
             (
-                function( m )
+                function( m:JSX.Element[] )
                 {
                     return <div className="clickerColumn">
                         {
                             m.map
                             (
-                                function( n )
+                                function( n:JSX.Element )
                                 {
 //                                    return <div className="clickerField" onClick={ this.onFieldClicked }>{ n }</div>;
-                                    return <div className="clickerField" onClick={ () => this.onFieldClicked() }>{ n }</div>;
+                                    return <div className="clickerField" onClick={ () => thisInstance.onFieldClicked( n ) }>{ n }</div>;
                                 }
                             )
                         }
@@ -92,8 +94,12 @@
             )
         }
 
-        private onFieldClicked=()=>
+        private onFieldClicked=( id:JSX.Element )=>
         {
             console.log( "onFieldClicked" );
+            console.dir( id );
+
+
+
         }
     }
