@@ -19,19 +19,21 @@
         {
             console.log( "render ClickerBoard" );
 
+            // TODO fields should not be of type JSX.Element but of type number !!
 
-            // TODO turn into array[][] ?
-            let fields:Array<Array<JSX.Element>> = new Array<Array<JSX.Element>>( this.props.fieldSizeX );
-            console.log( "Columns length: " + fields.length );
+            let fields:JSX.Element[][] = new Array<Array<JSX.Element>>( this.props.fieldSizeX );
+            console.log( "Columns: " + fields.length );
+
+            let fieldId:number = 0;
 
             for ( let i:number = 0; i < fields.length; ++i )
             {
-                fields[i] = new Array<JSX.Element>( this.props.fieldSizeY );
-                console.log( " Row length: " + fields[i].length );
+                fields[ i ] = new Array<JSX.Element>( this.props.fieldSizeY );
+                console.log( "Rows: " + fields[i].length );
 
                 for ( let j:number = 0; j < fields[i].length; ++j )
                 {
-                    fields[ i ][ j ] = <div>Fucker!</div>;
+                    fields[ i ][ j ] = <div>{ fieldId++ }</div>;
                 }
             }
 
@@ -42,18 +44,25 @@
             </div>;
         }
 
-        private renderBoard( fields:Array<Array<JSX.Element>> ) : JSX.Element[]
+        /***************************************************************************************************************
+        *   Renders the gamefield into an one-dimensional JSX element array so it can be rendered.
+        *
+        *   @param fields All fields of the board in a 2d array.
+        *
+        *   @return The All fields of the board in a streamed 1d array.
+        ***************************************************************************************************************/
+        private renderBoard( fields:JSX.Element[][] ) : JSX.Element[]
         {
             return fields.map(
-                function( n )
+                function( m )
                 {
                     return <div className="clickerColumn">
                         {
-                            n.map
+                            m.map
                             (
                                 function( n )
                                 {
-                                    return <div className="clickerField">Muuh!</div>;
+                                    return <div className="clickerField">{ n }</div>;
                                 }
                             )
                         }
