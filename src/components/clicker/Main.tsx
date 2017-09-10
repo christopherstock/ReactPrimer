@@ -39,28 +39,28 @@
             return <div className="clickerBoard">
                 { acclaim  }
                 { headline }
-                {
-                    fields.map(
-                        function( n )
-                        {
-                            console.log( "Ficki Fuck Fuck!" );
-
-                            return <div className="clickerColumn">
-                                {
-                                    n.map
-                                    (
-                                        function( n )
-                                        {
-                                            console.log( "Ficki Fuck Fuck 2!" );
-
-                                            return <div className="clickerField">Muuh!</div>;
-                                        }
-                                    )
-                                }
-                            </div>;
-                        }
-                    )
-                }
+                { this.renderBoard( fields ) }
             </div>;
+        }
+
+        private renderBoard( fields:Array<Array<JSX.Element>> ) : JSX.Element[]
+        {
+            return fields.map(
+                function( n )
+                {
+                    return <div className="clickerColumn">
+                        {
+                            n.map
+                            (
+                                function( n )
+                                {
+                                    return <div className="clickerField">Muuh!</div>;
+                                }
+                            )
+                        }
+                    </div>;
+                }
+            )
+
         }
     }

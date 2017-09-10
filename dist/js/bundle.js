@@ -22767,13 +22767,14 @@ var Main = /** @class */ (function (_super) {
         return React.createElement("div", { className: "clickerBoard" },
             acclaim,
             headline,
-            fields.map(function (n) {
-                console.log("Ficki Fuck Fuck!");
-                return React.createElement("div", { className: "clickerColumn" }, n.map(function (n) {
-                    console.log("Ficki Fuck Fuck 2!");
-                    return React.createElement("div", { className: "clickerField" }, "Muuh!");
-                }));
+            this.renderBoard(fields));
+    };
+    Main.prototype.renderBoard = function (fields) {
+        return fields.map(function (n) {
+            return React.createElement("div", { className: "clickerColumn" }, n.map(function (n) {
+                return React.createElement("div", { className: "clickerField" }, "Muuh!");
             }));
+        });
     };
     return Main;
 }(React.Component));
