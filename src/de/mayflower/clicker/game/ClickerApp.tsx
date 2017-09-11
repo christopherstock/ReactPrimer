@@ -3,7 +3,6 @@
     import * as clicker from '../clicker';
 
     /*******************************************************************************************************************
-    *   TODO ASAP   acclaim and create title dynamically in index.tsx
     *   TODO ASAP   create Main.main() and invoke from index.tsx?
     *   TODO ASAP   Ditch all classes outside the clicker package.
     *   TODO ASAP   New class 'ClickerField'?

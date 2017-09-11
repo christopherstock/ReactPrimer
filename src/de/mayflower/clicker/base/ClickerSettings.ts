@@ -7,6 +7,9 @@
     *******************************************************************************************************************/
     export class ClickerSettings
     {
+        /** The application title. */
+        public      static  readonly    APPLICATION_TITLE       :string             = "ReactPrimer, (c) 2017 Mayflower GmbH";
+
         /** The default name of the player. */
         public      static  readonly    DEFAULT_PLAYER_NAME     :string             = "Christopher";
 

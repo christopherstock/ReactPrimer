@@ -8,6 +8,10 @@
     *******************************************************************************************************************/
     window.onload = function()
     {
+        // acclaim and set title
+        document.title = clicker.ClickerSettings.APPLICATION_TITLE;
+        clicker.ClickerDebug.log( clicker.ClickerSettings.APPLICATION_TITLE );
+
         // pick config values from settings file
         let playerName:string = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
         let fieldSizeX:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;

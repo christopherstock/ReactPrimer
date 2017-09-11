@@ -9758,6 +9758,9 @@ var clicker = __webpack_require__(190);
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
+    // acclaim and set title
+    document.title = clicker.ClickerSettings.APPLICATION_TITLE;
+    clicker.ClickerDebug.log(clicker.ClickerSettings.APPLICATION_TITLE);
     // pick config values from settings file
     var playerName = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
     var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
@@ -22408,6 +22411,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 exports.__esModule = true;
+__export(__webpack_require__(194));
 __export(__webpack_require__(193));
 __export(__webpack_require__(191));
 __export(__webpack_require__(192));
@@ -22433,7 +22437,6 @@ exports.__esModule = true;
 var React = __webpack_require__(16);
 var clicker = __webpack_require__(190);
 /*******************************************************************************************************************
-*   TODO ASAP   acclaim and create title dynamically in index.tsx
 *   TODO ASAP   create Main.main() and invoke from index.tsx?
 *   TODO ASAP   Ditch all classes outside the clicker package.
 *   TODO ASAP   New class 'ClickerField'?
@@ -22599,6 +22602,8 @@ exports.__esModule = true;
 var ClickerSettings = /** @class */ (function () {
     function ClickerSettings() {
     }
+    /** The application title. */
+    ClickerSettings.APPLICATION_TITLE = "ReactPrimer, (c) 2017 Mayflower GmbH";
     /** The default name of the player. */
     ClickerSettings.DEFAULT_PLAYER_NAME = "Christopher";
     /** The default gamefield dimension x. */
@@ -22608,6 +22613,35 @@ var ClickerSettings = /** @class */ (function () {
     return ClickerSettings;
 }());
 exports.ClickerSettings = ClickerSettings;
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*******************************************************************************************************************
+*   The debug system that wrapps console logging.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerDebug = /** @class */ (function () {
+    function ClickerDebug() {
+    }
+    /***************************************************************************************************************
+    *   Logs the given message to the console.
+    *
+    *   @param msg The message to log to the console.
+    ***************************************************************************************************************/
+    ClickerDebug.log = function (msg) {
+        console.log(msg);
+    };
+    return ClickerDebug;
+}());
+exports.ClickerDebug = ClickerDebug;
 
 
 /***/ })
