@@ -55,7 +55,7 @@
                 </div>
                 <div className="game-info">
                 <div>{ status }</div>
-                <ol>{/* TODO */}</ol>
+                <ol>{/* history */}</ol>
                 </div>
                 </div>
             );

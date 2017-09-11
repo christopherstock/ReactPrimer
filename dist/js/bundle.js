@@ -9775,18 +9775,15 @@ var rp = __webpack_require__(50);
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
-    // TODO create Main.main() ?
-    // TODO acclaim and create title dynamically
     // render the HELLO REACT example
     ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example1"));
     // render the TIC TAC TOE example
     ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
-    // TODO outsource to Settings class () ?
     var playerName = "Christopher";
     var fieldSizeX = 16;
     var fieldSizeY = 22;
     // render the CLICKER example
-    ReactDOM.render(React.createElement(rp.Clicker, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('example3'));
+    ReactDOM.render(React.createElement(rp.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('example3'));
 };
 
 
@@ -22437,9 +22434,6 @@ var React = __webpack_require__(20);
 /*******************************************************************************************************************
 *   This components renders a H1 that contains a HELLO REACT string.
 *
-*   TODO HIGH learn "High-order component"!
-*   TODO Gather all ToDos!
-*
 *   The properties are set with the interface HelloProps.
 *   State is never set so we use the 'undefined' type.
 *
@@ -22825,6 +22819,14 @@ var React = __webpack_require__(20);
 var rp = __webpack_require__(50);
 /*******************************************************************************************************************
 *   TODO ASAP Enumeration for all field states.
+*   TODO ASAP show state, score etc. in ClickerApp::render()
+*   TODO ASAP Add game state ( won, etc. ) to ClickerAppState
+*   TODO INIT Outsource all settings from index.tsx to Settings class etc.?
+*   TODO INIT Ditch all classes outside the clicker package.
+*   TODO INIT create Main.main() and invoke from index.tsx?
+*   TODO INIT acclaim and create title dynamically in index.tsx
+*   TODO LOW  learn "High-order component"!
+*   TODO LOW  Gather all ToDos!
 *
 *   Represents the 'clicker' game.
 *
@@ -22850,7 +22852,6 @@ var ClickerApp = /** @class */ (function (_super) {
             this.props.fieldSizeX,
             " x ",
             this.props.fieldSizeY);
-        // TODO show state, score etc.
         return React.createElement("div", { className: "mainContainer" },
             acclaim,
             headline,
