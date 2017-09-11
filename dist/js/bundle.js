@@ -22743,6 +22743,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
+        /***************************************************************************************************************
+        *   Being invoked when a field of the board is clicked.
+        *
+        *   @param id The id of the field that has been clicked.
+        ***************************************************************************************************************/
         _this.onFieldClicked = function (id) {
             console.log("onFieldClicked");
             console.dir(id);
@@ -22755,7 +22760,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             fields[i] = new Array(_this.props.fieldSizeY);
             console.log("Rows: " + fields[i].length);
             for (var j = 0; j < fields[i].length; ++j) {
-                fields[i][j] = React.createElement("div", null, fieldId++);
+                fields[i][j] = fieldId++;
             }
         }
         // assign state directly
@@ -22772,23 +22777,19 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
         console.log("render ClickerBoard");
-        // TODO fields should not be of type JSX.Element but of type number !!
         // TODO enumeration for all possible field values
-        return React.createElement("div", { className: "clickerBoard" }, this.renderBoard(this.state.fields));
+        return React.createElement("div", { className: "clickerBoard" }, this.renderBoard());
     };
     /***************************************************************************************************************
     *   Renders the gamefield into an one-dimensional JSX element array so it can be rendered.
     *
-    *   @param fields All fields of the board in a 2d array.
-    *
-    *   @return The All fields of the board in a streamed 1d array.
+    *   @return The All fields of the board in a streamed 1d array of JSX elements.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.renderBoard = function (fields) {
+    ClickerBoard.prototype.renderBoard = function () {
         var thisInstance = this;
-        return fields.map(function (m) {
+        return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                //                                    return <div className="clickerField" onClick={ this.onFieldClicked }>{ n }</div>;
-                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); } }, n);
+                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); } }, ">" + n + "<");
             }));
         });
     };

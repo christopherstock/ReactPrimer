@@ -8,8 +8,8 @@
     export interface ClickerBoardProps
     {
         /** The gamefield dimension x. */
-        fieldSizeX      :number;
+        fieldSizeX              :number;
 
         /** The gamefield dimension y. */
-        fieldSizeY      :number;
+        fieldSizeY              :number;
     }
