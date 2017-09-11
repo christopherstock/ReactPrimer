@@ -22753,16 +22753,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             console.dir(id);
         };
         // TODO extract to createField()
-        var fields = new Array(_this.props.fieldSizeX);
-        console.log("Columns: " + fields.length);
-        var fieldId = 0;
-        for (var i = 0; i < fields.length; ++i) {
-            fields[i] = new Array(_this.props.fieldSizeY);
-            console.log("Rows: " + fields[i].length);
-            for (var j = 0; j < fields[i].length; ++j) {
-                fields[i][j] = fieldId++;
-            }
-        }
+        var fields = _this.createEmptyFields();
         // assign state directly
         _this.state =
             {
@@ -22777,8 +22768,25 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
         console.log("render ClickerBoard");
-        // TODO enumeration for all possible field values
         return React.createElement("div", { className: "clickerBoard" }, this.renderBoard());
+    };
+    /***************************************************************************************************************
+    *   Creates an empty board represented by an empty 2d array of the desired size.
+    *
+    *   @return The 2d array that represents all board fields.
+    ***************************************************************************************************************/
+    ClickerBoard.prototype.createEmptyFields = function () {
+        var fields = new Array(this.props.fieldSizeX);
+        console.log("Columns: " + fields.length);
+        var fieldId = 0;
+        for (var i = 0; i < fields.length; ++i) {
+            fields[i] = new Array(this.props.fieldSizeY);
+            console.log("Rows: " + fields[i].length);
+            for (var j = 0; j < fields[i].length; ++j) {
+                fields[i][j] = fieldId++;
+            }
+        }
+        return fields;
     };
     /***************************************************************************************************************
     *   Renders the gamefield into an one-dimensional JSX element array so it can be rendered.
@@ -22789,7 +22797,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var thisInstance = this;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); } }, ">" + n + "<");
+                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); }, key: n }, ">" + n + "<");
             }));
         });
     };

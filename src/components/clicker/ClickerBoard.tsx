@@ -21,21 +21,7 @@
 
             // TODO extract to createField()
 
-            let fields:number[][] = new Array<Array<number>>( this.props.fieldSizeX );
-            console.log( "Columns: " + fields.length );
-
-            let fieldId:number = 0;
-
-            for ( let i:number = 0; i < fields.length; ++i )
-            {
-                fields[ i ] = new Array<number>( this.props.fieldSizeY );
-                console.log( "Rows: " + fields[i].length );
-
-                for ( let j:number = 0; j < fields[i].length; ++j )
-                {
-                    fields[ i ][ j ] = fieldId++;
-                }
-            }
+            let fields:number[][] = this.createEmptyFields();
 
             // assign state directly
             this.state =
@@ -53,12 +39,37 @@
         {
             console.log( "render ClickerBoard" );
 
-            // TODO enumeration for all possible field values
 
 
             return <div className="clickerBoard">
                 { this.renderBoard() }
             </div>;
+        }
+
+        /***************************************************************************************************************
+        *   Creates an empty board represented by an empty 2d array of the desired size.
+        *
+        *   @return The 2d array that represents all board fields.
+        ***************************************************************************************************************/
+        private createEmptyFields() : number[][]
+        {
+            let fields:number[][] = new Array<Array<number>>( this.props.fieldSizeX );
+            console.log( "Columns: " + fields.length );
+
+            let fieldId:number = 0;
+
+            for ( let i:number = 0; i < fields.length; ++i )
+            {
+                fields[ i ] = new Array<number>( this.props.fieldSizeY );
+                console.log( "Rows: " + fields[i].length );
+
+                for ( let j:number = 0; j < fields[i].length; ++j )
+                {
+                    fields[ i ][ j ] = fieldId++;
+                }
+            }
+
+            return fields;
         }
 
         /***************************************************************************************************************
@@ -80,7 +91,11 @@
                             (
                                 function( n:number )
                                 {
-                                    return <div className="clickerField" onClick={ () => thisInstance.onFieldClicked( n ) }>
+                                    return <div
+                                        className="clickerField"
+                                        onClick={ () => thisInstance.onFieldClicked( n ) }
+                                        key={ n }
+                                    >
                                         { ">" + n + "<" }
                                     </div>;
                                 }
@@ -100,6 +115,8 @@
         {
             console.log( "onFieldClicked" );
             console.dir( id );
+
+
 
 
 
