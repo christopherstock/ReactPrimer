@@ -3,7 +3,6 @@
     import * as clicker from '../clicker';
 
     /*******************************************************************************************************************
-    *   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
     *   TODO ASAP   acclaim and create title dynamically in index.tsx
     *   TODO ASAP   create Main.main() and invoke from index.tsx?
     *   TODO ASAP   Ditch all classes outside the clicker package.
@@ -17,6 +16,7 @@
     *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
     *   TODO WEAK   show state, score etc. in ClickerApp::render()
     *   TODO WEAK   learn "High-order component"!
+    *   TODO ASAP   Create button and input fields to re-create the gamefield.
     *
     *   Represents the 'clicker' game.
     *

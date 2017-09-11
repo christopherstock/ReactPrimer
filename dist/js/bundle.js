@@ -9758,10 +9758,11 @@ var clicker = __webpack_require__(190);
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
-    var playerName = "Christopher";
-    var fieldSizeX = 16;
-    var fieldSizeY = 22;
-    // render the CLICKER example
+    // pick config values from settings file
+    var playerName = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
+    var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
+    var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
+    // render the clicker app
     ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
 };
 
@@ -22407,6 +22408,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 exports.__esModule = true;
+__export(__webpack_require__(193));
 __export(__webpack_require__(191));
 __export(__webpack_require__(192));
 
@@ -22431,7 +22433,6 @@ exports.__esModule = true;
 var React = __webpack_require__(16);
 var clicker = __webpack_require__(190);
 /*******************************************************************************************************************
-*   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
 *   TODO ASAP   acclaim and create title dynamically in index.tsx
 *   TODO ASAP   create Main.main() and invoke from index.tsx?
 *   TODO ASAP   Ditch all classes outside the clicker package.
@@ -22445,6 +22446,7 @@ var clicker = __webpack_require__(190);
 *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
 *   TODO WEAK   show state, score etc. in ClickerApp::render()
 *   TODO WEAK   learn "High-order component"!
+*   TODO ASAP   Create button and input fields to re-create the gamefield.
 *
 *   Represents the 'clicker' game.
 *
@@ -22579,6 +22581,33 @@ var ClickerBoard = /** @class */ (function (_super) {
     return ClickerBoard;
 }(React.Component));
 exports.ClickerBoard = ClickerBoard;
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*******************************************************************************************************************
+*   All default settings for the game.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerSettings = /** @class */ (function () {
+    function ClickerSettings() {
+    }
+    /** The default name of the player. */
+    ClickerSettings.DEFAULT_PLAYER_NAME = "Christopher";
+    /** The default gamefield dimension x. */
+    ClickerSettings.DEFAULT_FIELD_SIZE_X = 16;
+    /** The default gamefield dimension y. */
+    ClickerSettings.DEFAULT_FIELD_SIZE_Y = 22;
+    return ClickerSettings;
+}());
+exports.ClickerSettings = ClickerSettings;
 
 
 /***/ })
