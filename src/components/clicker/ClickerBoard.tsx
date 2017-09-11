@@ -37,10 +37,8 @@
         {
             console.log( "render ClickerBoard" );
 
-
-
             return <div className="clickerBoard">
-                { this.renderBoard() }
+                { this.renderFields() }
             </div>;
         }
 
@@ -75,7 +73,7 @@
         *
         *   @return The All fields of the board in a streamed 1d array of JSX elements.
         ***************************************************************************************************************/
-        private renderBoard() : JSX.Element[]
+        private renderFields() : JSX.Element[]
         {
             let thisInstance:ClickerBoard = this;
 
@@ -115,8 +113,16 @@
             console.dir( id );
 
 
+            let newFields:number[][] = this.state.fields.slice();
 
+            newFields[ 1 ][ 3 ] = 99999999;
 
-
+            // forces rerendering the board
+            this.setState
+            (
+                {
+                    fields: newFields
+                }
+            );
         }
     }
