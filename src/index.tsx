@@ -8,18 +8,6 @@
     *******************************************************************************************************************/
     window.onload = function()
     {
-
-
-
-        // render the TIC TAC TOE example
-        ReactDOM.render(
-            <rp.Game />,
-            document.getElementById('example2')
-        );
-
-
-
-
         let playerName:string = "Christopher";
         let fieldSizeX:number = 16;
         let fieldSizeY:number = 22;
@@ -31,6 +19,6 @@
                 fieldSizeX={ fieldSizeX }
                 fieldSizeY={ fieldSizeY }
             />,
-            document.getElementById('example3')
+            document.getElementById('gameContainer')
         );
     };

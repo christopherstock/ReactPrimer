@@ -3,17 +3,19 @@
     import * as rp    from '../../rp';
 
     /*******************************************************************************************************************
-    *   TODO INIT   New class 'ClickerField'?
+    *   TODO ASAP   Refactor package structure.
+    *   TODO ASAP   acclaim and create title dynamically in index.tsx
+    *   TODO ASAP   Ditch all classes outside the clicker package.
+    *   TODO ASAP   create Main.main() and invoke from index.tsx?
+    *   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
+    *   TODO ASAP   New class 'ClickerField'?
     *   TODO ASAP   Log x and y coordinate on clicking a field ..
     *   TODO ASAP   Ditch missing key warning
-    *   TODO ASAP   Enumeration for all field states.
-    *   TODO HIGH   show state, score etc. in ClickerApp::render()
-    *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState
-    *   TODO INIT   Outsource all settings from index.tsx to Settings class etc.?
-    *   TODO LOW    Refactor package structure.
-    *   TODO LOW    Ditch all classes outside the clicker package.
-    *   TODO LOW    create Main.main() and invoke from index.tsx?
-    *   TODO WEAK   acclaim and create title dynamically in index.tsx
+    *
+    *   TODO WEAK   Complete the new game engine.
+    *   TODO WEAK   Enumeration for all field states.
+    *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
+    *   TODO WEAK   show state, score etc. in ClickerApp::render()
     *   TODO WEAK   learn "High-order component"!
     *
     *   Represents the 'clicker' game.

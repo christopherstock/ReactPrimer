@@ -4690,11 +4690,8 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 exports.__esModule = true;
-__export(__webpack_require__(185));
-__export(__webpack_require__(186));
-__export(__webpack_require__(187));
-__export(__webpack_require__(188));
 __export(__webpack_require__(189));
+__export(__webpack_require__(188));
 
 
 /***/ }),
@@ -9774,13 +9771,11 @@ var rp = __webpack_require__(33);
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
-    // render the TIC TAC TOE example
-    ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
     var playerName = "Christopher";
     var fieldSizeX = 16;
     var fieldSizeY = 22;
     // render the CLICKER example
-    ReactDOM.render(React.createElement(rp.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('example3'));
+    ReactDOM.render(React.createElement(rp.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
 };
 
 
@@ -22411,250 +22406,9 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(16);
-/*******************************************************************************************************************
-*   Represents a Square of the Tic Tac Toe board.
-*
-*   Though Square is fully controlled by the Board class,
-*   Square is specified as a "controlled component".
-*
-*   This class could also be turned into a "functional component" by turning
-*   the class body into a sole function. .. but of course we don't want that in our TypeScript code!
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var Square = /** @class */ (function (_super) {
-    __extends(Square, _super);
-    /***************************************************************************************************************
-    *   Creates a new square element.
-    *
-    *   @param props The properties for this square element.
-    ***************************************************************************************************************/
-    function Square(props) {
-        return _super.call(this, props) || this;
-        // console.log( "Square.constructor()" );
-    }
-    /***************************************************************************************************************
-    *   Renders this component.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Square.prototype.render = function () {
-        // console.log( "Square.render()" );
-        return (React.createElement("button", { className: "square", value: this.props.value, onClick: this.props.onClick }, this.props.value));
-    };
-    return Square;
-}(React.Component));
-exports.Square = Square;
-
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(16);
-var rp = __webpack_require__(33);
-/*******************************************************************************************************************
-*   Represents the Tic Tac Toe board.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var Board = /** @class */ (function (_super) {
-    __extends(Board, _super);
-    /***************************************************************************************************************
-    *   Creates a new Board.
-    ***************************************************************************************************************/
-    function Board(props) {
-        var _this = _super.call(this, props) || this;
-        var defaultSquares = new Array(9);
-        _this.state = {
-            squares: defaultSquares,
-            xIsNext: true
-        };
-        return _this;
-    }
-    /***************************************************************************************************************
-    *   Renders this component.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Board.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("div", { className: "board-row" },
-                this.renderSquare(0),
-                this.renderSquare(1),
-                this.renderSquare(2)),
-            React.createElement("div", { className: "board-row" },
-                this.renderSquare(3),
-                this.renderSquare(4),
-                this.renderSquare(5)),
-            React.createElement("div", { className: "board-row" },
-                this.renderSquare(6),
-                this.renderSquare(7),
-                this.renderSquare(8))));
-    };
-    /***************************************************************************************************************
-    *   Renders the current square field.
-    *
-    *   @param i The id if the square field to render.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Board.prototype.renderSquare = function (i) {
-        // console.log( "Board.renderSquare()" );
-        var _this = this;
-        return React.createElement(rp.Square, { value: this.props.squares[i], onClick: function () { return _this.props.onClick(i); } });
-    };
-    return Board;
-}(React.Component));
-exports.Board = Board;
-
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(16);
-var rp = __webpack_require__(33);
-/*******************************************************************************************************************
-*   Represents the Tic Tac Toe game.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var Game = /** @class */ (function (_super) {
-    __extends(Game, _super);
-    /***************************************************************************************************************
-    *   Constructs the game component.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    function Game() {
-        var _this = _super.call(this) || this;
-        /***************************************************************************************************************
-        *   Being invoked when any square of the board is clicked.
-        *
-        *   @param i The id if the square field to render.
-        *
-        *   @return The rendered React element.
-        ***************************************************************************************************************/
-        _this.handleBoardClick = function (i) {
-            console.log("Handle board click");
-            var squares = _this.state.squares.slice();
-            if (_this.calculateWinner(squares) || squares[i]) {
-                return;
-            }
-            squares[i] = (_this.state.xIsNext ? 'X' : 'O');
-            _this.setState({
-                squares: squares,
-                xIsNext: !_this.state.xIsNext
-            });
-        };
-        _this.state =
-            {
-                squares: new Array(9),
-                xIsNext: true
-            };
-        return _this;
-    }
-    /***************************************************************************************************************
-    *   Renders the game component.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Game.prototype.render = function () {
-        var _this = this;
-        var winner = this.calculateWinner(this.state.squares);
-        var status = null;
-        if (winner) {
-            status = 'Winner: ' + winner;
-        }
-        else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
-        return (React.createElement("div", { className: "game" },
-            React.createElement("div", { className: "game-board" },
-                React.createElement(rp.Board, { squares: this.state.squares, onClick: function (i) { return _this.handleBoardClick(i); } })),
-            React.createElement("div", { className: "game-info" },
-                React.createElement("div", null, status),
-                React.createElement("ol", null))));
-    };
-    /***************************************************************************************************************
-    *   Checks if one party has won.
-    *
-    *   @param squares All fields of the board to check for a winner.
-    *
-    *   @return X O or null depending on the current winner.
-    ***************************************************************************************************************/
-    Game.prototype.calculateWinner = function (squares) {
-        var lines = [
-            [0, 1, 2,],
-            [3, 4, 5,],
-            [6, 7, 8,],
-            [0, 3, 6,],
-            [1, 4, 7,],
-            [2, 5, 8,],
-            [0, 4, 8,],
-            [2, 4, 6,],
-        ];
-        for (var i = 0; i < lines.length; i++) {
-            var _a = lines[i], a = _a[0], b = _a[1], c = _a[2];
-            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                return squares[a];
-            }
-        }
-        return null;
-    };
-    return Game;
-}(React.Component));
-exports.Game = Game;
-
-
-/***/ }),
+/* 185 */,
+/* 186 */,
+/* 187 */,
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22775,17 +22529,19 @@ exports.__esModule = true;
 var React = __webpack_require__(16);
 var rp = __webpack_require__(33);
 /*******************************************************************************************************************
-*   TODO INIT   New class 'ClickerField'?
+*   TODO ASAP   Refactor package structure.
+*   TODO ASAP   acclaim and create title dynamically in index.tsx
+*   TODO ASAP   Ditch all classes outside the clicker package.
+*   TODO ASAP   create Main.main() and invoke from index.tsx?
+*   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
+*   TODO ASAP   New class 'ClickerField'?
 *   TODO ASAP   Log x and y coordinate on clicking a field ..
 *   TODO ASAP   Ditch missing key warning
-*   TODO ASAP   Enumeration for all field states.
-*   TODO HIGH   show state, score etc. in ClickerApp::render()
-*   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState
-*   TODO INIT   Outsource all settings from index.tsx to Settings class etc.?
-*   TODO LOW    Refactor package structure.
-*   TODO LOW    Ditch all classes outside the clicker package.
-*   TODO LOW    create Main.main() and invoke from index.tsx?
-*   TODO WEAK   acclaim and create title dynamically in index.tsx
+*
+*   TODO WEAK   Complete the new game engine.
+*   TODO WEAK   Enumeration for all field states.
+*   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
+*   TODO WEAK   show state, score etc. in ClickerApp::render()
 *   TODO WEAK   learn "High-order component"!
 *
 *   Represents the 'clicker' game.
