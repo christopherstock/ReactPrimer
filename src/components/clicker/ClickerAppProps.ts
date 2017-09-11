@@ -1,15 +1,18 @@
 
     /*******************************************************************************************************************
-    *   The interface that specifies the state for the game class.
+    *   All properties of the 'clicker' component.
     *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export interface ClickerState
+    export interface ClickerAppProps
     {
+        /** The name of the player. */
+        playerName      :string;
 
+        /** The gamefield dimension x. */
+        fieldSizeX      :number;
 
-        // TODO game state ( won, etc. )
-
-
+        /** The gamefield dimension y. */
+        fieldSizeY      :number;
     }

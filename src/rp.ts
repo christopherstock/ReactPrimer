@@ -13,6 +13,6 @@
     export * from './components/clicker/ClickerBoard';
     export * from './components/clicker/ClickerBoardState';
     export * from './components/clicker/ClickerBoardProps';
-    export * from './components/clicker/Clicker';
-    export * from './components/clicker/ClickerProps';
-    export * from './components/clicker/ClickerState';
+    export * from './components/clicker/ClickerApp';
+    export * from './components/clicker/ClickerAppProps';
+    export * from './components/clicker/ClickerAppState';

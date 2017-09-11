@@ -10,7 +10,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class Clicker extends React.Component<rp.ClickerProps, rp.ClickerState>
+    export class ClickerApp extends React.Component<rp.ClickerAppProps, rp.ClickerAppState>
     {
         /***************************************************************************************************************
         *   Renders the 'clicker' main game component.
