@@ -6572,7 +6572,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 exports.__esModule = true;
-__export(__webpack_require__(185));
 __export(__webpack_require__(186));
 __export(__webpack_require__(187));
 __export(__webpack_require__(188));
@@ -9775,8 +9774,6 @@ var rp = __webpack_require__(50);
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
 window.onload = function () {
-    // render the HELLO REACT example
-    ReactDOM.render(React.createElement(rp.Hello, { compiler: "the TypeScript Compiler", framework: "the React Framework" }), document.getElementById("example1"));
     // render the TIC TAC TOE example
     ReactDOM.render(React.createElement(rp.Game, null), document.getElementById('example2'));
     var playerName = "Christopher";
@@ -22414,59 +22411,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(20);
-/*******************************************************************************************************************
-*   This components renders a H1 that contains a HELLO REACT string.
-*
-*   The properties are set with the interface HelloProps.
-*   State is never set so we use the 'undefined' type.
-*
-*   WORD Jeder grafische Bestandteil unsere Webapplikation kann mit React als eine eigene und unabhängige Komponente konzeptioniert werden.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var Hello = /** @class */ (function (_super) {
-    __extends(Hello, _super);
-    function Hello() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /***************************************************************************************************************
-    *   Renders this component.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    Hello.prototype.render = function () {
-        return React.createElement("h1", null,
-            "Hello from ",
-            this.props.compiler,
-            React.createElement("br", null),
-            "and from ",
-            this.props.framework,
-            "!");
-    };
-    return Hello;
-}(React.Component));
-exports.Hello = Hello;
-
-
-/***/ }),
+/* 185 */,
 /* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22752,8 +22697,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             console.log("onFieldClicked");
             console.dir(id);
         };
-        // TODO extract to createField()
-        var fields = _this.createEmptyFields();
+        var fields = _this.createEmptyBoard();
         // assign state directly
         _this.state =
             {
@@ -22775,7 +22719,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *
     *   @return The 2d array that represents all board fields.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.createEmptyFields = function () {
+    ClickerBoard.prototype.createEmptyBoard = function () {
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
         var fieldId = 0;
@@ -22835,7 +22779,6 @@ var rp = __webpack_require__(50);
 *   TODO INIT create Main.main() and invoke from index.tsx?
 *   TODO INIT acclaim and create title dynamically in index.tsx
 *   TODO LOW  learn "High-order component"!
-*   TODO LOW  Gather all ToDos!
 *
 *   Represents the 'clicker' game.
 *

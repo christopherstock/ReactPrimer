@@ -11,7 +11,6 @@
     *   TODO INIT create Main.main() and invoke from index.tsx?
     *   TODO INIT acclaim and create title dynamically in index.tsx
     *   TODO LOW  learn "High-order component"!
-    *   TODO LOW  Gather all ToDos!
     *
     *   Represents the 'clicker' game.
     *

@@ -19,9 +19,7 @@
         {
             super( props );
 
-            // TODO extract to createField()
-
-            let fields:number[][] = this.createEmptyFields();
+            let fields:number[][] = this.createEmptyBoard();
 
             // assign state directly
             this.state =
@@ -51,7 +49,7 @@
         *
         *   @return The 2d array that represents all board fields.
         ***************************************************************************************************************/
-        private createEmptyFields() : number[][]
+        private createEmptyBoard() : number[][]
         {
             let fields:number[][] = new Array<Array<number>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
