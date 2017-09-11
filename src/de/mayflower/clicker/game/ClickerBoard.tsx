@@ -1,6 +1,6 @@
 
-    import * as React from 'react';
-    import * as rp    from '../../rp';
+    import * as React   from 'react';
+    import * as clicker from '../clicker';
 
     /*******************************************************************************************************************
     *   Represents the 'clicker' game board.
@@ -8,14 +8,14 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class ClickerBoard extends React.Component<rp.ClickerBoardProps, rp.ClickerBoardState>
+    export class ClickerBoard extends React.Component<clicker.ClickerBoardProps, clicker.ClickerBoardState>
     {
         /***************************************************************************************************************
         *   Renders the 'clicker' board component.
         *
         *   @return The rendered Board.
         ***************************************************************************************************************/
-        public constructor( props:rp.ClickerBoardProps )
+        public constructor( props:clicker.ClickerBoardProps )
         {
             super( props );
 

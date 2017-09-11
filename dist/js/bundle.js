@@ -4681,20 +4681,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-exports.__esModule = true;
-__export(__webpack_require__(189));
-__export(__webpack_require__(188));
-
-
-/***/ }),
+/* 33 */,
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9766,7 +9753,7 @@ module.exports = getHostComponentFromComposite;
 exports.__esModule = true;
 var React = __webpack_require__(16);
 var ReactDOM = __webpack_require__(99);
-var rp = __webpack_require__(33);
+var clicker = __webpack_require__(190);
 /*******************************************************************************************************************
 *   Being invoked when all components of the HTML page is fully loaded.
 *******************************************************************************************************************/
@@ -9775,7 +9762,7 @@ window.onload = function () {
     var fieldSizeX = 16;
     var fieldSizeY = 22;
     // render the CLICKER example
-    ReactDOM.render(React.createElement(rp.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
+    ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
 };
 
 
@@ -22409,7 +22396,92 @@ module.exports = ReactDOMInvalidARIAHook;
 /* 185 */,
 /* 186 */,
 /* 187 */,
-/* 188 */
+/* 188 */,
+/* 189 */,
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+exports.__esModule = true;
+__export(__webpack_require__(191));
+__export(__webpack_require__(192));
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(16);
+var clicker = __webpack_require__(190);
+/*******************************************************************************************************************
+*   TODO ASAP   acclaim and create title dynamically in index.tsx
+*   TODO ASAP   Ditch all classes outside the clicker package.
+*   TODO ASAP   create Main.main() and invoke from index.tsx?
+*   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
+*   TODO ASAP   New class 'ClickerField'?
+*   TODO ASAP   Log x and y coordinate on clicking a field ..
+*   TODO ASAP   Alter the value of the clicked field!
+*   TODO ASAP   Ditch missing key warning
+*
+*   TODO WEAK   Complete the new game engine.
+*   TODO WEAK   Enumeration for all field states.
+*   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
+*   TODO WEAK   show state, score etc. in ClickerApp::render()
+*   TODO WEAK   learn "High-order component"!
+*
+*   Represents the 'clicker' game.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerApp = /** @class */ (function (_super) {
+    __extends(ClickerApp, _super);
+    function ClickerApp() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /***************************************************************************************************************
+    *   Renders the 'clicker' main game component.
+    *
+    *   @return The rendered React element.
+    ***************************************************************************************************************/
+    ClickerApp.prototype.render = function () {
+        var acclaim = React.createElement("h1", null,
+            "Welcome ",
+            this.props.playerName);
+        var headline = React.createElement("h2", null,
+            "Your board is ",
+            this.props.fieldSizeX,
+            " x ",
+            this.props.fieldSizeY);
+        return React.createElement("div", { className: "mainContainer" },
+            acclaim,
+            headline,
+            React.createElement(clicker.ClickerBoard, { fieldSizeX: this.props.fieldSizeX, fieldSizeY: this.props.fieldSizeY }));
+    };
+    return ClickerApp;
+}(React.Component));
+exports.ClickerApp = ClickerApp;
+
+
+/***/ }),
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22507,75 +22579,6 @@ var ClickerBoard = /** @class */ (function (_super) {
     return ClickerBoard;
 }(React.Component));
 exports.ClickerBoard = ClickerBoard;
-
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(16);
-var rp = __webpack_require__(33);
-/*******************************************************************************************************************
-*   TODO ASAP   Refactor package structure.
-*   TODO ASAP   acclaim and create title dynamically in index.tsx
-*   TODO ASAP   Ditch all classes outside the clicker package.
-*   TODO ASAP   create Main.main() and invoke from index.tsx?
-*   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
-*   TODO ASAP   New class 'ClickerField'?
-*   TODO ASAP   Log x and y coordinate on clicking a field ..
-*   TODO ASAP   Ditch missing key warning
-*
-*   TODO WEAK   Complete the new game engine.
-*   TODO WEAK   Enumeration for all field states.
-*   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
-*   TODO WEAK   show state, score etc. in ClickerApp::render()
-*   TODO WEAK   learn "High-order component"!
-*
-*   Represents the 'clicker' game.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var ClickerApp = /** @class */ (function (_super) {
-    __extends(ClickerApp, _super);
-    function ClickerApp() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /***************************************************************************************************************
-    *   Renders the 'clicker' main game component.
-    *
-    *   @return The rendered React element.
-    ***************************************************************************************************************/
-    ClickerApp.prototype.render = function () {
-        var acclaim = React.createElement("h1", null,
-            "Welcome ",
-            this.props.playerName);
-        var headline = React.createElement("h2", null,
-            "Your board is ",
-            this.props.fieldSizeX,
-            " x ",
-            this.props.fieldSizeY);
-        return React.createElement("div", { className: "mainContainer" },
-            acclaim,
-            headline,
-            React.createElement(rp.ClickerBoard, { fieldSizeX: this.props.fieldSizeX, fieldSizeY: this.props.fieldSizeY }));
-    };
-    return ClickerApp;
-}(React.Component));
-exports.ClickerApp = ClickerApp;
 
 
 /***/ })

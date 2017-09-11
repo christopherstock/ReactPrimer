@@ -1,15 +1,15 @@
 
-    import * as React from 'react';
-    import * as rp    from '../../rp';
+    import * as React   from 'react';
+    import * as clicker from '../clicker';
 
     /*******************************************************************************************************************
-    *   TODO ASAP   Refactor package structure.
     *   TODO ASAP   acclaim and create title dynamically in index.tsx
     *   TODO ASAP   Ditch all classes outside the clicker package.
     *   TODO ASAP   create Main.main() and invoke from index.tsx?
     *   TODO ASAP   Outsource all settings from index.tsx to Settings class etc.?
     *   TODO ASAP   New class 'ClickerField'?
     *   TODO ASAP   Log x and y coordinate on clicking a field ..
+    *   TODO ASAP   Alter the value of the clicked field!
     *   TODO ASAP   Ditch missing key warning
     *
     *   TODO WEAK   Complete the new game engine.
@@ -23,7 +23,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class ClickerApp extends React.Component<rp.ClickerAppProps, rp.ClickerAppState>
+    export class ClickerApp extends React.Component<clicker.ClickerAppProps, clicker.ClickerAppState>
     {
         /***************************************************************************************************************
         *   Renders the 'clicker' main game component.
@@ -39,7 +39,7 @@
             return <div className="mainContainer">
                 { acclaim  }
                 { headline }
-                <rp.ClickerBoard
+                <clicker.ClickerBoard
                     fieldSizeX={ this.props.fieldSizeX }
                     fieldSizeY={ this.props.fieldSizeY }
                 />

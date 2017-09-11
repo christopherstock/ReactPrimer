@@ -1,7 +1,7 @@
 
     import * as React    from 'react';
     import * as ReactDOM from 'react-dom';
-    import * as rp       from "./rp";
+    import * as clicker  from "./de/mayflower/clicker/clicker";
 
     /*******************************************************************************************************************
     *   Being invoked when all components of the HTML page is fully loaded.
@@ -14,7 +14,7 @@
 
         // render the CLICKER example
         ReactDOM.render(
-            <rp.ClickerApp
+            <clicker.ClickerApp
                 playerName={ playerName }
                 fieldSizeX={ fieldSizeX }
                 fieldSizeY={ fieldSizeY }
