@@ -1,4 +1,5 @@
 
+    export * from './base/Clicker';
     export * from './base/ClickerDebug';
     export * from './base/ClickerSettings';
 

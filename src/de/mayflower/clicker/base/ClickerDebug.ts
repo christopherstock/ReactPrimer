@@ -12,7 +12,7 @@
         *
         *   @param msg The message to log to the console.
         ***************************************************************************************************************/
-        public static log( msg:any )
+        public static log( msg:any ) : void
         {
             console.log( msg );
         }

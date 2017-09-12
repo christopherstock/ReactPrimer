@@ -3,7 +3,6 @@
     import * as clicker from '../clicker';
 
     /*******************************************************************************************************************
-    *   TODO ASAP   create Main.main() and invoke from index.tsx?
     *   TODO ASAP   Ditch all classes outside the clicker package.
     *   TODO ASAP   New class 'ClickerField'?
     *   TODO ASAP   Log x and y coordinate on clicking a field ..
