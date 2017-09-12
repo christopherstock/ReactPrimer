@@ -1,4 +1,6 @@
 
+    import * as clicker from '../clicker';
+
     /*******************************************************************************************************************
     *   The interface that specifies the state for the clicker board.
     *
@@ -7,6 +9,6 @@
     *******************************************************************************************************************/
     export interface ClickerBoardState
     {
-        /** Contains all values for all fields. */
-        fields                  :number[][];
+        /** All fields the board consists of. */
+        fields                  :clicker.ClickerField[][];
     }

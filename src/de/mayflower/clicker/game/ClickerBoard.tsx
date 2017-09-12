@@ -17,7 +17,7 @@
         {
             super( props );
 
-            let fields:number[][] = this.createEmptyBoard();
+            let fields:clicker.ClickerField[][] = this.createEmptyBoard();
 
             // assign state directly
             this.state =
@@ -45,21 +45,27 @@
         *
         *   @return The 2d array that represents all board fields.
         ***************************************************************************************************************/
-        private createEmptyBoard() : number[][]
+        private createEmptyBoard() : clicker.ClickerField[][]
         {
-            let fields:number[][] = new Array<Array<number>>( this.props.fieldSizeX );
+            let fields:clicker.ClickerField[][] = new Array<Array<clicker.ClickerField>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
             let fieldId:number = 0;
 
             for ( let i:number = 0; i < fields.length; ++i )
             {
-                fields[ i ] = new Array<number>( this.props.fieldSizeY );
+                fields[ i ] = new Array<clicker.ClickerField>( this.props.fieldSizeY );
                 console.log( "Rows: " + fields[ i ].length );
 
                 for ( let j:number = 0; j < fields[ i ].length; ++j )
                 {
-                    fields[ i ][ j ] = fieldId++;
+                    fields[ i ][ j ] = new clicker.ClickerField
+                    (
+                        {
+                            x: i,
+                            y: j,
+                        }
+                    );
                 }
             }
 
@@ -77,20 +83,19 @@
 
             return this.state.fields.map
             (
-                function( m:number[] )
+                function( m:clicker.ClickerField[] )
                 {
                     return <div className="clickerColumn">
                         {
                             m.map
                             (
-                                function( n:number )
+                                function( n:clicker.ClickerField )
                                 {
                                     return <div
                                         className="clickerField"
                                         onClick={ () => thisInstance.onFieldClicked( n ) }
-                                        key={ n }
                                     >
-                                        { ">" + n + "<" }
+                                        { ">" + n.props.x + "<>" + n.props.y + "<" }
                                     </div>;
                                 }
                             )
@@ -103,14 +108,13 @@
         /***************************************************************************************************************
         *   Being invoked when a field of the board is clicked.
         *
-        *   @param id The id of the field that has been clicked.
+        *   @param field The id of the field that has been clicked.
         ***************************************************************************************************************/
-        private onFieldClicked=( id:number )=>
+        private onFieldClicked=( field:clicker.ClickerField )=>
         {
-            console.log( "onFieldClicked" );
-            console.dir( id );
+            console.log( "onFieldClicked [" + field.props.x + "][" + field.props.y + "]" );
 
-
+/*
             let newFields:number[][] = this.state.fields.slice();
 
             newFields[ 1 ][ 3 ] = 99999999;
@@ -122,5 +126,6 @@
                     fields: newFields
                 }
             );
+*/
         }
     }

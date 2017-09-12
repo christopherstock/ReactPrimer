@@ -9795,10 +9795,8 @@ var clicker = __webpack_require__(32);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Log x and y coordinate on clicking a field ..
 *   TODO ASAP   Alter the value of the clicked field!
 *   TODO ASAP   Ditch missing key warning
-*   TODO ASAP   New class 'ClickerField'?
 *
 *   TODO WEAK   Complete the new game engine.
 *   TODO WEAK   Enumeration for all field states.
@@ -22599,6 +22597,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(33);
+var clicker = __webpack_require__(32);
 /*******************************************************************************************************************
 *   Represents the 'clicker' game board.
 *
@@ -22615,17 +22614,23 @@ var ClickerBoard = /** @class */ (function (_super) {
         /***************************************************************************************************************
         *   Being invoked when a field of the board is clicked.
         *
-        *   @param id The id of the field that has been clicked.
+        *   @param field The id of the field that has been clicked.
         ***************************************************************************************************************/
-        _this.onFieldClicked = function (id) {
-            console.log("onFieldClicked");
-            console.dir(id);
-            var newFields = _this.state.fields.slice();
-            newFields[1][3] = 99999999;
-            // forces rerendering the board
-            _this.setState({
-                fields: newFields
-            });
+        _this.onFieldClicked = function (field) {
+            console.log("onFieldClicked [" + field.props.x + "][" + field.props.y + "]");
+            /*
+                        let newFields:number[][] = this.state.fields.slice();
+            
+                        newFields[ 1 ][ 3 ] = 99999999;
+            
+                        // forces rerendering the board
+                        this.setState
+                        (
+                            {
+                                fields: newFields
+                            }
+                        );
+            */
         };
         var fields = _this.createEmptyBoard();
         // assign state directly
@@ -22657,7 +22662,10 @@ var ClickerBoard = /** @class */ (function (_super) {
             fields[i] = new Array(this.props.fieldSizeY);
             console.log("Rows: " + fields[i].length);
             for (var j = 0; j < fields[i].length; ++j) {
-                fields[i][j] = fieldId++;
+                fields[i][j] = new clicker.ClickerField({
+                    x: i,
+                    y: j
+                });
             }
         }
         return fields;
@@ -22671,7 +22679,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var thisInstance = this;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); }, key: n }, ">" + n + "<");
+                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); } }, ">" + n.props.x + "<>" + n.props.y + "<");
             }));
         });
     };

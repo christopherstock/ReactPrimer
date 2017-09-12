@@ -13,7 +13,7 @@
         /***************************************************************************************************************
         *   Creates a new 'clicker' field component.
         ***************************************************************************************************************/
-        public constructor( props:clicker.ClickerBoardProps )
+        public constructor( props:clicker.ClickerFieldProps )
         {
             super( props );
 

@@ -6,10 +6,8 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Log x and y coordinate on clicking a field ..
     *   TODO ASAP   Alter the value of the clicked field!
     *   TODO ASAP   Ditch missing key warning
-    *   TODO ASAP   New class 'ClickerField'?
     *
     *   TODO WEAK   Complete the new game engine.
     *   TODO WEAK   Enumeration for all field states.

@@ -7,4 +7,9 @@
     *******************************************************************************************************************/
     export interface ClickerFieldProps
     {
+        /** Coordinate x of this field. */
+        x       :number;
+
+        /** Coordinate y of this field. */
+        y       :number;
     }
