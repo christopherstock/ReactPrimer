@@ -8,6 +8,7 @@
     *
     *   TODO ASAP   Alter the value of the clicked field!
     *   TODO ASAP   Ditch missing key warning
+    *   TODO ASAP   Solve field rendering from outside!
     *
     *   TODO WEAK   Complete the new game engine.
     *   TODO WEAK   Enumeration for all field states.
