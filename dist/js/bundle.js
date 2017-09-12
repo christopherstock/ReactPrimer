@@ -4685,6 +4685,7 @@ __export(__webpack_require__(186));
 __export(__webpack_require__(187));
 __export(__webpack_require__(188));
 __export(__webpack_require__(189));
+__export(__webpack_require__(190));
 
 
 /***/ }),
@@ -22607,9 +22608,7 @@ var React = __webpack_require__(33);
 var ClickerBoard = /** @class */ (function (_super) {
     __extends(ClickerBoard, _super);
     /***************************************************************************************************************
-    *   Renders the 'clicker' board component.
-    *
-    *   @return The rendered Board.
+    *   Creates a new clicker board.
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
@@ -22679,6 +22678,65 @@ var ClickerBoard = /** @class */ (function (_super) {
     return ClickerBoard;
 }(React.Component));
 exports.ClickerBoard = ClickerBoard;
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(33);
+/*******************************************************************************************************************
+*   Represents a field of the 'clicker' game board.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerField = /** @class */ (function (_super) {
+    __extends(ClickerField, _super);
+    /***************************************************************************************************************
+    *   Creates a new 'clicker' field component.
+    ***************************************************************************************************************/
+    function ClickerField(props) {
+        return _super.call(this, props) || this;
+        /*
+                    // assign state directly
+                    this.state =
+                    {
+                        fields: fields,
+                    };
+        */
+    }
+    /***************************************************************************************************************
+    *   Renders the 'clicker' board component.
+    *
+    *   @return The rendered Board.
+    ***************************************************************************************************************/
+    ClickerField.prototype.render = function () {
+        /*
+                    console.log( "render ClickerBoard" );
+        
+                    return <div className="clickerBoard">
+                        { this.renderFields() }
+                    </div>;
+        */
+        return null;
+    };
+    return ClickerField;
+}(React.Component));
+exports.ClickerField = ClickerField;
 
 
 /***/ })

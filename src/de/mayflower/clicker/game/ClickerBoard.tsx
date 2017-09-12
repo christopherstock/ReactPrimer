@@ -11,9 +11,7 @@
     export class ClickerBoard extends React.Component<clicker.ClickerBoardProps, clicker.ClickerBoardState>
     {
         /***************************************************************************************************************
-        *   Renders the 'clicker' board component.
-        *
-        *   @return The rendered Board.
+        *   Creates a new clicker board.
         ***************************************************************************************************************/
         public constructor( props:clicker.ClickerBoardProps )
         {
@@ -57,9 +55,9 @@
             for ( let i:number = 0; i < fields.length; ++i )
             {
                 fields[ i ] = new Array<number>( this.props.fieldSizeY );
-                console.log( "Rows: " + fields[i].length );
+                console.log( "Rows: " + fields[ i ].length );
 
-                for ( let j:number = 0; j < fields[i].length; ++j )
+                for ( let j:number = 0; j < fields[ i ].length; ++j )
                 {
                     fields[ i ][ j ] = fieldId++;
                 }

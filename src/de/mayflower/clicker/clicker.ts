@@ -9,3 +9,6 @@
     export * from './game/ClickerBoard';
     export * from './game/ClickerBoardProps';
     export * from './game/ClickerBoardState';
+    export * from './game/ClickerField';
+    export * from './game/ClickerFieldProps';
+    export * from './game/ClickerFieldState';
