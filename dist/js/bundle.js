@@ -9795,7 +9795,6 @@ var clicker = __webpack_require__(32);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Solve field rendering from outside!
 *   TODO ASAP   Alter the value of the clicked field!
 *   TODO ASAP   Ditch missing key warning
 *   TODO INIT   Possibility to specify interface name in interface object constructor?
@@ -22614,27 +22613,6 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
-        /***************************************************************************************************************
-        *   Being invoked when a field of the board is clicked.
-        *
-        *   @param field The id of the field that has been clicked.
-        ***************************************************************************************************************/
-        _this.onFieldClicked = function (field) {
-            console.log("onFieldClicked [" + field.props.x + "][" + field.props.y + "]");
-            /*
-                        let newFields:number[][] = this.state.fields.slice();
-            
-                        newFields[ 1 ][ 3 ] = 99999999;
-            
-                        // forces rerendering the board
-                        this.setState
-                        (
-                            {
-                                fields: newFields
-                            }
-                        );
-            */
-        };
         var fields = _this.createEmptyBoard();
         // assign state directly
         _this.state =
@@ -22650,7 +22628,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
         console.log("render ClickerBoard");
-        return React.createElement("div", { className: "clickerBoard" }, this.renderFields());
+        return React.createElement("div", { className: "clickerBoard" }, this.renderAllFields());
     };
     /***************************************************************************************************************
     *   Creates an empty board represented by an empty 2d array of the desired size.
@@ -22678,12 +22656,10 @@ var ClickerBoard = /** @class */ (function (_super) {
     *
     *   @return The All fields of the board in a streamed 1d array of JSX elements.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.renderFields = function () {
-        // can this be improved?
-        var thisInstance = this;
+    ClickerBoard.prototype.renderAllFields = function () {
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); }, style: { backgroundColor: n.props.color } }, ">" + n.props.x + "<>" + n.props.y + "<");
+                return n.render();
             }));
         });
     };
@@ -22722,7 +22698,27 @@ var ClickerField = /** @class */ (function (_super) {
     *   Creates a new 'clicker' field component.
     ***************************************************************************************************************/
     function ClickerField(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        /***************************************************************************************************************
+        *   Being invoked when a field of the board is clicked.
+        ***************************************************************************************************************/
+        _this.onFieldClicked = function () {
+            console.log("onFieldClicked [" + _this.props.x + "][" + _this.props.y + "]");
+            /*
+                        let newFields:number[][] = this.state.fields.slice();
+            
+                        newFields[ 1 ][ 3 ] = 99999999;
+            
+                        // forces rerendering the board
+                        this.setState
+                        (
+                            {
+                                fields: newFields
+                            }
+                        );
+            */
+        };
+        return _this;
         /*
                     // assign state directly
                     this.state =
@@ -22737,14 +22733,8 @@ var ClickerField = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerField.prototype.render = function () {
-        /*
-                    console.log( "render ClickerBoard" );
-        
-                    return <div className="clickerBoard">
-                        { this.renderFields() }
-                    </div>;
-        */
-        return null;
+        var _this = this;
+        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.onFieldClicked(); }, style: { backgroundColor: this.props.color } }, ">" + this.props.x + "<>" + this.props.y + "<");
     };
     return ClickerField;
 }(React.Component));

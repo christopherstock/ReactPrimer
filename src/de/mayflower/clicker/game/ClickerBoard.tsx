@@ -36,7 +36,7 @@
             console.log( "render ClickerBoard" );
 
             return <div className="clickerBoard">
-                { this.renderFields() }
+                { this.renderAllFields() }
             </div>;
         }
 
@@ -76,11 +76,8 @@
         *
         *   @return The All fields of the board in a streamed 1d array of JSX elements.
         ***************************************************************************************************************/
-        private renderFields() : JSX.Element[]
+        private renderAllFields() : JSX.Element[]
         {
-            // can this be improved?
-            let thisInstance:ClickerBoard = this;
-
             return this.state.fields.map
             (
                 function( m:clicker.ClickerField[] )
@@ -91,42 +88,12 @@
                             (
                                 function( n:clicker.ClickerField )
                                 {
-                                    return <div
-                                        className="clickerField"
-                                        onClick={ () => thisInstance.onFieldClicked( n ) }
-                                        style={ { backgroundColor: n.props.color } }
-                                    >
-                                        { ">" + n.props.x + "<>" + n.props.y + "<" }
-                                    </div>;
+                                    return n.render();
                                 }
                             )
                         }
                     </div>;
                 }
             )
-        }
-
-        /***************************************************************************************************************
-        *   Being invoked when a field of the board is clicked.
-        *
-        *   @param field The id of the field that has been clicked.
-        ***************************************************************************************************************/
-        private onFieldClicked=( field:clicker.ClickerField )=>
-        {
-            console.log( "onFieldClicked [" + field.props.x + "][" + field.props.y + "]" );
-
-/*
-            let newFields:number[][] = this.state.fields.slice();
-
-            newFields[ 1 ][ 3 ] = 99999999;
-
-            // forces rerendering the board
-            this.setState
-            (
-                {
-                    fields: newFields
-                }
-            );
-*/
         }
     }

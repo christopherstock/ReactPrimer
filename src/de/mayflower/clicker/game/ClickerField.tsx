@@ -33,13 +33,34 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-/*
-            console.log( "render ClickerBoard" );
-
-            return <div className="clickerBoard">
-                { this.renderFields() }
+            return <div
+                className="clickerField"
+                onClick={ () => this.onFieldClicked() }
+                style={ { backgroundColor: this.props.color } }
+            >
+                { ">" + this.props.x + "<>" + this.props.y + "<" }
             </div>;
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked when a field of the board is clicked.
+        ***************************************************************************************************************/
+        private onFieldClicked=()=>
+        {
+            console.log( "onFieldClicked [" + this.props.x + "][" + this.props.y + "]" );
+
+/*
+            let newFields:number[][] = this.state.fields.slice();
+
+            newFields[ 1 ][ 3 ] = 99999999;
+
+            // forces rerendering the board
+            this.setState
+            (
+                {
+                    fields: newFields
+                }
+            );
 */
-            return null;
         }
     }
