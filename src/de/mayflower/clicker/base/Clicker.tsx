@@ -6,18 +6,18 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
+    *   TODO ASAP   Solve field rendering from outside!
     *   TODO ASAP   Alter the value of the clicked field!
     *   TODO ASAP   Ditch missing key warning
-    *   TODO ASAP   Solve field rendering from outside!
-    *   TODO ASAP   Possibility to specify interface name in interface object constructor?
-    *
+    *   TODO INIT   Possibility to specify interface name in interface object constructor?
     *   TODO WEAK   Complete the new game engine.
+    *   TODO WEAK   Add random Math class.
     *   TODO WEAK   Enumeration for all field states.
     *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
     *   TODO WEAK   show state, score etc. in ClickerApp::render()
-    *   TODO WEAK   learn "High-order component"!
-    *   TODO ASAP   Create button and input fields to re-create the gamefield.
+    *   TODO ASAP   Create button and input fields for recreating the gamefield.
     *   TODO ASAP   Styling (bg image, fg translucent blocks)
+    *   TODO WEAK   learn "High-order component"!
     *
     *   @author  Christopher Stock
     *   @version 1.0

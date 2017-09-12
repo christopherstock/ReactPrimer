@@ -9795,18 +9795,18 @@ var clicker = __webpack_require__(32);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
+*   TODO ASAP   Solve field rendering from outside!
 *   TODO ASAP   Alter the value of the clicked field!
 *   TODO ASAP   Ditch missing key warning
-*   TODO ASAP   Solve field rendering from outside!
-*   TODO ASAP   Possibility to specify interface name in interface object constructor?
-*
+*   TODO INIT   Possibility to specify interface name in interface object constructor?
 *   TODO WEAK   Complete the new game engine.
+*   TODO WEAK   Add random Math class.
 *   TODO WEAK   Enumeration for all field states.
 *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
 *   TODO WEAK   show state, score etc. in ClickerApp::render()
-*   TODO WEAK   learn "High-order component"!
-*   TODO ASAP   Create button and input fields to re-create the gamefield.
+*   TODO ASAP   Create button and input fields for recreating the gamefield.
 *   TODO ASAP   Styling (bg image, fg translucent blocks)
+*   TODO WEAK   learn "High-order component"!
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -22679,6 +22679,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The All fields of the board in a streamed 1d array of JSX elements.
     ***************************************************************************************************************/
     ClickerBoard.prototype.renderFields = function () {
+        // can this be improved?
         var thisInstance = this;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {

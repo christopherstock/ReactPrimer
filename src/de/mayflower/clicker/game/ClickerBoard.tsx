@@ -1,7 +1,6 @@
 
     import * as React   from 'react';
     import * as clicker from '../clicker';
-    import {HTMLAttributes} from "react";
 
     /*******************************************************************************************************************
     *   Represents the 'clicker' game board.
@@ -79,6 +78,7 @@
         ***************************************************************************************************************/
         private renderFields() : JSX.Element[]
         {
+            // can this be improved?
             let thisInstance:ClickerBoard = this;
 
             return this.state.fields.map
