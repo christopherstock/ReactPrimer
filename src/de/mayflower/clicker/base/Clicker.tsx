@@ -9,6 +9,7 @@
     *   TODO ASAP   Alter the value of the clicked field!
     *   TODO ASAP   Ditch missing key warning
     *   TODO ASAP   Solve field rendering from outside!
+    *   TODO ASAP   Possibility to specify interface name in interface object constructor?
     *
     *   TODO WEAK   Complete the new game engine.
     *   TODO WEAK   Enumeration for all field states.
@@ -16,6 +17,7 @@
     *   TODO WEAK   show state, score etc. in ClickerApp::render()
     *   TODO WEAK   learn "High-order component"!
     *   TODO ASAP   Create button and input fields to re-create the gamefield.
+    *   TODO ASAP   Styling (bg image, fg translucent blocks)
     *
     *   @author  Christopher Stock
     *   @version 1.0

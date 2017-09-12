@@ -1,6 +1,7 @@
 
     import * as React   from 'react';
     import * as clicker from '../clicker';
+    import {HTMLAttributes} from "react";
 
     /*******************************************************************************************************************
     *   Represents the 'clicker' game board.
@@ -50,8 +51,6 @@
             let fields:clicker.ClickerField[][] = new Array<Array<clicker.ClickerField>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
-            let fieldId:number = 0;
-
             for ( let i:number = 0; i < fields.length; ++i )
             {
                 fields[ i ] = new Array<clicker.ClickerField>( this.props.fieldSizeY );
@@ -62,8 +61,9 @@
                     fields[ i ][ j ] = new clicker.ClickerField
                     (
                         {
-                            x: i,
-                            y: j,
+                            x:     i,
+                            y:     j,
+                            color: "#ffff00",
                         }
                     );
                 }
@@ -94,6 +94,7 @@
                                     return <div
                                         className="clickerField"
                                         onClick={ () => thisInstance.onFieldClicked( n ) }
+                                        style={ { backgroundColor: n.props.color } }
                                     >
                                         { ">" + n.props.x + "<>" + n.props.y + "<" }
                                     </div>;

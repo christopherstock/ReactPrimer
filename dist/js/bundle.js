@@ -9798,6 +9798,7 @@ var clicker = __webpack_require__(32);
 *   TODO ASAP   Alter the value of the clicked field!
 *   TODO ASAP   Ditch missing key warning
 *   TODO ASAP   Solve field rendering from outside!
+*   TODO ASAP   Possibility to specify interface name in interface object constructor?
 *
 *   TODO WEAK   Complete the new game engine.
 *   TODO WEAK   Enumeration for all field states.
@@ -9805,6 +9806,7 @@ var clicker = __webpack_require__(32);
 *   TODO WEAK   show state, score etc. in ClickerApp::render()
 *   TODO WEAK   learn "High-order component"!
 *   TODO ASAP   Create button and input fields to re-create the gamefield.
+*   TODO ASAP   Styling (bg image, fg translucent blocks)
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -22658,14 +22660,14 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.createEmptyBoard = function () {
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
-        var fieldId = 0;
         for (var i = 0; i < fields.length; ++i) {
             fields[i] = new Array(this.props.fieldSizeY);
             console.log("Rows: " + fields[i].length);
             for (var j = 0; j < fields[i].length; ++j) {
                 fields[i][j] = new clicker.ClickerField({
                     x: i,
-                    y: j
+                    y: j,
+                    color: "#ffff00"
                 });
             }
         }
@@ -22680,7 +22682,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var thisInstance = this;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); } }, ">" + n.props.x + "<>" + n.props.y + "<");
+                return React.createElement("div", { className: "clickerField", onClick: function () { return thisInstance.onFieldClicked(n); }, style: { backgroundColor: n.props.color } }, ">" + n.props.x + "<>" + n.props.y + "<");
             }));
         });
     };
