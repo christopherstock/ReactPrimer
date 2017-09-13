@@ -17,13 +17,11 @@
         {
             super( props );
 
-/*
             // assign state directly
             this.state =
             {
-                fields: fields,
+                color: "#ffb05d"
             };
-*/
         }
 
         /***************************************************************************************************************
@@ -36,9 +34,9 @@
             return <div
                 className="clickerField"
                 onClick={ () => this.onFieldClicked() }
-                style={ { backgroundColor: this.props.color } }
+                style={ { backgroundColor: this.state.color } }
             >
-                { ">" + this.props.x + "<>" + this.props.y + "<" }
+                { this.props.x + ", " + this.props.y }
             </div>;
         }
 
@@ -49,18 +47,11 @@
         {
             console.log( "onFieldClicked [" + this.props.x + "][" + this.props.y + "]" );
 
-/*
-            let newFields:number[][] = this.state.fields.slice();
-
-            newFields[ 1 ][ 3 ] = 99999999;
-
-            // forces rerendering the board
             this.setState
             (
                 {
-                    fields: newFields
+                    color: "#ff0000",
                 }
             );
-*/
         }
     }

@@ -12,7 +12,4 @@
 
         /** Coordinate y of this field. */
         y           :number;
-
-        /** Fill color */
-        color       :string;
     }

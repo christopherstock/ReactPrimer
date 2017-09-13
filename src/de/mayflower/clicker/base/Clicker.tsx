@@ -6,7 +6,6 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Alter the value of the clicked field!
     *   TODO ASAP   Ditch missing key warning
     *   TODO INIT   Possibility to specify interface name in interface object constructor?
     *   TODO WEAK   Complete the new game engine.

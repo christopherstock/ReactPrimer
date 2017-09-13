@@ -62,7 +62,6 @@
                         {
                             x:     i,
                             y:     j,
-                            color: "#ffff00",
                         }
                     );
                 }
@@ -88,7 +87,10 @@
                             (
                                 function( n:clicker.ClickerField )
                                 {
-                                    return n.render();
+                                    return <clicker.ClickerField
+                                        x={ n.props.x }
+                                        y={ n.props.y }
+                                    />
                                 }
                             )
                         }
