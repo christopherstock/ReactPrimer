@@ -50,20 +50,20 @@
             let fields:clicker.ClickerField[][] = new Array<Array<clicker.ClickerField>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
-            let index:number = 0;
-            for ( let i:number = 0; i < fields.length; ++i )
+            let key:number = 0;
+            for ( let x:number = 0; x < fields.length; ++x )
             {
-                fields[ i ] = new Array<clicker.ClickerField>( this.props.fieldSizeY );
-                console.log( "Rows: " + fields[ i ].length );
+                fields[ x ] = new Array<clicker.ClickerField>( this.props.fieldSizeY );
+                console.log( "Rows: " + fields[ x ].length );
 
-                for ( let j:number = 0; j < fields[ i ].length; ++j )
+                for ( let y:number = 0; y < fields[ x ].length; ++y )
                 {
-                    fields[ i ][ j ] = new clicker.ClickerField
+                    fields[ x ][ y ] = new clicker.ClickerField
                     (
                         {
-                            x:   i,
-                            y:   j,
-                            key: index++,
+                            x:   x,
+                            y:   y,
+                            key: key++,
                         }
                     );
                 }

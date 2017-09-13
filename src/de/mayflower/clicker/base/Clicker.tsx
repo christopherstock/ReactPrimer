@@ -6,15 +6,19 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO INIT   Possibility to specify interface name in interface object constructor?
-    *   TODO WEAK   Complete the new game engine.
+    *   TODO WEAK   Rename 'field' to 'cell'.
     *   TODO WEAK   Add random Math class.
-    *   TODO WEAK   Enumeration for all field states.
-    *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState
-    *   TODO WEAK   show state, score etc. in ClickerApp::render()
-    *   TODO ASAP   Create button and input fields for recreating the gamefield.
-    *   TODO ASAP   Styling (bg image, fg translucent blocks)
-    *   TODO WEAK   learn "High-order component"!
+    *   TODO WEAK   Complete the new game engine.
+    *
+    *   TODO WEAK   Enumeration for all field states according to new game engine.
+    *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
+    *   TODO WEAK   show state, score etc. in ClickerApp::render() according to new game engine.
+    *   TODO ASAP   Create button and input fields for recreating the gamefield according to new game engine..
+    *   TODO ASAP   Styling (bg image, fg translucent blocks) .. joy!
+    *   TODO ASAP   Add animations and learn react callbacks etc.
+    *   TODO WEAK   learn 'React high-order component'
+    *   TODO WEAK   learn 'React delegates'
+    *   TODO WEAK   learn 'React promises'
     *
     *   @author  Christopher Stock
     *   @version 1.0
