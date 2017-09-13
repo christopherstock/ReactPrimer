@@ -9795,7 +9795,6 @@ var clicker = __webpack_require__(24);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Ditch missing key warning
 *   TODO INIT   Possibility to specify interface name in interface object constructor?
 *   TODO WEAK   Complete the new game engine.
 *   TODO WEAK   Add random Math class.
@@ -22637,13 +22636,15 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.createEmptyBoard = function () {
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
+        var index = 0;
         for (var i = 0; i < fields.length; ++i) {
             fields[i] = new Array(this.props.fieldSizeY);
             console.log("Rows: " + fields[i].length);
             for (var j = 0; j < fields[i].length; ++j) {
                 fields[i][j] = new clicker.ClickerField({
                     x: i,
-                    y: j
+                    y: j,
+                    key: index++
                 });
             }
         }
@@ -22655,9 +22656,10 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The All fields of the board in a streamed 1d array of JSX elements.
     ***************************************************************************************************************/
     ClickerBoard.prototype.renderAllFields = function () {
+        var columnKey = 0;
         return this.state.fields.map(function (m) {
-            return React.createElement("div", { className: "clickerColumn" }, m.map(function (n) {
-                return React.createElement(clicker.ClickerField, { x: n.props.x, y: n.props.y });
+            return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
+                return React.createElement(clicker.ClickerField, { x: n.props.x, y: n.props.y, key: n.props.key });
             }));
         });
     };

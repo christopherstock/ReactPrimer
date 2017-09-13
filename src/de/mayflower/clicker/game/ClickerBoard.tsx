@@ -50,6 +50,7 @@
             let fields:clicker.ClickerField[][] = new Array<Array<clicker.ClickerField>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
+            let index:number = 0;
             for ( let i:number = 0; i < fields.length; ++i )
             {
                 fields[ i ] = new Array<clicker.ClickerField>( this.props.fieldSizeY );
@@ -60,8 +61,9 @@
                     fields[ i ][ j ] = new clicker.ClickerField
                     (
                         {
-                            x:     i,
-                            y:     j,
+                            x:   i,
+                            y:   j,
+                            key: index++,
                         }
                     );
                 }
@@ -77,19 +79,22 @@
         ***************************************************************************************************************/
         private renderAllFields() : JSX.Element[]
         {
+            let columnKey:number = 0;
+
             return this.state.fields.map
             (
                 function( m:clicker.ClickerField[] )
                 {
-                    return <div className="clickerColumn">
+                    return <div className="clickerColumn" key={ columnKey++ }>
                         {
                             m.map
                             (
                                 function( n:clicker.ClickerField )
                                 {
                                     return <clicker.ClickerField
-                                        x={ n.props.x }
-                                        y={ n.props.y }
+                                        x={   n.props.x   }
+                                        y={   n.props.y   }
+                                        key={ n.props.key }
                                     />
                                 }
                             )

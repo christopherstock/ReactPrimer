@@ -12,4 +12,7 @@
 
         /** Coordinate y of this field. */
         y           :number;
+
+        /** The unique key prop. */
+        key         :number;
     }
