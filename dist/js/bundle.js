@@ -9795,7 +9795,7 @@ var clicker = __webpack_require__(24);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO WEAK   Rename 'field' to 'cell'.
+*   TODO WEAK   Rename package 'game' to 'component' according to react convention?
 *   TODO WEAK   Add random Math class.
 *   TODO WEAK   Complete the new game engine.
 *
@@ -22645,7 +22645,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             fields[x] = new Array(this.props.fieldSizeY);
             console.log("Rows: " + fields[x].length);
             for (var y = 0; y < fields[x].length; ++y) {
-                fields[x][y] = new clicker.ClickerField({
+                fields[x][y] = new clicker.ClickerCell({
                     x: x,
                     y: y,
                     key: key++
@@ -22663,7 +22663,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var columnKey = 0;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                return React.createElement(clicker.ClickerField, { x: n.props.x, y: n.props.y, key: n.props.key });
+                return React.createElement(clicker.ClickerCell, { x: n.props.x, y: n.props.y, key: n.props.key });
             }));
         });
     };
@@ -22696,12 +22696,12 @@ var React = __webpack_require__(25);
 *   @author  Christopher Stock
 *   @version 1.0
 *******************************************************************************************************************/
-var ClickerField = /** @class */ (function (_super) {
-    __extends(ClickerField, _super);
+var ClickerCell = /** @class */ (function (_super) {
+    __extends(ClickerCell, _super);
     /***************************************************************************************************************
     *   Creates a new 'clicker' field component.
     ***************************************************************************************************************/
-    function ClickerField(props) {
+    function ClickerCell(props) {
         var _this = _super.call(this, props) || this;
         /***************************************************************************************************************
         *   Being invoked when a field of the board is clicked.
@@ -22724,13 +22724,13 @@ var ClickerField = /** @class */ (function (_super) {
     *
     *   @return The rendered Board.
     ***************************************************************************************************************/
-    ClickerField.prototype.render = function () {
+    ClickerCell.prototype.render = function () {
         var _this = this;
         return React.createElement("div", { className: "clickerField", onClick: function () { return _this.onFieldClicked(); }, style: { backgroundColor: this.state.color } }, this.props.x + ", " + this.props.y);
     };
-    return ClickerField;
+    return ClickerCell;
 }(React.Component));
-exports.ClickerField = ClickerField;
+exports.ClickerCell = ClickerCell;
 
 
 /***/ })

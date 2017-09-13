@@ -1,18 +1,12 @@
 
     /*******************************************************************************************************************
-    *   All properties of the 'clicker' field.
+    *   The interface that specifies the state for one clicker field.
     *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export interface ClickerFieldProps
+    export interface ClickerCellState
     {
-        /** Coordinate x of this field. */
-        x           :number;
-
-        /** Coordinate y of this field. */
-        y           :number;
-
-        /** The unique key prop. */
-        key         :number;
+        /** Fill color */
+        color       :string;
     }

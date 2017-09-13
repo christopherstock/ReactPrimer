@@ -10,5 +10,5 @@
     export interface ClickerBoardState
     {
         /** All fields the board consists of. */
-        fields                  :clicker.ClickerField[][];
+        fields                  :clicker.ClickerCell[][];
     }

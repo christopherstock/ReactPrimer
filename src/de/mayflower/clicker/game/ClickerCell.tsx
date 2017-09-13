@@ -8,12 +8,12 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class ClickerField extends React.Component<clicker.ClickerFieldProps, clicker.ClickerFieldState>
+    export class ClickerCell extends React.Component<clicker.ClickerCellProps, clicker.ClickerCellState>
     {
         /***************************************************************************************************************
         *   Creates a new 'clicker' field component.
         ***************************************************************************************************************/
-        public constructor( props:clicker.ClickerFieldProps )
+        public constructor( props:clicker.ClickerCellProps )
         {
             super( props );
 

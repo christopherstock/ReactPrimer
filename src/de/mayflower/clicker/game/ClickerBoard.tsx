@@ -17,7 +17,7 @@
         {
             super( props );
 
-            let fields:clicker.ClickerField[][] = this.createEmptyBoard();
+            let fields:clicker.ClickerCell[][] = this.createEmptyBoard();
 
             // assign state directly
             this.state =
@@ -45,20 +45,20 @@
         *
         *   @return The 2d array that represents all board fields.
         ***************************************************************************************************************/
-        private createEmptyBoard() : clicker.ClickerField[][]
+        private createEmptyBoard() : clicker.ClickerCell[][]
         {
-            let fields:clicker.ClickerField[][] = new Array<Array<clicker.ClickerField>>( this.props.fieldSizeX );
+            let fields:clicker.ClickerCell[][] = new Array<Array<clicker.ClickerCell>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
             let key:number = 0;
             for ( let x:number = 0; x < fields.length; ++x )
             {
-                fields[ x ] = new Array<clicker.ClickerField>( this.props.fieldSizeY );
+                fields[ x ] = new Array<clicker.ClickerCell>( this.props.fieldSizeY );
                 console.log( "Rows: " + fields[ x ].length );
 
                 for ( let y:number = 0; y < fields[ x ].length; ++y )
                 {
-                    fields[ x ][ y ] = new clicker.ClickerField
+                    fields[ x ][ y ] = new clicker.ClickerCell
                     (
                         {
                             x:   x,
@@ -83,15 +83,15 @@
 
             return this.state.fields.map
             (
-                function( m:clicker.ClickerField[] )
+                function( m:clicker.ClickerCell[] )
                 {
                     return <div className="clickerColumn" key={ columnKey++ }>
                         {
                             m.map
                             (
-                                function( n:clicker.ClickerField )
+                                function( n:clicker.ClickerCell )
                                 {
-                                    return <clicker.ClickerField
+                                    return <clicker.ClickerCell
                                         x={   n.props.x   }
                                         y={   n.props.y   }
                                         key={ n.props.key }

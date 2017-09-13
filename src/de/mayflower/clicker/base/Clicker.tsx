@@ -6,7 +6,7 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO WEAK   Rename 'field' to 'cell'.
+    *   TODO WEAK   Rename package 'game' to 'component' according to react convention?
     *   TODO WEAK   Add random Math class.
     *   TODO WEAK   Complete the new game engine.
     *
