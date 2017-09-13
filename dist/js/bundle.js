@@ -3496,9 +3496,9 @@ exports.__esModule = true;
 __export(__webpack_require__(84));
 __export(__webpack_require__(186));
 __export(__webpack_require__(187));
-__export(__webpack_require__(188));
-__export(__webpack_require__(189));
-__export(__webpack_require__(190));
+__export(__webpack_require__(191));
+__export(__webpack_require__(192));
+__export(__webpack_require__(193));
 
 
 /***/ }),
@@ -9795,7 +9795,6 @@ var clicker = __webpack_require__(24);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO WEAK   Rename package 'game' to 'component' according to react convention?
 *   TODO WEAK   Add random Math class.
 *   TODO WEAK   Complete the new game engine.
 *
@@ -22530,7 +22529,10 @@ exports.ClickerSettings = ClickerSettings;
 
 
 /***/ }),
-/* 188 */
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22584,7 +22586,7 @@ exports.ClickerApp = ClickerApp;
 
 
 /***/ }),
-/* 189 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22673,7 +22675,7 @@ exports.ClickerBoard = ClickerBoard;
 
 
 /***/ }),
-/* 190 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
