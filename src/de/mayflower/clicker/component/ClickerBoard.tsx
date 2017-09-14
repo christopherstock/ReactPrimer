@@ -61,9 +61,10 @@
                     fields[ x ][ y ] = new clicker.ClickerCell
                     (
                         {
-                            x:   x,
-                            y:   y,
-                            key: key++,
+                            x:            x,
+                            y:            y,
+                            key:          key++,
+                            initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
                         }
                     );
                 }
@@ -92,9 +93,10 @@
                                 function( n:clicker.ClickerCell )
                                 {
                                     return <clicker.ClickerCell
-                                        x={   n.props.x   }
-                                        y={   n.props.y   }
-                                        key={ n.props.key }
+                                        x={            n.props.x            }
+                                        y={            n.props.y            }
+                                        key={          n.props.key          }
+                                        initialColor={ n.props.initialColor }
                                     />
                                 }
                             )

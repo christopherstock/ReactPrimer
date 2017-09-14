@@ -787,7 +787,7 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 
@@ -1285,7 +1285,7 @@ var _prodInvariant = __webpack_require__(3),
 var CallbackQueue = __webpack_require__(62);
 var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(63);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var Transaction = __webpack_require__(29);
 
 var invariant = __webpack_require__(1);
@@ -2476,6 +2476,27 @@ module.exports = PooledClass;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+exports.__esModule = true;
+__export(__webpack_require__(84));
+__export(__webpack_require__(186));
+__export(__webpack_require__(187));
+__export(__webpack_require__(188));
+__export(__webpack_require__(189));
+__export(__webpack_require__(190));
+__export(__webpack_require__(191));
+__export(__webpack_require__(192));
+__export(__webpack_require__(193));
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2610,7 +2631,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2654,7 +2675,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2826,7 +2847,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2949,7 +2970,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2965,7 +2986,7 @@ module.exports = DOMLazyTree;
 
 
 
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(22);
 var EventPluginUtils = __webpack_require__(35);
 
 var accumulateInto = __webpack_require__(59);
@@ -3089,7 +3110,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3369,7 +3390,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3433,7 +3454,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3484,32 +3505,13 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-exports.__esModule = true;
-__export(__webpack_require__(84));
-__export(__webpack_require__(186));
-__export(__webpack_require__(187));
-__export(__webpack_require__(191));
-__export(__webpack_require__(192));
-__export(__webpack_require__(193));
-__export(__webpack_require__(194));
-
-
-/***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(17);
 
 
 /***/ }),
@@ -4080,7 +4082,7 @@ module.exports = TransactionImpl;
 
 
 
-var SyntheticUIEvent = __webpack_require__(22);
+var SyntheticUIEvent = __webpack_require__(23);
 var ViewportMetrics = __webpack_require__(66);
 
 var getEventModifierState = __webpack_require__(39);
@@ -5254,7 +5256,7 @@ module.exports = getEventModifierState;
 
 
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var Danger = __webpack_require__(120);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
@@ -5553,7 +5555,7 @@ var _prodInvariant = __webpack_require__(3);
 var ReactPropTypesSecret = __webpack_require__(71);
 var propTypesFactory = __webpack_require__(56);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(1);
@@ -5929,7 +5931,7 @@ module.exports = KeyEscapeUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(11);
 
@@ -6598,7 +6600,7 @@ module.exports = getEventCharCode;
 
 
 
-var _prodInvariant = __webpack_require__(17),
+var _prodInvariant = __webpack_require__(18),
     _assign = __webpack_require__(4);
 
 var ReactNoopUpdateQueue = __webpack_require__(52);
@@ -8611,7 +8613,7 @@ module.exports = instantiateReactComponent;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 
 var invariant = __webpack_require__(1);
 
@@ -9202,19 +9204,19 @@ module.exports = getActiveElement;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var DOMProperty = __webpack_require__(13);
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactBrowserEventEmitter = __webpack_require__(33);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(176);
 var ReactDOMFeatureFlags = __webpack_require__(177);
 var ReactFeatureFlags = __webpack_require__(63);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactMarkupChecksum = __webpack_require__(178);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdateQueue = __webpack_require__(48);
 var ReactUpdates = __webpack_require__(11);
 
@@ -9769,7 +9771,7 @@ module.exports = getHostComponentFromComposite;
 "use strict";
 
 exports.__esModule = true;
-var clicker = __webpack_require__(24);
+var clicker = __webpack_require__(16);
 /*******************************************************************************************************************
 *   Being invoked when all components of the HTML page are fully loaded.
 *******************************************************************************************************************/
@@ -9792,13 +9794,14 @@ window.onunload = function () {
 exports.__esModule = true;
 var React = __webpack_require__(25);
 var ReactDOM = __webpack_require__(100);
-var clicker = __webpack_require__(24);
+var clicker = __webpack_require__(16);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
 *   TODO WEAK   Enumeration for all field states with according color value.
 *   TODO WEAK   Complete the new game engine.
 *
+*   TODO WEAK   Check react .styl files
 *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
 *   TODO WEAK   show state, score etc. in ClickerApp::render() according to new game engine.
 *   TODO ASAP   Create button and input fields for recreating the gamefield according to new game engine..
@@ -10058,7 +10061,7 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var invariant = __webpack_require__(1);
 
@@ -10175,7 +10178,7 @@ module.exports = PooledClass;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var REACT_ELEMENT_TYPE = __webpack_require__(53);
@@ -10596,7 +10599,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactPropTypeLocationNames = __webpack_require__(91);
 var ReactPropTypesSecret = __webpack_require__(92);
@@ -12281,7 +12284,7 @@ module.exports = factory;
  */
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactElement = __webpack_require__(14);
 
@@ -12341,7 +12344,7 @@ module.exports = __webpack_require__(101);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDefaultInjection = __webpack_require__(102);
 var ReactMount = __webpack_require__(81);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdates = __webpack_require__(11);
 var ReactVersion = __webpack_require__(180);
 
@@ -12623,7 +12626,7 @@ module.exports = ARIADOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(20);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var FallbackCompositionState = __webpack_require__(105);
 var SyntheticCompositionEvent = __webpack_require__(106);
@@ -13195,8 +13198,8 @@ module.exports = SyntheticInputEvent;
 
 
 
-var EventPluginHub = __webpack_require__(21);
-var EventPropagators = __webpack_require__(20);
+var EventPluginHub = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
@@ -14252,7 +14255,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(20);
+var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticMouseEvent = __webpack_require__(30);
 
@@ -14631,7 +14634,7 @@ module.exports = ReactComponentBrowserEnvironment;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ExecutionEnvironment = __webpack_require__(6);
 
 var createNodesFromMarkup = __webpack_require__(121);
@@ -15050,11 +15053,11 @@ var _prodInvariant = __webpack_require__(3),
 
 var AutoFocusUtils = __webpack_require__(126);
 var CSSPropertyOperations = __webpack_require__(127);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var DOMNamespaces = __webpack_require__(41);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(70);
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(22);
 var EventPluginRegistry = __webpack_require__(28);
 var ReactBrowserEventEmitter = __webpack_require__(33);
 var ReactDOMComponentFlags = __webpack_require__(58);
@@ -16624,7 +16627,7 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(22);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -17062,7 +17065,7 @@ module.exports = ReactDOMInput;
 
 var _assign = __webpack_require__(4);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMSelect = __webpack_require__(72);
 
@@ -17357,11 +17360,11 @@ module.exports = ReactDOMTextarea;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(44);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 var ReactChildReconciler = __webpack_require__(141);
 
 var emptyFunction = __webpack_require__(9);
@@ -17806,7 +17809,7 @@ module.exports = ReactMultiChild;
 
 
 
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 
 var instantiateReactComponent = __webpack_require__(73);
 var KeyEscapeUtils = __webpack_require__(47);
@@ -17968,14 +17971,14 @@ module.exports = ReactChildReconciler;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactComponentEnvironment = __webpack_require__(44);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactErrorUtils = __webpack_require__(36);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(24);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactNodeTypes = __webpack_require__(74);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(143);
@@ -19417,7 +19420,7 @@ module.exports = ReactServerUpdateQueue;
 
 var _assign = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -19626,7 +19629,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var DOMChildrenOperations = __webpack_require__(40);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var escapeTextContentForBrowser = __webpack_require__(32);
@@ -20068,7 +20071,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 var DOMProperty = __webpack_require__(13);
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(22);
 var EventPluginUtils = __webpack_require__(35);
 var ReactComponentEnvironment = __webpack_require__(44);
 var ReactEmptyComponent = __webpack_require__(75);
@@ -20998,7 +21001,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(20);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInputSelection = __webpack_require__(79);
@@ -21195,7 +21198,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(78);
-var EventPropagators = __webpack_require__(20);
+var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticAnimationEvent = __webpack_require__(167);
 var SyntheticClipboardEvent = __webpack_require__(168);
@@ -21206,7 +21209,7 @@ var SyntheticMouseEvent = __webpack_require__(30);
 var SyntheticDragEvent = __webpack_require__(172);
 var SyntheticTouchEvent = __webpack_require__(173);
 var SyntheticTransitionEvent = __webpack_require__(174);
-var SyntheticUIEvent = __webpack_require__(22);
+var SyntheticUIEvent = __webpack_require__(23);
 var SyntheticWheelEvent = __webpack_require__(175);
 
 var emptyFunction = __webpack_require__(9);
@@ -21510,7 +21513,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(22);
+var SyntheticUIEvent = __webpack_require__(23);
 
 /**
  * @interface FocusEvent
@@ -21551,7 +21554,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(22);
+var SyntheticUIEvent = __webpack_require__(23);
 
 var getEventCharCode = __webpack_require__(50);
 var getEventKey = __webpack_require__(171);
@@ -21798,7 +21801,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(22);
+var SyntheticUIEvent = __webpack_require__(23);
 
 var getEventModifierState = __webpack_require__(39);
 
@@ -22138,7 +22141,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(24);
 
 var getHostComponentFromComposite = __webpack_require__(82);
 var invariant = __webpack_require__(1);
@@ -22529,10 +22532,7 @@ exports.ClickerSettings = ClickerSettings;
 
 
 /***/ }),
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22549,7 +22549,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(25);
-var clicker = __webpack_require__(24);
+var clicker = __webpack_require__(16);
 /*******************************************************************************************************************
 *   Represents the 'clicker' game.
 *
@@ -22586,7 +22586,7 @@ exports.ClickerApp = ClickerApp;
 
 
 /***/ }),
-/* 192 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22603,7 +22603,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(25);
-var clicker = __webpack_require__(24);
+var clicker = __webpack_require__(16);
 /*******************************************************************************************************************
 *   Represents the 'clicker' game board.
 *
@@ -22650,7 +22650,8 @@ var ClickerBoard = /** @class */ (function (_super) {
                 fields[x][y] = new clicker.ClickerCell({
                     x: x,
                     y: y,
-                    key: key++
+                    key: key++,
+                    initialColor: clicker.ClickerFieldStateManager.getRandomColor()
                 });
             }
         }
@@ -22665,7 +22666,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var columnKey = 0;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                return React.createElement(clicker.ClickerCell, { x: n.props.x, y: n.props.y, key: n.props.key });
+                return React.createElement(clicker.ClickerCell, { x: n.props.x, y: n.props.y, key: n.props.key, initialColor: n.props.initialColor });
             }));
         });
     };
@@ -22675,7 +22676,7 @@ exports.ClickerBoard = ClickerBoard;
 
 
 /***/ }),
-/* 193 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22692,6 +22693,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(25);
+var clicker = __webpack_require__(16);
 /*******************************************************************************************************************
 *   Represents a field of the 'clicker' game board.
 *
@@ -22711,13 +22713,13 @@ var ClickerCell = /** @class */ (function (_super) {
         _this.onFieldClicked = function () {
             console.log("onFieldClicked [" + _this.props.x + "][" + _this.props.y + "]");
             _this.setState({
-                color: "#ff0000"
+                color: clicker.ClickerFieldState.CLEAR
             });
         };
         // assign state directly
         _this.state =
             {
-                color: "#ffb05d"
+                color: props.initialColor
             };
         return _this;
     }
@@ -22728,7 +22730,7 @@ var ClickerCell = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
         var _this = this;
-        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.onFieldClicked(); }, style: { backgroundColor: this.state.color } }, this.props.x + ", " + this.props.y);
+        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.onFieldClicked(); }, style: { backgroundColor: this.state.color.valueOf() } }, this.props.x + ", " + this.props.y);
     };
     return ClickerCell;
 }(React.Component));
@@ -22736,7 +22738,65 @@ exports.ClickerCell = ClickerCell;
 
 
 /***/ }),
-/* 194 */
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*******************************************************************************************************************
+*   All different states for the clicker field.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerFieldState;
+(function (ClickerFieldState) {
+    ClickerFieldState["CLEAR"] = "#ffffff";
+    ClickerFieldState["COLOR_YELLOW"] = "#ffff00";
+    ClickerFieldState["COLOR_ORANGE"] = "#ffb05d";
+    ClickerFieldState["COLOR_RED"] = "#ff0000";
+    ClickerFieldState["COLOR_GREEN"] = "#00ff00";
+    ClickerFieldState["COLOR_BLUE"] = "#0000ff";
+})(ClickerFieldState = exports.ClickerFieldState || (exports.ClickerFieldState = {}));
+
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var clicker = __webpack_require__(16);
+/*******************************************************************************************************************
+*   Manages different field states.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerFieldStateManager = /** @class */ (function () {
+    function ClickerFieldStateManager() {
+    }
+    /***************************************************************************************************************
+    *   The main class represents the application's entry point.
+    ***************************************************************************************************************/
+    ClickerFieldStateManager.getRandomColor = function () {
+        switch (clicker.ClickerMath.getRandomInt(0, 4)) {
+            case 0: return clicker.ClickerFieldState.COLOR_BLUE;
+            case 1: return clicker.ClickerFieldState.COLOR_RED;
+            case 2: return clicker.ClickerFieldState.COLOR_GREEN;
+            case 3: return clicker.ClickerFieldState.COLOR_ORANGE;
+            default: return clicker.ClickerFieldState.COLOR_YELLOW;
+        }
+    };
+    return ClickerFieldStateManager;
+}());
+exports.ClickerFieldStateManager = ClickerFieldStateManager;
+
+
+/***/ }),
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22759,7 +22819,7 @@ var ClickerMath = /** @class */ (function () {
     *   @return         An integer number in between the specified range.
     *****************************************************************************/
     ClickerMath.getRandomInt = function (from, to) {
-        return Math.floor((Math.random() * (to - from)) + from);
+        return Math.floor((Math.random() * (1 + to - from)) + from);
     };
     return ClickerMath;
 }());

@@ -20,7 +20,7 @@
             // assign state directly
             this.state =
             {
-                color: "#ffb05d"
+                color: props.initialColor
             };
         }
 
@@ -34,7 +34,7 @@
             return <div
                 className="clickerField"
                 onClick={ () => this.onFieldClicked() }
-                style={ { backgroundColor: this.state.color } }
+                style={ { backgroundColor: this.state.color.valueOf() } }
             >
                 { this.props.x + ", " + this.props.y }
             </div>;
@@ -50,7 +50,7 @@
             this.setState
             (
                 {
-                    color: "#ff0000",
+                    color: clicker.ClickerFieldState.CLEAR,
                 }
             );
         }

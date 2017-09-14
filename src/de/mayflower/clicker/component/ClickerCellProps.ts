@@ -1,4 +1,6 @@
 
+    import * as clicker from '../clicker';
+
     /*******************************************************************************************************************
     *   All properties of the 'clicker' field.
     *
@@ -8,11 +10,14 @@
     export interface ClickerCellProps
     {
         /** Coordinate x of this field. */
-        x           :number;
+        x                       :number;
 
         /** Coordinate y of this field. */
-        y           :number;
+        y                       :number;
 
         /** The unique key prop. */
-        key         :number;
+        key                     :number;
+
+        /** The initial field state. */
+        initialColor            :clicker.ClickerFieldState;
     }

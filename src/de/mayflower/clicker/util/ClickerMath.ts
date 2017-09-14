@@ -16,6 +16,6 @@
         *****************************************************************************/
         public static getRandomInt( from:number, to:number ):number
         {
-            return Math.floor( ( Math.random() * ( to - from ) ) + from );
+            return Math.floor( ( Math.random() * ( 1 + to - from ) ) + from );
         }
     }
