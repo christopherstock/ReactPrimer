@@ -7,7 +7,7 @@
     *******************************************************************************************************************/
     export enum ClickerFieldState
     {
-        CLEAR        = "#ffffff",
+        CLEAR        = "rgba( 0, 0, 0, 0.0 )",
 
         COLOR_YELLOW = "#ffff00",
         COLOR_ORANGE = "#ffb05d",

@@ -47,6 +47,10 @@
         {
             console.log( "onFieldClicked [" + this.props.x + "][" + this.props.y + "]" );
 
+            // clicker.ClickerFieldStateManager.resolveAllContinuousFields( this.props.x, this.props.y );
+
+            // clicker.ClickerBoard.
+
             this.setState
             (
                 {

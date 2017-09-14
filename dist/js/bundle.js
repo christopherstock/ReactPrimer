@@ -9798,7 +9798,6 @@ var clicker = __webpack_require__(16);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO WEAK   Enumeration for all field states with according color value.
 *   TODO WEAK   Complete the new game engine.
 *
 *   TODO WEAK   Check react .styl files
@@ -9840,8 +9839,11 @@ var Clicker = /** @class */ (function () {
         var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
         var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
         // render the clicker app
-        ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
+        clicker.Clicker.app = ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
+        console.dir(clicker.Clicker.app);
     };
+    /** The singleton instance of this app. */
+    Clicker.app = null;
     return Clicker;
 }());
 exports.Clicker = Clicker;
@@ -22712,6 +22714,8 @@ var ClickerCell = /** @class */ (function (_super) {
         ***************************************************************************************************************/
         _this.onFieldClicked = function () {
             console.log("onFieldClicked [" + _this.props.x + "][" + _this.props.y + "]");
+            // clicker.ClickerFieldStateManager.resolveAllContinuousFields( this.props.x, this.props.y );
+            // clicker.ClickerBoard.
             _this.setState({
                 color: clicker.ClickerFieldState.CLEAR
             });
@@ -22752,7 +22756,7 @@ exports.__esModule = true;
 *******************************************************************************************************************/
 var ClickerFieldState;
 (function (ClickerFieldState) {
-    ClickerFieldState["CLEAR"] = "#ffffff";
+    ClickerFieldState["CLEAR"] = "rgba( 0, 0, 0, 0.0 )";
     ClickerFieldState["COLOR_YELLOW"] = "#ffff00";
     ClickerFieldState["COLOR_ORANGE"] = "#ffb05d";
     ClickerFieldState["COLOR_RED"] = "#ff0000";
@@ -22782,7 +22786,7 @@ var ClickerFieldStateManager = /** @class */ (function () {
     *   The main class represents the application's entry point.
     ***************************************************************************************************************/
     ClickerFieldStateManager.getRandomColor = function () {
-        switch (clicker.ClickerMath.getRandomInt(0, 4)) {
+        switch (clicker.ClickerMath.getRandomInt(0, 2)) {
             case 0: return clicker.ClickerFieldState.COLOR_BLUE;
             case 1: return clicker.ClickerFieldState.COLOR_RED;
             case 2: return clicker.ClickerFieldState.COLOR_GREEN;

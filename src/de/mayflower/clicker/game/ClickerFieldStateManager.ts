@@ -14,13 +14,16 @@
         ***************************************************************************************************************/
         public static getRandomColor() : clicker.ClickerFieldState
         {
-            switch ( clicker.ClickerMath.getRandomInt( 0, 4 ) )
+            switch ( clicker.ClickerMath.getRandomInt( 0, 2 ) )
             {
                 case 0:  return clicker.ClickerFieldState.COLOR_BLUE;
                 case 1:  return clicker.ClickerFieldState.COLOR_RED;
                 case 2:  return clicker.ClickerFieldState.COLOR_GREEN;
                 case 3:  return clicker.ClickerFieldState.COLOR_ORANGE;
+
                 default: return clicker.ClickerFieldState.COLOR_YELLOW;
             }
         }
+
+
     }

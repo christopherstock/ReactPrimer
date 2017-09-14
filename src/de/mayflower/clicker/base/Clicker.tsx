@@ -1,12 +1,11 @@
 
-    import * as React   from 'react';
+    import * as React    from 'react';
     import * as ReactDOM from 'react-dom';
     import * as clicker  from "../clicker";
 
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO WEAK   Enumeration for all field states with according color value.
     *   TODO WEAK   Complete the new game engine.
     *
     *   TODO WEAK   Check react .styl files
@@ -24,6 +23,9 @@
     *******************************************************************************************************************/
     export class Clicker
     {
+        /** The singleton instance of this app. */
+        public      static      app         :clicker.ClickerApp                 = null;
+
         /***************************************************************************************************************
         *   Logs the given message to the console.
         ***************************************************************************************************************/
@@ -53,13 +55,15 @@
             let fieldSizeY:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
 
             // render the clicker app
-            ReactDOM.render(
+            clicker.Clicker.app = ReactDOM.render(
                 <clicker.ClickerApp
                     playerName={ playerName }
                     fieldSizeX={ fieldSizeX }
                     fieldSizeY={ fieldSizeY }
                 />,
                 document.getElementById('gameContainer')
-            );
+            ) as clicker.ClickerApp;
+
+console.dir(clicker.Clicker.app);
         }
     }
