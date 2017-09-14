@@ -3499,6 +3499,7 @@ __export(__webpack_require__(187));
 __export(__webpack_require__(191));
 __export(__webpack_require__(192));
 __export(__webpack_require__(193));
+__export(__webpack_require__(194));
 
 
 /***/ }),
@@ -9795,10 +9796,9 @@ var clicker = __webpack_require__(24);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO WEAK   Add random Math class.
+*   TODO WEAK   Enumeration for all field states with according color value.
 *   TODO WEAK   Complete the new game engine.
 *
-*   TODO WEAK   Enumeration for all field states according to new game engine.
 *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
 *   TODO WEAK   show state, score etc. in ClickerApp::render() according to new game engine.
 *   TODO ASAP   Create button and input fields for recreating the gamefield according to new game engine..
@@ -22733,6 +22733,37 @@ var ClickerCell = /** @class */ (function (_super) {
     return ClickerCell;
 }(React.Component));
 exports.ClickerCell = ClickerCell;
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*****************************************************************************
+*   Offers additional general arithmetic functionality.
+*
+*   @author     Christopher Stock
+*   @version    1.0
+*****************************************************************************/
+var ClickerMath = /** @class */ (function () {
+    function ClickerMath() {
+    }
+    /*****************************************************************************
+    *   Returns an integer number of the specified range.
+    *
+    *   @param  from    Start of the range.
+    *   @param  to      End of the range.
+    *   @return         An integer number in between the specified range.
+    *****************************************************************************/
+    ClickerMath.getRandomInt = function (from, to) {
+        return Math.floor((Math.random() * (to - from)) + from);
+    };
+    return ClickerMath;
+}());
+exports.ClickerMath = ClickerMath;
 
 
 /***/ })

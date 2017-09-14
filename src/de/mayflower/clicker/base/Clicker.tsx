@@ -6,9 +6,9 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
+    *   TODO WEAK   Enumeration for all field states with according color value.
     *   TODO WEAK   Complete the new game engine.
     *
-    *   TODO WEAK   Enumeration for all field states according to new game engine.
     *   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
     *   TODO WEAK   show state, score etc. in ClickerApp::render() according to new game engine.
     *   TODO ASAP   Create button and input fields for recreating the gamefield according to new game engine..
