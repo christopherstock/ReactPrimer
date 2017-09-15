@@ -13,5 +13,5 @@
         // TODO just store the field states here!
 
         /** All fields the board consists of. */
-        fields                  :clicker.ClickerCell[][];
+        fields                  :clicker.ClickerCellProps[][];
     }

@@ -17,7 +17,7 @@
         {
             super( props );
 
-            let fields:clicker.ClickerCell[][] = this.createEmptyBoard();
+            let fields:clicker.ClickerCellProps[][] = this.createEmptyBoard();
 
             // assign state directly
             this.state =
@@ -45,34 +45,30 @@
         *
         *   @return The 2d array that represents all board fields.
         ***************************************************************************************************************/
-        private createEmptyBoard() : clicker.ClickerCell[][]
+        private createEmptyBoard() : clicker.ClickerCellProps[][]
         {
-            let fields:clicker.ClickerCell[][] = new Array<Array<clicker.ClickerCell>>( this.props.fieldSizeX );
+            let fields:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
+            // TODO required?
             let thisStatic:clicker.ClickerBoard = this;
 
             let key:number = 0;
             for ( let x:number = 0; x < fields.length; ++x )
             {
-                fields[ x ] = new Array<clicker.ClickerCell>( this.props.fieldSizeY );
+                fields[ x ] = new Array<clicker.ClickerCellProps>( this.props.fieldSizeY );
                 console.log( "Rows: " + fields[ x ].length );
 
                 for ( let y:number = 0; y < fields[ x ].length; ++y )
                 {
-                    fields[ x ][ y ] = new clicker.ClickerCell
-                    (
-                        // TODO prune this duplicate!?
-
-                        {
-                            x:              x,
-                            y:              y,
-                            key:            key++,
-                            initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
-                            parentBoard:    this,
-                            parentCallback: () => { thisStatic.onCellClicked( x, y ); },
-                        }
-                    );
+                    fields[ x ][ y ] = {
+                        x:              x,
+                        y:              y,
+                        key:            key++,
+                        initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
+                        parentBoard:    thisStatic,
+                        parentCallback: () => { thisStatic.onCellClicked( x, y ); },
+                    };
                 }
             }
 
@@ -92,21 +88,21 @@
 
             return this.state.fields.map
             (
-                function( m:clicker.ClickerCell[] )
+                function( m:clicker.ClickerCellProps[] )
                 {
                     return <div className="clickerColumn" key={ columnKey++ }>
                         {
                             m.map
                             (
-                                function( n:clicker.ClickerCell )
+                                function( n:clicker.ClickerCellProps )
                                 {
                                     return <clicker.ClickerCell
-                                        x={              n.props.x            }
-                                        y={              n.props.y            }
-                                        key={            n.props.key          }
-                                        initialColor={   n.props.initialColor }
-                                        parentBoard={    this                 }
-                                        parentCallback={ () => { thisStatic.onCellClicked( n.props.x, n.props.y ); }   }
+                                        x={              n.x            }
+                                        y={              n.y            }
+                                        key={            n.key          }
+                                        initialColor={   n.initialColor }
+                                        parentBoard={    thisStatic     }
+                                        parentCallback={ () => { thisStatic.onCellClicked( n.x, n.y ); }   }
                                     />
                                 }
                             )
@@ -120,30 +116,44 @@
         {
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
-            let newClickerCell:clicker.ClickerCell = new clicker.ClickerCell(
-                {
-                    x:              x,
-                    y:              y,
-                    key:            this.state.fields[ x ][ y ].props.key,
-                    initialColor:   clicker.ClickerFieldState.COLOR_ORANGE,
-                    parentBoard:    this.state.fields[ x ][ y ].props.parentBoard,
-                    parentCallback: this.state.fields[ x ][ y ].props.parentCallback,
-                }
-            );
+            let key:number = 0;
+
+            let newClickerCell:clicker.ClickerCellProps = {
+                x:              x,
+                y:              y,
+                key:            key++,
+                initialColor:   clicker.ClickerFieldState.COLOR_ORANGE,
+                parentBoard:    this.state.fields[ x ][ y ].parentBoard,
+                parentCallback: this.state.fields[ x ][ y ].parentCallback,
+            };
+
+            // TODO implement deep cloning for second array dimension .. no progress! :(
+            let newFields:clicker.ClickerCellProps[][] = this.deepCloneFieldsArray( this.state.fields );
 
 
-
-
-            // TODO implement deep cloning for second array dimension!
-            let newFields:clicker.ClickerCell[][] = this.state.fields.slice();
-
-
-            newFields[ x - 1 ][ y - 1 ] = newClickerCell;
+            newFields[ x ][ y ] = newClickerCell;
 
             this.setState(
                 {
                     fields: newFields,
                 }
             );
+        }
+
+        private deepCloneFieldsArray( oldFields:clicker.ClickerCellProps[][] ) : clicker.ClickerCellProps[][]
+        {
+            let newFields = new Array<Array<clicker.ClickerCellProps>>( oldFields.length );
+
+            for ( let x:number = 0; x < newFields.length; ++x )
+            {
+                newFields[ x ] = new Array<clicker.ClickerCellProps>( oldFields[ x ].length );
+
+                for ( let y:number = 0; y < newFields[ x ].length; ++y )
+                {
+                    newFields[ x ][ y ] = oldFields[ x ][ y ];
+                }
+            }
+
+            return newFields;
         }
     }
