@@ -22870,7 +22870,7 @@ var ClickerCellManager = /** @class */ (function () {
         };
     };
     /***************************************************************************************************************
-    *   Determines all continguous cells in the given 2d cell array from the given coordinate.
+    *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
     *
     *   @param cells    The 2d array with all cells.
     *   @param x        The given coordinate x to determine all continguous fields for.
@@ -22879,8 +22879,26 @@ var ClickerCellManager = /** @class */ (function () {
     *   @return A cloned instance of the 2d array.
     ***************************************************************************************************************/
     ClickerCellManager.getAffectedCellCoordinates = function (cells, x, y) {
+        var colorToPick = cells[x][y].color;
         var affectedCellCoordinates = [];
+        // add CLICKED cell
         affectedCellCoordinates.push({ x: x, y: y });
+        // add LEFT cell if matching
+        if (x > 0 && cells[x - 1][y].color == colorToPick) {
+            affectedCellCoordinates.push({ x: x - 1, y: y });
+        }
+        // add TOP cell if matching
+        if (y > 0 && cells[x][y - 1].color == colorToPick) {
+            affectedCellCoordinates.push({ x: x, y: y - 1 });
+        }
+        // add RIGHT cell if matching
+        if (x < cells.length - 1 && cells[x + 1][y].color == colorToPick) {
+            affectedCellCoordinates.push({ x: x + 1, y: y });
+        }
+        // add BOTTOM cell if matching
+        if (y < cells[x].length - 1 && cells[x][y + 1].color == colorToPick) {
+            affectedCellCoordinates.push({ x: x, y: y + 1 });
+        }
         return affectedCellCoordinates;
     };
     return ClickerCellManager;
