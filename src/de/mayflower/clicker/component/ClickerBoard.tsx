@@ -17,12 +17,12 @@
         {
             super( props );
 
-            let fields:clicker.ClickerCellProps[][] = this.createEmptyBoard();
+            let cellProps:clicker.ClickerCellProps[][] = this.createEmptyBoard();
 
             // assign state directly
             this.state =
             {
-                fields: fields,
+                cellProps: cellProps,
             };
         }
 
@@ -47,12 +47,12 @@
         ***************************************************************************************************************/
         private createEmptyBoard() : clicker.ClickerCellProps[][]
         {
-            let fields:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.fieldSizeX );
+            let fields:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.initialFieldSizeX );
             console.log( "Columns: " + fields.length );
 
             for ( let x:number = 0; x < fields.length; ++x )
             {
-                fields[ x ] = new Array<clicker.ClickerCellProps>( this.props.fieldSizeY );
+                fields[ x ] = new Array<clicker.ClickerCellProps>( this.props.initialFieldSizeY );
                 console.log( "Rows: " + fields[ x ].length );
 
                 for ( let y:number = 0; y < fields[ x ].length; ++y )
@@ -79,7 +79,7 @@
         {
             let columnKey:number = 0;
 
-            return this.state.fields.map
+            return this.state.cellProps.map
             (
                 function( m:clicker.ClickerCellProps[] )
                 {
@@ -117,14 +117,14 @@
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
             // clone the old 2d field array from state
-            let newFields:clicker.ClickerCellProps[][] = this.deepCloneFieldsArray( this.state.fields );
+            let newCellProps:clicker.ClickerCellProps[][] = this.deepCloneFieldsArray( this.state.cellProps );
 
-            this.setNewCellColor( newFields, x, y, clicker.ClickerFieldState.COLOR_ORANGE );
+            this.setNewCellColor( newCellProps, x, y, clicker.ClickerFieldState.COLOR_ORANGE );
 
             // reassign state
             this.setState(
                 {
-                    fields: newFields,
+                    cellProps: newCellProps,
                 }
             );
         }

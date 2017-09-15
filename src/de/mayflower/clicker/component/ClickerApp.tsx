@@ -24,8 +24,8 @@
                 { acclaim  }
                 { headline }
                 <clicker.ClickerBoard
-                    fieldSizeX={ this.props.fieldSizeX }
-                    fieldSizeY={ this.props.fieldSizeY }
+                    initialFieldSizeX={ this.props.fieldSizeX }
+                    initialFieldSizeY={ this.props.fieldSizeY }
                 />
             </div>;
         }

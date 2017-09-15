@@ -9821,7 +9821,7 @@ var Clicker = /** @class */ (function () {
     ***************************************************************************************************************/
     Clicker.main = function () {
         Clicker.acclaimAndSetTitle();
-        Clicker.addClickerApp();
+        Clicker.deployClickerApp();
     };
     /***************************************************************************************************************
     *   Acclaims the debug console and sets the document title.
@@ -9833,8 +9833,7 @@ var Clicker = /** @class */ (function () {
     /***************************************************************************************************************
     *   Adds the ClickerApp component to the DOM.
     ***************************************************************************************************************/
-    Clicker.addClickerApp = function () {
-        // pick config values from settings file
+    Clicker.deployClickerApp = function () {
         var playerName = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
         var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
         var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
@@ -22579,7 +22578,7 @@ var ClickerApp = /** @class */ (function (_super) {
         return React.createElement("div", { className: "mainContainer" },
             acclaim,
             headline,
-            React.createElement(clicker.ClickerBoard, { fieldSizeX: this.props.fieldSizeX, fieldSizeY: this.props.fieldSizeY }));
+            React.createElement(clicker.ClickerBoard, { initialFieldSizeX: this.props.fieldSizeX, initialFieldSizeY: this.props.fieldSizeY }));
     };
     return ClickerApp;
 }(React.Component));
@@ -22618,11 +22617,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
-        var fields = _this.createEmptyBoard();
+        var cellProps = _this.createEmptyBoard();
         // assign state directly
         _this.state =
             {
-                fields: fields
+                cellProps: cellProps
             };
         return _this;
     }
@@ -22642,10 +22641,10 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.createEmptyBoard = function () {
         var _this = this;
-        var fields = new Array(this.props.fieldSizeX);
+        var fields = new Array(this.props.initialFieldSizeX);
         console.log("Columns: " + fields.length);
         var _loop_1 = function (x) {
-            fields[x] = new Array(this_1.props.fieldSizeY);
+            fields[x] = new Array(this_1.props.initialFieldSizeY);
             console.log("Rows: " + fields[x].length);
             var _loop_2 = function (y) {
                 fields[x][y] = {
@@ -22673,7 +22672,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.renderAllFields = function () {
         var columnKey = 0;
-        return this.state.fields.map(function (m) {
+        return this.state.cellProps.map(function (m) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, initialColor: n.initialColor, parentCallback: n.parentCallback });
             }));
@@ -22690,11 +22689,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
         // clone the old 2d field array from state
-        var newFields = this.deepCloneFieldsArray(this.state.fields);
-        this.setNewCellColor(newFields, x, y, clicker.ClickerFieldState.COLOR_ORANGE);
+        var newCellProps = this.deepCloneFieldsArray(this.state.cellProps);
+        this.setNewCellColor(newCellProps, x, y, clicker.ClickerFieldState.COLOR_ORANGE);
         // reassign state
         this.setState({
-            fields: newFields
+            cellProps: newCellProps
         });
     };
     /***************************************************************************************************************

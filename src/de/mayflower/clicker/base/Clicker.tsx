@@ -32,7 +32,7 @@
         public static main() : void
         {
             Clicker.acclaimAndSetTitle();
-            Clicker.addClickerApp();
+            Clicker.deployClickerApp();
         }
 
         /***************************************************************************************************************
@@ -47,9 +47,8 @@
         /***************************************************************************************************************
         *   Adds the ClickerApp component to the DOM.
         ***************************************************************************************************************/
-        private static addClickerApp() : void
+        private static deployClickerApp() : void
         {
-            // pick config values from settings file
             let playerName:string = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
             let fieldSizeX:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
             let fieldSizeY:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
