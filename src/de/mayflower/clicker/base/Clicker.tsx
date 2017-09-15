@@ -7,6 +7,7 @@
     *   The main class represents the application's entry point.
     *
     *   TODO ASAP   Complete the new game engine.
+    *   TODO ASAP   Avoid clicking single cells.
     *
     *   TODO ASAP   Check react .styl files!
     *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.

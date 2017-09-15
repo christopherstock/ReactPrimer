@@ -9799,6 +9799,7 @@ var clicker = __webpack_require__(20);
 *   The main class represents the application's entry point.
 *
 *   TODO ASAP   Complete the new game engine.
+*   TODO ASAP   Avoid clicking single cells.
 *
 *   TODO ASAP   Check react .styl files!
 *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
@@ -22695,6 +22696,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var newCellProps = clicker.ClickerCellManager.deepCloneFieldsArray(this.state.cellProps);
         // get affected fields
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
+        affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y, affectedCellCoordinates);
         console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
         // clear all affected fields
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
@@ -22895,20 +22897,29 @@ var ClickerCellManager = /** @class */ (function () {
         // add CLICKED cell
         affectedCellCoordinates.push({ x: x, y: y });
         // add LEFT cell if matching
-        if (x > 0 && allCells[x - 1][y].color == colorToPick) {
+        if (x > 0
+            && allCells[x - 1][y].color == colorToPick) {
             affectedCellCoordinates.push({ x: x - 1, y: y });
         }
         // add TOP cell if matching
-        if (y > 0 && allCells[x][y - 1].color == colorToPick) {
+        if (y > 0
+            && allCells[x][y - 1].color == colorToPick) {
             affectedCellCoordinates.push({ x: x, y: y - 1 });
         }
         // add RIGHT cell if matching
-        if (x < allCells.length - 1 && allCells[x + 1][y].color == colorToPick) {
+        if (x < allCells.length - 1
+            && allCells[x + 1][y].color == colorToPick) {
             affectedCellCoordinates.push({ x: x + 1, y: y });
         }
         // add BOTTOM cell if matching
-        if (y < allCells[x].length - 1 && allCells[x][y + 1].color == colorToPick) {
+        if (y < allCells[x].length - 1
+            && allCells[x][y + 1].color == colorToPick) {
             affectedCellCoordinates.push({ x: x, y: y + 1 });
+        }
+        // add existent coordinates
+        for (var _i = 0, determinedCells_1 = determinedCells; _i < determinedCells_1.length; _i++) {
+            var determinedCell = determinedCells_1[_i];
+            affectedCellCoordinates.push(determinedCell);
         }
         return affectedCellCoordinates;
     };

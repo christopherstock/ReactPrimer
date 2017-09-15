@@ -101,24 +101,49 @@
             affectedCellCoordinates.push( { x: x, y: y, } );
 
             // add LEFT cell if matching
-            if ( x > 0 && allCells[ x - 1 ][ y ].color == colorToPick )
+            if
+            (
+                    x > 0
+                &&  allCells[ x - 1 ][ y ].color == colorToPick
+            )
             {
                 affectedCellCoordinates.push( { x: x - 1, y: y, } );
             }
+
             // add TOP cell if matching
-            if ( y > 0 && allCells[ x ][ y - 1 ].color == colorToPick )
+            if
+            (
+                    y > 0
+                &&  allCells[ x ][ y - 1 ].color == colorToPick
+            )
             {
                 affectedCellCoordinates.push( { x: x, y: y - 1, } );
             }
+
             // add RIGHT cell if matching
-            if ( x < allCells.length - 1 && allCells[ x + 1 ][ y ].color == colorToPick )
+            if
+            (
+                    x < allCells.length - 1
+                &&  allCells[ x + 1 ][ y ].color == colorToPick
+            )
             {
                 affectedCellCoordinates.push( { x: x + 1, y: y, } );
             }
+
             // add BOTTOM cell if matching
-            if ( y < allCells[ x ].length - 1 && allCells[ x ][ y + 1 ].color == colorToPick )
+            if
+            (
+                    y < allCells[ x ].length - 1
+                &&  allCells[ x ][ y + 1 ].color == colorToPick
+            )
             {
                 affectedCellCoordinates.push( { x: x, y: y + 1, } );
+            }
+
+            // add existent coordinates
+            for ( let determinedCell of determinedCells )
+            {
+                affectedCellCoordinates.push( determinedCell );
             }
 
             return affectedCellCoordinates;

@@ -133,6 +133,22 @@
                 x,
                 y
             );
+
+
+
+
+
+affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates
+(
+    newCellProps,
+    x,
+    y,
+    affectedCellCoordinates
+);
+
+
+
+
             console.log( "Determined [" + affectedCellCoordinates.length + "] affected cells" );
 
             // clear all affected fields
