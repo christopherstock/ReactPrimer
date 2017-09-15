@@ -22641,10 +22641,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The 2d array that represents all board fields.
     ***************************************************************************************************************/
     ClickerBoard.prototype.createEmptyBoard = function () {
+        var _this = this;
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
-        // TODO required?
-        var thisStatic = this;
         var _loop_1 = function (x) {
             fields[x] = new Array(this_1.props.fieldSizeY);
             console.log("Rows: " + fields[x].length);
@@ -22654,7 +22653,7 @@ var ClickerBoard = /** @class */ (function (_super) {
                     y: y,
                     key: clicker.Clicker.currentCellIndex++,
                     initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
-                    parentCallback: function () { thisStatic.onCellClicked(x, y); }
+                    parentCallback: function () { _this.onCellClicked(x, y); }
                 };
             };
             for (var y = 0; y < fields[x].length; ++y) {
@@ -22674,11 +22673,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.renderAllFields = function () {
         var columnKey = 0;
-        // TODO required?
-        var thisStatic = this;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, initialColor: n.initialColor, parentCallback: function () { thisStatic.onCellClicked(n.x, n.y); } });
+                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, initialColor: n.initialColor, parentCallback: n.parentCallback });
             }));
         });
     };

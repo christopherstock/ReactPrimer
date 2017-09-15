@@ -50,9 +50,6 @@
             let fields:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
-            // TODO required?
-            let thisStatic:clicker.ClickerBoard = this;
-
             for ( let x:number = 0; x < fields.length; ++x )
             {
                 fields[ x ] = new Array<clicker.ClickerCellProps>( this.props.fieldSizeY );
@@ -65,7 +62,7 @@
                         y:              y,
                         key:            clicker.Clicker.currentCellIndex++,
                         initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
-                        parentCallback: () => { thisStatic.onCellClicked( x, y ); },
+                        parentCallback: () => { this.onCellClicked( x, y ); },
                     };
                 }
             }
@@ -82,9 +79,6 @@
         {
             let columnKey:number = 0;
 
-            // TODO required?
-            let thisStatic:clicker.ClickerBoard = this;
-
             return this.state.fields.map
             (
                 function( m:clicker.ClickerCellProps[] )
@@ -96,11 +90,11 @@
                                 function( n:clicker.ClickerCellProps )
                                 {
                                     return <clicker.ClickerCell
-                                        x={              n.x            }
-                                        y={              n.y            }
-                                        key={            n.key          }
-                                        initialColor={   n.initialColor }
-                                        parentCallback={ () => { thisStatic.onCellClicked( n.x, n.y ); }   }
+                                        x={              n.x              }
+                                        y={              n.y              }
+                                        key={            n.key            }
+                                        initialColor={   n.initialColor   }
+                                        parentCallback={ n.parentCallback }
                                     />
                                 }
                             )
