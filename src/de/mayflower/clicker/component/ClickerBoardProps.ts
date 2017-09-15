@@ -7,6 +7,10 @@
     *******************************************************************************************************************/
     export interface ClickerBoardProps
     {
+        // TODO rename to 'initial field size!'
+
+
+
         /** The gamefield dimension x. */
         fieldSizeX              :number;
 

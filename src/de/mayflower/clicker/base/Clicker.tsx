@@ -23,10 +23,13 @@
     *******************************************************************************************************************/
     export class Clicker
     {
+        // TODO :(
+        public      static      currentCellIndex        :number                             = 0;
+
         // TODO this is not the way to do it! Remove this global reference!
 
         /** The singleton instance of this app. */
-        public      static      app         :clicker.ClickerApp                 = null;
+        public      static      app                     :clicker.ClickerApp                 = null;
 
         /***************************************************************************************************************
         *   Logs the given message to the console.

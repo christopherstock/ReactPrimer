@@ -53,7 +53,6 @@
             // TODO required?
             let thisStatic:clicker.ClickerBoard = this;
 
-            let key:number = 0;
             for ( let x:number = 0; x < fields.length; ++x )
             {
                 fields[ x ] = new Array<clicker.ClickerCellProps>( this.props.fieldSizeY );
@@ -64,7 +63,7 @@
                     fields[ x ][ y ] = {
                         x:              x,
                         y:              y,
-                        key:            key++,
+                        key:            clicker.Clicker.currentCellIndex++,
                         initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
                         parentBoard:    thisStatic,
                         parentCallback: () => { thisStatic.onCellClicked( x, y ); },
@@ -116,12 +115,12 @@
         {
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
-            let key:number = 0;
+            // let key:number = clicker.ClickerMath.getRandomInt( 10000, 50000 );
 
             let newClickerCell:clicker.ClickerCellProps = {
                 x:              x,
                 y:              y,
-                key:            key++,
+                key:            clicker.Clicker.currentCellIndex++,
                 initialColor:   clicker.ClickerFieldState.COLOR_ORANGE,
                 parentBoard:    this.state.fields[ x ][ y ].parentBoard,
                 parentCallback: this.state.fields[ x ][ y ].parentCallback,
@@ -129,6 +128,7 @@
 
             // TODO implement deep cloning for second array dimension .. no progress! :(
             let newFields:clicker.ClickerCellProps[][] = this.deepCloneFieldsArray( this.state.fields );
+
 
 
             newFields[ x ][ y ] = newClickerCell;

@@ -9841,6 +9841,8 @@ var Clicker = /** @class */ (function () {
         // render the clicker app
         clicker.Clicker.app = ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
     };
+    // TODO :(
+    Clicker.currentCellIndex = 0;
     // TODO this is not the way to do it! Remove this global reference!
     /** The singleton instance of this app. */
     Clicker.app = null;
@@ -22646,7 +22648,6 @@ var ClickerBoard = /** @class */ (function (_super) {
         console.log("Columns: " + fields.length);
         // TODO required?
         var thisStatic = this;
-        var key = 0;
         var _loop_1 = function (x) {
             fields[x] = new Array(this_1.props.fieldSizeY);
             console.log("Rows: " + fields[x].length);
@@ -22654,7 +22655,7 @@ var ClickerBoard = /** @class */ (function (_super) {
                 fields[x][y] = {
                     x: x,
                     y: y,
-                    key: key++,
+                    key: clicker.Clicker.currentCellIndex++,
                     initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
                     parentBoard: thisStatic,
                     parentCallback: function () { thisStatic.onCellClicked(x, y); }
@@ -22686,11 +22687,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     };
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
-        var key = 0;
+        // let key:number = clicker.ClickerMath.getRandomInt( 10000, 50000 );
         var newClickerCell = {
             x: x,
             y: y,
-            key: key++,
+            key: clicker.Clicker.currentCellIndex++,
             initialColor: clicker.ClickerFieldState.COLOR_ORANGE,
             parentBoard: this.state.fields[x][y].parentBoard,
             parentCallback: this.state.fields[x][y].parentCallback
@@ -22762,7 +22763,9 @@ var ClickerCell = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
         var _this = this;
-        console.log("Render cell [" + this.props.x + "][" + this.props.y + "] [" + this.state.color + "]");
+        /*
+                    console.log( "Render cell [" + this.props.x + "][" + this.props.y + "] [" + this.state.color + "]" );
+        */
         return React.createElement("div", { className: "clickerField", onClick: function () { return _this.props.parentCallback(_this.props.x, _this.props.y); }, style: { backgroundColor: this.state.color.valueOf() } }, this.props.x + ", " + this.props.y);
     };
     return ClickerCell;

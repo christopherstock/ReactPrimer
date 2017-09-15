@@ -31,8 +31,9 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
+/*
             console.log( "Render cell [" + this.props.x + "][" + this.props.y + "] [" + this.state.color + "]" );
-
+*/
             return <div
                 className="clickerField"
                 onClick={ () => this.props.parentCallback( this.props.x, this.props.y ) }
