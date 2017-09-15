@@ -50,12 +50,29 @@
             // clicker.ClickerFieldStateManager.resolveAllContinuousFields( this.props.x, this.props.y );
 
             // clicker.ClickerBoard.
-
+/*
             this.setState
             (
                 {
                     color: clicker.ClickerFieldState.CLEAR,
                 }
             );
+*/
+
+            this.props.parentCallback();
+
+
+/*
+            console.log( ">> " + this.props.parentBoard );
+
+            console.log( this.props.parentBoard.state );
+            console.dir( this.props.parentBoard.state );
+
+            this.props.parentBoard.state.fields[ 1 ][ 3 ].setState(
+                {
+                    color: clicker.ClickerFieldState.COLOR_YELLOW,
+                }
+            );
+*/
         }
     }

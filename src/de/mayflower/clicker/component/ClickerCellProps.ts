@@ -20,4 +20,12 @@
 
         /** The initial field state. */
         initialColor            :clicker.ClickerFieldState;
+
+        /** A reference to the parent board. */
+        parentBoard             :clicker.ClickerBoard;
+
+
+        parentCallback          :any;
+
+        // TODO try a function!
     }

@@ -23,6 +23,8 @@
     *******************************************************************************************************************/
     export class Clicker
     {
+        // TODO this is not the way to do it! Remove this global reference!
+
         /** The singleton instance of this app. */
         public      static      app         :clicker.ClickerApp                 = null;
 
@@ -62,8 +64,11 @@
                     fieldSizeY={ fieldSizeY }
                 />,
                 document.getElementById('gameContainer')
+
+
             ) as clicker.ClickerApp;
 
-console.dir(clicker.Clicker.app);
+
+
         }
     }

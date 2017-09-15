@@ -60,11 +60,15 @@
                 {
                     fields[ x ][ y ] = new clicker.ClickerCell
                     (
+                        // TODO prune this duplicate!?
+
                         {
-                            x:            x,
-                            y:            y,
-                            key:          key++,
-                            initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
+                            x:              x,
+                            y:              y,
+                            key:            key++,
+                            initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
+                            parentBoard:    this,
+                            parentCallback: null,
                         }
                     );
                 }
@@ -82,6 +86,8 @@
         {
             let columnKey:number = 0;
 
+            let thisStatic:clicker.ClickerBoard = this;
+
             return this.state.fields.map
             (
                 function( m:clicker.ClickerCell[] )
@@ -93,10 +99,12 @@
                                 function( n:clicker.ClickerCell )
                                 {
                                     return <clicker.ClickerCell
-                                        x={            n.props.x            }
-                                        y={            n.props.y            }
-                                        key={          n.props.key          }
-                                        initialColor={ n.props.initialColor }
+                                        x={              n.props.x            }
+                                        y={              n.props.y            }
+                                        key={            n.props.key          }
+                                        initialColor={   n.props.initialColor }
+                                        parentBoard={    this                 }
+                                        parentCallback={ () => { thisStatic.onCellClicked( n.props.x, n.props.y ); }   }
                                     />
                                 }
                             )
@@ -105,4 +113,72 @@
                 }
             )
         }
+
+        private onCellClicked=( x:number, y:number )=>
+        {
+            console.log( "onCellClicked [" + x + "][" + y + "]" );
+
+/*
+            this.state.fields[ 2 ][ 3 ].setState(
+                {
+                    color: clicker.ClickerFieldState.COLOR_YELLOW,
+                }
+            );
+*/
+
+
+            // TODO implement deep cloning for second array dimension!
+            let newFields:clicker.ClickerCell[][] = this.state.fields.slice();
+
+
+            // WHY INOPERATIVE ?
+
+            newFields[ x ][ y ] = new clicker.ClickerCell(
+                {
+                    x:              x,
+                    y:              y,
+                    key:            this.state.fields[ x ][ y ].props.key,
+                    initialColor:   clicker.ClickerFieldState.COLOR_YELLOW,
+                    parentBoard:    this.state.fields[ x ][ y ].props.parentBoard,
+                    parentCallback: this.state.fields[ x ][ y ].props.parentCallback,
+                }
+            );
+
+
+            // WHY WORKING?
+
+            newFields[ 2 ][ 3 ] = new clicker.ClickerCell(
+                {
+                    x:              2,
+                    y:              3,
+                    key:            829218,
+                    initialColor:   clicker.ClickerFieldState.COLOR_YELLOW,
+                    parentBoard:    this,
+                    parentCallback: null,
+                }
+            );
+
+
+
+
+            this.setState(
+                {
+                    fields: newFields,
+                }
+            );
+
+
+/*
+            this.setState
+            (
+                {
+                    color: clicker.ClickerFieldState.CLEAR,
+                }
+            );
+*/
+
+
+
+
+        };
     }
