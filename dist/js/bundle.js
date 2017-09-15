@@ -22685,24 +22685,31 @@ var ClickerBoard = /** @class */ (function (_super) {
             }));
         });
     };
+    /***************************************************************************************************************
+    *   Being invoked when a cell on the board is clicked.
+    *
+    *   @param x The x coordinatie of the field that has been clicked.
+    *   @param y The y coordinatie of the field that has been clicked.
+    *
+    *   @return A cloned instance of the 2d array.
+    ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
-        // let key:number = clicker.ClickerMath.getRandomInt( 10000, 50000 );
-        var newClickerCell = {
-            x: x,
-            y: y,
-            key: clicker.Clicker.currentCellIndex++,
-            initialColor: clicker.ClickerFieldState.COLOR_ORANGE,
-            parentBoard: this.state.fields[x][y].parentBoard,
-            parentCallback: this.state.fields[x][y].parentCallback
-        };
-        // TODO implement deep cloning for second array dimension .. no progress! :(
+        // clone the old 2d field array from state
         var newFields = this.deepCloneFieldsArray(this.state.fields);
-        newFields[x][y] = newClickerCell;
+        this.setNewCellColor(newFields, x, y, clicker.ClickerFieldState.COLOR_ORANGE);
+        // reassign state
         this.setState({
             fields: newFields
         });
     };
+    /***************************************************************************************************************
+    *   Clones all element of the given 2d array and returns the clone.
+    *
+    *   @param oldFields The 2d array of clicker field props.
+    *
+    *   @return A cloned instance of the 2d array.
+    ***************************************************************************************************************/
     ClickerBoard.prototype.deepCloneFieldsArray = function (oldFields) {
         var newFields = new Array(oldFields.length);
         for (var x = 0; x < newFields.length; ++x) {
@@ -22712,6 +22719,26 @@ var ClickerBoard = /** @class */ (function (_super) {
             }
         }
         return newFields;
+    };
+    /***************************************************************************************************************
+    *   Sets a new color for the specified field.
+    *
+    *   @param fields   The 2d array to set a new field color.
+    *   @param x        Location x for the new field to set.
+    *   @param y        Location y for the new field to set.
+    *   @param newColor The new color to set.
+    *
+    *   @return A cloned instance of the 2d array.
+    ***************************************************************************************************************/
+    ClickerBoard.prototype.setNewCellColor = function (fields, x, y, newColor) {
+        fields[x][y] = {
+            x: x,
+            y: y,
+            key: clicker.Clicker.currentCellIndex++,
+            initialColor: newColor,
+            parentBoard: fields[x][y].parentBoard,
+            parentCallback: fields[x][y].parentCallback
+        };
     };
     return ClickerBoard;
 }(React.Component));
