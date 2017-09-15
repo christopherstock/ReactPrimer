@@ -65,7 +65,6 @@
                         y:              y,
                         key:            clicker.Clicker.currentCellIndex++,
                         initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
-                        parentBoard:    thisStatic,
                         parentCallback: () => { thisStatic.onCellClicked( x, y ); },
                     };
                 }
@@ -83,6 +82,7 @@
         {
             let columnKey:number = 0;
 
+            // TODO required?
             let thisStatic:clicker.ClickerBoard = this;
 
             return this.state.fields.map
@@ -100,7 +100,6 @@
                                         y={              n.y            }
                                         key={            n.key          }
                                         initialColor={   n.initialColor }
-                                        parentBoard={    thisStatic     }
                                         parentCallback={ () => { thisStatic.onCellClicked( n.x, n.y ); }   }
                                     />
                                 }
@@ -183,7 +182,6 @@
                 y:              y,
                 key:            clicker.Clicker.currentCellIndex++,
                 initialColor:   newColor,
-                parentBoard:    fields[ x ][ y ].parentBoard,
                 parentCallback: fields[ x ][ y ].parentCallback,
             };
         }

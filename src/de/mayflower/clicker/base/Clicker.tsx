@@ -23,13 +23,8 @@
     *******************************************************************************************************************/
     export class Clicker
     {
-        // TODO :(
+        // TODO This sounds like a technical debt ..
         public      static      currentCellIndex        :number                             = 0;
-
-        // TODO this is not the way to do it! Remove this global reference!
-
-        /** The singleton instance of this app. */
-        public      static      app                     :clicker.ClickerApp                 = null;
 
         /***************************************************************************************************************
         *   Logs the given message to the console.
@@ -60,18 +55,13 @@
             let fieldSizeY:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
 
             // render the clicker app
-            clicker.Clicker.app = ReactDOM.render(
+            ReactDOM.render(
                 <clicker.ClickerApp
                     playerName={ playerName }
                     fieldSizeX={ fieldSizeX }
                     fieldSizeY={ fieldSizeY }
                 />,
                 document.getElementById('gameContainer')
-
-
-            ) as clicker.ClickerApp;
-
-
-
+            );
         }
     }

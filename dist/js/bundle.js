@@ -9839,13 +9839,10 @@ var Clicker = /** @class */ (function () {
         var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
         var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
         // render the clicker app
-        clicker.Clicker.app = ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
+        ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
     };
-    // TODO :(
+    // TODO This sounds like a technical debt ..
     Clicker.currentCellIndex = 0;
-    // TODO this is not the way to do it! Remove this global reference!
-    /** The singleton instance of this app. */
-    Clicker.app = null;
     return Clicker;
 }());
 exports.Clicker = Clicker;
@@ -22657,7 +22654,6 @@ var ClickerBoard = /** @class */ (function (_super) {
                     y: y,
                     key: clicker.Clicker.currentCellIndex++,
                     initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
-                    parentBoard: thisStatic,
                     parentCallback: function () { thisStatic.onCellClicked(x, y); }
                 };
             };
@@ -22678,10 +22674,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.renderAllFields = function () {
         var columnKey = 0;
+        // TODO required?
         var thisStatic = this;
         return this.state.fields.map(function (m) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, initialColor: n.initialColor, parentBoard: thisStatic, parentCallback: function () { thisStatic.onCellClicked(n.x, n.y); } });
+                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, initialColor: n.initialColor, parentCallback: function () { thisStatic.onCellClicked(n.x, n.y); } });
             }));
         });
     };
@@ -22736,7 +22733,6 @@ var ClickerBoard = /** @class */ (function (_super) {
             y: y,
             key: clicker.Clicker.currentCellIndex++,
             initialColor: newColor,
-            parentBoard: fields[x][y].parentBoard,
             parentCallback: fields[x][y].parentCallback
         };
     };

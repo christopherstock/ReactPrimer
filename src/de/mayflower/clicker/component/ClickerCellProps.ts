@@ -9,27 +9,18 @@
     *******************************************************************************************************************/
     export interface ClickerCellProps
     {
+        /** The unique key prop. */
+        key                     :number;
+
         /** Coordinate x of this field. */
         x                       :number;
 
         /** Coordinate y of this field. */
         y                       :number;
 
-        /** The unique key prop. */
-        key                     :number;
-
         /** The initial field state. */
         initialColor            :clicker.ClickerFieldState;
 
-        // TODO Try the full reference too .. but a function is better!
-
-        /** A reference to the parent board. */
-        parentBoard             :clicker.ClickerBoard;
-
-
-
-        // TODO try a function!
-
+        /** The callback to invoke when this cell is clicked. */
         parentCallback          :any;
-
     }
