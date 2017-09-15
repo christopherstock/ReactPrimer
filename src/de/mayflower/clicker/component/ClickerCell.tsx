@@ -33,46 +33,10 @@
         {
             return <div
                 className="clickerField"
-                onClick={ () => this.onFieldClicked() }
+                onClick={ () => this.props.parentCallback( this.props.x, this.props.y ) }
                 style={ { backgroundColor: this.state.color.valueOf() } }
             >
                 { this.props.x + ", " + this.props.y }
             </div>;
-        }
-
-        /***************************************************************************************************************
-        *   Being invoked when a field of the board is clicked.
-        ***************************************************************************************************************/
-        private onFieldClicked=()=>
-        {
-            console.log( "onFieldClicked [" + this.props.x + "][" + this.props.y + "]" );
-
-            // clicker.ClickerFieldStateManager.resolveAllContinuousFields( this.props.x, this.props.y );
-
-            // clicker.ClickerBoard.
-/*
-            this.setState
-            (
-                {
-                    color: clicker.ClickerFieldState.CLEAR,
-                }
-            );
-*/
-
-            this.props.parentCallback();
-
-
-/*
-            console.log( ">> " + this.props.parentBoard );
-
-            console.log( this.props.parentBoard.state );
-            console.dir( this.props.parentBoard.state );
-
-            this.props.parentBoard.state.fields[ 1 ][ 3 ].setState(
-                {
-                    color: clicker.ClickerFieldState.COLOR_YELLOW,
-                }
-            );
-*/
         }
     }

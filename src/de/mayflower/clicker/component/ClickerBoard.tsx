@@ -50,6 +50,8 @@
             let fields:clicker.ClickerCell[][] = new Array<Array<clicker.ClickerCell>>( this.props.fieldSizeX );
             console.log( "Columns: " + fields.length );
 
+            let thisStatic:clicker.ClickerBoard = this;
+
             let key:number = 0;
             for ( let x:number = 0; x < fields.length; ++x )
             {
@@ -68,7 +70,7 @@
                             key:            key++,
                             initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
                             parentBoard:    this,
-                            parentCallback: null,
+                            parentCallback: () => { thisStatic.onCellClicked( x, y ); },
                         }
                     );
                 }
@@ -114,71 +116,30 @@
             )
         }
 
-        private onCellClicked=( x:number, y:number )=>
+        private onCellClicked( x:number, y:number )
         {
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
-/*
-            this.state.fields[ 2 ][ 3 ].setState(
-                {
-                    color: clicker.ClickerFieldState.COLOR_YELLOW,
-                }
-            );
-*/
-
-
-            // TODO implement deep cloning for second array dimension!
-            let newFields:clicker.ClickerCell[][] = this.state.fields.slice();
-
-
-            // WHY INOPERATIVE ?
-
-            newFields[ x ][ y ] = new clicker.ClickerCell(
+            let newClickerCell:clicker.ClickerCell = new clicker.ClickerCell(
                 {
                     x:              x,
                     y:              y,
                     key:            this.state.fields[ x ][ y ].props.key,
-                    initialColor:   clicker.ClickerFieldState.COLOR_YELLOW,
+                    initialColor:   clicker.ClickerFieldState.COLOR_ORANGE,
                     parentBoard:    this.state.fields[ x ][ y ].props.parentBoard,
                     parentCallback: this.state.fields[ x ][ y ].props.parentCallback,
                 }
             );
 
+            // TODO implement deep cloning for second array dimension!
+            let newFields:clicker.ClickerCell[][] = this.state.fields;
 
-            // WHY WORKING?
-
-            newFields[ 2 ][ 3 ] = new clicker.ClickerCell(
-                {
-                    x:              2,
-                    y:              3,
-                    key:            829218,
-                    initialColor:   clicker.ClickerFieldState.COLOR_YELLOW,
-                    parentBoard:    this,
-                    parentCallback: null,
-                }
-            );
-
-
-
+            newFields[ x - 1 ][ y - 1 ] = newClickerCell;
 
             this.setState(
                 {
                     fields: newFields,
                 }
             );
-
-
-/*
-            this.setState
-            (
-                {
-                    color: clicker.ClickerFieldState.CLEAR,
-                }
-            );
-*/
-
-
-
-
-        };
+        }
     }

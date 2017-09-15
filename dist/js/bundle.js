@@ -22619,47 +22619,6 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
-        _this.onCellClicked = function (x, y) {
-            console.log("onCellClicked [" + x + "][" + y + "]");
-            /*
-                        this.state.fields[ 2 ][ 3 ].setState(
-                            {
-                                color: clicker.ClickerFieldState.COLOR_YELLOW,
-                            }
-                        );
-            */
-            // TODO implement deep cloning for second array dimension!
-            var newFields = _this.state.fields.slice();
-            // WHY INOPERATIVE ?
-            newFields[x][y] = new clicker.ClickerCell({
-                x: x,
-                y: y,
-                key: _this.state.fields[x][y].props.key,
-                initialColor: clicker.ClickerFieldState.COLOR_YELLOW,
-                parentBoard: _this.state.fields[x][y].props.parentBoard,
-                parentCallback: _this.state.fields[x][y].props.parentCallback
-            });
-            // WHY WORKING?
-            newFields[2][3] = new clicker.ClickerCell({
-                x: 2,
-                y: 3,
-                key: 829218,
-                initialColor: clicker.ClickerFieldState.COLOR_YELLOW,
-                parentBoard: _this,
-                parentCallback: null
-            });
-            _this.setState({
-                fields: newFields
-            });
-            /*
-                        this.setState
-                        (
-                            {
-                                color: clicker.ClickerFieldState.CLEAR,
-                            }
-                        );
-            */
-        };
         var fields = _this.createEmptyBoard();
         // assign state directly
         _this.state =
@@ -22685,11 +22644,12 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.createEmptyBoard = function () {
         var fields = new Array(this.props.fieldSizeX);
         console.log("Columns: " + fields.length);
+        var thisStatic = this;
         var key = 0;
-        for (var x = 0; x < fields.length; ++x) {
-            fields[x] = new Array(this.props.fieldSizeY);
+        var _loop_1 = function (x) {
+            fields[x] = new Array(this_1.props.fieldSizeY);
             console.log("Rows: " + fields[x].length);
-            for (var y = 0; y < fields[x].length; ++y) {
+            var _loop_2 = function (y) {
                 fields[x][y] = new clicker.ClickerCell(
                 // TODO prune this duplicate!?
                 {
@@ -22697,10 +22657,17 @@ var ClickerBoard = /** @class */ (function (_super) {
                     y: y,
                     key: key++,
                     initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
-                    parentBoard: this,
-                    parentCallback: null
+                    parentBoard: this_1,
+                    parentCallback: function () { thisStatic.onCellClicked(x, y); }
                 });
+            };
+            for (var y = 0; y < fields[x].length; ++y) {
+                _loop_2(y);
             }
+        };
+        var this_1 = this;
+        for (var x = 0; x < fields.length; ++x) {
+            _loop_1(x);
         }
         return fields;
     };
@@ -22716,6 +22683,23 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 return React.createElement(clicker.ClickerCell, { x: n.props.x, y: n.props.y, key: n.props.key, initialColor: n.props.initialColor, parentBoard: this, parentCallback: function () { thisStatic.onCellClicked(n.props.x, n.props.y); } });
             }));
+        });
+    };
+    ClickerBoard.prototype.onCellClicked = function (x, y) {
+        console.log("onCellClicked [" + x + "][" + y + "]");
+        var newClickerCell = new clicker.ClickerCell({
+            x: x,
+            y: y,
+            key: this.state.fields[x][y].props.key,
+            initialColor: clicker.ClickerFieldState.COLOR_ORANGE,
+            parentBoard: this.state.fields[x][y].props.parentBoard,
+            parentCallback: this.state.fields[x][y].props.parentCallback
+        });
+        // TODO implement deep cloning for second array dimension!
+        var newFields = this.state.fields;
+        newFields[x - 1][y - 1] = newClickerCell;
+        this.setState({
+            fields: newFields
         });
     };
     return ClickerBoard;
@@ -22754,35 +22738,6 @@ var ClickerCell = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerCell(props) {
         var _this = _super.call(this, props) || this;
-        /***************************************************************************************************************
-        *   Being invoked when a field of the board is clicked.
-        ***************************************************************************************************************/
-        _this.onFieldClicked = function () {
-            console.log("onFieldClicked [" + _this.props.x + "][" + _this.props.y + "]");
-            // clicker.ClickerFieldStateManager.resolveAllContinuousFields( this.props.x, this.props.y );
-            // clicker.ClickerBoard.
-            /*
-                        this.setState
-                        (
-                            {
-                                color: clicker.ClickerFieldState.CLEAR,
-                            }
-                        );
-            */
-            _this.props.parentCallback();
-            /*
-                        console.log( ">> " + this.props.parentBoard );
-            
-                        console.log( this.props.parentBoard.state );
-                        console.dir( this.props.parentBoard.state );
-            
-                        this.props.parentBoard.state.fields[ 1 ][ 3 ].setState(
-                            {
-                                color: clicker.ClickerFieldState.COLOR_YELLOW,
-                            }
-                        );
-            */
-        };
         // assign state directly
         _this.state =
             {
@@ -22797,7 +22752,7 @@ var ClickerCell = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
         var _this = this;
-        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.onFieldClicked(); }, style: { backgroundColor: this.state.color.valueOf() } }, this.props.x + ", " + this.props.y);
+        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.props.parentCallback(_this.props.x, _this.props.y); }, style: { backgroundColor: this.state.color.valueOf() } }, this.props.x + ", " + this.props.y);
     };
     return ClickerCell;
 }(React.Component));
