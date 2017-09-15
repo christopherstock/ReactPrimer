@@ -22696,7 +22696,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             parentCallback: this.state.fields[x][y].props.parentCallback
         });
         // TODO implement deep cloning for second array dimension!
-        var newFields = this.state.fields;
+        var newFields = this.state.fields.slice();
         newFields[x - 1][y - 1] = newClickerCell;
         this.setState({
             fields: newFields

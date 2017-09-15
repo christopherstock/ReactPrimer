@@ -131,8 +131,12 @@
                 }
             );
 
+
+
+
             // TODO implement deep cloning for second array dimension!
-            let newFields:clicker.ClickerCell[][] = this.state.fields;
+            let newFields:clicker.ClickerCell[][] = this.state.fields.slice();
+
 
             newFields[ x - 1 ][ y - 1 ] = newClickerCell;
 

@@ -10,6 +10,7 @@
     export interface ClickerBoardState
     {
         // TODO rename to 'cell'!
+        // TODO just store the field states here!
 
         /** All fields the board consists of. */
         fields                  :clicker.ClickerCell[][];
