@@ -22686,11 +22686,20 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
+        // clicking clear cells has no effect
+        if (this.state.cellProps[x][y].color == clicker.ClickerCellColor.CLEAR) {
+            console.log("Clicked a clear cell.");
+            return;
+        }
+        // clone all fields
         var newCellProps = clicker.ClickerCellManager.deepCloneFieldsArray(this.state.cellProps);
+        // get affected fields
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
+        console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
+        // clear all affected fields
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
-            clicker.ClickerCellManager.setNewCellColor(newCellProps, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.COLOR_ORANGE);
+            clicker.ClickerCellManager.setNewCellColor(newCellProps, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.CLEAR);
         }
         this.setState({
             cellProps: newCellProps
@@ -22872,31 +22881,33 @@ var ClickerCellManager = /** @class */ (function () {
     /***************************************************************************************************************
     *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
     *
-    *   @param cells    The 2d array with all cells.
-    *   @param x        The given coordinate x to determine all continguous fields for.
-    *   @param y        The given coordinate y to determine all continguous fields for.
+    *   @param allCells        The 2d array with all cells.
+    *   @param x               The given coordinate x to determine all continguous fields for.
+    *   @param y               The given coordinate y to determine all continguous fields for.
+    *   @param determinedCells All already gathered cell coordinates affected so far.
     *
     *   @return A cloned instance of the 2d array.
     ***************************************************************************************************************/
-    ClickerCellManager.getAffectedCellCoordinates = function (cells, x, y) {
-        var colorToPick = cells[x][y].color;
+    ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y, determinedCells) {
+        if (determinedCells === void 0) { determinedCells = []; }
+        var colorToPick = allCells[x][y].color;
         var affectedCellCoordinates = [];
         // add CLICKED cell
         affectedCellCoordinates.push({ x: x, y: y });
         // add LEFT cell if matching
-        if (x > 0 && cells[x - 1][y].color == colorToPick) {
+        if (x > 0 && allCells[x - 1][y].color == colorToPick) {
             affectedCellCoordinates.push({ x: x - 1, y: y });
         }
         // add TOP cell if matching
-        if (y > 0 && cells[x][y - 1].color == colorToPick) {
+        if (y > 0 && allCells[x][y - 1].color == colorToPick) {
             affectedCellCoordinates.push({ x: x, y: y - 1 });
         }
         // add RIGHT cell if matching
-        if (x < cells.length - 1 && cells[x + 1][y].color == colorToPick) {
+        if (x < allCells.length - 1 && allCells[x + 1][y].color == colorToPick) {
             affectedCellCoordinates.push({ x: x + 1, y: y });
         }
         // add BOTTOM cell if matching
-        if (y < cells[x].length - 1 && cells[x][y + 1].color == colorToPick) {
+        if (y < allCells[x].length - 1 && allCells[x][y + 1].color == colorToPick) {
             affectedCellCoordinates.push({ x: x, y: y + 1 });
         }
         return affectedCellCoordinates;

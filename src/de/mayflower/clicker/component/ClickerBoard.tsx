@@ -114,16 +114,28 @@
         {
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
+            // clicking clear cells has no effect
+            if ( this.state.cellProps[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
+            {
+                console.log( "Clicked a clear cell." );
+                return;
+            }
+
+            // clone all fields
             let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneFieldsArray(
                 this.state.cellProps
             );
 
+            // get affected fields
             let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
             (
                 newCellProps,
                 x,
                 y
             );
+            console.log( "Determined [" + affectedCellCoordinates.length + "] affected cells" );
+
+            // clear all affected fields
             for ( let affectedCoordinate of affectedCellCoordinates )
             {
                 clicker.ClickerCellManager.setNewCellColor
@@ -131,7 +143,7 @@
                     newCellProps,
                     affectedCoordinate.x,
                     affectedCoordinate.y,
-                    clicker.ClickerCellColor.COLOR_ORANGE
+                    clicker.ClickerCellColor.CLEAR
                 );
             }
 

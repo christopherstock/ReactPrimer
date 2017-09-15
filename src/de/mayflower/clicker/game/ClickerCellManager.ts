@@ -79,42 +79,44 @@
         /***************************************************************************************************************
         *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
         *
-        *   @param cells    The 2d array with all cells.
-        *   @param x        The given coordinate x to determine all continguous fields for.
-        *   @param y        The given coordinate y to determine all continguous fields for.
+        *   @param allCells        The 2d array with all cells.
+        *   @param x               The given coordinate x to determine all continguous fields for.
+        *   @param y               The given coordinate y to determine all continguous fields for.
+        *   @param determinedCells All already gathered cell coordinates affected so far.
         *
         *   @return A cloned instance of the 2d array.
         ***************************************************************************************************************/
         public static getAffectedCellCoordinates
         (
-            cells:clicker.ClickerCellProps[][],
+            allCells:clicker.ClickerCellProps[][],
             x:number,
-            y:number
+            y:number,
+            determinedCells:clicker.ClickerCellCoordinate[] = []
         )
         {
-            let colorToPick = cells[ x ][ y ].color;
+            let colorToPick = allCells[ x ][ y ].color;
             let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = [];
 
             // add CLICKED cell
             affectedCellCoordinates.push( { x: x, y: y, } );
 
             // add LEFT cell if matching
-            if ( x > 0 && cells[ x - 1 ][ y ].color == colorToPick )
+            if ( x > 0 && allCells[ x - 1 ][ y ].color == colorToPick )
             {
                 affectedCellCoordinates.push( { x: x - 1, y: y, } );
             }
             // add TOP cell if matching
-            if ( y > 0 && cells[ x ][ y - 1 ].color == colorToPick )
+            if ( y > 0 && allCells[ x ][ y - 1 ].color == colorToPick )
             {
                 affectedCellCoordinates.push( { x: x, y: y - 1, } );
             }
             // add RIGHT cell if matching
-            if ( x < cells.length - 1 && cells[ x + 1 ][ y ].color == colorToPick )
+            if ( x < allCells.length - 1 && allCells[ x + 1 ][ y ].color == colorToPick )
             {
                 affectedCellCoordinates.push( { x: x + 1, y: y, } );
             }
             // add BOTTOM cell if matching
-            if ( y < cells[ x ].length - 1 && cells[ x ][ y + 1 ].color == colorToPick )
+            if ( y < allCells[ x ].length - 1 && allCells[ x ][ y + 1 ].color == colorToPick )
             {
                 affectedCellCoordinates.push( { x: x, y: y + 1, } );
             }
