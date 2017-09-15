@@ -16,12 +16,13 @@
         public constructor( props:clicker.ClickerCellProps )
         {
             super( props );
-
+/*
             // assign state directly
             this.state =
             {
                 color: props.initialColor
             };
+*/
         }
 
         /***************************************************************************************************************
@@ -37,7 +38,7 @@
             return <div
                 className="clickerField"
                 onClick={ () => this.props.parentCallback( this.props.x, this.props.y ) }
-                style={ { backgroundColor: this.state.color.valueOf() } }
+                style={ { backgroundColor: this.props.color.valueOf() } }
             >
                 { this.props.x + ", " + this.props.y }
             </div>;

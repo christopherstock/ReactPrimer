@@ -1,6 +1,4 @@
 
-    import * as clicker from '../clicker';
-
     /*******************************************************************************************************************
     *   The interface that specifies the state for one clicker field.
     *
@@ -9,6 +7,4 @@
     *******************************************************************************************************************/
     export interface ClickerCellState
     {
-        /** Fill color */
-        color       :clicker.ClickerCellColor;
     }

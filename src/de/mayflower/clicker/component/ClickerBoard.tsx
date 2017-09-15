@@ -61,7 +61,7 @@
                         x:              x,
                         y:              y,
                         key:            clicker.Clicker.currentCellIndex++,
-                        initialColor:   clicker.ClickerCellManager.getRandomColor(),
+                        color:          clicker.ClickerCellManager.getRandomColor(),
                         parentCallback: () => { this.onCellClicked( x, y ); },
                     };
                 }
@@ -93,7 +93,7 @@
                                         x={              n.x              }
                                         y={              n.y              }
                                         key={            n.key            }
-                                        initialColor={   n.initialColor   }
+                                        color={          n.color          }
                                         parentCallback={ n.parentCallback }
                                     />
                                 }

@@ -19,7 +19,7 @@
         y                       :number;
 
         /** The initial field state. */
-        initialColor            :clicker.ClickerCellColor;
+        color                   :clicker.ClickerCellColor;
 
         /** The callback to invoke when this cell is clicked. */
         parentCallback          :any;

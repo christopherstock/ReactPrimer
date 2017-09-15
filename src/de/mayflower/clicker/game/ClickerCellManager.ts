@@ -71,7 +71,7 @@
                 x:              x,
                 y:              y,
                 key:            clicker.Clicker.currentCellIndex++,
-                initialColor:   newColor,
+                color:          newColor,
                 parentCallback: fields[ x ][ y ].parentCallback,
             };
         }

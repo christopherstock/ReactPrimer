@@ -22651,7 +22651,7 @@ var ClickerBoard = /** @class */ (function (_super) {
                     x: x,
                     y: y,
                     key: clicker.Clicker.currentCellIndex++,
-                    initialColor: clicker.ClickerCellManager.getRandomColor(),
+                    color: clicker.ClickerCellManager.getRandomColor(),
                     parentCallback: function () { _this.onCellClicked(x, y); }
                 };
             };
@@ -22674,7 +22674,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         var columnKey = 0;
         return this.state.cellProps.map(function (m) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, initialColor: n.initialColor, parentCallback: n.parentCallback });
+                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, color: n.color, parentCallback: n.parentCallback });
             }));
         });
     };
@@ -22729,13 +22729,14 @@ var ClickerCell = /** @class */ (function (_super) {
     *   Creates a new 'clicker' field component.
     ***************************************************************************************************************/
     function ClickerCell(props) {
-        var _this = _super.call(this, props) || this;
-        // assign state directly
-        _this.state =
-            {
-                color: props.initialColor
-            };
-        return _this;
+        return _super.call(this, props) || this;
+        /*
+                    // assign state directly
+                    this.state =
+                    {
+                        color: props.initialColor
+                    };
+        */
     }
     /***************************************************************************************************************
     *   Renders the 'clicker' board component.
@@ -22747,7 +22748,7 @@ var ClickerCell = /** @class */ (function (_super) {
         /*
                     console.log( "Render cell [" + this.props.x + "][" + this.props.y + "] [" + this.state.color + "]" );
         */
-        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.props.parentCallback(_this.props.x, _this.props.y); }, style: { backgroundColor: this.state.color.valueOf() } }, this.props.x + ", " + this.props.y);
+        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.props.parentCallback(_this.props.x, _this.props.y); }, style: { backgroundColor: this.props.color.valueOf() } }, this.props.x + ", " + this.props.y);
     };
     return ClickerCell;
 }(React.Component));
@@ -22872,7 +22873,7 @@ var ClickerCellManager = /** @class */ (function () {
             x: x,
             y: y,
             key: clicker.Clicker.currentCellIndex++,
-            initialColor: newColor,
+            color: newColor,
             parentCallback: fields[x][y].parentCallback
         };
     };
