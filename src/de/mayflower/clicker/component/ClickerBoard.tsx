@@ -109,17 +109,31 @@
         *
         *   @param x The x coordinatie of the field that has been clicked.
         *   @param y The y coordinatie of the field that has been clicked.
-        *
-        *   @return A cloned instance of the 2d array.
         ***************************************************************************************************************/
-        private onCellClicked( x:number, y:number )
+        private onCellClicked( x:number, y:number ) : void
         {
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
             let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneFieldsArray(
                 this.state.cellProps
             );
-            clicker.ClickerCellManager.setNewCellColor( newCellProps, x, y, clicker.ClickerCellColor.COLOR_ORANGE );
+
+            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
+            (
+                newCellProps,
+                x,
+                y
+            );
+            for ( let affectedCoordinate of affectedCellCoordinates )
+            {
+                clicker.ClickerCellManager.setNewCellColor
+                (
+                    newCellProps,
+                    affectedCoordinate.x,
+                    affectedCoordinate.y,
+                    clicker.ClickerCellColor.COLOR_ORANGE
+                );
+            }
 
             this.setState(
                 {

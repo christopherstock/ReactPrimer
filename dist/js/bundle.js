@@ -22683,13 +22683,15 @@ var ClickerBoard = /** @class */ (function (_super) {
     *
     *   @param x The x coordinatie of the field that has been clicked.
     *   @param y The y coordinatie of the field that has been clicked.
-    *
-    *   @return A cloned instance of the 2d array.
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
         var newCellProps = clicker.ClickerCellManager.deepCloneFieldsArray(this.state.cellProps);
-        clicker.ClickerCellManager.setNewCellColor(newCellProps, x, y, clicker.ClickerCellColor.COLOR_ORANGE);
+        var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
+        for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
+            var affectedCoordinate = affectedCellCoordinates_1[_i];
+            clicker.ClickerCellManager.setNewCellColor(newCellProps, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.COLOR_ORANGE);
+        }
         this.setState({
             cellProps: newCellProps
         });
@@ -22730,13 +22732,6 @@ var ClickerCell = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerCell(props) {
         return _super.call(this, props) || this;
-        /*
-                    // assign state directly
-                    this.state =
-                    {
-                        color: props.initialColor
-                    };
-        */
     }
     /***************************************************************************************************************
     *   Renders the 'clicker' board component.
@@ -22745,9 +22740,6 @@ var ClickerCell = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
         var _this = this;
-        /*
-                    console.log( "Render cell [" + this.props.x + "][" + this.props.y + "] [" + this.state.color + "]" );
-        */
         return React.createElement("div", { className: "clickerField", onClick: function () { return _this.props.parentCallback(_this.props.x, _this.props.y); }, style: { backgroundColor: this.props.color.valueOf() } }, this.props.x + ", " + this.props.y);
     };
     return ClickerCell;
@@ -22876,6 +22868,20 @@ var ClickerCellManager = /** @class */ (function () {
             color: newColor,
             parentCallback: fields[x][y].parentCallback
         };
+    };
+    /***************************************************************************************************************
+    *   Determines all continguous cells in the given 2d cell array from the given coordinate.
+    *
+    *   @param cells    The 2d array with all cells.
+    *   @param x        The given coordinate x to determine all continguous fields for.
+    *   @param y        The given coordinate y to determine all continguous fields for.
+    *
+    *   @return A cloned instance of the 2d array.
+    ***************************************************************************************************************/
+    ClickerCellManager.getAffectedCellCoordinates = function (cells, x, y) {
+        var affectedCellCoordinates = [];
+        affectedCellCoordinates.push({ x: x, y: y });
+        return affectedCellCoordinates;
     };
     return ClickerCellManager;
 }());

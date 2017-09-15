@@ -76,7 +76,30 @@
             };
         }
 
+        /***************************************************************************************************************
+        *   Determines all continguous cells in the given 2d cell array from the given coordinate.
+        *
+        *   @param cells    The 2d array with all cells.
+        *   @param x        The given coordinate x to determine all continguous fields for.
+        *   @param y        The given coordinate y to determine all continguous fields for.
+        *
+        *   @return A cloned instance of the 2d array.
+        ***************************************************************************************************************/
+        public static getAffectedCellCoordinates
+        (
+            cells:clicker.ClickerCellProps[][],
+            x:number,
+            y:number
+        )
+        {
+            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = [];
 
 
 
+            affectedCellCoordinates.push( { x: x, y: y, } );
+
+
+
+            return affectedCellCoordinates;
+        }
     }
