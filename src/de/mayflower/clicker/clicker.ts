@@ -13,7 +13,7 @@
     export * from './component/ClickerCellProps';
     export * from './component/ClickerCellState';
 
-    export * from './game/ClickerFieldState';
-    export * from './game/ClickerFieldStateManager';
+    export * from './game/ClickerCellColor';
+    export * from './game/ClickerCellManager';
 
     export * from './util/ClickerMath';

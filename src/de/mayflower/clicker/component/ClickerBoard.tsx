@@ -61,7 +61,7 @@
                         x:              x,
                         y:              y,
                         key:            clicker.Clicker.currentCellIndex++,
-                        initialColor:   clicker.ClickerFieldStateManager.getRandomColor(),
+                        initialColor:   clicker.ClickerCellManager.getRandomColor(),
                         parentCallback: () => { this.onCellClicked( x, y ); },
                     };
                 }
@@ -116,67 +116,15 @@
         {
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
-            // clone the old 2d field array from state
-            let newCellProps:clicker.ClickerCellProps[][] = this.deepCloneFieldsArray( this.state.cellProps );
+            let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneFieldsArray(
+                this.state.cellProps
+            );
+            clicker.ClickerCellManager.setNewCellColor( newCellProps, x, y, clicker.ClickerCellColor.COLOR_ORANGE );
 
-            this.setNewCellColor( newCellProps, x, y, clicker.ClickerFieldState.COLOR_ORANGE );
-
-            // reassign state
             this.setState(
                 {
                     cellProps: newCellProps,
                 }
             );
-        }
-
-        /***************************************************************************************************************
-        *   Clones all element of the given 2d array and returns the clone.
-        *
-        *   @param oldFields The 2d array of clicker field props.
-        *
-        *   @return A cloned instance of the 2d array.
-        ***************************************************************************************************************/
-        private deepCloneFieldsArray( oldFields:clicker.ClickerCellProps[][] ) : clicker.ClickerCellProps[][]
-        {
-            let newFields = new Array<Array<clicker.ClickerCellProps>>( oldFields.length );
-
-            for ( let x:number = 0; x < newFields.length; ++x )
-            {
-                newFields[ x ] = new Array<clicker.ClickerCellProps>( oldFields[ x ].length );
-
-                for ( let y:number = 0; y < newFields[ x ].length; ++y )
-                {
-                    newFields[ x ][ y ] = oldFields[ x ][ y ];
-                }
-            }
-
-            return newFields;
-        }
-
-        /***************************************************************************************************************
-        *   Sets a new color for the specified field.
-        *
-        *   @param fields   The 2d array to set a new field color.
-        *   @param x        Location x for the new field to set.
-        *   @param y        Location y for the new field to set.
-        *   @param newColor The new color to set.
-        *
-        *   @return A cloned instance of the 2d array.
-        ***************************************************************************************************************/
-        private setNewCellColor
-        (
-            fields:clicker.ClickerCellProps[][],
-            x:number,
-            y:number,
-            newColor:clicker.ClickerFieldState
-        )
-        {
-            fields[ x ][ y ] = {
-                x:              x,
-                y:              y,
-                key:            clicker.Clicker.currentCellIndex++,
-                initialColor:   newColor,
-                parentCallback: fields[ x ][ y ].parentCallback,
-            };
         }
     }

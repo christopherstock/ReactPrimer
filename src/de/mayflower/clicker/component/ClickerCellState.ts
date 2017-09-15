@@ -10,5 +10,5 @@
     export interface ClickerCellState
     {
         /** Fill color */
-        color       :clicker.ClickerFieldState;
+        color       :clicker.ClickerCellColor;
     }

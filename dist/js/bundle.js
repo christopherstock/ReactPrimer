@@ -2964,8 +2964,8 @@ __export(__webpack_require__(187));
 __export(__webpack_require__(188));
 __export(__webpack_require__(189));
 __export(__webpack_require__(190));
-__export(__webpack_require__(191));
-__export(__webpack_require__(192));
+__export(__webpack_require__(194));
+__export(__webpack_require__(195));
 __export(__webpack_require__(193));
 
 
@@ -9798,15 +9798,15 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO WEAK   Complete the new game engine.
+*   TODO ASAP   Complete the new game engine.
 *
-*   TODO WEAK   Check react .styl files
-*   TODO WEAK   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
-*   TODO WEAK   show state, score etc. in ClickerApp::render() according to new game engine.
-*   TODO ASAP   Create button and input fields for recreating the gamefield according to new game engine..
-*   TODO ASAP   Styling (bg image, fg translucent blocks) .. joy!
-*   TODO ASAP   Add animations and learn react callbacks etc.
-*   TODO WEAK   learn 'React high-order component'
+*   TODO ASAP   Check react .styl files!
+*   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
+*   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
+*   TODO INIT   Create button and input fields for recreating the gamefield according to new game engine..
+*   TODO INIT   Styling (bg image, fg translucent blocks) .. joy!
+*   TODO LOW    Add animations and learn react callbacks etc.
+*   TODO LOW    learn 'React high-order component'
 *   TODO WEAK   learn 'React delegates'
 *   TODO WEAK   learn 'React promises'
 *
@@ -22651,7 +22651,7 @@ var ClickerBoard = /** @class */ (function (_super) {
                     x: x,
                     y: y,
                     key: clicker.Clicker.currentCellIndex++,
-                    initialColor: clicker.ClickerFieldStateManager.getRandomColor(),
+                    initialColor: clicker.ClickerCellManager.getRandomColor(),
                     parentCallback: function () { _this.onCellClicked(x, y); }
                 };
             };
@@ -22688,49 +22688,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
-        // clone the old 2d field array from state
-        var newCellProps = this.deepCloneFieldsArray(this.state.cellProps);
-        this.setNewCellColor(newCellProps, x, y, clicker.ClickerFieldState.COLOR_ORANGE);
-        // reassign state
+        var newCellProps = clicker.ClickerCellManager.deepCloneFieldsArray(this.state.cellProps);
+        clicker.ClickerCellManager.setNewCellColor(newCellProps, x, y, clicker.ClickerCellColor.COLOR_ORANGE);
         this.setState({
             cellProps: newCellProps
         });
-    };
-    /***************************************************************************************************************
-    *   Clones all element of the given 2d array and returns the clone.
-    *
-    *   @param oldFields The 2d array of clicker field props.
-    *
-    *   @return A cloned instance of the 2d array.
-    ***************************************************************************************************************/
-    ClickerBoard.prototype.deepCloneFieldsArray = function (oldFields) {
-        var newFields = new Array(oldFields.length);
-        for (var x = 0; x < newFields.length; ++x) {
-            newFields[x] = new Array(oldFields[x].length);
-            for (var y = 0; y < newFields[x].length; ++y) {
-                newFields[x][y] = oldFields[x][y];
-            }
-        }
-        return newFields;
-    };
-    /***************************************************************************************************************
-    *   Sets a new color for the specified field.
-    *
-    *   @param fields   The 2d array to set a new field color.
-    *   @param x        Location x for the new field to set.
-    *   @param y        Location y for the new field to set.
-    *   @param newColor The new color to set.
-    *
-    *   @return A cloned instance of the 2d array.
-    ***************************************************************************************************************/
-    ClickerBoard.prototype.setNewCellColor = function (fields, x, y, newColor) {
-        fields[x][y] = {
-            x: x,
-            y: y,
-            key: clicker.Clicker.currentCellIndex++,
-            initialColor: newColor,
-            parentCallback: fields[x][y].parentCallback
-        };
     };
     return ClickerBoard;
 }(React.Component));
@@ -22793,64 +22755,8 @@ exports.ClickerCell = ClickerCell;
 
 
 /***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-/*******************************************************************************************************************
-*   All different states for the clicker field.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var ClickerFieldState;
-(function (ClickerFieldState) {
-    ClickerFieldState["CLEAR"] = "rgba( 0, 0, 0, 0.0 )";
-    ClickerFieldState["COLOR_YELLOW"] = "#ffff00";
-    ClickerFieldState["COLOR_ORANGE"] = "#ffb05d";
-    ClickerFieldState["COLOR_RED"] = "#ff0000";
-    ClickerFieldState["COLOR_GREEN"] = "#00ff00";
-    ClickerFieldState["COLOR_BLUE"] = "#0000ff";
-})(ClickerFieldState = exports.ClickerFieldState || (exports.ClickerFieldState = {}));
-
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-var clicker = __webpack_require__(20);
-/*******************************************************************************************************************
-*   Manages different field states.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var ClickerFieldStateManager = /** @class */ (function () {
-    function ClickerFieldStateManager() {
-    }
-    /***************************************************************************************************************
-    *   The main class represents the application's entry point.
-    ***************************************************************************************************************/
-    ClickerFieldStateManager.getRandomColor = function () {
-        switch (clicker.ClickerMath.getRandomInt(0, 2)) {
-            case 0: return clicker.ClickerFieldState.COLOR_BLUE;
-            case 1: return clicker.ClickerFieldState.COLOR_RED;
-            case 2: return clicker.ClickerFieldState.COLOR_GREEN;
-            case 3: return clicker.ClickerFieldState.COLOR_ORANGE;
-            default: return clicker.ClickerFieldState.COLOR_YELLOW;
-        }
-    };
-    return ClickerFieldStateManager;
-}());
-exports.ClickerFieldStateManager = ClickerFieldStateManager;
-
-
-/***/ }),
+/* 191 */,
+/* 192 */,
 /* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22879,6 +22785,100 @@ var ClickerMath = /** @class */ (function () {
     return ClickerMath;
 }());
 exports.ClickerMath = ClickerMath;
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*******************************************************************************************************************
+*   All different states for the clicker field.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerCellColor;
+(function (ClickerCellColor) {
+    ClickerCellColor["CLEAR"] = "rgba( 0, 0, 0, 0.0 )";
+    ClickerCellColor["COLOR_YELLOW"] = "#ffff00";
+    ClickerCellColor["COLOR_ORANGE"] = "#ffb05d";
+    ClickerCellColor["COLOR_RED"] = "#ff0000";
+    ClickerCellColor["COLOR_GREEN"] = "#00ff00";
+    ClickerCellColor["COLOR_BLUE"] = "#0000ff";
+})(ClickerCellColor = exports.ClickerCellColor || (exports.ClickerCellColor = {}));
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var clicker = __webpack_require__(20);
+/*******************************************************************************************************************
+*   Manages different field states.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerCellManager = /** @class */ (function () {
+    function ClickerCellManager() {
+    }
+    /***************************************************************************************************************
+    *   The main class represents the application's entry point.
+    ***************************************************************************************************************/
+    ClickerCellManager.getRandomColor = function () {
+        switch (clicker.ClickerMath.getRandomInt(0, 2)) {
+            case 0: return clicker.ClickerCellColor.COLOR_BLUE;
+            case 1: return clicker.ClickerCellColor.COLOR_RED;
+            case 2: return clicker.ClickerCellColor.COLOR_GREEN;
+            case 3: return clicker.ClickerCellColor.COLOR_ORANGE;
+            default: return clicker.ClickerCellColor.COLOR_YELLOW;
+        }
+    };
+    /***************************************************************************************************************
+    *   Clones all element of the given 2d array and returns the clone.
+    *
+    *   @param oldFields The 2d array of clicker field props.
+    *
+    *   @return A cloned instance of the 2d array.
+    ***************************************************************************************************************/
+    ClickerCellManager.deepCloneFieldsArray = function (oldFields) {
+        var newFields = new Array(oldFields.length);
+        for (var x = 0; x < newFields.length; ++x) {
+            newFields[x] = new Array(oldFields[x].length);
+            for (var y = 0; y < newFields[x].length; ++y) {
+                newFields[x][y] = oldFields[x][y];
+            }
+        }
+        return newFields;
+    };
+    /***************************************************************************************************************
+    *   Sets a new color for the specified field.
+    *
+    *   @param fields   The 2d array to set a new field color.
+    *   @param x        Location x for the new field to set.
+    *   @param y        Location y for the new field to set.
+    *   @param newColor The new color to set.
+    *
+    *   @return A cloned instance of the 2d array.
+    ***************************************************************************************************************/
+    ClickerCellManager.setNewCellColor = function (fields, x, y, newColor) {
+        fields[x][y] = {
+            x: x,
+            y: y,
+            key: clicker.Clicker.currentCellIndex++,
+            initialColor: newColor,
+            parentCallback: fields[x][y].parentCallback
+        };
+    };
+    return ClickerCellManager;
+}());
+exports.ClickerCellManager = ClickerCellManager;
 
 
 /***/ })

@@ -5,7 +5,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export enum ClickerFieldState
+    export enum ClickerCellColor
     {
         CLEAR        = "rgba( 0, 0, 0, 0.0 )",
 
