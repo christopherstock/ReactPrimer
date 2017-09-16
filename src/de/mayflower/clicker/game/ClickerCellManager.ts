@@ -56,8 +56,6 @@
         *   @param x        Location x for the new field to set.
         *   @param y        Location y for the new field to set.
         *   @param newColor The new color to set.
-        *
-        *   @return A cloned instance of the 2d array.
         ***************************************************************************************************************/
         public static setNewCellColor
         (
@@ -66,6 +64,7 @@
             y:number,
             newColor:clicker.ClickerCellColor
         )
+        : void
         {
             fields[ x ][ y ] = {
                 x:              x,
@@ -93,18 +92,23 @@
             y:number,
             determinedCells:clicker.ClickerCellCoordinate[] = []
         )
+        : clicker.ClickerCellCoordinate[]
         {
             let colorToPick = allCells[ x ][ y ].color;
             let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = [];
 
-            // add CLICKED cell
-            affectedCellCoordinates.push( { x: x, y: y, } );
+            // add CLICKED cell if not contained
+            if ( !clicker.ClickerCellManager.contains( determinedCells, x, y ) )
+            {
+                affectedCellCoordinates.push( { x: x, y: y, } );
+            }
 
             // add LEFT cell if matching
             if
             (
                     x > 0
                 &&  allCells[ x - 1 ][ y ].color == colorToPick
+                && !clicker.ClickerCellManager.contains( determinedCells, x - 1, y )
             )
             {
                 affectedCellCoordinates.push( { x: x - 1, y: y, } );
@@ -115,6 +119,7 @@
             (
                     y > 0
                 &&  allCells[ x ][ y - 1 ].color == colorToPick
+                && !clicker.ClickerCellManager.contains( determinedCells, x, y - 1 )
             )
             {
                 affectedCellCoordinates.push( { x: x, y: y - 1, } );
@@ -125,6 +130,7 @@
             (
                     x < allCells.length - 1
                 &&  allCells[ x + 1 ][ y ].color == colorToPick
+                && !clicker.ClickerCellManager.contains( determinedCells, x + 1, y )
             )
             {
                 affectedCellCoordinates.push( { x: x + 1, y: y, } );
@@ -135,17 +141,46 @@
             (
                     y < allCells[ x ].length - 1
                 &&  allCells[ x ][ y + 1 ].color == colorToPick
+                && !clicker.ClickerCellManager.contains( determinedCells, x, y + 1 )
             )
             {
                 affectedCellCoordinates.push( { x: x, y: y + 1, } );
             }
 
-            // add existent coordinates
+            // add existing coordinates
             for ( let determinedCell of determinedCells )
             {
                 affectedCellCoordinates.push( determinedCell );
             }
 
             return affectedCellCoordinates;
+        }
+
+        /***************************************************************************************************************
+        *   Checks if the specified coordinate array contains the specified coordinate.
+        *
+        *   @param coordinates     All coordinates.
+        *   @param x               The coordinate x.
+        *   @param y               The coordinate y.
+        *
+        *   @return <code>true</code> if the given coordinate is contained in the given coordinate array.
+        *           Otherwise <code>false</code>.
+        ***************************************************************************************************************/
+        public static contains
+        (
+            coordinates:clicker.ClickerCellCoordinate[],
+            x:number,
+            y:number
+        ) : boolean
+        {
+            for ( let coordinate of coordinates )
+            {
+                if ( coordinate.x == x && coordinate.y == y )
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }

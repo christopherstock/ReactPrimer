@@ -2964,8 +2964,8 @@ __export(__webpack_require__(187));
 __export(__webpack_require__(188));
 __export(__webpack_require__(189));
 __export(__webpack_require__(190));
-__export(__webpack_require__(194));
-__export(__webpack_require__(195));
+__export(__webpack_require__(191));
+__export(__webpack_require__(192));
 __export(__webpack_require__(193));
 
 
@@ -22759,40 +22759,7 @@ exports.ClickerCell = ClickerCell;
 
 
 /***/ }),
-/* 191 */,
-/* 192 */,
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-/*****************************************************************************
-*   Offers additional general arithmetic functionality.
-*
-*   @author     Christopher Stock
-*   @version    1.0
-*****************************************************************************/
-var ClickerMath = /** @class */ (function () {
-    function ClickerMath() {
-    }
-    /*****************************************************************************
-    *   Returns an integer number of the specified range.
-    *
-    *   @param  from    Start of the range.
-    *   @param  to      End of the range.
-    *   @return         An integer number in between the specified range.
-    *****************************************************************************/
-    ClickerMath.getRandomInt = function (from, to) {
-        return Math.floor((Math.random() * (1 + to - from)) + from);
-    };
-    return ClickerMath;
-}());
-exports.ClickerMath = ClickerMath;
-
-
-/***/ }),
-/* 194 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22816,7 +22783,7 @@ var ClickerCellColor;
 
 
 /***/ }),
-/* 195 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22868,8 +22835,6 @@ var ClickerCellManager = /** @class */ (function () {
     *   @param x        Location x for the new field to set.
     *   @param y        Location y for the new field to set.
     *   @param newColor The new color to set.
-    *
-    *   @return A cloned instance of the 2d array.
     ***************************************************************************************************************/
     ClickerCellManager.setNewCellColor = function (fields, x, y, newColor) {
         fields[x][y] = {
@@ -22894,38 +22859,94 @@ var ClickerCellManager = /** @class */ (function () {
         if (determinedCells === void 0) { determinedCells = []; }
         var colorToPick = allCells[x][y].color;
         var affectedCellCoordinates = [];
-        // add CLICKED cell
-        affectedCellCoordinates.push({ x: x, y: y });
+        // add CLICKED cell if not contained
+        if (!clicker.ClickerCellManager.contains(determinedCells, x, y)) {
+            affectedCellCoordinates.push({ x: x, y: y });
+        }
         // add LEFT cell if matching
         if (x > 0
-            && allCells[x - 1][y].color == colorToPick) {
+            && allCells[x - 1][y].color == colorToPick
+            && !clicker.ClickerCellManager.contains(determinedCells, x - 1, y)) {
             affectedCellCoordinates.push({ x: x - 1, y: y });
         }
         // add TOP cell if matching
         if (y > 0
-            && allCells[x][y - 1].color == colorToPick) {
+            && allCells[x][y - 1].color == colorToPick
+            && !clicker.ClickerCellManager.contains(determinedCells, x, y - 1)) {
             affectedCellCoordinates.push({ x: x, y: y - 1 });
         }
         // add RIGHT cell if matching
         if (x < allCells.length - 1
-            && allCells[x + 1][y].color == colorToPick) {
+            && allCells[x + 1][y].color == colorToPick
+            && !clicker.ClickerCellManager.contains(determinedCells, x + 1, y)) {
             affectedCellCoordinates.push({ x: x + 1, y: y });
         }
         // add BOTTOM cell if matching
         if (y < allCells[x].length - 1
-            && allCells[x][y + 1].color == colorToPick) {
+            && allCells[x][y + 1].color == colorToPick
+            && !clicker.ClickerCellManager.contains(determinedCells, x, y + 1)) {
             affectedCellCoordinates.push({ x: x, y: y + 1 });
         }
-        // add existent coordinates
+        // add existing coordinates
         for (var _i = 0, determinedCells_1 = determinedCells; _i < determinedCells_1.length; _i++) {
             var determinedCell = determinedCells_1[_i];
             affectedCellCoordinates.push(determinedCell);
         }
         return affectedCellCoordinates;
     };
+    /***************************************************************************************************************
+    *   Checks if the specified coordinate array contains the specified coordinate.
+    *
+    *   @param coordinates     All coordinates.
+    *   @param x               The coordinate x.
+    *   @param y               The coordinate y.
+    *
+    *   @return <code>true</code> if the given coordinate is contained in the given coordinate array.
+    *           Otherwise <code>false</code>.
+    ***************************************************************************************************************/
+    ClickerCellManager.contains = function (coordinates, x, y) {
+        for (var _i = 0, coordinates_1 = coordinates; _i < coordinates_1.length; _i++) {
+            var coordinate = coordinates_1[_i];
+            if (coordinate.x == x && coordinate.y == y) {
+                return true;
+            }
+        }
+        return false;
+    };
     return ClickerCellManager;
 }());
 exports.ClickerCellManager = ClickerCellManager;
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*****************************************************************************
+*   Offers additional general arithmetic functionality.
+*
+*   @author     Christopher Stock
+*   @version    1.0
+*****************************************************************************/
+var ClickerMath = /** @class */ (function () {
+    function ClickerMath() {
+    }
+    /*****************************************************************************
+    *   Returns an integer number of the specified range.
+    *
+    *   @param  from    Start of the range.
+    *   @param  to      End of the range.
+    *   @return         An integer number in between the specified range.
+    *****************************************************************************/
+    ClickerMath.getRandomInt = function (from, to) {
+        return Math.floor((Math.random() * (1 + to - from)) + from);
+    };
+    return ClickerMath;
+}());
+exports.ClickerMath = ClickerMath;
 
 
 /***/ })
