@@ -95,12 +95,11 @@
         : clicker.ClickerCellCoordinate[]
         {
             let colorToPick = allCells[ x ][ y ].color;
-            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = [];
 
             // add CLICKED cell if not contained
             if ( !clicker.ClickerCellManager.contains( determinedCells, x, y ) )
             {
-                affectedCellCoordinates.push( { x: x, y: y, } );
+                determinedCells.push( { x: x, y: y, } );
             }
 
             // add LEFT cell if matching
@@ -111,7 +110,13 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x - 1, y )
             )
             {
-                affectedCellCoordinates.push( { x: x - 1, y: y, } );
+                clicker.ClickerCellManager.getAffectedCellCoordinates
+                (
+                    allCells,
+                    x - 1,
+                    y,
+                    determinedCells
+                );
             }
 
             // add TOP cell if matching
@@ -122,7 +127,13 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x, y - 1 )
             )
             {
-                affectedCellCoordinates.push( { x: x, y: y - 1, } );
+                clicker.ClickerCellManager.getAffectedCellCoordinates
+                (
+                    allCells,
+                    x,
+                    y - 1,
+                    determinedCells
+                );
             }
 
             // add RIGHT cell if matching
@@ -133,7 +144,13 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x + 1, y )
             )
             {
-                affectedCellCoordinates.push( { x: x + 1, y: y, } );
+                clicker.ClickerCellManager.getAffectedCellCoordinates
+                (
+                    allCells,
+                    x + 1,
+                    y,
+                    determinedCells
+                );
             }
 
             // add BOTTOM cell if matching
@@ -144,16 +161,16 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x, y + 1 )
             )
             {
-                affectedCellCoordinates.push( { x: x, y: y + 1, } );
+                clicker.ClickerCellManager.getAffectedCellCoordinates
+                (
+                    allCells,
+                    x,
+                    y + 1,
+                    determinedCells
+                );
             }
 
-            // add existing coordinates
-            for ( let determinedCell of determinedCells )
-            {
-                affectedCellCoordinates.push( determinedCell );
-            }
-
-            return affectedCellCoordinates;
+            return determinedCells;
         }
 
         /***************************************************************************************************************
@@ -171,7 +188,8 @@
             coordinates:clicker.ClickerCellCoordinate[],
             x:number,
             y:number
-        ) : boolean
+        )
+        : boolean
         {
             for ( let coordinate of coordinates )
             {

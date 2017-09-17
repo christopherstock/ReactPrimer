@@ -121,7 +121,7 @@
                 return;
             }
 
-            // clone all fields
+            // clone all cells
             let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneFieldsArray(
                 this.state.cellProps
             );
@@ -133,21 +133,6 @@
                 x,
                 y
             );
-
-
-
-
-
-affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates
-(
-    newCellProps,
-    x,
-    y,
-    affectedCellCoordinates
-);
-
-
-
 
             console.log( "Determined [" + affectedCellCoordinates.length + "] affected cells" );
 

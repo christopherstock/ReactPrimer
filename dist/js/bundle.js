@@ -9800,6 +9800,8 @@ var clicker = __webpack_require__(20);
 *
 *   TODO ASAP   Complete the new game engine.
 *   TODO ASAP   Avoid clicking single cells.
+*   TODO ASAP   Debug system for affected cells.
+*   TODO HIGH   Cell instead of Field everywhere!
 *
 *   TODO ASAP   Check react .styl files!
 *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
@@ -22692,11 +22694,10 @@ var ClickerBoard = /** @class */ (function (_super) {
             console.log("Clicked a clear cell.");
             return;
         }
-        // clone all fields
+        // clone all cells
         var newCellProps = clicker.ClickerCellManager.deepCloneFieldsArray(this.state.cellProps);
         // get affected fields
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
-        affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y, affectedCellCoordinates);
         console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
         // clear all affected fields
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
@@ -22858,41 +22859,35 @@ var ClickerCellManager = /** @class */ (function () {
     ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y, determinedCells) {
         if (determinedCells === void 0) { determinedCells = []; }
         var colorToPick = allCells[x][y].color;
-        var affectedCellCoordinates = [];
         // add CLICKED cell if not contained
         if (!clicker.ClickerCellManager.contains(determinedCells, x, y)) {
-            affectedCellCoordinates.push({ x: x, y: y });
+            determinedCells.push({ x: x, y: y });
         }
         // add LEFT cell if matching
         if (x > 0
             && allCells[x - 1][y].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x - 1, y)) {
-            affectedCellCoordinates.push({ x: x - 1, y: y });
+            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x - 1, y, determinedCells);
         }
         // add TOP cell if matching
         if (y > 0
             && allCells[x][y - 1].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x, y - 1)) {
-            affectedCellCoordinates.push({ x: x, y: y - 1 });
+            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x, y - 1, determinedCells);
         }
         // add RIGHT cell if matching
         if (x < allCells.length - 1
             && allCells[x + 1][y].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x + 1, y)) {
-            affectedCellCoordinates.push({ x: x + 1, y: y });
+            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x + 1, y, determinedCells);
         }
         // add BOTTOM cell if matching
         if (y < allCells[x].length - 1
             && allCells[x][y + 1].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x, y + 1)) {
-            affectedCellCoordinates.push({ x: x, y: y + 1 });
+            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x, y + 1, determinedCells);
         }
-        // add existing coordinates
-        for (var _i = 0, determinedCells_1 = determinedCells; _i < determinedCells_1.length; _i++) {
-            var determinedCell = determinedCells_1[_i];
-            affectedCellCoordinates.push(determinedCell);
-        }
-        return affectedCellCoordinates;
+        return determinedCells;
     };
     /***************************************************************************************************************
     *   Checks if the specified coordinate array contains the specified coordinate.
