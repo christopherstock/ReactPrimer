@@ -9842,7 +9842,7 @@ var Clicker = /** @class */ (function () {
         var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
         var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
         // render the clicker app
-        ReactDOM.render(React.createElement(clicker.ClickerApp, { playerName: playerName, fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
+        ReactDOM.render(React.createElement(clicker.ClickerApp, { fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
     };
     // TODO This sounds like a technical debt ..
     Clicker.currentCellIndex = 0;
@@ -22571,17 +22571,7 @@ var ClickerApp = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     ClickerApp.prototype.render = function () {
-        var acclaim = React.createElement("h1", null,
-            "Welcome ",
-            this.props.playerName);
-        var headline = React.createElement("h2", null,
-            "Your board is ",
-            this.props.fieldSizeX,
-            " x ",
-            this.props.fieldSizeY);
         return React.createElement("div", { className: "mainContainer" },
-            acclaim,
-            headline,
             React.createElement(clicker.ClickerBoard, { initialFieldSizeX: this.props.fieldSizeX, initialFieldSizeY: this.props.fieldSizeY }));
     };
     return ClickerApp;

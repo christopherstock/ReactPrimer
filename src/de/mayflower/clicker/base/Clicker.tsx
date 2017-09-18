@@ -60,7 +60,6 @@
             // render the clicker app
             ReactDOM.render(
                 <clicker.ClickerApp
-                    playerName={ playerName }
                     fieldSizeX={ fieldSizeX }
                     fieldSizeY={ fieldSizeY }
                 />,

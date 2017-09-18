@@ -7,9 +7,6 @@
     *******************************************************************************************************************/
     export interface ClickerAppProps
     {
-        /** The name of the player. */
-        playerName      :string;
-
         /** The gamefield dimension x. */
         fieldSizeX      :number;
 

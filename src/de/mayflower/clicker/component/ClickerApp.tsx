@@ -17,12 +17,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            let acclaim:JSX.Element  = <h1>Welcome { this.props.playerName }</h1>;
-            let headline:JSX.Element = <h2>Your board is { this.props.fieldSizeX } x { this.props.fieldSizeY }</h2>;
-
             return <div className="mainContainer">
-                { acclaim  }
-                { headline }
                 <clicker.ClickerBoard
                     initialFieldSizeX={ this.props.fieldSizeX }
                     initialFieldSizeY={ this.props.fieldSizeY }
