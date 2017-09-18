@@ -19,5 +19,5 @@
         parentCallback          :any;
 
         /** The debug caption for this cell. */
-        caption                 :string;
+        debugCaption            :string;
     }

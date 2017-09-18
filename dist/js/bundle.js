@@ -22644,7 +22644,7 @@ var ClickerBoard = /** @class */ (function (_super) {
                     key: clicker.Clicker.currentCellIndex++,
                     color: clicker.ClickerCellManager.getRandomColor(),
                     parentCallback: null,
-                    caption: null
+                    debugCaption: null
                 };
             }
         }
@@ -22667,7 +22667,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var myY = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { key: n.key, color: n.color, parentCallback: function () { staticThis.onCellClicked(myX, myY); }, caption: myX + "," + myY });
+                return React.createElement(clicker.ClickerCell, { key: n.key, color: n.color, parentCallback: function () { staticThis.onCellClicked(myX, myY); }, debugCaption: myX + "," + myY });
             }));
         });
     };
@@ -22751,7 +22751,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: "clickerField", onClick: this.props.parentCallback, style: { backgroundColor: this.props.color.valueOf() } }, this.props.caption);
+        return React.createElement("div", { className: "clickerField", onClick: this.props.parentCallback, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22841,7 +22841,7 @@ var ClickerCellManager = /** @class */ (function () {
             key: clicker.Clicker.currentCellIndex++,
             color: newColor,
             parentCallback: fields[x][y].parentCallback,
-            caption: x + "," + y
+            debugCaption: x + "," + y
         };
     };
     /***************************************************************************************************************

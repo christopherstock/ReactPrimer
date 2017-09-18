@@ -61,7 +61,7 @@
                         key:            clicker.Clicker.currentCellIndex++,
                         color:          clicker.ClickerCellManager.getRandomColor(),
                         parentCallback: null,
-                        caption:        null,
+                        debugCaption:        null,
                     };
                 }
             }
@@ -103,7 +103,7 @@
                                         key={            n.key            }
                                         color={          n.color          }
                                         parentCallback={ () => { staticThis.onCellClicked( myX, myY ); } }
-                                        caption={        myX + "," + myY }
+                                        debugCaption={   myX + "," + myY }
                                     />
                                 }
                             )

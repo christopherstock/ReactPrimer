@@ -70,7 +70,7 @@
                 key:            clicker.Clicker.currentCellIndex++,
                 color:          newColor,
                 parentCallback: fields[ x ][ y ].parentCallback,
-                caption:        x + "," + y
+                debugCaption:        x + "," + y
             };
         }
 

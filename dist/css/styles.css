@@ -1,21 +1,19 @@
 
     body
     {
-        background:         #cdcdcd;
-        color:              #535353;
-        margin:             25px auto 25px auto;
+        background:         #000000 url( ../image/bg.jpg ) no-repeat center;
+        background-size:    contain;
+        margin:             50px auto 50px auto;
         text-align:         center;
         padding:            0;
         font:               14px "Century Gothic", Futura, sans-serif;
     }
-
 
     div.mainContainer
     {
         margin:             25px auto 25px auto;
         display:            inline-block;
     }
-
 
     div.clickerBoard
     {
@@ -28,68 +26,13 @@
 
     div.clickerField
     {
-        border:             1px solid #505050;
+        border:             0;
+        width:              35px;
+        height:             25px;
+        opacity:            0.75;
     }
 
     div.clickerField:hover
     {
-        background:         #ff0000;
-    }
-
-
-
-
-
-    ol, ul
-    {
-        padding-left:       30px;
-    }
-
-    .board-row:after
-    {
-        clear:              both;
-        content:            "";
-        display:            table;
-    }
-
-    .status
-    {
-        margin-bottom:      10px;
-    }
-
-    .square
-    {
-        background:         #fff;
-        border:             1px solid #999;
-        float:              left;
-        font-size:          24px;
-        font-weight:        bold;
-        line-height:        34px;
-        height:             34px;
-        margin-right:       -1px;
-        margin-top:         -1px;
-        padding:            0;
-        text-align:         center;
-        width:              34px;
-    }
-
-    .square:focus
-    {
-        outline:            none;
-    }
-
-    .kbd-navigation .square:focus
-    {
-        background:         #ddd;
-    }
-
-    .game
-    {
-        display:            flex;
-        flex-direction:     row;
-    }
-
-    .game-info
-    {
-        margin-left:        20px;
+        opacity:            1.0;
     }

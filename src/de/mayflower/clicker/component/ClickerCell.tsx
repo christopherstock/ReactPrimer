@@ -30,7 +30,7 @@
                 onClick={ this.props.parentCallback }
                 style={ { backgroundColor: this.props.color.valueOf() } }
             >
-                { this.props.caption }
+                { this.props.debugCaption }
             </div>;
         }
     }
