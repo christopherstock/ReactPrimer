@@ -133,8 +133,14 @@
                 x,
                 y
             );
-
             console.log( "Determined [" + affectedCellCoordinates.length + "] affected cells" );
+
+            // at least two fields must be affected to clear
+            if ( affectedCellCoordinates.length < 2 )
+            {
+                console.log( "Single cell clicked." );
+                return;
+            }
 
             // clear all affected fields
             for ( let affectedCoordinate of affectedCellCoordinates )
@@ -148,6 +154,10 @@
                 );
             }
 
+            // collapse all cleared cells
+            clicker.ClickerCellManager.collapseClearedCells( newCellProps );
+
+            // assign all fields
             this.setState(
                 {
                     cellProps: newCellProps,

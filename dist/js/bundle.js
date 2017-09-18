@@ -9799,6 +9799,7 @@ var clicker = __webpack_require__(20);
 *   The main class represents the application's entry point.
 *
 *   TODO ASAP   Complete the new game engine.
+*   TODO ASAP   Particle effects and css animations!
 *   TODO ASAP   Avoid clicking single cells.
 *   TODO ASAP   Debug system for affected cells.
 *   TODO HIGH   Cell instead of Field everywhere!
@@ -22699,11 +22700,19 @@ var ClickerBoard = /** @class */ (function (_super) {
         // get affected fields
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
         console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
+        // at least two fields must be affected to clear
+        if (affectedCellCoordinates.length < 2) {
+            console.log("Single cell clicked.");
+            return;
+        }
         // clear all affected fields
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
             clicker.ClickerCellManager.setNewCellColor(newCellProps, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.CLEAR);
         }
+        // collapse all cleared cells
+        clicker.ClickerCellManager.collapseClearedCells(newCellProps);
+        // assign all fields
         this.setState({
             cellProps: newCellProps
         });
@@ -22907,6 +22916,24 @@ var ClickerCellManager = /** @class */ (function () {
             }
         }
         return false;
+    };
+    /***************************************************************************************************************
+    *   Collapses all cleared cells in the given array.
+    *
+    *   @param cells All cells to collapse cleared cells for.
+    ***************************************************************************************************************/
+    ClickerCellManager.collapseClearedCells = function (cells) {
+        // browse all columns
+        for (var x = 0; x < cells.length; ++x) {
+            // browse all cells from BOTTOM to TOP
+            for (var y = cells[x].length - 1; y >= 0; --y) {
+                // check if this is a clear field
+                if (cells[x][y].color == clicker.ClickerCellColor.CLEAR) {
+                    // shift all fields down by one
+                }
+                // cells[ i ][ 0 ].color = clicker.ClickerCellColor.COLOR_YELLOW;
+            }
+        }
     };
     return ClickerCellManager;
 }());

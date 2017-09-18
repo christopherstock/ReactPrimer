@@ -201,4 +201,36 @@
 
             return false;
         }
+
+        /***************************************************************************************************************
+        *   Collapses all cleared cells in the given array.
+        *
+        *   @param cells All cells to collapse cleared cells for.
+        ***************************************************************************************************************/
+        public static collapseClearedCells( cells:clicker.ClickerCellProps[][] )
+        {
+            // browse all columns
+            for ( let x:number = 0; x < cells.length; ++x )
+            {
+                // browse all cells from BOTTOM to TOP
+                for ( let y:number = cells[ x ].length - 1; y >= 0; --y )
+                {
+                    // check if this is a clear field
+                    if ( cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
+                    {
+                        // shift all fields down by one
+
+
+
+
+                    }
+
+
+                // cells[ i ][ 0 ].color = clicker.ClickerCellColor.COLOR_YELLOW;
+
+
+
+                }
+            }
+        }
     }

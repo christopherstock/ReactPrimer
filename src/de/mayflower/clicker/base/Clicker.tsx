@@ -7,6 +7,7 @@
     *   The main class represents the application's entry point.
     *
     *   TODO ASAP   Complete the new game engine.
+    *   TODO ASAP   Particle effects and css animations!
     *   TODO ASAP   Avoid clicking single cells.
     *   TODO ASAP   Debug system for affected cells.
     *   TODO HIGH   Cell instead of Field everywhere!
