@@ -22925,13 +22925,20 @@ var ClickerCellManager = /** @class */ (function () {
     ClickerCellManager.collapseClearedCells = function (cells) {
         // browse all columns
         for (var x = 0; x < cells.length; ++x) {
-            // browse all cells from BOTTOM to TOP
-            for (var y = cells[x].length - 1; y >= 0; --y) {
-                // check if this is a clear field
-                if (cells[x][y].color == clicker.ClickerCellColor.CLEAR) {
-                    // shift all fields down by one
+            // gather all filled cells in this column
+            var filledCells = [];
+            // browse all cells from TOP to BOTTOM
+            for (var y = 0; y < cells[x].length; ++y) {
+                if (cells[x][y].color != clicker.ClickerCellColor.CLEAR) {
+                    // remember this field
+                    filledCells.push(cells[x][y].color);
+                    // clear this cell
+                    cells[x][y].color = clicker.ClickerCellColor.CLEAR;
                 }
-                // cells[ i ][ 0 ].color = clicker.ClickerCellColor.COLOR_YELLOW;
+            }
+            // assign all filled fields to the bottom
+            for (var y = 0; y < filledCells.length; ++y) {
+                cells[x][y + cells[x].length - filledCells.length].color = filledCells[y];
             }
         }
     };

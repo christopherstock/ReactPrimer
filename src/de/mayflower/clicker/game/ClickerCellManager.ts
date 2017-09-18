@@ -212,24 +212,26 @@
             // browse all columns
             for ( let x:number = 0; x < cells.length; ++x )
             {
-                // browse all cells from BOTTOM to TOP
-                for ( let y:number = cells[ x ].length - 1; y >= 0; --y )
+                // gather all filled cells in this column
+                let filledCells:clicker.ClickerCellColor[] = [];
+
+                // browse all cells from TOP to BOTTOM
+                for ( let y:number = 0; y < cells[ x ].length; ++y )
                 {
-                    // check if this is a clear field
-                    if ( cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
+                    if ( cells[ x ][ y ].color != clicker.ClickerCellColor.CLEAR )
                     {
-                        // shift all fields down by one
+                        // remember this field
+                        filledCells.push( cells[ x ][ y ].color );
 
-
-
-
+                        // clear this cell
+                        cells[ x ][ y ].color = clicker.ClickerCellColor.CLEAR;
                     }
+                }
 
-
-                // cells[ i ][ 0 ].color = clicker.ClickerCellColor.COLOR_YELLOW;
-
-
-
+                // assign all filled fields to the bottom
+                for ( let y:number = 0; y < filledCells.length; ++y )
+                {
+                    cells[ x ][ y + cells[ x ].length - filledCells.length ].color = filledCells[ y ];
                 }
             }
         }
