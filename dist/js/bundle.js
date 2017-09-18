@@ -22953,11 +22953,22 @@ var ClickerCellManager = /** @class */ (function () {
     ***************************************************************************************************************/
     ClickerCellManager.reduceEmptyColumns = function (cells) {
         var reducedCells = [];
-        reducedCells = cells;
-        /*
-                    reducedCells.push( [ cells[ 0 ][ 0 ], cells[ 0 ][ 1 ] ] );
-                    reducedCells.push( [ cells[ 1 ][ 0 ], cells[ 1 ][ 1 ] ] );
-        */
+        // browse all columns
+        for (var x = 0; x < cells.length; ++x) {
+            // check if all cells in this column are empty
+            var containsFilledCell = false;
+            // browse all cells from TOP to BOTTOM
+            for (var y = 0; y < cells[x].length; ++y) {
+                if (cells[x][y].color != clicker.ClickerCellColor.CLEAR) {
+                    containsFilledCell = true;
+                    break;
+                }
+            }
+            // append this line if at least one colored field is contained
+            if (containsFilledCell) {
+                reducedCells.push(cells[x]);
+            }
+        }
         return reducedCells;
     };
     return ClickerCellManager;
