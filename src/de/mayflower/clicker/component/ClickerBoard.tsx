@@ -157,6 +157,9 @@
             // collapse all cleared cells
             clicker.ClickerCellManager.collapseClearedCells( newCellProps );
 
+            // hide all empty columns
+            newCellProps = clicker.ClickerCellManager.reduceEmptyColumns( newCellProps );
+
             // assign all fields
             this.setState(
                 {

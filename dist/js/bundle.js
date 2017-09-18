@@ -22712,6 +22712,8 @@ var ClickerBoard = /** @class */ (function (_super) {
         }
         // collapse all cleared cells
         clicker.ClickerCellManager.collapseClearedCells(newCellProps);
+        // hide all empty columns
+        newCellProps = clicker.ClickerCellManager.reduceEmptyColumns(newCellProps);
         // assign all fields
         this.setState({
             cellProps: newCellProps
@@ -22941,6 +22943,22 @@ var ClickerCellManager = /** @class */ (function () {
                 cells[x][y + cells[x].length - filledCells.length].color = filledCells[y];
             }
         }
+    };
+    /***************************************************************************************************************
+    *   Collapses all cleared columns in the given array.
+    *
+    *   @param cells All cells to collapse cleared cells for in a 2d array.
+    *
+    *   @return the new reduced 2d array.
+    ***************************************************************************************************************/
+    ClickerCellManager.reduceEmptyColumns = function (cells) {
+        var reducedCells = [];
+        reducedCells = cells;
+        /*
+                    reducedCells.push( [ cells[ 0 ][ 0 ], cells[ 0 ][ 1 ] ] );
+                    reducedCells.push( [ cells[ 1 ][ 0 ], cells[ 1 ][ 1 ] ] );
+        */
+        return reducedCells;
     };
     return ClickerCellManager;
 }());

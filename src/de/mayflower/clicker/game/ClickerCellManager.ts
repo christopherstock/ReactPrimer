@@ -235,4 +235,25 @@
                 }
             }
         }
+
+        /***************************************************************************************************************
+        *   Collapses all cleared columns in the given array.
+        *
+        *   @param cells All cells to collapse cleared cells for in a 2d array.
+        *
+        *   @return the new reduced 2d array.
+        ***************************************************************************************************************/
+        public static reduceEmptyColumns( cells:clicker.ClickerCellProps[][] ) : clicker.ClickerCellProps[][]
+        {
+            let reducedCells:clicker.ClickerCellProps[][] = [];
+
+
+            reducedCells = cells;
+/*
+            reducedCells.push( [ cells[ 0 ][ 0 ], cells[ 0 ][ 1 ] ] );
+            reducedCells.push( [ cells[ 1 ][ 0 ], cells[ 1 ][ 1 ] ] );
+*/
+
+            return reducedCells;
+        }
     }
