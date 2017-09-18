@@ -12,15 +12,12 @@
         /** The unique key prop. */
         key                     :number;
 
-        /** Coordinate x of this field. */
-        x                       :number;
-
-        /** Coordinate y of this field. */
-        y                       :number;
-
         /** The initial field state. */
         color                   :clicker.ClickerCellColor;
 
         /** The callback to invoke when this cell is clicked. */
         parentCallback          :any;
+
+        /** The debug caption for this cell. */
+        caption                 :string;
     }

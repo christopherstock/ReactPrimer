@@ -67,11 +67,10 @@
         : void
         {
             fields[ x ][ y ] = {
-                x:              x,
-                y:              y,
                 key:            clicker.Clicker.currentCellIndex++,
                 color:          newColor,
                 parentCallback: fields[ x ][ y ].parentCallback,
+                caption:        x + "," + y
             };
         }
 

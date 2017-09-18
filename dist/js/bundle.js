@@ -22644,28 +22644,19 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The 2d array that represents all board fields.
     ***************************************************************************************************************/
     ClickerBoard.prototype.createEmptyBoard = function () {
-        var _this = this;
         var fields = new Array(this.props.initialFieldSizeX);
         console.log("Columns: " + fields.length);
-        var _loop_1 = function (x) {
-            fields[x] = new Array(this_1.props.initialFieldSizeY);
+        for (var x = 0; x < fields.length; ++x) {
+            fields[x] = new Array(this.props.initialFieldSizeY);
             console.log("Rows: " + fields[x].length);
-            var _loop_2 = function (y) {
+            for (var y = 0; y < fields[x].length; ++y) {
                 fields[x][y] = {
-                    x: x,
-                    y: y,
                     key: clicker.Clicker.currentCellIndex++,
                     color: clicker.ClickerCellManager.getRandomColor(),
-                    parentCallback: function () { _this.onCellClicked(x, y); }
+                    parentCallback: null,
+                    caption: null
                 };
-            };
-            for (var y = 0; y < fields[x].length; ++y) {
-                _loop_2(y);
             }
-        };
-        var this_1 = this;
-        for (var x = 0; x < fields.length; ++x) {
-            _loop_1(x);
         }
         return fields;
     };
@@ -22676,9 +22667,17 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.renderAllFields = function () {
         var columnKey = 0;
+        var x = 0;
+        var y = 0;
+        var staticThis = this;
         return this.state.cellProps.map(function (m) {
+            var myX = x;
+            ++x;
+            y = 0;
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                return React.createElement(clicker.ClickerCell, { x: n.x, y: n.y, key: n.key, color: n.color, parentCallback: n.parentCallback });
+                var myY = y;
+                ++y;
+                return React.createElement(clicker.ClickerCell, { key: n.key, color: n.color, parentCallback: function () { staticThis.onCellClicked(myX, myY); }, caption: myX + "," + myY });
             }));
         });
     };
@@ -22762,8 +22761,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        var _this = this;
-        return React.createElement("div", { className: "clickerField", onClick: function () { return _this.props.parentCallback(_this.props.x, _this.props.y); }, style: { backgroundColor: this.props.color.valueOf() } }, this.props.x + ", " + this.props.y);
+        return React.createElement("div", { className: "clickerField", onClick: this.props.parentCallback, style: { backgroundColor: this.props.color.valueOf() } }, this.props.caption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22850,11 +22848,10 @@ var ClickerCellManager = /** @class */ (function () {
     ***************************************************************************************************************/
     ClickerCellManager.setNewCellColor = function (fields, x, y, newColor) {
         fields[x][y] = {
-            x: x,
-            y: y,
             key: clicker.Clicker.currentCellIndex++,
             color: newColor,
-            parentCallback: fields[x][y].parentCallback
+            parentCallback: fields[x][y].parentCallback,
+            caption: x + "," + y
         };
     };
     /***************************************************************************************************************

@@ -58,11 +58,10 @@
                 for ( let y:number = 0; y < fields[ x ].length; ++y )
                 {
                     fields[ x ][ y ] = {
-                        x:              x,
-                        y:              y,
                         key:            clicker.Clicker.currentCellIndex++,
                         color:          clicker.ClickerCellManager.getRandomColor(),
-                        parentCallback: () => { this.onCellClicked( x, y ); },
+                        parentCallback: null,
+                        caption:        null,
                     };
                 }
             }
@@ -78,23 +77,33 @@
         private renderAllFields() : JSX.Element[]
         {
             let columnKey:number = 0;
+            let x:number         = 0;
+            let y:number         = 0;
+
+            let staticThis:ClickerBoard = this;
 
             return this.state.cellProps.map
             (
                 function( m:clicker.ClickerCellProps[] )
                 {
+                    let myX = x;
+                    ++x;
+                    y = 0;
+
                     return <div className="clickerColumn" key={ columnKey++ }>
                         {
                             m.map
                             (
                                 function( n:clicker.ClickerCellProps )
                                 {
+                                    let myY = y;
+                                    ++y;
+
                                     return <clicker.ClickerCell
-                                        x={              n.x              }
-                                        y={              n.y              }
                                         key={            n.key            }
                                         color={          n.color          }
-                                        parentCallback={ n.parentCallback }
+                                        parentCallback={ () => { staticThis.onCellClicked( myX, myY ); } }
+                                        caption={        myX + "," + myY }
                                     />
                                 }
                             )

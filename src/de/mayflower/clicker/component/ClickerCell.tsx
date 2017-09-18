@@ -27,10 +27,10 @@
         {
             return <div
                 className="clickerField"
-                onClick={ () => this.props.parentCallback( this.props.x, this.props.y ) }
+                onClick={ this.props.parentCallback }
                 style={ { backgroundColor: this.props.color.valueOf() } }
             >
-                { this.props.x + ", " + this.props.y }
+                { this.props.caption }
             </div>;
         }
     }
