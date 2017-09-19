@@ -8,14 +8,13 @@
     export class ClickerSettings
     {
         /** The application title. */
-        public      static  readonly    APPLICATION_TITLE       :string             = "ReactPrimer, (c) 2017 Mayflower GmbH";
+        public      static  readonly    APPLICATION_TITLE           :string             = "ReactPrimer, (c) 2017 Mayflower GmbH";
 
-        /** The default name of the player. */
-        public      static  readonly    DEFAULT_PLAYER_NAME     :string             = "Christopher";
+        public      static  readonly    DEFAULT_NUMBER_OF_COLORS    :number             = 3;
 
         /** The default gamefield dimension x. */
-        public      static  readonly    DEFAULT_FIELD_SIZE_X    :number             = 16;
+        public      static  readonly    DEFAULT_FIELD_SIZE_X        :number             = 16;
 
         /** The default gamefield dimension y. */
-        public      static  readonly    DEFAULT_FIELD_SIZE_Y    :number             = 22;
+        public      static  readonly    DEFAULT_FIELD_SIZE_Y        :number             = 22;
     }

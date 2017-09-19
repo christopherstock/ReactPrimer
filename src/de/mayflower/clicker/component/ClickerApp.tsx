@@ -19,8 +19,9 @@
         {
             return <div className="mainContainer">
                 <clicker.ClickerBoard
-                    initialFieldSizeX={ this.props.fieldSizeX }
-                    initialFieldSizeY={ this.props.fieldSizeY }
+                    initialFieldSizeX={ this.props.fieldSizeX     }
+                    initialFieldSizeY={ this.props.fieldSizeY     }
+                    numberOfColors={    this.props.numberOfColors }
                 />
             </div>;
         }

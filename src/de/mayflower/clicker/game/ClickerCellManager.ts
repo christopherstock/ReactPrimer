@@ -11,10 +11,12 @@
     {
         /***************************************************************************************************************
         *   The main class represents the application's entry point.
+        *
+        *   @param numberOfColors The number of different colors to assign.
         ***************************************************************************************************************/
-        public static getRandomColor() : clicker.ClickerCellColor
+        public static getRandomColor( numberOfColors:number ) : clicker.ClickerCellColor
         {
-            switch ( clicker.ClickerMath.getRandomInt( 0, 2 ) )
+            switch ( clicker.ClickerMath.getRandomInt( 0, numberOfColors - 1 ) )
             {
                 case 0:  return clicker.ClickerCellColor.COLOR_BLUE;
                 case 1:  return clicker.ClickerCellColor.COLOR_RED;

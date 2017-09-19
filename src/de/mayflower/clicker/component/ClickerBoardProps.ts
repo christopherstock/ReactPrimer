@@ -12,4 +12,7 @@
 
         /** The gamefield dimension y. */
         initialFieldSizeY               :number;
+
+        /** The number of different colors. */
+        numberOfColors                  :number;
     }

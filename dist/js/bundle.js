@@ -9798,11 +9798,10 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Complete the new game engine.
-*   TODO ASAP   Particle effects and css animations!
-*   TODO ASAP   Avoid clicking single cells.
-*   TODO ASAP   Debug system for affected cells.
+*   TODO ASAP   Add property number of different colors.
 *   TODO HIGH   Cell instead of Field everywhere!
+*   TODO ASAP   Mark affected cells on hovering!
+*   TODO ASAP   Particle effects and css animations!
 *
 *   TODO ASAP   Check react .styl files!
 *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
@@ -9838,13 +9837,13 @@ var Clicker = /** @class */ (function () {
     *   Adds the ClickerApp component to the DOM.
     ***************************************************************************************************************/
     Clicker.deployClickerApp = function () {
-        var playerName = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
+        var numberOfColors = clicker.ClickerSettings.DEFAULT_NUMBER_OF_COLORS;
         var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
         var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
         // render the clicker app
-        ReactDOM.render(React.createElement(clicker.ClickerApp, { fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY }), document.getElementById('gameContainer'));
+        ReactDOM.render(React.createElement(clicker.ClickerApp, { fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY, numberOfColors: numberOfColors }), document.getElementById('gameContainer'));
     };
-    // TODO This sounds like a technical debt ..
+    // TODO This sounds like a technical debt .. could this be pruned?
     Clicker.currentCellIndex = 0;
     return Clicker;
 }());
@@ -22524,8 +22523,7 @@ var ClickerSettings = /** @class */ (function () {
     }
     /** The application title. */
     ClickerSettings.APPLICATION_TITLE = "ReactPrimer, (c) 2017 Mayflower GmbH";
-    /** The default name of the player. */
-    ClickerSettings.DEFAULT_PLAYER_NAME = "Christopher";
+    ClickerSettings.DEFAULT_NUMBER_OF_COLORS = 3;
     /** The default gamefield dimension x. */
     ClickerSettings.DEFAULT_FIELD_SIZE_X = 16;
     /** The default gamefield dimension y. */
@@ -22572,7 +22570,7 @@ var ClickerApp = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerApp.prototype.render = function () {
         return React.createElement("div", { className: "mainContainer" },
-            React.createElement(clicker.ClickerBoard, { initialFieldSizeX: this.props.fieldSizeX, initialFieldSizeY: this.props.fieldSizeY }));
+            React.createElement(clicker.ClickerBoard, { initialFieldSizeX: this.props.fieldSizeX, initialFieldSizeY: this.props.fieldSizeY, numberOfColors: this.props.numberOfColors }));
     };
     return ClickerApp;
 }(React.Component));
@@ -22631,6 +22629,8 @@ var ClickerBoard = /** @class */ (function (_super) {
     /***************************************************************************************************************
     *   Creates an empty board represented by an empty 2d array of the desired size.
     *
+    *   TODO prune?
+    *
     *   @return The 2d array that represents all board fields.
     ***************************************************************************************************************/
     ClickerBoard.prototype.createEmptyBoard = function () {
@@ -22642,7 +22642,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             for (var y = 0; y < fields[x].length; ++y) {
                 fields[x][y] = {
                     key: clicker.Clicker.currentCellIndex++,
-                    color: clicker.ClickerCellManager.getRandomColor(),
+                    color: clicker.ClickerCellManager.getRandomColor(this.props.numberOfColors),
                     parentCallback: null,
                     debugCaption: null
                 };
@@ -22801,9 +22801,11 @@ var ClickerCellManager = /** @class */ (function () {
     }
     /***************************************************************************************************************
     *   The main class represents the application's entry point.
+    *
+    *   @param numberOfColors The number of different colors to assign.
     ***************************************************************************************************************/
-    ClickerCellManager.getRandomColor = function () {
-        switch (clicker.ClickerMath.getRandomInt(0, 2)) {
+    ClickerCellManager.getRandomColor = function (numberOfColors) {
+        switch (clicker.ClickerMath.getRandomInt(0, numberOfColors - 1)) {
             case 0: return clicker.ClickerCellColor.COLOR_BLUE;
             case 1: return clicker.ClickerCellColor.COLOR_RED;
             case 2: return clicker.ClickerCellColor.COLOR_GREEN;

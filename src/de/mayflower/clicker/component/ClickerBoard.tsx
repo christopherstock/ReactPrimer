@@ -43,6 +43,8 @@
         /***************************************************************************************************************
         *   Creates an empty board represented by an empty 2d array of the desired size.
         *
+        *   TODO prune?
+        *
         *   @return The 2d array that represents all board fields.
         ***************************************************************************************************************/
         private createEmptyBoard() : clicker.ClickerCellProps[][]
@@ -59,9 +61,9 @@
                 {
                     fields[ x ][ y ] = {
                         key:            clicker.Clicker.currentCellIndex++,
-                        color:          clicker.ClickerCellManager.getRandomColor(),
+                        color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
                         parentCallback: null,
-                        debugCaption:        null,
+                        debugCaption:   null,
                     };
                 }
             }

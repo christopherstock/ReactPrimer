@@ -6,11 +6,10 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Complete the new game engine.
-    *   TODO ASAP   Particle effects and css animations!
-    *   TODO ASAP   Avoid clicking single cells.
-    *   TODO ASAP   Debug system for affected cells.
+    *   TODO ASAP   Add property number of different colors.
     *   TODO HIGH   Cell instead of Field everywhere!
+    *   TODO ASAP   Mark affected cells on hovering!
+    *   TODO ASAP   Particle effects and css animations!
     *
     *   TODO ASAP   Check react .styl files!
     *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
@@ -27,7 +26,7 @@
     *******************************************************************************************************************/
     export class Clicker
     {
-        // TODO This sounds like a technical debt ..
+        // TODO This sounds like a technical debt .. could this be pruned?
         public      static      currentCellIndex        :number                             = 0;
 
         /***************************************************************************************************************
@@ -53,15 +52,16 @@
         ***************************************************************************************************************/
         private static deployClickerApp() : void
         {
-            let playerName:string = clicker.ClickerSettings.DEFAULT_PLAYER_NAME;
-            let fieldSizeX:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
-            let fieldSizeY:number = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
+            let numberOfColors:number = clicker.ClickerSettings.DEFAULT_NUMBER_OF_COLORS;
+            let fieldSizeX:number     = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
+            let fieldSizeY:number     = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
 
             // render the clicker app
             ReactDOM.render(
                 <clicker.ClickerApp
-                    fieldSizeX={ fieldSizeX }
-                    fieldSizeY={ fieldSizeY }
+                    fieldSizeX={     fieldSizeX     }
+                    fieldSizeY={     fieldSizeY     }
+                    numberOfColors={ numberOfColors }
                 />,
                 document.getElementById('gameContainer')
             );
