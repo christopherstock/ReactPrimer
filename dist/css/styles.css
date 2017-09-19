@@ -7,20 +7,24 @@
         background:         #c0c0c0;
 
         background-size:    contain;
-        margin:             50px auto 50px auto;
+        margin:             50px;
         text-align:         center;
         padding:            0;
         font:               14px "Century Gothic", Futura, sans-serif;
     }
 
-    div.mainContainer
+    div.gameContainer
     {
-        margin:             25px auto 25px auto;
-        display:            inline-block;
+        text-align:         center;
+        overflow:           hidden;
+        margin:             0 auto 0 auto;
     }
 
     div.clickerBoard
     {
+        display:            table;
+        margin:             0 auto 0 auto;
+        overflow:           hidden;
     }
 
     div.clickerColumn
@@ -39,4 +43,11 @@
     div.clickerCellHover
     {
         opacity:            0.5;
+    }
+
+    div.clickerInfo
+    {
+        background:         #ff7700;
+        overflow:           hidden;
+        margin:             25px auto 0 auto;
     }

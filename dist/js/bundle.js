@@ -2964,6 +2964,7 @@ __export(__webpack_require__(187));
 __export(__webpack_require__(188));
 __export(__webpack_require__(189));
 __export(__webpack_require__(190));
+__export(__webpack_require__(194));
 __export(__webpack_require__(191));
 __export(__webpack_require__(192));
 __export(__webpack_require__(193));
@@ -9798,9 +9799,9 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Hover continguous cells ( implement onEnter onLeave ! )
-*   TODO ASAP   Mark affected cells on hovering!
+*   TODO ASAP   Mark affected cells on hovering ( implement onEnter onLeave ! )
 *
+*   TODO ASAP   Alter the message in the ClickerInfo component.
 *   TODO ASAP   Particle effects and css animations!
 *   TODO ASAP   Check react .styl files!
 *   TODO HIGH   Add debug system.
@@ -9816,6 +9817,7 @@ var clicker = __webpack_require__(20);
 *   TODO WEAK   Learn 'React high-order component'
 *   TODO WEAK   Learn 'React delegates'
 *   TODO WEAK   Learn 'React promises'
+*   TODO WEAK   Send to 'daniel.maul@web.de'
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -9845,7 +9847,7 @@ var Clicker = /** @class */ (function () {
         var boardSizeX = clicker.ClickerSettings.DEFAULT_BOARD_SIZE_X;
         var boardSizeY = clicker.ClickerSettings.DEFAULT_BOARD_SIZE_Y;
         // render the clicker app
-        ReactDOM.render(React.createElement(clicker.ClickerApp, { boardSizeX: boardSizeX, boardSizeY: boardSizeY, numberOfColors: numberOfColors }), document.getElementById('gameContainer'));
+        ReactDOM.render(React.createElement(clicker.ClickerApp, { boardSizeX: boardSizeX, boardSizeY: boardSizeY, numberOfColors: numberOfColors }), document.getElementById('mainContainer'));
     };
     // TODO This sounds like a technical debt .. could this be pruned?
     Clicker.currentCellIndex = 0;
@@ -22574,8 +22576,9 @@ var ClickerApp = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     ClickerApp.prototype.render = function () {
-        return React.createElement("div", { className: "mainContainer" },
-            React.createElement(clicker.ClickerBoard, { boardSizeX: this.props.boardSizeX, boardSizeY: this.props.boardSizeY, numberOfColors: this.props.numberOfColors }));
+        return React.createElement("div", { className: "gameContainer" },
+            React.createElement(clicker.ClickerBoard, { boardSizeX: this.props.boardSizeX, boardSizeY: this.props.boardSizeY, numberOfColors: this.props.numberOfColors }),
+            React.createElement(clicker.ClickerInfo, null));
     };
     return ClickerApp;
 }(React.Component));
@@ -22995,6 +22998,57 @@ var ClickerMath = /** @class */ (function () {
     return ClickerMath;
 }());
 exports.ClickerMath = ClickerMath;
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(25);
+/*******************************************************************************************************************
+*   Represents the 'clicker' information panel.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerInfo = /** @class */ (function (_super) {
+    __extends(ClickerInfo, _super);
+    /***************************************************************************************************************
+    *   Creates a new clicker information panel.
+    ***************************************************************************************************************/
+    function ClickerInfo(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state =
+            {
+                message: "Enjoy your game!"
+            };
+        return _this;
+    }
+    /***************************************************************************************************************
+    *   Renders the 'clicker' board component.
+    *
+    *   @return The rendered Board.
+    ***************************************************************************************************************/
+    ClickerInfo.prototype.render = function () {
+        console.log("render ClickerInfo");
+        return React.createElement("div", { className: "clickerInfo" }, this.state.message);
+    };
+    return ClickerInfo;
+}(React.Component));
+exports.ClickerInfo = ClickerInfo;
 
 
 /***/ })

@@ -17,11 +17,13 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            return <div className="mainContainer">
+            return <div className="gameContainer">
                 <clicker.ClickerBoard
                     boardSizeX={     this.props.boardSizeX     }
                     boardSizeY={     this.props.boardSizeY     }
                     numberOfColors={ this.props.numberOfColors }
+                />
+                <clicker.ClickerInfo
                 />
             </div>;
         }

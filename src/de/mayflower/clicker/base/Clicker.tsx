@@ -6,9 +6,9 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Hover continguous cells ( implement onEnter onLeave ! )
-    *   TODO ASAP   Mark affected cells on hovering!
+    *   TODO ASAP   Mark affected cells on hovering ( implement onEnter onLeave ! )
     *
+    *   TODO ASAP   Alter the message in the ClickerInfo component.
     *   TODO ASAP   Particle effects and css animations!
     *   TODO ASAP   Check react .styl files!
     *   TODO HIGH   Add debug system.
@@ -24,6 +24,7 @@
     *   TODO WEAK   Learn 'React high-order component'
     *   TODO WEAK   Learn 'React delegates'
     *   TODO WEAK   Learn 'React promises'
+    *   TODO WEAK   Send to 'daniel.maul@web.de'
     *
     *   @author  Christopher Stock
     *   @version 1.0
@@ -67,7 +68,7 @@
                     boardSizeY={     boardSizeY     }
                     numberOfColors={ numberOfColors }
                 />,
-                document.getElementById('gameContainer')
+                document.getElementById('mainContainer')
             );
         }
     }

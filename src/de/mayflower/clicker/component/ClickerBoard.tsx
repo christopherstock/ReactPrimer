@@ -124,6 +124,7 @@
             if ( this.state.cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
             {
                 console.log( "Clicked a clear cell." );
+
                 return;
             }
 
