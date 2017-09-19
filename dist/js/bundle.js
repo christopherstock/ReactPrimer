@@ -22648,7 +22648,8 @@ var ClickerBoard = /** @class */ (function (_super) {
                     debugCaption: null,
                     key: 0,
                     color: clicker.ClickerCellManager.getRandomColor(this.props.numberOfColors),
-                    onClick: null
+                    onClick: null,
+                    className: "clickerCell"
                 };
             }
         }
@@ -22671,7 +22672,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { debugCaption: columnId + "," + rowId, key: clicker.Clicker.currentCellIndex++, color: n.color, onClick: function () { staticThis.onCellClicked(columnId, rowId); } });
+                return React.createElement(clicker.ClickerCell, { debugCaption: columnId + "," + rowId, key: clicker.Clicker.currentCellIndex++, color: n.color, onClick: function () { staticThis.onCellClicked(columnId, rowId); }, className: n.className });
             }));
         });
     };
@@ -22755,7 +22756,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: "clickerCell", onClick: this.props.onClick, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22847,7 +22848,8 @@ var ClickerCellManager = /** @class */ (function () {
             debugCaption: x + "," + y,
             key: 0,
             color: newColor,
-            onClick: cells[x][y].onClick
+            onClick: cells[x][y].onClick,
+            className: cells[x][y].className
         };
     };
     /***************************************************************************************************************

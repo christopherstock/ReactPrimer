@@ -20,4 +20,7 @@
 
         /** The callback to invoke when this cell is clicked. */
         onClick                 :any;
+
+        /** The name of the current css class. */
+        className               :string;
     }

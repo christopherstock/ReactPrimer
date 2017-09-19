@@ -59,6 +59,7 @@
                         key:            0,
                         color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
                         onClick:        null,
+                        className:      "clickerCell",
                     };
                 }
             }
@@ -101,6 +102,7 @@
                                         key={          clicker.Clicker.currentCellIndex++                     }
                                         color={        n.color                                                }
                                         onClick={      () => { staticThis.onCellClicked( columnId, rowId ); } }
+                                        className={    n.className                                            }
                                     />
                                 }
                             )
@@ -124,7 +126,6 @@
             if ( this.state.cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
             {
                 console.log( "Clicked a clear cell." );
-
                 return;
             }
 

@@ -69,10 +69,11 @@
         : void
         {
             cells[ x ][ y ] = {
-                debugCaption:   x + "," + y,
-                key:            0,
-                color:          newColor,
-                onClick:        cells[ x ][ y ].onClick,
+                debugCaption: x + "," + y,
+                key:          0,
+                color:        newColor,
+                onClick:      cells[ x ][ y ].onClick,
+                className:    cells[ x ][ y ].className,
             };
         }
 
