@@ -22612,11 +22612,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
-        var cellProps = _this.createEmptyBoard();
+        var cells = _this.createEmptyBoard();
         // assign state directly
         _this.state =
             {
-                cellProps: cellProps
+                cells: cells
             };
         return _this;
     }
@@ -22663,7 +22663,8 @@ var ClickerBoard = /** @class */ (function (_super) {
         var x = 0;
         var y = 0;
         var staticThis = this;
-        return this.state.cellProps.map(function (m) {
+        // TODO refactor this nightmare to a 2d loop?
+        return this.state.cells.map(function (m) {
             var myX = x;
             ++x;
             y = 0;
@@ -22683,14 +22684,14 @@ var ClickerBoard = /** @class */ (function (_super) {
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
         // clicking clear cells has no effect
-        if (this.state.cellProps[x][y].color == clicker.ClickerCellColor.CLEAR) {
+        if (this.state.cells[x][y].color == clicker.ClickerCellColor.CLEAR) {
             console.log("Clicked a clear cell.");
             return;
         }
         // clone all cells
-        var newCellProps = clicker.ClickerCellManager.deepCloneCells(this.state.cellProps);
+        var newCells = clicker.ClickerCellManager.deepCloneCells(this.state.cells);
         // get affected cells
-        var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
+        var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCells, x, y);
         console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
         // at least two cells must be affected to clear
         if (affectedCellCoordinates.length < 2) {
@@ -22700,15 +22701,15 @@ var ClickerBoard = /** @class */ (function (_super) {
         // clear all affected cells
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
-            clicker.ClickerCellManager.setNewCellColor(newCellProps, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.CLEAR);
+            clicker.ClickerCellManager.setNewCellColor(newCells, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.CLEAR);
         }
         // collapse all cleared cells
-        clicker.ClickerCellManager.collapseClearedCells(newCellProps);
+        clicker.ClickerCellManager.collapseClearedCells(newCells);
         // hide all empty columns
-        newCellProps = clicker.ClickerCellManager.reduceEmptyColumns(newCellProps);
+        newCells = clicker.ClickerCellManager.reduceEmptyColumns(newCells);
         // assign all new cells
         this.setState({
-            cellProps: newCellProps
+            cells: newCells
         });
     };
     return ClickerBoard;

@@ -17,12 +17,12 @@
         {
             super( props );
 
-            let cellProps:clicker.ClickerCellProps[][] = this.createEmptyBoard();
+            let cells:clicker.ClickerCellProps[][] = this.createEmptyBoard();
 
             // assign state directly
             this.state =
             {
-                cellProps: cellProps,
+                cells: cells,
             };
         }
 
@@ -84,7 +84,9 @@
 
             let staticThis:ClickerBoard = this;
 
-            return this.state.cellProps.map
+            // TODO refactor this nightmare to a 2d loop?
+
+            return this.state.cells.map
             (
                 function( m:clicker.ClickerCellProps[] )
                 {
@@ -126,21 +128,21 @@
             console.log( "onCellClicked [" + x + "][" + y + "]" );
 
             // clicking clear cells has no effect
-            if ( this.state.cellProps[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
+            if ( this.state.cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
             {
                 console.log( "Clicked a clear cell." );
                 return;
             }
 
             // clone all cells
-            let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells(
-                this.state.cellProps
+            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells(
+                this.state.cells
             );
 
             // get affected cells
             let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
             (
-                newCellProps,
+                newCells,
                 x,
                 y
             );
@@ -158,7 +160,7 @@
             {
                 clicker.ClickerCellManager.setNewCellColor
                 (
-                    newCellProps,
+                    newCells,
                     affectedCoordinate.x,
                     affectedCoordinate.y,
                     clicker.ClickerCellColor.CLEAR
@@ -166,15 +168,15 @@
             }
 
             // collapse all cleared cells
-            clicker.ClickerCellManager.collapseClearedCells( newCellProps );
+            clicker.ClickerCellManager.collapseClearedCells( newCells );
 
             // hide all empty columns
-            newCellProps = clicker.ClickerCellManager.reduceEmptyColumns( newCellProps );
+            newCells = clicker.ClickerCellManager.reduceEmptyColumns( newCells );
 
             // assign all new cells
             this.setState(
                 {
-                    cellProps: newCellProps,
+                    cells: newCells,
                 }
             );
         }

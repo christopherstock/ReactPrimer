@@ -12,5 +12,5 @@
         // TODO change to ClickerCell[][] ??!
 
         /** All cells the board consists of. */
-        cellProps                   :clicker.ClickerCellProps[][];
+        cells                   :clicker.ClickerCellProps[][];
     }
