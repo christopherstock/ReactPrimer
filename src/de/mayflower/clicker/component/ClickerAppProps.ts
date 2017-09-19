@@ -7,11 +7,11 @@
     *******************************************************************************************************************/
     export interface ClickerAppProps
     {
-        /** The gamefield dimension x. */
-        fieldSizeX          :number;
+        /** The board dimension x. */
+        boardSizeX          :number;
 
-        /** The gamefield dimension y. */
-        fieldSizeY          :number;
+        /** The board dimension y. */
+        boardSizeY          :number;
 
         /** The number of different colors. */
         numberOfColors      :number;

@@ -28,7 +28,7 @@
         float:              left;
     }
 
-    div.clickerField
+    div.clickerCell
     {
         border:             0;
         width:              35px;
@@ -36,7 +36,7 @@
         opacity:            0.75;
     }
 
-    div.clickerField:hover
+    div.clickerCell:hover
     {
         opacity:            1.0;
     }

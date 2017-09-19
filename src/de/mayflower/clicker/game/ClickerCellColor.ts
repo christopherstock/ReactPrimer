@@ -1,6 +1,6 @@
 
     /*******************************************************************************************************************
-    *   All different states for the clicker field.
+    *   All different colors for one clicker cell.
     *
     *   @author  Christopher Stock
     *   @version 1.0

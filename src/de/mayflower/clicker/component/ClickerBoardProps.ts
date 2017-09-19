@@ -7,12 +7,12 @@
     *******************************************************************************************************************/
     export interface ClickerBoardProps
     {
-        /** The gamefield dimension x. */
-        initialFieldSizeX               :number;
+        /** The board dimension x. */
+        boardSizeX                  :number;
 
-        /** The gamefield dimension y. */
-        initialFieldSizeY               :number;
+        /** The board dimension y. */
+        boardSizeY                  :number;
 
         /** The number of different colors. */
-        numberOfColors                  :number;
+        numberOfColors              :number;
     }

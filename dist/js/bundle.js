@@ -9798,20 +9798,20 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
+*   TODO ASAP   Hover continguous cells ( implement onEnter onLeave ! )
 *   TODO ASAP   Add property number of different colors.
-*   TODO HIGH   Cell instead of Field everywhere!
 *   TODO ASAP   Mark affected cells on hovering!
 *   TODO ASAP   Particle effects and css animations!
 *
 *   TODO ASAP   Check react .styl files!
 *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
 *   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
-*   TODO INIT   Create button and input fields for recreating the gamefield according to new game engine..
-*   TODO INIT   Styling (bg image, fg translucent blocks) .. joy!
+*   TODO INIT   Styling (bg image, fg translucent blocks)
 *   TODO LOW    Add animations and learn react callbacks etc.
-*   TODO LOW    learn 'React high-order component'
-*   TODO WEAK   learn 'React delegates'
-*   TODO WEAK   learn 'React promises'
+*   TODO LOW    Create button and input fields for recreating the gamefield with own parameters.
+*   TODO WEAK   Learn 'React high-order component'
+*   TODO WEAK   Learn 'React delegates'
+*   TODO WEAK   Learn 'React promises'
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -9838,10 +9838,10 @@ var Clicker = /** @class */ (function () {
     ***************************************************************************************************************/
     Clicker.deployClickerApp = function () {
         var numberOfColors = clicker.ClickerSettings.DEFAULT_NUMBER_OF_COLORS;
-        var fieldSizeX = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_X;
-        var fieldSizeY = clicker.ClickerSettings.DEFAULT_FIELD_SIZE_Y;
+        var boardSizeX = clicker.ClickerSettings.DEFAULT_BOARD_SIZE_X;
+        var boardSizeY = clicker.ClickerSettings.DEFAULT_BOARD_SIZE_Y;
         // render the clicker app
-        ReactDOM.render(React.createElement(clicker.ClickerApp, { fieldSizeX: fieldSizeX, fieldSizeY: fieldSizeY, numberOfColors: numberOfColors }), document.getElementById('gameContainer'));
+        ReactDOM.render(React.createElement(clicker.ClickerApp, { boardSizeX: boardSizeX, boardSizeY: boardSizeY, numberOfColors: numberOfColors }), document.getElementById('gameContainer'));
     };
     // TODO This sounds like a technical debt .. could this be pruned?
     Clicker.currentCellIndex = 0;
@@ -22523,11 +22523,12 @@ var ClickerSettings = /** @class */ (function () {
     }
     /** The application title. */
     ClickerSettings.APPLICATION_TITLE = "ReactPrimer, (c) 2017 Mayflower GmbH";
+    /** The default number of different cell colors. */
     ClickerSettings.DEFAULT_NUMBER_OF_COLORS = 3;
-    /** The default gamefield dimension x. */
-    ClickerSettings.DEFAULT_FIELD_SIZE_X = 16;
-    /** The default gamefield dimension y. */
-    ClickerSettings.DEFAULT_FIELD_SIZE_Y = 22;
+    /** The default board dimension x. */
+    ClickerSettings.DEFAULT_BOARD_SIZE_X = 16;
+    /** The default board dimension y. */
+    ClickerSettings.DEFAULT_BOARD_SIZE_Y = 22;
     return ClickerSettings;
 }());
 exports.ClickerSettings = ClickerSettings;
@@ -22570,7 +22571,7 @@ var ClickerApp = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerApp.prototype.render = function () {
         return React.createElement("div", { className: "mainContainer" },
-            React.createElement(clicker.ClickerBoard, { initialFieldSizeX: this.props.fieldSizeX, initialFieldSizeY: this.props.fieldSizeY, numberOfColors: this.props.numberOfColors }));
+            React.createElement(clicker.ClickerBoard, { boardSizeX: this.props.boardSizeX, boardSizeY: this.props.boardSizeY, numberOfColors: this.props.numberOfColors }));
     };
     return ClickerApp;
 }(React.Component));
@@ -22624,23 +22625,23 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
         console.log("render ClickerBoard");
-        return React.createElement("div", { className: "clickerBoard" }, this.renderAllFields());
+        return React.createElement("div", { className: "clickerBoard" }, this.renderAllCells());
     };
     /***************************************************************************************************************
     *   Creates an empty board represented by an empty 2d array of the desired size.
     *
     *   TODO prune?
     *
-    *   @return The 2d array that represents all board fields.
+    *   @return The 2d array that represents all board cells.
     ***************************************************************************************************************/
     ClickerBoard.prototype.createEmptyBoard = function () {
-        var fields = new Array(this.props.initialFieldSizeX);
-        console.log("Columns: " + fields.length);
-        for (var x = 0; x < fields.length; ++x) {
-            fields[x] = new Array(this.props.initialFieldSizeY);
-            console.log("Rows: " + fields[x].length);
-            for (var y = 0; y < fields[x].length; ++y) {
-                fields[x][y] = {
+        var cells = new Array(this.props.boardSizeX);
+        console.log("Columns: " + cells.length);
+        for (var x = 0; x < cells.length; ++x) {
+            cells[x] = new Array(this.props.boardSizeY);
+            console.log("Rows: " + cells[x].length);
+            for (var y = 0; y < cells[x].length; ++y) {
+                cells[x][y] = {
                     key: clicker.Clicker.currentCellIndex++,
                     color: clicker.ClickerCellManager.getRandomColor(this.props.numberOfColors),
                     parentCallback: null,
@@ -22648,14 +22649,14 @@ var ClickerBoard = /** @class */ (function (_super) {
                 };
             }
         }
-        return fields;
+        return cells;
     };
     /***************************************************************************************************************
-    *   Renders the gamefield into an one-dimensional JSX element array so it can be rendered.
+    *   Renders the board into an one-dimensional JSX element array so it can be rendered.
     *
-    *   @return The All fields of the board in a streamed 1d array of JSX elements.
+    *   @return All cells of the board in a streamed 1d array of JSX elements.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.renderAllFields = function () {
+    ClickerBoard.prototype.renderAllCells = function () {
         var columnKey = 0;
         var x = 0;
         var y = 0;
@@ -22674,8 +22675,8 @@ var ClickerBoard = /** @class */ (function (_super) {
     /***************************************************************************************************************
     *   Being invoked when a cell on the board is clicked.
     *
-    *   @param x The x coordinatie of the field that has been clicked.
-    *   @param y The y coordinatie of the field that has been clicked.
+    *   @param x The x coordinatie of the cell that has been clicked.
+    *   @param y The y coordinatie of the cell that has been clicked.
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClicked = function (x, y) {
         console.log("onCellClicked [" + x + "][" + y + "]");
@@ -22685,16 +22686,16 @@ var ClickerBoard = /** @class */ (function (_super) {
             return;
         }
         // clone all cells
-        var newCellProps = clicker.ClickerCellManager.deepCloneFieldsArray(this.state.cellProps);
-        // get affected fields
+        var newCellProps = clicker.ClickerCellManager.deepCloneCells(this.state.cellProps);
+        // get affected cells
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCellProps, x, y);
         console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
-        // at least two fields must be affected to clear
+        // at least two cells must be affected to clear
         if (affectedCellCoordinates.length < 2) {
             console.log("Single cell clicked.");
             return;
         }
-        // clear all affected fields
+        // clear all affected cells
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
             clicker.ClickerCellManager.setNewCellColor(newCellProps, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.CLEAR);
@@ -22703,7 +22704,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         clicker.ClickerCellManager.collapseClearedCells(newCellProps);
         // hide all empty columns
         newCellProps = clicker.ClickerCellManager.reduceEmptyColumns(newCellProps);
-        // assign all fields
+        // assign all new cells
         this.setState({
             cellProps: newCellProps
         });
@@ -22732,7 +22733,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var React = __webpack_require__(25);
 /*******************************************************************************************************************
-*   Represents a field of the 'clicker' game board.
+*   Represents a cell of the game board.
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -22740,18 +22741,18 @@ var React = __webpack_require__(25);
 var ClickerCell = /** @class */ (function (_super) {
     __extends(ClickerCell, _super);
     /***************************************************************************************************************
-    *   Creates a new 'clicker' field component.
+    *   Creates a new cell.
     ***************************************************************************************************************/
     function ClickerCell(props) {
         return _super.call(this, props) || this;
     }
     /***************************************************************************************************************
-    *   Renders the 'clicker' board component.
+    *   Renders the cell.
     *
-    *   @return The rendered Board.
+    *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: "clickerField", onClick: this.props.parentCallback, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: "clickerCell", onClick: this.props.parentCallback, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22766,7 +22767,7 @@ exports.ClickerCell = ClickerCell;
 
 exports.__esModule = true;
 /*******************************************************************************************************************
-*   All different states for the clicker field.
+*   All different colors for one clicker cell.
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -22791,7 +22792,7 @@ var ClickerCellColor;
 exports.__esModule = true;
 var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
-*   Manages different field states.
+*   Manages different cell states.
 *
 *   @author  Christopher Stock
 *   @version 1.0
@@ -22816,33 +22817,33 @@ var ClickerCellManager = /** @class */ (function () {
     /***************************************************************************************************************
     *   Clones all element of the given 2d array and returns the clone.
     *
-    *   @param oldFields The 2d array of clicker field props.
+    *   @param oldCells The 2d array of clicker cell props.
     *
     *   @return A cloned instance of the 2d array.
     ***************************************************************************************************************/
-    ClickerCellManager.deepCloneFieldsArray = function (oldFields) {
-        var newFields = new Array(oldFields.length);
-        for (var x = 0; x < newFields.length; ++x) {
-            newFields[x] = new Array(oldFields[x].length);
-            for (var y = 0; y < newFields[x].length; ++y) {
-                newFields[x][y] = oldFields[x][y];
+    ClickerCellManager.deepCloneCells = function (oldCells) {
+        var newCells = new Array(oldCells.length);
+        for (var x = 0; x < newCells.length; ++x) {
+            newCells[x] = new Array(oldCells[x].length);
+            for (var y = 0; y < newCells[x].length; ++y) {
+                newCells[x][y] = oldCells[x][y];
             }
         }
-        return newFields;
+        return newCells;
     };
     /***************************************************************************************************************
-    *   Sets a new color for the specified field.
+    *   Sets a new color for the specified cell in the specified 2d cell array.
     *
-    *   @param fields   The 2d array to set a new field color.
-    *   @param x        Location x for the new field to set.
-    *   @param y        Location y for the new field to set.
-    *   @param newColor The new color to set.
+    *   @param cells    The 2d array of cells.
+    *   @param x        Location y of the cell to change the color.
+    *   @param y        Location y of the cell to change the color.
+    *   @param newColor The new color for the cell to set.
     ***************************************************************************************************************/
-    ClickerCellManager.setNewCellColor = function (fields, x, y, newColor) {
-        fields[x][y] = {
+    ClickerCellManager.setNewCellColor = function (cells, x, y, newColor) {
+        cells[x][y] = {
             key: clicker.Clicker.currentCellIndex++,
             color: newColor,
-            parentCallback: fields[x][y].parentCallback,
+            parentCallback: cells[x][y].parentCallback,
             debugCaption: x + "," + y
         };
     };
@@ -22850,8 +22851,8 @@ var ClickerCellManager = /** @class */ (function () {
     *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
     *
     *   @param allCells        The 2d array with all cells.
-    *   @param x               The given coordinate x to determine all continguous fields for.
-    *   @param y               The given coordinate y to determine all continguous fields for.
+    *   @param x               The given coordinate x to determine all continguous cells for.
+    *   @param y               The given coordinate y to determine all continguous cells for.
     *   @param determinedCells All already gathered cell coordinates affected so far.
     *
     *   @return A cloned instance of the 2d array.
@@ -22921,13 +22922,13 @@ var ClickerCellManager = /** @class */ (function () {
             // browse all cells from TOP to BOTTOM
             for (var y = 0; y < cells[x].length; ++y) {
                 if (cells[x][y].color != clicker.ClickerCellColor.CLEAR) {
-                    // remember this field
+                    // remember this cell
                     filledCells.push(cells[x][y].color);
                     // clear this cell
                     cells[x][y].color = clicker.ClickerCellColor.CLEAR;
                 }
             }
-            // assign all filled fields to the bottom
+            // assign all filled cells to the bottom
             for (var y = 0; y < filledCells.length; ++y) {
                 cells[x][y + cells[x].length - filledCells.length].color = filledCells[y];
             }
@@ -22953,7 +22954,7 @@ var ClickerCellManager = /** @class */ (function () {
                     break;
                 }
             }
-            // append this line if at least one colored field is contained
+            // append this column if at least one colored cell is contained
             if (containsFilledCell) {
                 reducedCells.push(cells[x]);
             }

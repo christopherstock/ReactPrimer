@@ -36,7 +36,7 @@
             console.log( "render ClickerBoard" );
 
             return <div className="clickerBoard">
-                { this.renderAllFields() }
+                { this.renderAllCells() }
             </div>;
         }
 
@@ -45,21 +45,21 @@
         *
         *   TODO prune?
         *
-        *   @return The 2d array that represents all board fields.
+        *   @return The 2d array that represents all board cells.
         ***************************************************************************************************************/
         private createEmptyBoard() : clicker.ClickerCellProps[][]
         {
-            let fields:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.initialFieldSizeX );
-            console.log( "Columns: " + fields.length );
+            let cells:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.boardSizeX );
+            console.log( "Columns: " + cells.length );
 
-            for ( let x:number = 0; x < fields.length; ++x )
+            for ( let x:number = 0; x < cells.length; ++x )
             {
-                fields[ x ] = new Array<clicker.ClickerCellProps>( this.props.initialFieldSizeY );
-                console.log( "Rows: " + fields[ x ].length );
+                cells[ x ] = new Array<clicker.ClickerCellProps>( this.props.boardSizeY );
+                console.log( "Rows: " + cells[ x ].length );
 
-                for ( let y:number = 0; y < fields[ x ].length; ++y )
+                for ( let y:number = 0; y < cells[ x ].length; ++y )
                 {
-                    fields[ x ][ y ] = {
+                    cells[ x ][ y ] = {
                         key:            clicker.Clicker.currentCellIndex++,
                         color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
                         parentCallback: null,
@@ -68,15 +68,15 @@
                 }
             }
 
-            return fields;
+            return cells;
         }
 
         /***************************************************************************************************************
-        *   Renders the gamefield into an one-dimensional JSX element array so it can be rendered.
+        *   Renders the board into an one-dimensional JSX element array so it can be rendered.
         *
-        *   @return The All fields of the board in a streamed 1d array of JSX elements.
+        *   @return All cells of the board in a streamed 1d array of JSX elements.
         ***************************************************************************************************************/
-        private renderAllFields() : JSX.Element[]
+        private renderAllCells() : JSX.Element[]
         {
             let columnKey:number = 0;
             let x:number         = 0;
@@ -118,8 +118,8 @@
         /***************************************************************************************************************
         *   Being invoked when a cell on the board is clicked.
         *
-        *   @param x The x coordinatie of the field that has been clicked.
-        *   @param y The y coordinatie of the field that has been clicked.
+        *   @param x The x coordinatie of the cell that has been clicked.
+        *   @param y The y coordinatie of the cell that has been clicked.
         ***************************************************************************************************************/
         private onCellClicked( x:number, y:number ) : void
         {
@@ -133,11 +133,11 @@
             }
 
             // clone all cells
-            let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneFieldsArray(
+            let newCellProps:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells(
                 this.state.cellProps
             );
 
-            // get affected fields
+            // get affected cells
             let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
             (
                 newCellProps,
@@ -146,14 +146,14 @@
             );
             console.log( "Determined [" + affectedCellCoordinates.length + "] affected cells" );
 
-            // at least two fields must be affected to clear
+            // at least two cells must be affected to clear
             if ( affectedCellCoordinates.length < 2 )
             {
                 console.log( "Single cell clicked." );
                 return;
             }
 
-            // clear all affected fields
+            // clear all affected cells
             for ( let affectedCoordinate of affectedCellCoordinates )
             {
                 clicker.ClickerCellManager.setNewCellColor
@@ -171,7 +171,7 @@
             // hide all empty columns
             newCellProps = clicker.ClickerCellManager.reduceEmptyColumns( newCellProps );
 
-            // assign all fields
+            // assign all new cells
             this.setState(
                 {
                     cellProps: newCellProps,
