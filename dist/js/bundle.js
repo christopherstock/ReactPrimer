@@ -9804,6 +9804,9 @@ var clicker = __webpack_require__(20);
 *   TODO ASAP   Mark affected cells on hovering!
 *   TODO ASAP   Particle effects and css animations!
 *   TODO ASAP   Check react .styl files!
+*   TODO HIGH   Add debug system.
+*   TODO HIGH   Show "Cleared all cells!"
+*   TODO HIGH   Show "Sorry - no moves left!"
 *
 *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
 *   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
@@ -22612,11 +22615,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     function ClickerBoard(props) {
         var _this = _super.call(this, props) || this;
-        var cells = _this.createEmptyBoard();
-        // assign state directly
         _this.state =
             {
-                cells: cells
+                cells: _this.createEmptyBoard()
             };
         return _this;
     }
@@ -22631,8 +22632,6 @@ var ClickerBoard = /** @class */ (function (_super) {
     };
     /***************************************************************************************************************
     *   Creates an empty board represented by an empty 2d array of the desired size.
-    *
-    *   TODO prune?
     *
     *   @return The 2d array that represents all board cells.
     ***************************************************************************************************************/

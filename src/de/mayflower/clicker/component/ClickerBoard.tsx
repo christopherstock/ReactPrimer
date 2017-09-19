@@ -17,12 +17,9 @@
         {
             super( props );
 
-            let cells:clicker.ClickerCellProps[][] = this.createEmptyBoard();
-
-            // assign state directly
             this.state =
             {
-                cells: cells,
+                cells: this.createEmptyBoard(),
             };
         }
 
@@ -42,8 +39,6 @@
 
         /***************************************************************************************************************
         *   Creates an empty board represented by an empty 2d array of the desired size.
-        *
-        *   TODO prune?
         *
         *   @return The 2d array that represents all board cells.
         ***************************************************************************************************************/

@@ -8,7 +8,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class ClickerCell extends React.Component<clicker.ClickerCellProps, clicker.ClickerCellState>
+    export class ClickerCell extends React.Component<clicker.ClickerCellProps, null>
     {
         /***************************************************************************************************************
         *   Creates a new cell.

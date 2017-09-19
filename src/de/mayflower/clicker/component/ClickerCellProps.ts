@@ -9,8 +9,6 @@
     *******************************************************************************************************************/
     export interface ClickerCellProps
     {
-        // TODO prune the key? assign globally!
-
         /** The unique key prop. */
         key                     :number;
 

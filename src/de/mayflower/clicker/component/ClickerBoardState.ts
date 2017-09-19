@@ -9,8 +9,6 @@
     *******************************************************************************************************************/
     export interface ClickerBoardState
     {
-        // TODO change to ClickerCell[][] ??!
-
-        /** All cells the board consists of. */
+        /** All cell properties the board consists of. */
         cells                   :clicker.ClickerCellProps[][];
     }
