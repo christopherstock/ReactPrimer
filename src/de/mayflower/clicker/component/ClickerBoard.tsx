@@ -56,7 +56,7 @@
                 {
                     cells[ x ][ y ] = {
                         debugCaption:   null,
-                        key:            clicker.Clicker.currentCellIndex++,
+                        key:            0,
                         color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
                         onClick:        null,
                     };
@@ -98,7 +98,7 @@
 
                                     return <clicker.ClickerCell
                                         debugCaption={ columnId + "," + rowId                                 }
-                                        key={          n.key                                                  }
+                                        key={          clicker.Clicker.currentCellIndex++                     }
                                         color={        n.color                                                }
                                         onClick={      () => { staticThis.onCellClicked( columnId, rowId ); } }
                                     />

@@ -70,7 +70,7 @@
         {
             cells[ x ][ y ] = {
                 debugCaption:   x + "," + y,
-                key:            clicker.Clicker.currentCellIndex++,
+                key:            0,
                 color:          newColor,
                 onClick:        cells[ x ][ y ].onClick,
             };

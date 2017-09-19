@@ -22643,7 +22643,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             for (var y = 0; y < cells[x].length; ++y) {
                 cells[x][y] = {
                     debugCaption: null,
-                    key: clicker.Clicker.currentCellIndex++,
+                    key: 0,
                     color: clicker.ClickerCellManager.getRandomColor(this.props.numberOfColors),
                     onClick: null
                 };
@@ -22668,7 +22668,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { debugCaption: columnId + "," + rowId, key: n.key, color: n.color, onClick: function () { staticThis.onCellClicked(columnId, rowId); } });
+                return React.createElement(clicker.ClickerCell, { debugCaption: columnId + "," + rowId, key: clicker.Clicker.currentCellIndex++, color: n.color, onClick: function () { staticThis.onCellClicked(columnId, rowId); } });
             }));
         });
     };
@@ -22842,7 +22842,7 @@ var ClickerCellManager = /** @class */ (function () {
     ClickerCellManager.setNewCellColor = function (cells, x, y, newColor) {
         cells[x][y] = {
             debugCaption: x + "," + y,
-            key: clicker.Clicker.currentCellIndex++,
+            key: 0,
             color: newColor,
             onClick: cells[x][y].onClick
         };
