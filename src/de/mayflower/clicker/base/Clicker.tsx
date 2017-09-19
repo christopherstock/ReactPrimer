@@ -6,17 +6,19 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
+    *   TODO ASAP   Solve spread TODOs.
+    *
     *   TODO ASAP   Hover continguous cells ( implement onEnter onLeave ! )
-    *   TODO ASAP   Add property number of different colors.
     *   TODO ASAP   Mark affected cells on hovering!
     *   TODO ASAP   Particle effects and css animations!
-    *
     *   TODO ASAP   Check react .styl files!
+    *
     *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
     *   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
     *   TODO INIT   Styling (bg image, fg translucent blocks)
     *   TODO LOW    Add animations and learn react callbacks etc.
     *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters.
+    *
     *   TODO WEAK   Learn 'React high-order component'
     *   TODO WEAK   Learn 'React delegates'
     *   TODO WEAK   Learn 'React promises'
