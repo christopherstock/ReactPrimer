@@ -22642,10 +22642,10 @@ var ClickerBoard = /** @class */ (function (_super) {
             console.log("Rows: " + cells[x].length);
             for (var y = 0; y < cells[x].length; ++y) {
                 cells[x][y] = {
+                    debugCaption: null,
                     key: clicker.Clicker.currentCellIndex++,
                     color: clicker.ClickerCellManager.getRandomColor(this.props.numberOfColors),
-                    parentCallback: null,
-                    debugCaption: null
+                    onClick: null
                 };
             }
         }
@@ -22668,7 +22668,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { key: n.key, color: n.color, parentCallback: function () { staticThis.onCellClicked(columnId, rowId); }, debugCaption: columnId + "," + rowId });
+                return React.createElement(clicker.ClickerCell, { debugCaption: columnId + "," + rowId, key: n.key, color: n.color, onClick: function () { staticThis.onCellClicked(columnId, rowId); } });
             }));
         });
     };
@@ -22752,7 +22752,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: "clickerCell", onClick: this.props.parentCallback, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: "clickerCell", onClick: this.props.onClick, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22841,10 +22841,10 @@ var ClickerCellManager = /** @class */ (function () {
     ***************************************************************************************************************/
     ClickerCellManager.setNewCellColor = function (cells, x, y, newColor) {
         cells[x][y] = {
+            debugCaption: x + "," + y,
             key: clicker.Clicker.currentCellIndex++,
             color: newColor,
-            parentCallback: cells[x][y].parentCallback,
-            debugCaption: x + "," + y
+            onClick: cells[x][y].onClick
         };
     };
     /***************************************************************************************************************

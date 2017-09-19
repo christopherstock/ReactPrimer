@@ -9,6 +9,9 @@
     *******************************************************************************************************************/
     export interface ClickerCellProps
     {
+        /** The debug caption for this cell. */
+        debugCaption            :string;
+
         /** The unique key prop. */
         key                     :number;
 
@@ -16,8 +19,5 @@
         color                   :clicker.ClickerCellColor;
 
         /** The callback to invoke when this cell is clicked. */
-        parentCallback          :any;
-
-        /** The debug caption for this cell. */
-        debugCaption            :string;
+        onClick                 :any;
     }

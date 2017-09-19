@@ -69,10 +69,10 @@
         : void
         {
             cells[ x ][ y ] = {
+                debugCaption:   x + "," + y,
                 key:            clicker.Clicker.currentCellIndex++,
                 color:          newColor,
-                parentCallback: cells[ x ][ y ].parentCallback,
-                debugCaption:   x + "," + y
+                onClick:        cells[ x ][ y ].onClick,
             };
         }
 

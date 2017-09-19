@@ -55,10 +55,10 @@
                 for ( let y:number = 0; y < cells[ x ].length; ++y )
                 {
                     cells[ x ][ y ] = {
+                        debugCaption:   null,
                         key:            clicker.Clicker.currentCellIndex++,
                         color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
-                        parentCallback: null,
-                        debugCaption:   null,
+                        onClick:        null,
                     };
                 }
             }
@@ -97,10 +97,10 @@
                                     ++y;
 
                                     return <clicker.ClickerCell
-                                        key={            n.key            }
-                                        color={          n.color          }
-                                        parentCallback={ () => { staticThis.onCellClicked( columnId, rowId ); } }
-                                        debugCaption={   columnId + "," + rowId }
+                                        debugCaption={ columnId + "," + rowId                                 }
+                                        key={          n.key                                                  }
+                                        color={        n.color                                                }
+                                        onClick={      () => { staticThis.onCellClicked( columnId, rowId ); } }
                                     />
                                 }
                             )

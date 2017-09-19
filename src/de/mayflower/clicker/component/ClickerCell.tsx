@@ -27,7 +27,7 @@
         {
             return <div
                 className="clickerCell"
-                onClick={ this.props.parentCallback }
+                onClick={ this.props.onClick }
                 style={ { backgroundColor: this.props.color.valueOf() } }
             >
                 { this.props.debugCaption }
