@@ -79,13 +79,11 @@
 
             let staticThis:ClickerBoard = this;
 
-            // TODO refactor this nightmare to a 2d loop?
-
             return this.state.cells.map
             (
                 function( m:clicker.ClickerCellProps[] )
                 {
-                    let myX = x;
+                    let columnId = x;
                     ++x;
                     y = 0;
 
@@ -95,14 +93,14 @@
                             (
                                 function( n:clicker.ClickerCellProps )
                                 {
-                                    let myY = y;
+                                    let rowId = y;
                                     ++y;
 
                                     return <clicker.ClickerCell
                                         key={            n.key            }
                                         color={          n.color          }
-                                        parentCallback={ () => { staticThis.onCellClicked( myX, myY ); } }
-                                        debugCaption={   myX + "," + myY }
+                                        parentCallback={ () => { staticThis.onCellClicked( columnId, rowId ); } }
+                                        debugCaption={   columnId + "," + rowId }
                                     />
                                 }
                             )

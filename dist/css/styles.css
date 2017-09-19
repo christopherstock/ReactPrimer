@@ -33,10 +33,10 @@
         border:             0;
         width:              35px;
         height:             25px;
-        opacity:            0.75;
+        opacity:            1.0;
     }
 
-    div.clickerCell:hover
+    div.clickerCellHover
     {
-        opacity:            1.0;
+        opacity:            0.5;
     }

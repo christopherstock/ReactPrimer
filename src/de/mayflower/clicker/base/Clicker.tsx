@@ -6,10 +6,9 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Solve spread TODOs.
-    *
     *   TODO ASAP   Hover continguous cells ( implement onEnter onLeave ! )
     *   TODO ASAP   Mark affected cells on hovering!
+    *
     *   TODO ASAP   Particle effects and css animations!
     *   TODO ASAP   Check react .styl files!
     *   TODO HIGH   Add debug system.

@@ -9798,10 +9798,9 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Solve spread TODOs.
-*
 *   TODO ASAP   Hover continguous cells ( implement onEnter onLeave ! )
 *   TODO ASAP   Mark affected cells on hovering!
+*
 *   TODO ASAP   Particle effects and css animations!
 *   TODO ASAP   Check react .styl files!
 *   TODO HIGH   Add debug system.
@@ -22662,15 +22661,14 @@ var ClickerBoard = /** @class */ (function (_super) {
         var x = 0;
         var y = 0;
         var staticThis = this;
-        // TODO refactor this nightmare to a 2d loop?
         return this.state.cells.map(function (m) {
-            var myX = x;
+            var columnId = x;
             ++x;
             y = 0;
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
-                var myY = y;
+                var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { key: n.key, color: n.color, parentCallback: function () { staticThis.onCellClicked(myX, myY); }, debugCaption: myX + "," + myY });
+                return React.createElement(clicker.ClickerCell, { key: n.key, color: n.color, parentCallback: function () { staticThis.onCellClicked(columnId, rowId); }, debugCaption: columnId + "," + rowId });
             }));
         });
     };
