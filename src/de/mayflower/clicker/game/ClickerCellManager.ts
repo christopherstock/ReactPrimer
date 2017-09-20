@@ -52,16 +52,16 @@
         }
 
         /***************************************************************************************************************
-        *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
+        *   Determines all continguous cells in the given 2d cell array from the given coordinate.
         *
         *   @param allCells        The 2d array with all cells.
         *   @param x               The given coordinate x to determine all continguous cells for.
         *   @param y               The given coordinate y to determine all continguous cells for.
         *   @param determinedCells All already gathered cell coordinates affected so far.
         *
-        *   @return A cloned instance of the 2d array.
+        *   @return All continguous cell coordinates including the clicked one.
         ***************************************************************************************************************/
-        public static getAffectedCellCoordinates
+        public static getContinguousCellCoordinates
         (
             allCells:clicker.ClickerCellProps[][],
             x:number,
@@ -86,7 +86,7 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x - 1, y )
             )
             {
-                clicker.ClickerCellManager.getAffectedCellCoordinates
+                clicker.ClickerCellManager.getContinguousCellCoordinates
                 (
                     allCells,
                     x - 1,
@@ -103,7 +103,7 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x, y - 1 )
             )
             {
-                clicker.ClickerCellManager.getAffectedCellCoordinates
+                clicker.ClickerCellManager.getContinguousCellCoordinates
                 (
                     allCells,
                     x,
@@ -120,7 +120,7 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x + 1, y )
             )
             {
-                clicker.ClickerCellManager.getAffectedCellCoordinates
+                clicker.ClickerCellManager.getContinguousCellCoordinates
                 (
                     allCells,
                     x + 1,
@@ -137,7 +137,7 @@
                 && !clicker.ClickerCellManager.contains( determinedCells, x, y + 1 )
             )
             {
-                clicker.ClickerCellManager.getAffectedCellCoordinates
+                clicker.ClickerCellManager.getContinguousCellCoordinates
                 (
                     allCells,
                     x,

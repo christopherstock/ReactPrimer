@@ -22691,16 +22691,16 @@ var ClickerBoard = /** @class */ (function (_super) {
             console.log("Clicked a clear cell.");
             return;
         }
-        // clone all cells
-        var newCells = clicker.ClickerCellManager.deepCloneCells(this.state.cells);
         // get affected cells
-        var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(newCells, x, y);
+        var affectedCellCoordinates = clicker.ClickerCellManager.getContinguousCellCoordinates(this.state.cells, x, y);
         console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
         // at least two cells must be affected to clear
         if (affectedCellCoordinates.length < 2) {
             console.log("Single cell clicked.");
             return;
         }
+        // deep clone all cells
+        var newCells = clicker.ClickerCellManager.deepCloneCells(this.state.cells);
         // clear all affected cells
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
@@ -22907,16 +22907,16 @@ var ClickerCellManager = /** @class */ (function () {
         return newCells;
     };
     /***************************************************************************************************************
-    *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
+    *   Determines all continguous cells in the given 2d cell array from the given coordinate.
     *
     *   @param allCells        The 2d array with all cells.
     *   @param x               The given coordinate x to determine all continguous cells for.
     *   @param y               The given coordinate y to determine all continguous cells for.
     *   @param determinedCells All already gathered cell coordinates affected so far.
     *
-    *   @return A cloned instance of the 2d array.
+    *   @return All continguous cell coordinates including the clicked one.
     ***************************************************************************************************************/
-    ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y, determinedCells) {
+    ClickerCellManager.getContinguousCellCoordinates = function (allCells, x, y, determinedCells) {
         if (determinedCells === void 0) { determinedCells = []; }
         var colorToPick = allCells[x][y].color;
         // add CLICKED cell if not contained
@@ -22927,25 +22927,25 @@ var ClickerCellManager = /** @class */ (function () {
         if (x > 0
             && allCells[x - 1][y].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x - 1, y)) {
-            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x - 1, y, determinedCells);
+            clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x - 1, y, determinedCells);
         }
         // add TOP cell if matching
         if (y > 0
             && allCells[x][y - 1].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x, y - 1)) {
-            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x, y - 1, determinedCells);
+            clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x, y - 1, determinedCells);
         }
         // add RIGHT cell if matching
         if (x < allCells.length - 1
             && allCells[x + 1][y].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x + 1, y)) {
-            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x + 1, y, determinedCells);
+            clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x + 1, y, determinedCells);
         }
         // add BOTTOM cell if matching
         if (y < allCells[x].length - 1
             && allCells[x][y + 1].color == colorToPick
             && !clicker.ClickerCellManager.contains(determinedCells, x, y + 1)) {
-            clicker.ClickerCellManager.getAffectedCellCoordinates(allCells, x, y + 1, determinedCells);
+            clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x, y + 1, determinedCells);
         }
         return determinedCells;
     };

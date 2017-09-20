@@ -133,15 +133,10 @@
                 return;
             }
 
-            // clone all cells
-            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells(
-                this.state.cells
-            );
-
             // get affected cells
-            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
+            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getContinguousCellCoordinates
             (
-                newCells,
+                this.state.cells,
                 x,
                 y
             );
@@ -153,6 +148,12 @@
                 console.log( "Single cell clicked." );
                 return;
             }
+
+            // deep clone all cells
+            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells(
+                this.state.cells
+            );
+
 
             // clear all affected cells
             for ( let affectedCoordinate of affectedCellCoordinates )
