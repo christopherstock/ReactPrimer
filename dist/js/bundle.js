@@ -22690,7 +22690,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return;
         }
         // deep clone all cells
-        var newCells = this.state.cells;
+        var newCells = clicker.ClickerCellManager.deepCloneCells(this.state.cells);
         // clear all affected cells
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
@@ -22704,8 +22704,6 @@ var ClickerBoard = /** @class */ (function (_super) {
         this.setState({
             cells: newCells
         });
-        // invoke mouse enter on this cell
-        this.onCellMouseEnter(x, y);
     };
     /***************************************************************************************************************
     *   Being invoked when the mouse enters a cell on the board.
@@ -22724,7 +22722,6 @@ var ClickerBoard = /** @class */ (function (_super) {
         if (clicker.ClickerBoard.currentHoveringCells.length == 0) {
             return;
         }
-        // deep clone all cells
         var newCells = this.state.cells;
         // hover all affected cells
         for (var _i = 0, _a = clicker.ClickerBoard.currentHoveringCells; _i < _a.length; _i++) {

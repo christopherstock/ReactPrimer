@@ -143,7 +143,10 @@
             }
 
             // deep clone all cells
-            let newCells:clicker.ClickerCellProps[][] = this.state.cells;
+            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells
+            (
+                this.state.cells
+            );
 
             // clear all affected cells
             for ( let affectedCoordinate of affectedCellCoordinates )
@@ -163,9 +166,6 @@
                     cells: newCells,
                 }
             );
-
-            // invoke mouse enter on this cell
-            this.onCellMouseEnter( x, y );
         }
 
         /***************************************************************************************************************
@@ -198,7 +198,6 @@
                 return;
             }
 
-            // deep clone all cells
             let newCells:clicker.ClickerCellProps[][] = this.state.cells;
 
             // hover all affected cells
