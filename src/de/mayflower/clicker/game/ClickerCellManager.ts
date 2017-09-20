@@ -52,32 +52,6 @@
         }
 
         /***************************************************************************************************************
-        *   Sets a new color for the specified cell in the specified 2d cell array.
-        *
-        *   @param cells    The 2d array of cells.
-        *   @param x        Location y of the cell to change the color.
-        *   @param y        Location y of the cell to change the color.
-        *   @param newColor The new color for the cell to set.
-        ***************************************************************************************************************/
-        public static setNewCellColor
-        (
-            cells:clicker.ClickerCellProps[][],
-            x:number,
-            y:number,
-            newColor:clicker.ClickerCellColor
-        )
-        : void
-        {
-            cells[ x ][ y ] = {
-                debugCaption: x + "," + y,
-                key:          0,
-                color:        newColor,
-                onClick:      cells[ x ][ y ].onClick,
-                className:    cells[ x ][ y ].className,
-            };
-        }
-
-        /***************************************************************************************************************
         *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
         *
         *   @param allCells        The 2d array with all cells.

@@ -26,9 +26,11 @@
         public render() : JSX.Element
         {
             return <div
-                className={ this.props.className }
-                onClick={   this.props.onClick }
-                style={     { backgroundColor: this.props.color.valueOf() } }
+                className={    this.props.className                          }
+                onClick={      this.props.onClick                            }
+                onMouseEnter={ this.props.onMouseEnter                       }
+                onMouseLeave={ this.props.onMouseLeave                       }
+                style={     {  backgroundColor: this.props.color.valueOf() } }
             >
                 { this.props.debugCaption }
             </div>;

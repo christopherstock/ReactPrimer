@@ -9,18 +9,24 @@
     *******************************************************************************************************************/
     export interface ClickerCellProps
     {
-        /** The debug caption for this cell. */
-        debugCaption            :string;
-
         /** The unique key prop. */
         key                     :number;
 
         /** The current cell color. */
         color                   :clicker.ClickerCellColor;
 
+        /** The name of the current css class. */
+        className               :string;
+
+        /** The debug caption for this cell. */
+        debugCaption            :string;
+
         /** The callback to invoke when this cell is clicked. */
         onClick                 :any;
 
-        /** The name of the current css class. */
-        className               :string;
+        /** The callback to invoke when the mouse enters this cell. */
+        onMouseEnter            :any;
+
+        /** The callback to invoke when the mouse leaves this cell. */
+        onMouseLeave            :any;
     }

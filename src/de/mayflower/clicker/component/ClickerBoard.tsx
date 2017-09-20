@@ -55,11 +55,13 @@
                 for ( let y:number = 0; y < cells[ x ].length; ++y )
                 {
                     cells[ x ][ y ] = {
-                        debugCaption:   null,
                         key:            0,
                         color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
-                        onClick:        null,
                         className:      "clickerCell",
+                        debugCaption:   null,
+                        onClick:        null,
+                        onMouseEnter:   null,
+                        onMouseLeave:   null,
                     };
                 }
             }
@@ -98,11 +100,13 @@
                                     ++y;
 
                                     return <clicker.ClickerCell
-                                        debugCaption={ columnId + "," + rowId                                 }
-                                        key={          clicker.Clicker.currentCellIndex++                     }
-                                        color={        n.color                                                }
-                                        onClick={      () => { staticThis.onCellClicked( columnId, rowId ); } }
-                                        className={    n.className                                            }
+                                        key={          clicker.Clicker.currentCellIndex++                        }
+                                        color={        n.color                                                   }
+                                        className={    n.className                                               }
+                                        debugCaption={ columnId + "," + rowId                                    }
+                                        onClick={      () => { staticThis.onCellClick(      columnId, rowId ); } }
+                                        onMouseEnter={ () => { staticThis.onCellMouseEnter( columnId, rowId ); } }
+                                        onMouseLeave={ () => { staticThis.onCellMouseLeave( columnId, rowId ); } }
                                     />
                                 }
                             )
@@ -118,9 +122,9 @@
         *   @param x The x coordinatie of the cell that has been clicked.
         *   @param y The y coordinatie of the cell that has been clicked.
         ***************************************************************************************************************/
-        private onCellClicked( x:number, y:number ) : void
+        private onCellClick(x:number, y:number ) : void
         {
-            console.log( "onCellClicked [" + x + "][" + y + "]" );
+            console.log( "onCellClick [" + x + "][" + y + "]" );
 
             // clicking clear cells has no effect
             if ( this.state.cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
@@ -153,13 +157,7 @@
             // clear all affected cells
             for ( let affectedCoordinate of affectedCellCoordinates )
             {
-                clicker.ClickerCellManager.setNewCellColor
-                (
-                    newCells,
-                    affectedCoordinate.x,
-                    affectedCoordinate.y,
-                    clicker.ClickerCellColor.CLEAR
-                );
+                newCells[ affectedCoordinate.x ][ affectedCoordinate.y ].color = clicker.ClickerCellColor.CLEAR;
             }
 
             // collapse all cleared cells
@@ -174,5 +172,31 @@
                     cells: newCells,
                 }
             );
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked when the mouse enters a cell on the board.
+        *
+        *   @param x The x coordinatie of the cell that has been entered.
+        *   @param y The y coordinatie of the cell that has been entered.
+        ***************************************************************************************************************/
+        private onCellMouseEnter(x:number, y:number ) : void
+        {
+            console.log( "onCellMouseEnter [" + x + "][" + y + "]" );
+
+
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked when the mouse leaves a cell on the board.
+        *
+        *   @param x The x coordinatie of the cell that has been left.
+        *   @param y The y coordinatie of the cell that has been left.
+        ***************************************************************************************************************/
+        private onCellMouseLeave(x:number, y:number ) : void
+        {
+            console.log( "onCellMouseLeave [" + x + "][" + y + "]" );
+
+
         }
     }

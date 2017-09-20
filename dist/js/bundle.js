@@ -2964,14 +2964,24 @@ __export(__webpack_require__(187));
 __export(__webpack_require__(188));
 __export(__webpack_require__(189));
 __export(__webpack_require__(190));
-__export(__webpack_require__(194));
 __export(__webpack_require__(191));
 __export(__webpack_require__(192));
 __export(__webpack_require__(193));
+__export(__webpack_require__(194));
 
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(16);
+
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2987,7 +2997,7 @@ __export(__webpack_require__(193));
 
 
 
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(35);
 
 var accumulateInto = __webpack_require__(59);
@@ -3111,7 +3121,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3391,7 +3401,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3455,7 +3465,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3504,16 +3514,6 @@ var ReactInstanceMap = {
 };
 
 module.exports = ReactInstanceMap;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(16);
-
 
 /***/ }),
 /* 26 */
@@ -4083,7 +4083,7 @@ module.exports = TransactionImpl;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 var ViewportMetrics = __webpack_require__(66);
 
 var getEventModifierState = __webpack_require__(39);
@@ -5932,7 +5932,7 @@ module.exports = KeyEscapeUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(11);
 
@@ -9214,7 +9214,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(176);
 var ReactDOMFeatureFlags = __webpack_require__(177);
 var ReactFeatureFlags = __webpack_require__(63);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactMarkupChecksum = __webpack_require__(178);
 var ReactReconciler = __webpack_require__(18);
@@ -9793,7 +9793,7 @@ window.onunload = function () {
 "use strict";
 
 exports.__esModule = true;
-var React = __webpack_require__(25);
+var React = __webpack_require__(21);
 var ReactDOM = __webpack_require__(100);
 var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
@@ -12635,7 +12635,7 @@ module.exports = ARIADOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(6);
 var FallbackCompositionState = __webpack_require__(105);
 var SyntheticCompositionEvent = __webpack_require__(106);
@@ -13207,8 +13207,8 @@ module.exports = SyntheticInputEvent;
 
 
 
-var EventPluginHub = __webpack_require__(22);
-var EventPropagators = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(23);
+var EventPropagators = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
@@ -14264,7 +14264,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticMouseEvent = __webpack_require__(30);
 
@@ -15066,7 +15066,7 @@ var DOMLazyTree = __webpack_require__(19);
 var DOMNamespaces = __webpack_require__(41);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(70);
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(28);
 var ReactBrowserEventEmitter = __webpack_require__(33);
 var ReactDOMComponentFlags = __webpack_require__(58);
@@ -16636,7 +16636,7 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -17369,7 +17369,7 @@ module.exports = ReactDOMTextarea;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(44);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 
 var ReactCurrentOwner = __webpack_require__(10);
@@ -17984,7 +17984,7 @@ var React = __webpack_require__(16);
 var ReactComponentEnvironment = __webpack_require__(44);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactErrorUtils = __webpack_require__(36);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactNodeTypes = __webpack_require__(74);
 var ReactReconciler = __webpack_require__(18);
@@ -20080,7 +20080,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 var DOMProperty = __webpack_require__(13);
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(35);
 var ReactComponentEnvironment = __webpack_require__(44);
 var ReactEmptyComponent = __webpack_require__(75);
@@ -21010,7 +21010,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInputSelection = __webpack_require__(79);
@@ -21207,7 +21207,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(78);
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticAnimationEvent = __webpack_require__(167);
 var SyntheticClipboardEvent = __webpack_require__(168);
@@ -21218,7 +21218,7 @@ var SyntheticMouseEvent = __webpack_require__(30);
 var SyntheticDragEvent = __webpack_require__(172);
 var SyntheticTouchEvent = __webpack_require__(173);
 var SyntheticTransitionEvent = __webpack_require__(174);
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 var SyntheticWheelEvent = __webpack_require__(175);
 
 var emptyFunction = __webpack_require__(9);
@@ -21522,7 +21522,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 
 /**
  * @interface FocusEvent
@@ -21563,7 +21563,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 
 var getEventCharCode = __webpack_require__(50);
 var getEventKey = __webpack_require__(171);
@@ -21810,7 +21810,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 
 var getEventModifierState = __webpack_require__(39);
 
@@ -22150,7 +22150,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 
 var getHostComponentFromComposite = __webpack_require__(82);
 var invariant = __webpack_require__(1);
@@ -22557,7 +22557,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(25);
+var React = __webpack_require__(21);
 var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   Represents the 'clicker' game.
@@ -22602,7 +22602,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(25);
+var React = __webpack_require__(21);
 var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   Represents the 'clicker' game board.
@@ -22645,11 +22645,13 @@ var ClickerBoard = /** @class */ (function (_super) {
             console.log("Rows: " + cells[x].length);
             for (var y = 0; y < cells[x].length; ++y) {
                 cells[x][y] = {
-                    debugCaption: null,
                     key: 0,
                     color: clicker.ClickerCellManager.getRandomColor(this.props.numberOfColors),
+                    className: "clickerCell",
+                    debugCaption: null,
                     onClick: null,
-                    className: "clickerCell"
+                    onMouseEnter: null,
+                    onMouseLeave: null
                 };
             }
         }
@@ -22672,7 +22674,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { debugCaption: columnId + "," + rowId, key: clicker.Clicker.currentCellIndex++, color: n.color, onClick: function () { staticThis.onCellClicked(columnId, rowId); }, className: n.className });
+                return React.createElement(clicker.ClickerCell, { key: clicker.Clicker.currentCellIndex++, color: n.color, className: n.className, debugCaption: columnId + "," + rowId, onClick: function () { staticThis.onCellClick(columnId, rowId); }, onMouseEnter: function () { staticThis.onCellMouseEnter(columnId, rowId); }, onMouseLeave: function () { staticThis.onCellMouseLeave(columnId, rowId); } });
             }));
         });
     };
@@ -22682,8 +22684,8 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @param x The x coordinatie of the cell that has been clicked.
     *   @param y The y coordinatie of the cell that has been clicked.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.onCellClicked = function (x, y) {
-        console.log("onCellClicked [" + x + "][" + y + "]");
+    ClickerBoard.prototype.onCellClick = function (x, y) {
+        console.log("onCellClick [" + x + "][" + y + "]");
         // clicking clear cells has no effect
         if (this.state.cells[x][y].color == clicker.ClickerCellColor.CLEAR) {
             console.log("Clicked a clear cell.");
@@ -22702,7 +22704,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         // clear all affected cells
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
-            clicker.ClickerCellManager.setNewCellColor(newCells, affectedCoordinate.x, affectedCoordinate.y, clicker.ClickerCellColor.CLEAR);
+            newCells[affectedCoordinate.x][affectedCoordinate.y].color = clicker.ClickerCellColor.CLEAR;
         }
         // collapse all cleared cells
         clicker.ClickerCellManager.collapseClearedCells(newCells);
@@ -22712,6 +22714,24 @@ var ClickerBoard = /** @class */ (function (_super) {
         this.setState({
             cells: newCells
         });
+    };
+    /***************************************************************************************************************
+    *   Being invoked when the mouse enters a cell on the board.
+    *
+    *   @param x The x coordinatie of the cell that has been entered.
+    *   @param y The y coordinatie of the cell that has been entered.
+    ***************************************************************************************************************/
+    ClickerBoard.prototype.onCellMouseEnter = function (x, y) {
+        console.log("onCellMouseEnter [" + x + "][" + y + "]");
+    };
+    /***************************************************************************************************************
+    *   Being invoked when the mouse leaves a cell on the board.
+    *
+    *   @param x The x coordinatie of the cell that has been left.
+    *   @param y The y coordinatie of the cell that has been left.
+    ***************************************************************************************************************/
+    ClickerBoard.prototype.onCellMouseLeave = function (x, y) {
+        console.log("onCellMouseLeave [" + x + "][" + y + "]");
     };
     return ClickerBoard;
 }(React.Component));
@@ -22735,7 +22755,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var React = __webpack_require__(25);
+var React = __webpack_require__(21);
 /*******************************************************************************************************************
 *   Represents a cell of the game board.
 *
@@ -22756,7 +22776,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22765,6 +22785,57 @@ exports.ClickerCell = ClickerCell;
 
 /***/ }),
 /* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(21);
+/*******************************************************************************************************************
+*   Represents the 'clicker' information panel.
+*
+*   @author  Christopher Stock
+*   @version 1.0
+*******************************************************************************************************************/
+var ClickerInfo = /** @class */ (function (_super) {
+    __extends(ClickerInfo, _super);
+    /***************************************************************************************************************
+    *   Creates a new clicker information panel.
+    ***************************************************************************************************************/
+    function ClickerInfo(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state =
+            {
+                message: "Enjoy your game!"
+            };
+        return _this;
+    }
+    /***************************************************************************************************************
+    *   Renders the 'clicker' board component.
+    *
+    *   @return The rendered Board.
+    ***************************************************************************************************************/
+    ClickerInfo.prototype.render = function () {
+        console.log("render ClickerInfo");
+        return React.createElement("div", { className: "clickerInfo" }, this.state.message);
+    };
+    return ClickerInfo;
+}(React.Component));
+exports.ClickerInfo = ClickerInfo;
+
+
+/***/ }),
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22788,7 +22859,7 @@ var ClickerCellColor;
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22834,23 +22905,6 @@ var ClickerCellManager = /** @class */ (function () {
             }
         }
         return newCells;
-    };
-    /***************************************************************************************************************
-    *   Sets a new color for the specified cell in the specified 2d cell array.
-    *
-    *   @param cells    The 2d array of cells.
-    *   @param x        Location y of the cell to change the color.
-    *   @param y        Location y of the cell to change the color.
-    *   @param newColor The new color for the cell to set.
-    ***************************************************************************************************************/
-    ClickerCellManager.setNewCellColor = function (cells, x, y, newColor) {
-        cells[x][y] = {
-            debugCaption: x + "," + y,
-            key: 0,
-            color: newColor,
-            onClick: cells[x][y].onClick,
-            className: cells[x][y].className
-        };
     };
     /***************************************************************************************************************
     *   Determines all affected though continguous cells in the given 2d cell array from the given coordinate.
@@ -22972,7 +23026,7 @@ exports.ClickerCellManager = ClickerCellManager;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23000,57 +23054,6 @@ var ClickerMath = /** @class */ (function () {
     return ClickerMath;
 }());
 exports.ClickerMath = ClickerMath;
-
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(25);
-/*******************************************************************************************************************
-*   Represents the 'clicker' information panel.
-*
-*   @author  Christopher Stock
-*   @version 1.0
-*******************************************************************************************************************/
-var ClickerInfo = /** @class */ (function (_super) {
-    __extends(ClickerInfo, _super);
-    /***************************************************************************************************************
-    *   Creates a new clicker information panel.
-    ***************************************************************************************************************/
-    function ClickerInfo(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state =
-            {
-                message: "Enjoy your game!"
-            };
-        return _this;
-    }
-    /***************************************************************************************************************
-    *   Renders the 'clicker' board component.
-    *
-    *   @return The rendered Board.
-    ***************************************************************************************************************/
-    ClickerInfo.prototype.render = function () {
-        console.log("render ClickerInfo");
-        return React.createElement("div", { className: "clickerInfo" }, this.state.message);
-    };
-    return ClickerInfo;
-}(React.Component));
-exports.ClickerInfo = ClickerInfo;
 
 
 /***/ })
