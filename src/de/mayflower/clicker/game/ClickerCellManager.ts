@@ -61,7 +61,7 @@
         *
         *   @return All continguous cell coordinates including the clicked one.
         ***************************************************************************************************************/
-        public static getContinguousCellCoordinates
+        private static getContinguousCellCoordinates
         (
             allCells:clicker.ClickerCellProps[][],
             x:number,
@@ -147,6 +147,49 @@
             }
 
             return determinedCells;
+        }
+
+        /***************************************************************************************************************
+        *   Determines all affected cells in the given 2d cell array on clicking on the specified coordinate.
+        *
+        *   @param allCells        The 2d array with all cells.
+        *   @param x               The given coordinate x to determine all continguous cells for.
+        *   @param y               The given coordinate y to determine all continguous cells for.
+        *
+        *   @return All affected cell coordinates including the clicked one.
+        ***************************************************************************************************************/
+        public static getAffectedCellCoordinates
+        (
+            allCells:clicker.ClickerCellProps[][],
+            x:number,
+            y:number,
+        )
+        : clicker.ClickerCellCoordinate[]
+        {
+            // clicking clear cells has no effect
+            if ( allCells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
+            {
+                console.log( "Clear cell not affected." );
+                return [];
+            }
+
+            // get continguous cells
+            let continguousCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getContinguousCellCoordinates
+            (
+                allCells,
+                x,
+                y
+            );
+            console.log( "Determined [" + continguousCoordinates.length + "] affected cells" );
+
+            // at least two cells must be affected to clear
+            if ( continguousCoordinates.length < 2 )
+            {
+                console.log( "Single cell not affected" );
+                return [];
+            }
+
+            return continguousCoordinates;
         }
 
         /***************************************************************************************************************

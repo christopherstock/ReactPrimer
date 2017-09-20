@@ -126,34 +126,23 @@
         {
             console.log( "onCellClick [" + x + "][" + y + "]" );
 
-            // clicking clear cells has no effect
-            if ( this.state.cells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
-            {
-                console.log( "Clicked a clear cell." );
-                return;
-            }
-
-            // get affected cells
-            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getContinguousCellCoordinates
+            let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
             (
                 this.state.cells,
                 x,
                 y
             );
-            console.log( "Determined [" + affectedCellCoordinates.length + "] affected cells" );
 
-            // at least two cells must be affected to clear
-            if ( affectedCellCoordinates.length < 2 )
+            if ( affectedCellCoordinates.length == 0 )
             {
-                console.log( "Single cell clicked." );
                 return;
             }
 
             // deep clone all cells
-            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells(
+            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells
+            (
                 this.state.cells
             );
-
 
             // clear all affected cells
             for ( let affectedCoordinate of affectedCellCoordinates )

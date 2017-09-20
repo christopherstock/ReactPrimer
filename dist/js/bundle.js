@@ -22686,17 +22686,8 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClick = function (x, y) {
         console.log("onCellClick [" + x + "][" + y + "]");
-        // clicking clear cells has no effect
-        if (this.state.cells[x][y].color == clicker.ClickerCellColor.CLEAR) {
-            console.log("Clicked a clear cell.");
-            return;
-        }
-        // get affected cells
-        var affectedCellCoordinates = clicker.ClickerCellManager.getContinguousCellCoordinates(this.state.cells, x, y);
-        console.log("Determined [" + affectedCellCoordinates.length + "] affected cells");
-        // at least two cells must be affected to clear
-        if (affectedCellCoordinates.length < 2) {
-            console.log("Single cell clicked.");
+        var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
+        if (affectedCellCoordinates.length == 0) {
             return;
         }
         // deep clone all cells
@@ -22948,6 +22939,31 @@ var ClickerCellManager = /** @class */ (function () {
             clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x, y + 1, determinedCells);
         }
         return determinedCells;
+    };
+    /***************************************************************************************************************
+    *   Determines all affected cells in the given 2d cell array on clicking on the specified coordinate.
+    *
+    *   @param allCells        The 2d array with all cells.
+    *   @param x               The given coordinate x to determine all continguous cells for.
+    *   @param y               The given coordinate y to determine all continguous cells for.
+    *
+    *   @return All affected cell coordinates including the clicked one.
+    ***************************************************************************************************************/
+    ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y) {
+        // clicking clear cells has no effect
+        if (allCells[x][y].color == clicker.ClickerCellColor.CLEAR) {
+            console.log("Clear cell not affected.");
+            return [];
+        }
+        // get continguous cells
+        var continguousCoordinates = clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x, y);
+        console.log("Determined [" + continguousCoordinates.length + "] affected cells");
+        // at least two cells must be affected to clear
+        if (continguousCoordinates.length < 2) {
+            console.log("Single cell not affected");
+            return [];
+        }
+        return continguousCoordinates;
     };
     /***************************************************************************************************************
     *   Checks if the specified coordinate array contains the specified coordinate.
