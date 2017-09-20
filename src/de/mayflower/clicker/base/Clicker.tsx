@@ -6,8 +6,6 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Mark affected cells on hovering ( implement onEnter onLeave ! )
-    *
     *   TODO ASAP   Alter the message in the ClickerInfo component.
     *   TODO ASAP   Particle effects and css animations!
     *   TODO ASAP   Check react .styl files!

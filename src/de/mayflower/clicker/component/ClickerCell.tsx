@@ -32,7 +32,8 @@
                 onMouseLeave={ this.props.onMouseLeave                       }
                 style={     {  backgroundColor: this.props.color.valueOf() } }
             >
-                { this.props.debugCaption }
             </div>;
+
+            //    { this.props.debugCaption }
         }
     }

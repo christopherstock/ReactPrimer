@@ -9799,8 +9799,6 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Mark affected cells on hovering ( implement onEnter onLeave ! )
-*
 *   TODO ASAP   Alter the message in the ClickerInfo component.
 *   TODO ASAP   Particle effects and css animations!
 *   TODO ASAP   Check react .styl files!
@@ -22686,12 +22684,13 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClick = function (x, y) {
         console.log("onCellClick [" + x + "][" + y + "]");
+        this.unhoverAllCells();
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
         if (affectedCellCoordinates.length == 0) {
             return;
         }
         // deep clone all cells
-        var newCells = clicker.ClickerCellManager.deepCloneCells(this.state.cells);
+        var newCells = this.state.cells;
         // clear all affected cells
         for (var _i = 0, affectedCellCoordinates_1 = affectedCellCoordinates; _i < affectedCellCoordinates_1.length; _i++) {
             var affectedCoordinate = affectedCellCoordinates_1[_i];
@@ -22705,6 +22704,8 @@ var ClickerBoard = /** @class */ (function (_super) {
         this.setState({
             cells: newCells
         });
+        // invoke mouse enter on this cell
+        this.onCellMouseEnter(x, y);
     };
     /***************************************************************************************************************
     *   Being invoked when the mouse enters a cell on the board.
@@ -22714,6 +22715,26 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellMouseEnter = function (x, y) {
         console.log("onCellMouseEnter [" + x + "][" + y + "]");
+        // no change if this cell is still in the compound hovering area
+        if (clicker.ClickerCellManager.contains(clicker.ClickerBoard.currentHoveringCells, x, y)) {
+            return;
+        }
+        this.unhoverAllCells();
+        clicker.ClickerBoard.currentHoveringCells = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
+        if (clicker.ClickerBoard.currentHoveringCells.length == 0) {
+            return;
+        }
+        // deep clone all cells
+        var newCells = this.state.cells;
+        // hover all affected cells
+        for (var _i = 0, _a = clicker.ClickerBoard.currentHoveringCells; _i < _a.length; _i++) {
+            var affectedCoordinate = _a[_i];
+            newCells[affectedCoordinate.x][affectedCoordinate.y].className = "clickerCellHover";
+        }
+        // assign all new cells
+        this.setState({
+            cells: newCells
+        });
     };
     /***************************************************************************************************************
     *   Being invoked when the mouse leaves a cell on the board.
@@ -22723,7 +22744,24 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellMouseLeave = function (x, y) {
         console.log("onCellMouseLeave [" + x + "][" + y + "]");
+        this.unhoverAllCells();
     };
+    /***************************************************************************************************************
+    *   Alters all cells css class to the default one.
+    ***************************************************************************************************************/
+    ClickerBoard.prototype.unhoverAllCells = function () {
+        var newCells = this.state.cells;
+        for (var _i = 0, _a = clicker.ClickerBoard.currentHoveringCells; _i < _a.length; _i++) {
+            var affectedCoordinate = _a[_i];
+            newCells[affectedCoordinate.x][affectedCoordinate.y].className = "clickerCell";
+        }
+        clicker.ClickerBoard.currentHoveringCells = [];
+        // assign all new cells
+        this.setState({
+            cells: newCells
+        });
+    };
+    ClickerBoard.currentHoveringCells = [];
     return ClickerBoard;
 }(React.Component));
 exports.ClickerBoard = ClickerBoard;
@@ -22767,7 +22805,8 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave, style: { backgroundColor: this.props.color.valueOf() } });
+        //    { this.props.debugCaption }
     };
     return ClickerCell;
 }(React.Component));

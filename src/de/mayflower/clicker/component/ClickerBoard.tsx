@@ -10,6 +10,8 @@
     *******************************************************************************************************************/
     export class ClickerBoard extends React.Component<clicker.ClickerBoardProps, clicker.ClickerBoardState>
     {
+        private     static      currentHoveringCells        :clicker.ClickerCellCoordinate[]        = [];
+
         /***************************************************************************************************************
         *   Creates a new clicker board.
         ***************************************************************************************************************/
@@ -122,9 +124,11 @@
         *   @param x The x coordinatie of the cell that has been clicked.
         *   @param y The y coordinatie of the cell that has been clicked.
         ***************************************************************************************************************/
-        private onCellClick(x:number, y:number ) : void
+        private onCellClick( x:number, y:number ) : void
         {
             console.log( "onCellClick [" + x + "][" + y + "]" );
+
+            this.unhoverAllCells();
 
             let affectedCellCoordinates:clicker.ClickerCellCoordinate[] = clicker.ClickerCellManager.getAffectedCellCoordinates
             (
@@ -139,10 +143,7 @@
             }
 
             // deep clone all cells
-            let newCells:clicker.ClickerCellProps[][] = clicker.ClickerCellManager.deepCloneCells
-            (
-                this.state.cells
-            );
+            let newCells:clicker.ClickerCellProps[][] = this.state.cells;
 
             // clear all affected cells
             for ( let affectedCoordinate of affectedCellCoordinates )
@@ -162,6 +163,9 @@
                     cells: newCells,
                 }
             );
+
+            // invoke mouse enter on this cell
+            this.onCellMouseEnter( x, y );
         }
 
         /***************************************************************************************************************
@@ -174,7 +178,41 @@
         {
             console.log( "onCellMouseEnter [" + x + "][" + y + "]" );
 
+            // no change if this cell is still in the compound hovering area
+            if ( clicker.ClickerCellManager.contains( clicker.ClickerBoard.currentHoveringCells, x, y ) )
+            {
+                return;
+            }
 
+            this.unhoverAllCells();
+
+            clicker.ClickerBoard.currentHoveringCells = clicker.ClickerCellManager.getAffectedCellCoordinates
+            (
+                this.state.cells,
+                x,
+                y
+            );
+
+            if ( clicker.ClickerBoard.currentHoveringCells.length == 0 )
+            {
+                return;
+            }
+
+            // deep clone all cells
+            let newCells:clicker.ClickerCellProps[][] = this.state.cells;
+
+            // hover all affected cells
+            for ( let affectedCoordinate of clicker.ClickerBoard.currentHoveringCells )
+            {
+                newCells[ affectedCoordinate.x ][ affectedCoordinate.y ].className = "clickerCellHover";
+            }
+
+            // assign all new cells
+            this.setState(
+                {
+                    cells: newCells,
+                }
+            );
         }
 
         /***************************************************************************************************************
@@ -187,6 +225,27 @@
         {
             console.log( "onCellMouseLeave [" + x + "][" + y + "]" );
 
+            this.unhoverAllCells();
+        }
 
+        /***************************************************************************************************************
+        *   Alters all cells css class to the default one.
+        ***************************************************************************************************************/
+        private unhoverAllCells() : void
+        {
+            let newCells:clicker.ClickerCellProps[][] = this.state.cells;
+
+            for ( let affectedCoordinate of clicker.ClickerBoard.currentHoveringCells )
+            {
+                newCells[ affectedCoordinate.x ][ affectedCoordinate.y ].className = "clickerCell";
+            }
+            clicker.ClickerBoard.currentHoveringCells = [];
+
+            // assign all new cells
+            this.setState(
+                {
+                    cells: newCells,
+                }
+            );
         }
     }
