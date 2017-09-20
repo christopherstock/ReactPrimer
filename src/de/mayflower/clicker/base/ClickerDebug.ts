@@ -1,4 +1,6 @@
 
+    import * as clicker  from "../clicker";
+
     /*******************************************************************************************************************
     *   The debug system that wrapps console logging.
     *
@@ -14,6 +16,9 @@
         ***************************************************************************************************************/
         public static log( msg:any ) : void
         {
-            console.log( msg );
+            if ( clicker.ClickerSettings.DEBUG_MODE )
+            {
+                console.log( msg );
+            }
         }
     }

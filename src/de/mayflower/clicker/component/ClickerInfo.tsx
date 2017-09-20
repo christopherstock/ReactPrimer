@@ -30,7 +30,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            console.log( "render ClickerInfo" );
+            clicker.ClickerDebug.log( "render ClickerInfo" );
 
             return <div className="clickerInfo">
                 { this.state.message }

@@ -169,7 +169,7 @@
             // clicking clear cells has no effect
             if ( allCells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
             {
-                console.log( "Clear cell not affected." );
+                clicker.ClickerDebug.log( "Clear cell not affected." );
                 return [];
             }
 
@@ -180,12 +180,12 @@
                 x,
                 y
             );
-            console.log( "Determined [" + continguousCoordinates.length + "] affected cells" );
+            clicker.ClickerDebug.log( "Determined [" + continguousCoordinates.length + "] affected cells" );
 
             // at least two cells must be affected to clear
             if ( continguousCoordinates.length < 2 )
             {
-                console.log( "Single cell not affected" );
+                clicker.ClickerDebug.log( "Single cell not affected" );
                 return [];
             }
 

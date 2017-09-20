@@ -9810,6 +9810,7 @@ var clicker = __webpack_require__(20);
 *   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
 *   TODO INIT   Styling (bg image, fg translucent blocks)
 *   TODO LOW    Add animations and learn react callbacks etc.
+*   TODO HIGH   Solve problem "onMouseEnter" not fired on browser reload or collapsing cells.
 *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters.
 *
 *   TODO WEAK   Learn 'React high-order component'
@@ -22487,6 +22488,7 @@ module.exports = ReactDOMInvalidARIAHook;
 "use strict";
 
 exports.__esModule = true;
+var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The debug system that wrapps console logging.
 *
@@ -22502,7 +22504,9 @@ var ClickerDebug = /** @class */ (function () {
     *   @param msg The message to log to the console.
     ***************************************************************************************************************/
     ClickerDebug.log = function (msg) {
-        console.log(msg);
+        if (clicker.ClickerSettings.DEBUG_MODE) {
+            console.log(msg);
+        }
     };
     return ClickerDebug;
 }());
@@ -22525,6 +22529,8 @@ exports.__esModule = true;
 var ClickerSettings = /** @class */ (function () {
     function ClickerSettings() {
     }
+    /** The global debug switch. */
+    ClickerSettings.DEBUG_MODE = false;
     /** The application title. */
     ClickerSettings.APPLICATION_TITLE = "ReactPrimer, (c) 2017 Mayflower GmbH";
     /** The default number of different cell colors. */
@@ -22627,7 +22633,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
-        console.log("render ClickerBoard");
+        clicker.ClickerDebug.log("render ClickerBoard");
         return React.createElement("div", { className: "clickerBoard" }, this.renderAllCells());
     };
     /***************************************************************************************************************
@@ -22637,10 +22643,10 @@ var ClickerBoard = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerBoard.prototype.createEmptyBoard = function () {
         var cells = new Array(this.props.boardSizeX);
-        console.log("Columns: " + cells.length);
+        clicker.ClickerDebug.log("Columns: " + cells.length);
         for (var x = 0; x < cells.length; ++x) {
             cells[x] = new Array(this.props.boardSizeY);
-            console.log("Rows: " + cells[x].length);
+            clicker.ClickerDebug.log("Rows: " + cells[x].length);
             for (var y = 0; y < cells[x].length; ++y) {
                 cells[x][y] = {
                     key: 0,
@@ -22683,7 +22689,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @param y The y coordinatie of the cell that has been clicked.
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellClick = function (x, y) {
-        console.log("onCellClick [" + x + "][" + y + "]");
+        clicker.ClickerDebug.log("onCellClick [" + x + "][" + y + "]");
         this.unhoverAllCells();
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
         if (affectedCellCoordinates.length == 0) {
@@ -22712,7 +22718,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @param y The y coordinatie of the cell that has been entered.
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellMouseEnter = function (x, y) {
-        console.log("onCellMouseEnter [" + x + "][" + y + "]");
+        clicker.ClickerDebug.log("onCellMouseEnter [" + x + "][" + y + "]");
         // no change if this cell is still in the compound hovering area
         if (clicker.ClickerCellManager.contains(clicker.ClickerBoard.currentHoveringCells, x, y)) {
             return;
@@ -22740,7 +22746,7 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @param y The y coordinatie of the cell that has been left.
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellMouseLeave = function (x, y) {
-        console.log("onCellMouseLeave [" + x + "][" + y + "]");
+        clicker.ClickerDebug.log("onCellMouseLeave [" + x + "][" + y + "]");
         this.unhoverAllCells();
     };
     /***************************************************************************************************************
@@ -22802,8 +22808,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave, style: { backgroundColor: this.props.color.valueOf() } });
-        //    { this.props.debugCaption }
+        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22828,6 +22833,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(21);
+var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   Represents the 'clicker' information panel.
 *
@@ -22853,7 +22859,7 @@ var ClickerInfo = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerInfo.prototype.render = function () {
-        console.log("render ClickerInfo");
+        clicker.ClickerDebug.log("render ClickerInfo");
         return React.createElement("div", { className: "clickerInfo" }, this.state.message);
     };
     return ClickerInfo;
@@ -22988,15 +22994,15 @@ var ClickerCellManager = /** @class */ (function () {
     ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y) {
         // clicking clear cells has no effect
         if (allCells[x][y].color == clicker.ClickerCellColor.CLEAR) {
-            console.log("Clear cell not affected.");
+            clicker.ClickerDebug.log("Clear cell not affected.");
             return [];
         }
         // get continguous cells
         var continguousCoordinates = clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x, y);
-        console.log("Determined [" + continguousCoordinates.length + "] affected cells");
+        clicker.ClickerDebug.log("Determined [" + continguousCoordinates.length + "] affected cells");
         // at least two cells must be affected to clear
         if (continguousCoordinates.length < 2) {
-            console.log("Single cell not affected");
+            clicker.ClickerDebug.log("Single cell not affected");
             return [];
         }
         return continguousCoordinates;

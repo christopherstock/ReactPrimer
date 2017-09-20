@@ -17,6 +17,7 @@
     *   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
     *   TODO INIT   Styling (bg image, fg translucent blocks)
     *   TODO LOW    Add animations and learn react callbacks etc.
+    *   TODO HIGH   Solve problem "onMouseEnter" not fired on browser reload or collapsing cells.
     *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters.
     *
     *   TODO WEAK   Learn 'React high-order component'

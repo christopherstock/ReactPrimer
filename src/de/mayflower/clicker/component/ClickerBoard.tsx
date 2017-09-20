@@ -32,7 +32,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            console.log( "render ClickerBoard" );
+            clicker.ClickerDebug.log( "render ClickerBoard" );
 
             return <div className="clickerBoard">
                 { this.renderAllCells() }
@@ -47,12 +47,12 @@
         private createEmptyBoard() : clicker.ClickerCellProps[][]
         {
             let cells:clicker.ClickerCellProps[][] = new Array<Array<clicker.ClickerCellProps>>( this.props.boardSizeX );
-            console.log( "Columns: " + cells.length );
+            clicker.ClickerDebug.log( "Columns: " + cells.length );
 
             for ( let x:number = 0; x < cells.length; ++x )
             {
                 cells[ x ] = new Array<clicker.ClickerCellProps>( this.props.boardSizeY );
-                console.log( "Rows: " + cells[ x ].length );
+                clicker.ClickerDebug.log( "Rows: " + cells[ x ].length );
 
                 for ( let y:number = 0; y < cells[ x ].length; ++y )
                 {
@@ -126,7 +126,7 @@
         ***************************************************************************************************************/
         private onCellClick( x:number, y:number ) : void
         {
-            console.log( "onCellClick [" + x + "][" + y + "]" );
+            clicker.ClickerDebug.log( "onCellClick [" + x + "][" + y + "]" );
 
             this.unhoverAllCells();
 
@@ -174,9 +174,9 @@
         *   @param x The x coordinatie of the cell that has been entered.
         *   @param y The y coordinatie of the cell that has been entered.
         ***************************************************************************************************************/
-        private onCellMouseEnter(x:number, y:number ) : void
+        private onCellMouseEnter( x:number, y:number ) : void
         {
-            console.log( "onCellMouseEnter [" + x + "][" + y + "]" );
+            clicker.ClickerDebug.log( "onCellMouseEnter [" + x + "][" + y + "]" );
 
             // no change if this cell is still in the compound hovering area
             if ( clicker.ClickerCellManager.contains( clicker.ClickerBoard.currentHoveringCells, x, y ) )
@@ -220,9 +220,9 @@
         *   @param x The x coordinatie of the cell that has been left.
         *   @param y The y coordinatie of the cell that has been left.
         ***************************************************************************************************************/
-        private onCellMouseLeave(x:number, y:number ) : void
+        private onCellMouseLeave( x:number, y:number ) : void
         {
-            console.log( "onCellMouseLeave [" + x + "][" + y + "]" );
+            clicker.ClickerDebug.log( "onCellMouseLeave [" + x + "][" + y + "]" );
 
             this.unhoverAllCells();
         }
