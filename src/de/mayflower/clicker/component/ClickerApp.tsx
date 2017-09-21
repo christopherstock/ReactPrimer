@@ -10,8 +10,6 @@
     *******************************************************************************************************************/
     export class ClickerApp extends React.Component<clicker.ClickerAppProps, clicker.ClickerAppState>
     {
-        public          static      test        :clicker.ClickerInfo                = null;
-
         /***************************************************************************************************************
         *   Renders the 'clicker' main game component.
         *
@@ -24,25 +22,13 @@
                 boardSizeY={     this.props.boardSizeY     }
                 numberOfColors={ this.props.numberOfColors }
             />;
-
-            // TODO ASK better way to reference JSX.Element?
-            let clickerInfoComponent:clicker.ClickerInfo = new clicker.ClickerInfo
-            (
-                {
-                    acclaim: "Enjoy your game!",
-                }
-            );
-            let clickerInfoJSX:JSX.Element = clickerInfoComponent.render();
-
-
-
-            ClickerApp.test = clickerInfoComponent;
-
-
+            let clickerInfo:JSX.Element = <clicker.ClickerInfo
+                acclaim={ "Welcome to the ReactPrimer" }
+            />;
 
             return <div className="gameContainer">
-                { clickerBoard   }
-                { clickerInfoJSX }
+                { clickerBoard }
+                { clickerInfo  }
             </div>;
         }
     }

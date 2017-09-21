@@ -10,6 +10,7 @@
     *******************************************************************************************************************/
     export class ClickerBoard extends React.Component<clicker.ClickerBoardProps, clicker.ClickerBoardState>
     {
+        /** Saves all cells that are currently in the 'hovering' state. */
         private     static      currentHoveringCells        :clicker.ClickerCellCoordinate[]        = [];
 
         /***************************************************************************************************************

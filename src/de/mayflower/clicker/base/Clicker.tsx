@@ -7,7 +7,7 @@
     *   The main class represents the application's entry point.
     *
     *   TODO HIGH   Solve problem "onMouseEnter" not fired on game startup.
-    *   TODO INIT   Nice Styling (bg image, fg translucent blocks)
+    *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
     *
     *   TODO ASK    Alter the message in the ClickerInfo component.
     *
