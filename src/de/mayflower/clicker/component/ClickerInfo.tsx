@@ -19,7 +19,7 @@
 
             this.state =
             {
-                message: "Enjoy your game!",
+                message: props.acclaim,
             };
         }
 

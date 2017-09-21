@@ -84,6 +84,7 @@
 
             let staticThis:ClickerBoard = this;
 
+            // TODO ASK better way to solve this nightmare?
             return this.state.cells.map
             (
                 function( m:clicker.ClickerCellProps[] )
@@ -139,6 +140,9 @@
 
             if ( affectedCellCoordinates.length == 0 )
             {
+                this.launchMessage();
+
+
                 return;
             }
 
@@ -246,5 +250,22 @@
                     cells: newCells,
                 }
             );
+        }
+
+        /***************************************************************************************************************
+        *   TODO ASK Access to unmounted component!
+        ***************************************************************************************************************/
+        private launchMessage()
+        {
+            console.log( "Launch a test message .." );
+
+            clicker.ClickerApp.test.setState
+            (
+                {
+                    message: "This is a test message",
+                }
+            );
+
+            // clicker.ClickerApp.test.render();
         }
     }

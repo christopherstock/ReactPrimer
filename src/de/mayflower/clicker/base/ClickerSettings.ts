@@ -8,7 +8,7 @@
     export class ClickerSettings
     {
         /** The global debug switch. */
-        public      static  readonly    DEBUG_MODE                  :boolean            = false;
+        public      static  readonly    DEBUG_MODE                  :boolean            = true;
 
         /** The application title. */
         public      static  readonly    APPLICATION_TITLE           :string             = "ReactPrimer, (c) 2017 Mayflower GmbH";

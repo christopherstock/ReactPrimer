@@ -6,23 +6,26 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
+    *   TODO INIT   Nice Styling (bg image, fg translucent blocks)
+    *   TODO HIGH   Solve problem "onMouseEnter" not fired on browser reload or collapsing cells.
+    *
     *   TODO ASAP   Alter the message in the ClickerInfo component.
-    *   TODO ASAP   Particle effects and css animations!
-    *   TODO ASAP   Check react .styl files!
-    *   TODO HIGH   Add debug system.
     *   TODO HIGH   Show "Cleared all cells!"
     *   TODO HIGH   Show "Sorry - no moves left!"
     *
-    *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState according to new game engine.
-    *   TODO HIGH   show state, score etc. in ClickerApp::render() according to new game engine.
-    *   TODO INIT   Styling (bg image, fg translucent blocks)
-    *   TODO LOW    Add animations and learn react callbacks etc.
-    *   TODO HIGH   Solve problem "onMouseEnter" not fired on browser reload or collapsing cells.
-    *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters.
+    *   TODO ASAP   Particle effects and css animations?
+    *   TODO HIGH   Animate disappearing columns.
     *
+    *   TODO ASAP   Check react .styl files!
     *   TODO WEAK   Learn 'React high-order component'
     *   TODO WEAK   Learn 'React delegates'
     *   TODO WEAK   Learn 'React promises'
+    *
+    *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState?
+    *   TODO HIGH   show state, score etc. in ClickerApp::render()?
+    *   TODO LOW    Add animations and learn react callbacks etc.?
+    *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters!
+    *
     *   TODO WEAK   Send to 'daniel.maul@web.de'
     *
     *   @author  Christopher Stock
