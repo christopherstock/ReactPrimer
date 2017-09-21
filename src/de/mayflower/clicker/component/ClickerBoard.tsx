@@ -67,7 +67,6 @@
                         debugCaption:   null,
                         onClick:        null,
                         onMouseEnter:   null,
-                        onMouseLeave:   null,
                     };
                 }
             }
@@ -113,7 +112,6 @@
                                         debugCaption={ columnId + "," + rowId                                    }
                                         onClick={      (event:MouseEvent) => { staticThis.onCellClick(      event, columnId, rowId ); } }
                                         onMouseEnter={ () => { staticThis.onCellMouseEnter( columnId, rowId ); } }
-                                        onMouseLeave={ () => { staticThis.onCellMouseLeave( columnId, rowId ); } }
                                     />
                                 }
                             )
@@ -224,21 +222,6 @@
                     cells: newCells,
                 }
             );
-        }
-
-        /***************************************************************************************************************
-        *   Being invoked when the mouse leaves a cell on the board.
-        *
-        *   @param x The x coordinatie of the cell that has been left.
-        *   @param y The y coordinatie of the cell that has been left.
-        ***************************************************************************************************************/
-        private onCellMouseLeave( x:number, y:number ) : void
-        {
-/*
-            clicker.ClickerDebug.log( "onCellMouseLeave [" + x + "][" + y + "]" );
-
-            this.unhoverAllCells();
-*/
         }
 
         /***************************************************************************************************************

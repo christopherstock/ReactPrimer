@@ -26,7 +26,4 @@
 
         /** The callback to invoke when the mouse enters this cell. */
         onMouseEnter            :any;
-
-        /** The callback to invoke when the mouse leaves this cell. */
-        onMouseLeave            :any;
     }

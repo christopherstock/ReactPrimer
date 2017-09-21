@@ -22661,8 +22661,7 @@ var ClickerBoard = /** @class */ (function (_super) {
                     className: "clickerCell",
                     debugCaption: null,
                     onClick: null,
-                    onMouseEnter: null,
-                    onMouseLeave: null
+                    onMouseEnter: null
                 };
             }
         }
@@ -22686,7 +22685,7 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { key: clicker.Clicker.currentCellIndex++, color: n.color, className: n.className, debugCaption: columnId + "," + rowId, onClick: function (event) { staticThis.onCellClick(event, columnId, rowId); }, onMouseEnter: function () { staticThis.onCellMouseEnter(columnId, rowId); }, onMouseLeave: function () { staticThis.onCellMouseLeave(columnId, rowId); } });
+                return React.createElement(clicker.ClickerCell, { key: clicker.Clicker.currentCellIndex++, color: n.color, className: n.className, debugCaption: columnId + "," + rowId, onClick: function (event) { staticThis.onCellClick(event, columnId, rowId); }, onMouseEnter: function () { staticThis.onCellMouseEnter(columnId, rowId); } });
             }));
         });
     };
@@ -22750,19 +22749,6 @@ var ClickerBoard = /** @class */ (function (_super) {
         this.setState({
             cells: newCells
         });
-    };
-    /***************************************************************************************************************
-    *   Being invoked when the mouse leaves a cell on the board.
-    *
-    *   @param x The x coordinatie of the cell that has been left.
-    *   @param y The y coordinatie of the cell that has been left.
-    ***************************************************************************************************************/
-    ClickerBoard.prototype.onCellMouseLeave = function (x, y) {
-        /*
-                    clicker.ClickerDebug.log( "onCellMouseLeave [" + x + "][" + y + "]" );
-        
-                    this.unhoverAllCells();
-        */
     };
     /***************************************************************************************************************
     *   Alters all cells css class to the default one.
@@ -22848,7 +22834,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
