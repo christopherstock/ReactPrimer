@@ -13,6 +13,12 @@
         /** Saves all cells that are currently in the 'hovering' state. */
         private     static      currentHoveringCells        :clicker.ClickerCellCoordinate[]        = [];
 
+        /** The last mouse click coordinate X. */
+        private     static      lastMouseClickX             :number                                 = -1;
+
+        /** The last mouse click coordinate Y. */
+        private     static      lastMouseClickY             :number                                 = -1;
+
         /***************************************************************************************************************
         *   Creates a new clicker board.
         ***************************************************************************************************************/
@@ -61,12 +67,12 @@
                 for ( let y:number = 0; y < cells[ x ].length; ++y )
                 {
                     cells[ x ][ y ] = {
-                        key:            0,
-                        color:          clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
-                        className:      "clickerCell",
-                        debugCaption:   null,
-                        onClick:        null,
-                        onMouseEnter:   null,
+                        key:          0,
+                        color:        clicker.ClickerCellManager.getRandomColor( this.props.numberOfColors ),
+                        className:    "clickerCell",
+                        debugCaption: null,
+                        onClick:      null,
+                        onMouseEnter: null,
                     };
                 }
             }
@@ -141,11 +147,19 @@
                 y
             );
 
+            // clicking clear cells has no effect
             if ( affectedCellCoordinates.length == 0 )
             {
-                this.launchMessage();
+                clicker.ClickerDebug.log( "Clicked a clear cell" );
+                clicker.ClickerInfo.singleton.showMessage( "Clicking clear cells has no effect!" );
+                return;
+            }
 
-
+            // at least two cells must be affected to clear
+            if ( affectedCellCoordinates.length < 2 )
+            {
+                clicker.ClickerDebug.log( "Single cell not affected" );
+                clicker.ClickerInfo.singleton.showMessage( "Clicking clear cells has no effect!" );
                 return;
             }
 
@@ -167,15 +181,22 @@
             // hide all empty columns
             newCells = clicker.ClickerCellManager.reduceEmptyColumns( newCells );
 
+            // save mouse event
+            clicker.ClickerBoard.lastMouseClickX = event.clientX;
+            clicker.ClickerBoard.lastMouseClickY = event.clientY;
+
             // assign all new cells
             this.setState(
                 {
                     cells: newCells,
                 }
             );
+        }
 
+        public componentDidUpdate()
+        {
             // get element under mouse
-            this.triggerOnMouseEnterForDivUnderMouse( event );
+            this.triggerOnMouseEnterForDivUnderMouse();
         }
 
         /***************************************************************************************************************
@@ -203,7 +224,7 @@
                 y
             );
 
-            if ( clicker.ClickerBoard.currentHoveringCells.length == 0 )
+            if ( clicker.ClickerBoard.currentHoveringCells.length < 2 )
             {
                 return;
             }
@@ -248,14 +269,27 @@
         /***************************************************************************************************************
         *   Triggers an onMouseEnter event for the div that is located under the mouse cursor.
         ***************************************************************************************************************/
-        private triggerOnMouseEnterForDivUnderMouse( event:MouseEvent )
+        private triggerOnMouseEnterForDivUnderMouse()
         {
-            let elementMouseIsOver:Element = document.elementFromPoint( event.clientX, event.clientY );
+            if ( clicker.ClickerBoard.lastMouseClickX == -1 || clicker.ClickerBoard.lastMouseClickY == -1 )
+            {
+                return;
+            }
+
+            let elementMouseIsOver:Element = document.elementFromPoint
+            (
+                clicker.ClickerBoard.lastMouseClickX,
+                clicker.ClickerBoard.lastMouseClickY
+            );
+
+            clicker.ClickerBoard.lastMouseClickX = -1;
+            clicker.ClickerBoard.lastMouseClickY = -1;
+
             if ( elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement )
             {
                 let divMouseIsOver:HTMLDivElement = elementMouseIsOver as HTMLDivElement;
 
-                console.log( "MOUSE OVER DIV [" + divMouseIsOver.innerHTML + "]" );
+                console.log( "mouse over div [" + divMouseIsOver.innerHTML + "]" );
 
                 let splits:string[] = divMouseIsOver.innerHTML.split( "," );
 
@@ -264,22 +298,5 @@
 
                 this.onCellMouseEnter( cellX, cellY );
             }
-        }
-
-        /***************************************************************************************************************
-        *   TODO ASK Access to unmounted component!
-        ***************************************************************************************************************/
-        private launchMessage()
-        {
-            console.log( "Launch a test message .." );
-
-            clicker.ClickerApp.test.setState
-            (
-                {
-                    message: "This is a test message",
-                }
-            );
-
-            // clicker.ClickerApp.test.render();
         }
     }

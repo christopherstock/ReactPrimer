@@ -28,7 +28,7 @@
             return <div
                 className={    this.props.className                          }
                 onClick={      this.props.onClick                            }
-                onMouseEnter={ this.props.onMouseEnter                       }
+                onMouseMove={  this.props.onMouseEnter                       }
                 style={     {  backgroundColor: this.props.color.valueOf() } }
             >
                 { this.props.debugCaption }

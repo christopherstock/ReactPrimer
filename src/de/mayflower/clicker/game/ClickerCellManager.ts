@@ -166,6 +166,12 @@
         )
         : clicker.ClickerCellCoordinate[]
         {
+            // prevent exceptions
+            if ( allCells[ x ][ y ] == null )
+            {
+                return null;
+            }
+
             // clicking clear cells has no effect
             if ( allCells[ x ][ y ].color == clicker.ClickerCellColor.CLEAR )
             {
@@ -181,13 +187,6 @@
                 y
             );
             clicker.ClickerDebug.log( "Determined [" + continguousCoordinates.length + "] affected cells" );
-
-            // at least two cells must be affected to clear
-            if ( continguousCoordinates.length < 2 )
-            {
-                clicker.ClickerDebug.log( "Single cell not affected" );
-                return [];
-            }
 
             return continguousCoordinates;
         }

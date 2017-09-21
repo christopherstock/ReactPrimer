@@ -10,6 +10,9 @@
     *******************************************************************************************************************/
     export class ClickerInfo extends React.Component<clicker.ClickerInfoProps, clicker.ClickerInfoState>
     {
+        /** The singleton instance of this class. */
+        public          static          singleton               :clicker.ClickerInfo                    = null;
+
         /***************************************************************************************************************
         *   Creates a new clicker information panel.
         ***************************************************************************************************************/
@@ -35,5 +38,28 @@
             return <div className="clickerInfo">
                 { this.state.message }
             </div>;
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked when this component did mount.
+        ***************************************************************************************************************/
+        public componentDidMount() : void
+        {
+            clicker.ClickerInfo.singleton = this;
+        }
+
+        /***************************************************************************************************************
+        *   Updates the component and shows the given message.
+        ***************************************************************************************************************/
+        public showMessage( msg:string ) : void
+        {
+            console.log( "Show message [" + msg + "]" );
+
+            this.setState
+            (
+                {
+                    message: msg,
+                }
+            );
         }
     }

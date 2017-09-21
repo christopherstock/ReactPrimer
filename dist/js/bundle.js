@@ -9799,7 +9799,6 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO HIGH   Solve problem "onMouseEnter" not fired on game startup.
 *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
 *
 *   TODO ASK    Alter the message in the ClickerInfo component.
@@ -22700,8 +22699,16 @@ var ClickerBoard = /** @class */ (function (_super) {
         clicker.ClickerDebug.log("onCellClick [" + x + "][" + y + "]");
         this.unhoverAllCells();
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
+        // clicking clear cells has no effect
         if (affectedCellCoordinates.length == 0) {
-            this.launchMessage();
+            clicker.ClickerDebug.log("Clicked a clear cell");
+            clicker.ClickerInfo.singleton.showMessage("Clicking clear cells has no effect!");
+            return;
+        }
+        // at least two cells must be affected to clear
+        if (affectedCellCoordinates.length < 2) {
+            clicker.ClickerDebug.log("Single cell not affected");
+            clicker.ClickerInfo.singleton.showMessage("Clicking clear cells has no effect!");
             return;
         }
         // deep clone all cells
@@ -22715,12 +22722,17 @@ var ClickerBoard = /** @class */ (function (_super) {
         clicker.ClickerCellManager.collapseClearedCells(newCells);
         // hide all empty columns
         newCells = clicker.ClickerCellManager.reduceEmptyColumns(newCells);
+        // save mouse event
+        clicker.ClickerBoard.lastMouseClickX = event.clientX;
+        clicker.ClickerBoard.lastMouseClickY = event.clientY;
         // assign all new cells
         this.setState({
             cells: newCells
         });
+    };
+    ClickerBoard.prototype.componentDidUpdate = function () {
         // get element under mouse
-        this.triggerOnMouseEnterForDivUnderMouse(event);
+        this.triggerOnMouseEnterForDivUnderMouse();
     };
     /***************************************************************************************************************
     *   Being invoked when the mouse enters a cell on the board.
@@ -22736,7 +22748,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         }
         this.unhoverAllCells();
         clicker.ClickerBoard.currentHoveringCells = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
-        if (clicker.ClickerBoard.currentHoveringCells.length == 0) {
+        if (clicker.ClickerBoard.currentHoveringCells.length < 2) {
             return;
         }
         var newCells = this.state.cells;
@@ -22768,29 +22780,28 @@ var ClickerBoard = /** @class */ (function (_super) {
     /***************************************************************************************************************
     *   Triggers an onMouseEnter event for the div that is located under the mouse cursor.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.triggerOnMouseEnterForDivUnderMouse = function (event) {
-        var elementMouseIsOver = document.elementFromPoint(event.clientX, event.clientY);
+    ClickerBoard.prototype.triggerOnMouseEnterForDivUnderMouse = function () {
+        if (clicker.ClickerBoard.lastMouseClickX == -1 || clicker.ClickerBoard.lastMouseClickY == -1) {
+            return;
+        }
+        var elementMouseIsOver = document.elementFromPoint(clicker.ClickerBoard.lastMouseClickX, clicker.ClickerBoard.lastMouseClickY);
+        clicker.ClickerBoard.lastMouseClickX = -1;
+        clicker.ClickerBoard.lastMouseClickY = -1;
         if (elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement) {
             var divMouseIsOver = elementMouseIsOver;
-            console.log("MOUSE OVER DIV [" + divMouseIsOver.innerHTML + "]");
+            console.log("mouse over div [" + divMouseIsOver.innerHTML + "]");
             var splits = divMouseIsOver.innerHTML.split(",");
             var cellX = parseInt(splits[0]);
             var cellY = parseInt(splits[1]);
             this.onCellMouseEnter(cellX, cellY);
         }
     };
-    /***************************************************************************************************************
-    *   TODO ASK Access to unmounted component!
-    ***************************************************************************************************************/
-    ClickerBoard.prototype.launchMessage = function () {
-        console.log("Launch a test message ..");
-        clicker.ClickerApp.test.setState({
-            message: "This is a test message"
-        });
-        // clicker.ClickerApp.test.render();
-    };
     /** Saves all cells that are currently in the 'hovering' state. */
     ClickerBoard.currentHoveringCells = [];
+    /** The last mouse click coordinate X. */
+    ClickerBoard.lastMouseClickX = -1;
+    /** The last mouse click coordinate Y. */
+    ClickerBoard.lastMouseClickY = -1;
     return ClickerBoard;
 }(React.Component));
 exports.ClickerBoard = ClickerBoard;
@@ -22834,7 +22845,7 @@ var ClickerCell = /** @class */ (function (_super) {
     *   @return The rendered cell.
     ***************************************************************************************************************/
     ClickerCell.prototype.render = function () {
-        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseEnter: this.props.onMouseEnter, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
+        return React.createElement("div", { className: this.props.className, onClick: this.props.onClick, onMouseMove: this.props.onMouseEnter, style: { backgroundColor: this.props.color.valueOf() } }, this.props.debugCaption);
     };
     return ClickerCell;
 }(React.Component));
@@ -22888,6 +22899,23 @@ var ClickerInfo = /** @class */ (function (_super) {
         clicker.ClickerDebug.log("render ClickerInfo");
         return React.createElement("div", { className: "clickerInfo" }, this.state.message);
     };
+    /***************************************************************************************************************
+    *   Being invoked when this component did mount.
+    ***************************************************************************************************************/
+    ClickerInfo.prototype.componentDidMount = function () {
+        clicker.ClickerInfo.singleton = this;
+    };
+    /***************************************************************************************************************
+    *   Updates the component and shows the given message.
+    ***************************************************************************************************************/
+    ClickerInfo.prototype.showMessage = function (msg) {
+        console.log("Show message [" + msg + "]");
+        this.setState({
+            message: msg
+        });
+    };
+    /** The singleton instance of this class. */
+    ClickerInfo.singleton = null;
     return ClickerInfo;
 }(React.Component));
 exports.ClickerInfo = ClickerInfo;
@@ -23018,6 +23046,10 @@ var ClickerCellManager = /** @class */ (function () {
     *   @return All affected cell coordinates including the clicked one.
     ***************************************************************************************************************/
     ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y) {
+        // prevent exceptions
+        if (allCells[x][y] == null) {
+            return null;
+        }
         // clicking clear cells has no effect
         if (allCells[x][y].color == clicker.ClickerCellColor.CLEAR) {
             clicker.ClickerDebug.log("Clear cell not affected.");
@@ -23026,11 +23058,6 @@ var ClickerCellManager = /** @class */ (function () {
         // get continguous cells
         var continguousCoordinates = clicker.ClickerCellManager.getContinguousCellCoordinates(allCells, x, y);
         clicker.ClickerDebug.log("Determined [" + continguousCoordinates.length + "] affected cells");
-        // at least two cells must be affected to clear
-        if (continguousCoordinates.length < 2) {
-            clicker.ClickerDebug.log("Single cell not affected");
-            return [];
-        }
         return continguousCoordinates;
     };
     /***************************************************************************************************************
