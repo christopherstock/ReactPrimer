@@ -34,7 +34,10 @@
         {
             clicker.ClickerDebug.log( "render ClickerBoard" );
 
-            return <div className="clickerBoard">
+            return <div
+                className="clickerBoard"
+                onMouseLeave={ () => { this.unhoverAllCells(); } }
+            >
                 { this.renderAllCells() }
             </div>;
         }
@@ -107,7 +110,7 @@
                                         color={        n.color                                                   }
                                         className={    n.className                                               }
                                         debugCaption={ columnId + "," + rowId                                    }
-                                        onClick={      () => { staticThis.onCellClick(      columnId, rowId ); } }
+                                        onClick={      (event:MouseEvent) => { staticThis.onCellClick(      event, columnId, rowId ); } }
                                         onMouseEnter={ () => { staticThis.onCellMouseEnter( columnId, rowId ); } }
                                         onMouseLeave={ () => { staticThis.onCellMouseLeave( columnId, rowId ); } }
                                     />
@@ -122,10 +125,11 @@
         /***************************************************************************************************************
         *   Being invoked when a cell on the board is clicked.
         *
-        *   @param x The x coordinatie of the cell that has been clicked.
-        *   @param y The y coordinatie of the cell that has been clicked.
+        *   @param event The mouse event being invoked.
+        *   @param x     The x coordinatie of the cell that has been clicked.
+        *   @param y     The y coordinatie of the cell that has been clicked.
         ***************************************************************************************************************/
-        private onCellClick( x:number, y:number ) : void
+        private onCellClick( event:MouseEvent, x:number, y:number ) : void
         {
             clicker.ClickerDebug.log( "onCellClick [" + x + "][" + y + "]" );
 
@@ -170,6 +174,9 @@
                     cells: newCells,
                 }
             );
+
+            // get element under mouse
+            this.triggerOnMouseEnterForDivUnderMouse( event );
         }
 
         /***************************************************************************************************************
@@ -226,9 +233,11 @@
         ***************************************************************************************************************/
         private onCellMouseLeave( x:number, y:number ) : void
         {
+/*
             clicker.ClickerDebug.log( "onCellMouseLeave [" + x + "][" + y + "]" );
 
             this.unhoverAllCells();
+*/
         }
 
         /***************************************************************************************************************
@@ -250,6 +259,27 @@
                     cells: newCells,
                 }
             );
+        }
+
+        /***************************************************************************************************************
+        *   Triggers an onMouseEnter event for the div that is located under the mouse cursor.
+        ***************************************************************************************************************/
+        private triggerOnMouseEnterForDivUnderMouse( event:MouseEvent )
+        {
+            let elementMouseIsOver:Element = document.elementFromPoint( event.clientX, event.clientY );
+            if ( elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement )
+            {
+                let divMouseIsOver:HTMLDivElement = elementMouseIsOver as HTMLDivElement;
+
+                console.log( "MOUSE OVER DIV [" + divMouseIsOver.innerHTML + "]" );
+
+                let splits:string[] = divMouseIsOver.innerHTML.split( "," );
+
+                let cellX:number = parseInt( splits[ 0 ] );
+                let cellY:number = parseInt( splits[ 1 ] );
+
+                this.onCellMouseEnter( cellX, cellY );
+            }
         }
 
         /***************************************************************************************************************

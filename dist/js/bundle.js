@@ -9799,25 +9799,26 @@ var clicker = __webpack_require__(20);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
+*   TODO HIGH   Solve problem "onMouseEnter" not fired on game startup.
 *   TODO INIT   Nice Styling (bg image, fg translucent blocks)
-*   TODO HIGH   Solve problem "onMouseEnter" not fired on browser reload or collapsing cells.
 *
-*   TODO ASAP   Alter the message in the ClickerInfo component.
+*   TODO ASK    Alter the message in the ClickerInfo component.
+*
 *   TODO HIGH   Show "Cleared all cells!"
 *   TODO HIGH   Show "Sorry - no moves left!"
 *
 *   TODO ASAP   Particle effects and css animations?
 *   TODO HIGH   Animate disappearing columns.
 *
-*   TODO ASAP   Check react .styl files!
-*   TODO WEAK   Learn 'React high-order component'
-*   TODO WEAK   Learn 'React delegates'
-*   TODO WEAK   Learn 'React promises'
-*
 *   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState?
 *   TODO HIGH   show state, score etc. in ClickerApp::render()?
 *   TODO LOW    Add animations and learn react callbacks etc.?
 *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters!
+*
+*   TODO ASK    Check react .styl files!
+*   TODO ASK    Learn 'React high-order component'
+*   TODO ASK    Learn 'React delegates'
+*   TODO ASK    Learn 'React promises'
 *
 *   TODO WEAK   Send to 'daniel.maul@web.de'
 *
@@ -22644,8 +22645,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @return The rendered Board.
     ***************************************************************************************************************/
     ClickerBoard.prototype.render = function () {
+        var _this = this;
         clicker.ClickerDebug.log("render ClickerBoard");
-        return React.createElement("div", { className: "clickerBoard" }, this.renderAllCells());
+        return React.createElement("div", { className: "clickerBoard", onMouseLeave: function () { _this.unhoverAllCells(); } }, this.renderAllCells());
     };
     /***************************************************************************************************************
     *   Creates an empty board represented by an empty 2d array of the desired size.
@@ -22690,17 +22692,18 @@ var ClickerBoard = /** @class */ (function (_super) {
             return React.createElement("div", { className: "clickerColumn", key: columnKey++ }, m.map(function (n) {
                 var rowId = y;
                 ++y;
-                return React.createElement(clicker.ClickerCell, { key: clicker.Clicker.currentCellIndex++, color: n.color, className: n.className, debugCaption: columnId + "," + rowId, onClick: function () { staticThis.onCellClick(columnId, rowId); }, onMouseEnter: function () { staticThis.onCellMouseEnter(columnId, rowId); }, onMouseLeave: function () { staticThis.onCellMouseLeave(columnId, rowId); } });
+                return React.createElement(clicker.ClickerCell, { key: clicker.Clicker.currentCellIndex++, color: n.color, className: n.className, debugCaption: columnId + "," + rowId, onClick: function (event) { staticThis.onCellClick(event, columnId, rowId); }, onMouseEnter: function () { staticThis.onCellMouseEnter(columnId, rowId); }, onMouseLeave: function () { staticThis.onCellMouseLeave(columnId, rowId); } });
             }));
         });
     };
     /***************************************************************************************************************
     *   Being invoked when a cell on the board is clicked.
     *
-    *   @param x The x coordinatie of the cell that has been clicked.
-    *   @param y The y coordinatie of the cell that has been clicked.
+    *   @param event The mouse event being invoked.
+    *   @param x     The x coordinatie of the cell that has been clicked.
+    *   @param y     The y coordinatie of the cell that has been clicked.
     ***************************************************************************************************************/
-    ClickerBoard.prototype.onCellClick = function (x, y) {
+    ClickerBoard.prototype.onCellClick = function (event, x, y) {
         clicker.ClickerDebug.log("onCellClick [" + x + "][" + y + "]");
         this.unhoverAllCells();
         var affectedCellCoordinates = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
@@ -22723,6 +22726,8 @@ var ClickerBoard = /** @class */ (function (_super) {
         this.setState({
             cells: newCells
         });
+        // get element under mouse
+        this.triggerOnMouseEnterForDivUnderMouse(event);
     };
     /***************************************************************************************************************
     *   Being invoked when the mouse enters a cell on the board.
@@ -22759,8 +22764,11 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   @param y The y coordinatie of the cell that has been left.
     ***************************************************************************************************************/
     ClickerBoard.prototype.onCellMouseLeave = function (x, y) {
-        clicker.ClickerDebug.log("onCellMouseLeave [" + x + "][" + y + "]");
-        this.unhoverAllCells();
+        /*
+                    clicker.ClickerDebug.log( "onCellMouseLeave [" + x + "][" + y + "]" );
+        
+                    this.unhoverAllCells();
+        */
     };
     /***************************************************************************************************************
     *   Alters all cells css class to the default one.
@@ -22776,6 +22784,20 @@ var ClickerBoard = /** @class */ (function (_super) {
         this.setState({
             cells: newCells
         });
+    };
+    /***************************************************************************************************************
+    *   Triggers an onMouseEnter event for the div that is located under the mouse cursor.
+    ***************************************************************************************************************/
+    ClickerBoard.prototype.triggerOnMouseEnterForDivUnderMouse = function (event) {
+        var elementMouseIsOver = document.elementFromPoint(event.clientX, event.clientY);
+        if (elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement) {
+            var divMouseIsOver = elementMouseIsOver;
+            console.log("MOUSE OVER DIV [" + divMouseIsOver.innerHTML + "]");
+            var splits = divMouseIsOver.innerHTML.split(",");
+            var cellX = parseInt(splits[0]);
+            var cellY = parseInt(splits[1]);
+            this.onCellMouseEnter(cellX, cellY);
+        }
     };
     /***************************************************************************************************************
     *   TODO ASK Access to unmounted component!
