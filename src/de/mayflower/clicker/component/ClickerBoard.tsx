@@ -302,13 +302,12 @@
             if ( elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement )
             {
                 let divMouseIsOver:HTMLDivElement = elementMouseIsOver as HTMLDivElement;
-
-                clicker.ClickerDebug.log( "mouse over div [" + divMouseIsOver.innerHTML + "]" );
-
                 let splits:string[] = divMouseIsOver.innerHTML.split( "," );
 
                 let cellX:number = parseInt( splits[ 0 ] );
                 let cellY:number = parseInt( splits[ 1 ] );
+
+                clicker.ClickerDebug.log( "mouse over div [" + cellX + "][" + cellY + "]" );
 
                 this.onCellMouseEnter( cellX, cellY );
             }
