@@ -254,20 +254,10 @@
         ***************************************************************************************************************/
         private unhoverAllCells() : void
         {
-            if ( clicker.ClickerBoard.currentHoveringCells == null )
-            {
-                return;
-            }
-
             let newCells:clicker.ClickerCellProps[][] = this.state.cells;
 
             for ( let affectedCoordinate of clicker.ClickerBoard.currentHoveringCells )
             {
-                if ( newCells == null || newCells[ affectedCoordinate.x ] == null || newCells[ affectedCoordinate.y ] == null )
-                {
-                    return;
-                }
-
                 newCells[ affectedCoordinate.x ][ affectedCoordinate.y ].className = "clickerCell";
             }
             clicker.ClickerBoard.currentHoveringCells = [];

@@ -22765,15 +22765,9 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   Alters all cells css class to the default one.
     ***************************************************************************************************************/
     ClickerBoard.prototype.unhoverAllCells = function () {
-        if (clicker.ClickerBoard.currentHoveringCells == null) {
-            return;
-        }
         var newCells = this.state.cells;
         for (var _i = 0, _a = clicker.ClickerBoard.currentHoveringCells; _i < _a.length; _i++) {
             var affectedCoordinate = _a[_i];
-            if (newCells == null || newCells[affectedCoordinate.x] == null || newCells[affectedCoordinate.y] == null) {
-                return;
-            }
             newCells[affectedCoordinate.x][affectedCoordinate.y].className = "clickerCell";
         }
         clicker.ClickerBoard.currentHoveringCells = [];
@@ -23054,7 +23048,7 @@ var ClickerCellManager = /** @class */ (function () {
     ***************************************************************************************************************/
     ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y) {
         // prevent exceptions
-        if (allCells == null || allCells[x] == null || allCells[x][y] == null) {
+        if (allCells[x][y] == null) {
             return null;
         }
         // clicking clear cells has no effect
@@ -23078,9 +23072,6 @@ var ClickerCellManager = /** @class */ (function () {
     *           Otherwise <code>false</code>.
     ***************************************************************************************************************/
     ClickerCellManager.contains = function (coordinates, x, y) {
-        if (coordinates == null) {
-            return false;
-        }
         for (var _i = 0, coordinates_1 = coordinates; _i < coordinates_1.length; _i++) {
             var coordinate = coordinates_1[_i];
             if (coordinate.x == x && coordinate.y == y) {

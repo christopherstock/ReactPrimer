@@ -167,7 +167,7 @@
         : clicker.ClickerCellCoordinate[]
         {
             // prevent exceptions
-            if ( allCells == null || allCells[ x ] == null || allCells[ x ][ y ] == null )
+            if ( allCells[ x ][ y ] == null )
             {
                 return null;
             }
@@ -209,11 +209,6 @@
         )
         : boolean
         {
-            if ( coordinates == null )
-            {
-                return false;
-            }
-
             for ( let coordinate of coordinates )
             {
                 if ( coordinate.x == x && coordinate.y == y )
