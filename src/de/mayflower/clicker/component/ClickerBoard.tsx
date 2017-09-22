@@ -190,7 +190,7 @@
             }
 
             // check board locked
-            if ( clicker.ClickerCellManager.checkBoardLocked( newCells ) )
+            else if ( clicker.ClickerCellManager.checkBoardLocked( newCells ) )
             {
                 clicker.ClickerInfo.singleton.showMessage( "Sorry! No moves left!" );
             }
