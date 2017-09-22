@@ -312,4 +312,30 @@
 
             return true;
         }
+
+        /***************************************************************************************************************
+        *   Checks if no more moves are possible.
+        *
+        *   @param cells All cells to collapse cleared cells for.
+        ***************************************************************************************************************/
+        public static checkBoardLocked( cells:clicker.ClickerCellProps[][] )
+        {
+            // browse all columns
+            for ( let x:number = 0; x < cells.length; ++x )
+            {
+                // browse all cells from TOP to BOTTOM
+                for ( let y:number = 0; y < cells[ x ].length; ++y )
+                {
+                    if ( cells[ x ][ y ].color != clicker.ClickerCellColor.CLEAR )
+                    {
+                        if ( clicker.ClickerCellManager.getAffectedCellCoordinates( cells, x, y ).length >= 2 )
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
     }

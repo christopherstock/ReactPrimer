@@ -9800,7 +9800,6 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO INIT   Show "Sorry - no moves left"?
 *   TODO INIT   Animate disappearing columns?
 *   TODO INIT   Particle effects and css animations?
 *   TODO INIT   Create button and input fields for recreating the gamefield with own parameters!
@@ -22718,6 +22717,10 @@ var ClickerBoard = /** @class */ (function (_super) {
         if (clicker.ClickerCellManager.checkBoardClear(newCells)) {
             clicker.ClickerInfo.singleton.showMessage("Congrats! You solved the game!");
         }
+        // check board locked
+        if (clicker.ClickerCellManager.checkBoardLocked(newCells)) {
+            clicker.ClickerInfo.singleton.showMessage("Sorry! No moves left!");
+        }
         // assign all new cells
         this.setState({
             cells: newCells
@@ -23138,6 +23141,25 @@ var ClickerCellManager = /** @class */ (function () {
                 var cell = column_1[_a];
                 if (cell.color != clicker.ClickerCellColor.CLEAR) {
                     return false;
+                }
+            }
+        }
+        return true;
+    };
+    /***************************************************************************************************************
+    *   Checks if no more moves are possible.
+    *
+    *   @param cells All cells to collapse cleared cells for.
+    ***************************************************************************************************************/
+    ClickerCellManager.checkBoardLocked = function (cells) {
+        // browse all columns
+        for (var x = 0; x < cells.length; ++x) {
+            // browse all cells from TOP to BOTTOM
+            for (var y = 0; y < cells[x].length; ++y) {
+                if (cells[x][y].color != clicker.ClickerCellColor.CLEAR) {
+                    if (clicker.ClickerCellManager.getAffectedCellCoordinates(cells, x, y).length >= 2) {
+                        return false;
+                    }
                 }
             }
         }

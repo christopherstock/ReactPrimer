@@ -6,7 +6,6 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO INIT   Show "Sorry - no moves left"?
     *   TODO INIT   Animate disappearing columns?
     *   TODO INIT   Particle effects and css animations?
     *   TODO INIT   Create button and input fields for recreating the gamefield with own parameters!

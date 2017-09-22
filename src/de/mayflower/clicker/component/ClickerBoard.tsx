@@ -189,6 +189,12 @@
                 clicker.ClickerInfo.singleton.showMessage( "Congrats! You solved the game!" );
             }
 
+            // check board locked
+            if ( clicker.ClickerCellManager.checkBoardLocked( newCells ) )
+            {
+                clicker.ClickerInfo.singleton.showMessage( "Sorry! No moves left!" );
+            }
+
             // assign all new cells
             this.setState(
                 {
