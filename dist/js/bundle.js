@@ -9799,6 +9799,7 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
+*   TODO ASAP   Bg music.
 *   TODO ASAP   Style cell colors.
 *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
 *   TODO HIGH   Show "Sorry - no moves left!"
@@ -23048,8 +23049,8 @@ var ClickerCellManager = /** @class */ (function () {
     ***************************************************************************************************************/
     ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y) {
         // prevent exceptions
-        if (allCells[x][y] == null) {
-            return null;
+        if (allCells == null || allCells[x] == null || allCells[x][y] == null) {
+            return [];
         }
         // clicking clear cells has no effect
         if (allCells[x][y].color == clicker.ClickerCellColor.CLEAR) {

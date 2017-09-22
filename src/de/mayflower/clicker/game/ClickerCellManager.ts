@@ -167,9 +167,9 @@
         : clicker.ClickerCellCoordinate[]
         {
             // prevent exceptions
-            if ( allCells[ x ][ y ] == null )
+            if ( allCells == null || allCells[ x ] == null || allCells[ x ][ y ] == null )
             {
-                return null;
+                return [];
             }
 
             // clicking clear cells has no effect
