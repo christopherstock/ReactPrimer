@@ -7,11 +7,11 @@
     *******************************************************************************************************************/
     export enum ClickerCellColor
     {
-        CLEAR        = "rgba( 0, 0, 0, 0.0 )",
+        CLEAR         = "rgba( 0, 0, 0, 0.0 )",
 
-        COLOR_YELLOW = "#ffff00",
-        COLOR_ORANGE = "#ffb05d",
-        COLOR_RED    = "#ff0000",
-        COLOR_GREEN  = "#00ff00",
-        COLOR_BLUE   = "#0000ff",
+        COLOR_WHITE   = "#ffffff",
+
+        COLOR_FIELD_1 = "#8ce7ff",
+        COLOR_FIELD_2 = "#00b4db",
+        COLOR_FIELD_3 = "#0089ae",
     }

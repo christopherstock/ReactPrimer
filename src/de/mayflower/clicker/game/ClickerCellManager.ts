@@ -18,12 +18,11 @@
         {
             switch ( clicker.ClickerMath.getRandomInt( 0, numberOfColors - 1 ) )
             {
-                case 0:  return clicker.ClickerCellColor.COLOR_BLUE;
-                case 1:  return clicker.ClickerCellColor.COLOR_RED;
-                case 2:  return clicker.ClickerCellColor.COLOR_GREEN;
-                case 3:  return clicker.ClickerCellColor.COLOR_ORANGE;
+                case 0:  return clicker.ClickerCellColor.COLOR_FIELD_1;
+                case 1:  return clicker.ClickerCellColor.COLOR_FIELD_2;
+                case 2:  return clicker.ClickerCellColor.COLOR_FIELD_3;
 
-                default: return clicker.ClickerCellColor.COLOR_YELLOW;
+                default: return clicker.ClickerCellColor.COLOR_WHITE;
             }
         }
 

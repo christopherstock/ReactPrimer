@@ -7,7 +7,6 @@
     *   The main class represents the application's entry point.
     *
     *   TODO ASAP   Bg music.
-    *   TODO ASAP   Style cell colors.
     *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
     *   TODO HIGH   Show "Sorry - no moves left!"
     *
