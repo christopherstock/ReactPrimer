@@ -6,9 +6,10 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
-    *
     *   TODO HIGH   Show "Cleared all cells!"
+    *   TODO HIGH   Transparent msg bg.
+    *   TODO ASAP   Style colors.
+    *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
     *   TODO HIGH   Show "Sorry - no moves left!"
     *
     *   TODO ASAP   Particle effects and css animations?

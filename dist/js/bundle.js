@@ -9799,9 +9799,10 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
-*
 *   TODO HIGH   Show "Cleared all cells!"
+*   TODO HIGH   Transparent msg bg.
+*   TODO ASAP   Style colors.
+*   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
 *   TODO HIGH   Show "Sorry - no moves left!"
 *
 *   TODO ASAP   Particle effects and css animations?
@@ -22535,11 +22536,11 @@ var ClickerSettings = /** @class */ (function () {
     /** The application title. */
     ClickerSettings.APPLICATION_TITLE = "ReactPrimer, (c) 2017 Mayflower GmbH";
     /** The default number of different cell colors. */
-    ClickerSettings.DEFAULT_NUMBER_OF_COLORS = 3;
+    ClickerSettings.DEFAULT_NUMBER_OF_COLORS = 2; // 3;
     /** The default board dimension x. */
-    ClickerSettings.DEFAULT_BOARD_SIZE_X = 16;
+    ClickerSettings.DEFAULT_BOARD_SIZE_X = 5; // 16;
     /** The default board dimension y. */
-    ClickerSettings.DEFAULT_BOARD_SIZE_Y = 22;
+    ClickerSettings.DEFAULT_BOARD_SIZE_Y = 5; // 22;
     return ClickerSettings;
 }());
 exports.ClickerSettings = ClickerSettings;
@@ -22721,6 +22722,10 @@ var ClickerBoard = /** @class */ (function (_super) {
         // save mouse event
         clicker.ClickerBoard.lastMouseClickX = event.clientX;
         clicker.ClickerBoard.lastMouseClickY = event.clientY;
+        // check board clear
+        if (clicker.ClickerCellManager.checkBoardClear(newCells)) {
+            clicker.ClickerInfo.singleton.showMessage("Congrats! You solved the game!");
+        }
         // assign all new cells
         this.setState({
             cells: newCells
@@ -22744,7 +22749,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         }
         this.unhoverAllCells();
         clicker.ClickerBoard.currentHoveringCells = clicker.ClickerCellManager.getAffectedCellCoordinates(this.state.cells, x, y);
-        if (clicker.ClickerBoard.currentHoveringCells.length < 2) {
+        if (clicker.ClickerBoard.currentHoveringCells == null || clicker.ClickerBoard.currentHoveringCells.length < 2) {
             return;
         }
         var newCells = this.state.cells;
@@ -22762,9 +22767,15 @@ var ClickerBoard = /** @class */ (function (_super) {
     *   Alters all cells css class to the default one.
     ***************************************************************************************************************/
     ClickerBoard.prototype.unhoverAllCells = function () {
+        if (clicker.ClickerBoard.currentHoveringCells == null) {
+            return;
+        }
         var newCells = this.state.cells;
         for (var _i = 0, _a = clicker.ClickerBoard.currentHoveringCells; _i < _a.length; _i++) {
             var affectedCoordinate = _a[_i];
+            if (newCells == null || newCells[affectedCoordinate.x] == null || newCells[affectedCoordinate.y] == null) {
+                return;
+            }
             newCells[affectedCoordinate.x][affectedCoordinate.y].className = "clickerCell";
         }
         clicker.ClickerBoard.currentHoveringCells = [];
@@ -23045,7 +23056,7 @@ var ClickerCellManager = /** @class */ (function () {
     ***************************************************************************************************************/
     ClickerCellManager.getAffectedCellCoordinates = function (allCells, x, y) {
         // prevent exceptions
-        if (allCells[x][y] == null) {
+        if (allCells == null || allCells[x] == null || allCells[x][y] == null) {
             return null;
         }
         // clicking clear cells has no effect
@@ -23069,6 +23080,9 @@ var ClickerCellManager = /** @class */ (function () {
     *           Otherwise <code>false</code>.
     ***************************************************************************************************************/
     ClickerCellManager.contains = function (coordinates, x, y) {
+        if (coordinates == null) {
+            return false;
+        }
         for (var _i = 0, coordinates_1 = coordinates; _i < coordinates_1.length; _i++) {
             var coordinate = coordinates_1[_i];
             if (coordinate.x == x && coordinate.y == y) {
@@ -23128,6 +23142,25 @@ var ClickerCellManager = /** @class */ (function () {
             }
         }
         return reducedCells;
+    };
+    /***************************************************************************************************************
+    *   Checks if all cells are cleared.
+    *
+    *   @param cells All cells to collapse cleared cells for.
+    ***************************************************************************************************************/
+    ClickerCellManager.checkBoardClear = function (cells) {
+        // browse all columns
+        for (var _i = 0, cells_1 = cells; _i < cells_1.length; _i++) {
+            var column = cells_1[_i];
+            // browse all cells from TOP to BOTTOM
+            for (var _a = 0, column_1 = column; _a < column_1.length; _a++) {
+                var cell = column_1[_a];
+                if (cell.color != clicker.ClickerCellColor.CLEAR) {
+                    return false;
+                }
+            }
+        }
+        return true;
     };
     return ClickerCellManager;
 }());

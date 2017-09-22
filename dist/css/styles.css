@@ -54,7 +54,7 @@
         height:             50px;
         font:               25px "Century Gothic", Futura, sans-serif;
         line-height:        50px;
-        background:         #00d8ff;
+        background:         rgba( 0, 216, 255, 0.5 );
         color:              #ffffff;
         margin:             308px 0 0 10px;
         border-top:         3px white solid;

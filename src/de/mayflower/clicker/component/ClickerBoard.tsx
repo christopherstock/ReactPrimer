@@ -183,6 +183,12 @@
             clicker.ClickerBoard.lastMouseClickX = event.clientX;
             clicker.ClickerBoard.lastMouseClickY = event.clientY;
 
+            // check board clear
+            if ( clicker.ClickerCellManager.checkBoardClear( newCells ) )
+            {
+                clicker.ClickerInfo.singleton.showMessage( "Congrats! You solved the game!" );
+            }
+
             // assign all new cells
             this.setState(
                 {
@@ -222,7 +228,7 @@
                 y
             );
 
-            if ( clicker.ClickerBoard.currentHoveringCells.length < 2 )
+            if ( clicker.ClickerBoard.currentHoveringCells == null || clicker.ClickerBoard.currentHoveringCells.length < 2 )
             {
                 return;
             }
@@ -248,10 +254,20 @@
         ***************************************************************************************************************/
         private unhoverAllCells() : void
         {
+            if ( clicker.ClickerBoard.currentHoveringCells == null )
+            {
+                return;
+            }
+
             let newCells:clicker.ClickerCellProps[][] = this.state.cells;
 
             for ( let affectedCoordinate of clicker.ClickerBoard.currentHoveringCells )
             {
+                if ( newCells == null || newCells[ affectedCoordinate.x ] == null || newCells[ affectedCoordinate.y ] == null )
+                {
+                    return;
+                }
+
                 newCells[ affectedCoordinate.x ][ affectedCoordinate.y ].className = "clickerCell";
             }
             clicker.ClickerBoard.currentHoveringCells = [];
