@@ -6,7 +6,6 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO ASAP   Bg music?
     *   TODO HIGH   Test on various browsers.
     *
     *   TODO INIT   Show "Sorry - no moves left"?
@@ -33,8 +32,9 @@
         ***************************************************************************************************************/
         public static main() : void
         {
-            Clicker.acclaimAndSetTitle();
-            Clicker.deployClickerApp();
+            clicker.Clicker.acclaimAndSetTitle();
+            clicker.ClickerSound.startBgSound();
+            clicker.Clicker.deployClickerApp();
         }
 
         /***************************************************************************************************************

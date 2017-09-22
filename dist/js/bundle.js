@@ -2026,6 +2026,7 @@ __export(__webpack_require__(191));
 __export(__webpack_require__(192));
 __export(__webpack_require__(193));
 __export(__webpack_require__(194));
+__export(__webpack_require__(195));
 
 
 /***/ }),
@@ -9799,7 +9800,6 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Bg music?
 *   TODO HIGH   Test on various browsers.
 *
 *   TODO INIT   Show "Sorry - no moves left"?
@@ -9823,8 +9823,9 @@ var Clicker = /** @class */ (function () {
     *   Logs the given message to the console.
     ***************************************************************************************************************/
     Clicker.main = function () {
-        Clicker.acclaimAndSetTitle();
-        Clicker.deployClickerApp();
+        clicker.Clicker.acclaimAndSetTitle();
+        clicker.ClickerSound.startBgSound();
+        clicker.Clicker.deployClickerApp();
     };
     /***************************************************************************************************************
     *   Acclaims the debug console and sets the document title.
@@ -23151,6 +23152,34 @@ exports.ClickerCellManager = ClickerCellManager;
 
 /***/ }),
 /* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+/*****************************************************************************
+*   Plays the bg sound.
+*
+*   @author     Christopher Stock
+*   @version    1.0
+*****************************************************************************/
+var ClickerSound = /** @class */ (function () {
+    function ClickerSound() {
+    }
+    /*****************************************************************************
+    *   Starts the bg sound.
+    *****************************************************************************/
+    ClickerSound.startBgSound = function () {
+        var bgSound = new Audio("res/sound/gang-plank-galleon.mp3");
+        bgSound.play();
+    };
+    return ClickerSound;
+}());
+exports.ClickerSound = ClickerSound;
+
+
+/***/ }),
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

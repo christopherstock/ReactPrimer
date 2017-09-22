@@ -14,7 +14,7 @@
         margin:             0 auto 0 auto;
         width:              1000px;
         height:             667px;
-        background:         url( ../image/bg.jpg ) no-repeat;
+        background:         url( ../res/image/bg.jpg ) no-repeat;
     }
 
     div.clickerBoard

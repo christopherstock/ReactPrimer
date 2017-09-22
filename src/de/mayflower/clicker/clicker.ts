@@ -17,5 +17,7 @@
     export * from './game/ClickerCellColor';
     export * from './game/ClickerCellManager';
 
+    export * from './hid/ClickerSound';
+
     export * from './util/ClickerCellCoordinate';
     export * from './util/ClickerMath';
