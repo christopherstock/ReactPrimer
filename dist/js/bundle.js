@@ -9799,22 +9799,17 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO ASAP   Bg music.
-*   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
-*   TODO HIGH   Show "Sorry - no moves left!"
+*   TODO ASAP   Bg music?
+*   TODO HIGH   Test on various browsers.
 *
-*   TODO ASAP   Particle effects and css animations?
-*   TODO HIGH   Animate disappearing columns.
+*   TODO INIT   Show "Sorry - no moves left"?
+*   TODO INIT   Animate disappearing columns?
+*   TODO INIT   Particle effects and css animations?
+*   TODO INIT   Create button and input fields for recreating the gamefield with own parameters!
 *
-*   TODO HIGH   Add game state ( won, etc. ) to ClickerAppState?
-*   TODO HIGH   show state, score etc. in ClickerApp::render()?
-*   TODO LOW    Add animations and learn react callbacks etc.?
-*   TODO LOW    Create button and input fields for recreating the gamefield with own parameters!
-*   TODO LOW    Test on various browsers.
-*
-*   TODO ASK    Learn 'React high-order component'
-*   TODO ASK    Learn 'React delegates'
-*   TODO ASK    Learn 'React promises'
+*   TODO LOW    Learn 'React high-order component'
+*   TODO LOW    Learn 'React delegates'
+*   TODO LOW    Learn 'React promises'
 *
 *   TODO WEAK   Send to 'daniel.maul@web.de'
 *
