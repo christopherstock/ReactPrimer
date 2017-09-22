@@ -9800,8 +9800,6 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO HIGH   Test on various browsers.
-*
 *   TODO INIT   Show "Sorry - no moves left"?
 *   TODO INIT   Animate disappearing columns?
 *   TODO INIT   Particle effects and css animations?
