@@ -9799,9 +9799,7 @@ var clicker = __webpack_require__(14);
 /*******************************************************************************************************************
 *   The main class represents the application's entry point.
 *
-*   TODO HIGH   Show "Cleared all cells!"
-*   TODO HIGH   Transparent msg bg.
-*   TODO ASAP   Style colors.
+*   TODO ASAP   Style cell colors.
 *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
 *   TODO HIGH   Show "Sorry - no moves left!"
 *
@@ -22536,11 +22534,11 @@ var ClickerSettings = /** @class */ (function () {
     /** The application title. */
     ClickerSettings.APPLICATION_TITLE = "ReactPrimer, (c) 2017 Mayflower GmbH";
     /** The default number of different cell colors. */
-    ClickerSettings.DEFAULT_NUMBER_OF_COLORS = 2; // 3;
+    ClickerSettings.DEFAULT_NUMBER_OF_COLORS = 3;
     /** The default board dimension x. */
-    ClickerSettings.DEFAULT_BOARD_SIZE_X = 5; // 16;
+    ClickerSettings.DEFAULT_BOARD_SIZE_X = 16;
     /** The default board dimension y. */
-    ClickerSettings.DEFAULT_BOARD_SIZE_Y = 5; // 22;
+    ClickerSettings.DEFAULT_BOARD_SIZE_Y = 22;
     return ClickerSettings;
 }());
 exports.ClickerSettings = ClickerSettings;
@@ -22796,10 +22794,10 @@ var ClickerBoard = /** @class */ (function (_super) {
         clicker.ClickerBoard.lastMouseClickY = -1;
         if (elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement) {
             var divMouseIsOver = elementMouseIsOver;
-            clicker.ClickerDebug.log("mouse over div [" + divMouseIsOver.innerHTML + "]");
             var splits = divMouseIsOver.innerHTML.split(",");
             var cellX = parseInt(splits[0]);
             var cellY = parseInt(splits[1]);
+            clicker.ClickerDebug.log("mouse over div [" + cellX + "][" + cellY + "]");
             this.onCellMouseEnter(cellX, cellY);
         }
     };
