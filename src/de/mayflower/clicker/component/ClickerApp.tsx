@@ -17,9 +17,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            let clickerInfo:JSX.Element = <clicker.ClickerInfo
-                acclaim={ "Welcome to the ReactPrimer" }
-            />;
+            let clickerInfo:JSX.Element  = <clicker.ClickerInfo />;
             let clickerBoard:JSX.Element = <clicker.ClickerBoard
                 boardSizeX={     this.props.boardSizeX     }
                 boardSizeY={     this.props.boardSizeY     }

@@ -151,7 +151,6 @@
             if ( affectedCellCoordinates.length == 0 )
             {
                 clicker.ClickerDebug.log( "Clicked a clear cell" );
-                clicker.ClickerInfo.singleton.showMessage( "Clicking clear cells has no effect!" );
                 return;
             }
 
@@ -159,7 +158,6 @@
             if ( affectedCellCoordinates.length < 2 )
             {
                 clicker.ClickerDebug.log( "Single cell not affected" );
-                clicker.ClickerInfo.singleton.showMessage( "Clicking clear cells has no effect!" );
                 return;
             }
 
@@ -289,7 +287,7 @@
             {
                 let divMouseIsOver:HTMLDivElement = elementMouseIsOver as HTMLDivElement;
 
-                console.log( "mouse over div [" + divMouseIsOver.innerHTML + "]" );
+                clicker.ClickerDebug.log( "mouse over div [" + divMouseIsOver.innerHTML + "]" );
 
                 let splits:string[] = divMouseIsOver.innerHTML.split( "," );
 

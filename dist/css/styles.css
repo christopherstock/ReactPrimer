@@ -50,13 +50,19 @@
     div.clickerInfo
     {
         position:           fixed;
-        width:              1000px;
+        width:              980px;
         height:             50px;
         font:               25px "Century Gothic", Futura, sans-serif;
         line-height:        50px;
-        background:         #ff7700;
-        margin-top:         308px;
-/*
-        display:            none;
-*/
+        background:         #00d8ff;
+        color:              #ffffff;
+        margin:             308px 0 0 10px;
+        border-top:         3px white solid;
+        border-bottom:      3px white solid;
     }
+
+    div.clickerInfoHidden
+    {
+        display:            none;
+    }
+

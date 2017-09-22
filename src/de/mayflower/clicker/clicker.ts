@@ -12,7 +12,6 @@
     export * from './component/ClickerCell';
     export * from './component/ClickerCellProps';
     export * from './component/ClickerInfo';
-    export * from './component/ClickerInfoProps';
     export * from './component/ClickerInfoState';
 
     export * from './game/ClickerCellColor';

@@ -8,7 +8,7 @@
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    export class ClickerInfo extends React.Component<clicker.ClickerInfoProps, clicker.ClickerInfoState>
+    export class ClickerInfo extends React.Component<null, clicker.ClickerInfoState>
     {
         /** The singleton instance of this class. */
         public          static          singleton               :clicker.ClickerInfo                    = null;
@@ -16,13 +16,14 @@
         /***************************************************************************************************************
         *   Creates a new clicker information panel.
         ***************************************************************************************************************/
-        public constructor( props:clicker.ClickerInfoProps )
+        public constructor()
         {
-            super( props );
+            super();
 
             this.state =
             {
-                message: props.acclaim,
+                message:   "",
+                className: "clickerInfoHidden",
             };
         }
 
@@ -35,7 +36,7 @@
         {
             clicker.ClickerDebug.log( "render ClickerInfo" );
 
-            return <div className="clickerInfo">
+            return <div className={ this.state.className }>
                 { this.state.message }
             </div>;
         }
@@ -53,12 +54,13 @@
         ***************************************************************************************************************/
         public showMessage( msg:string ) : void
         {
-            console.log( "Show message [" + msg + "]" );
+            clicker.ClickerDebug.log( "Show message [" + msg + "]" );
 
             this.setState
             (
                 {
-                    message: msg,
+                    message:   msg,
+                    className: "clickerInfo",
                 }
             );
         }

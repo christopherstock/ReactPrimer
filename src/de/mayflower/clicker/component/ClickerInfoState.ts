@@ -8,4 +8,6 @@
     export interface ClickerInfoState
     {
         message             :string;
+
+        className           :string;
     }

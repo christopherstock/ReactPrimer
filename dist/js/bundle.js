@@ -22581,7 +22581,7 @@ var ClickerApp = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     ClickerApp.prototype.render = function () {
-        var clickerInfo = React.createElement(clicker.ClickerInfo, { acclaim: "Welcome to the ReactPrimer" });
+        var clickerInfo = React.createElement(clicker.ClickerInfo, null);
         var clickerBoard = React.createElement(clicker.ClickerBoard, { boardSizeX: this.props.boardSizeX, boardSizeY: this.props.boardSizeY, numberOfColors: this.props.numberOfColors });
         return React.createElement("div", { className: "gameContainer" },
             clickerInfo,
@@ -22700,13 +22700,11 @@ var ClickerBoard = /** @class */ (function (_super) {
         // clicking clear cells has no effect
         if (affectedCellCoordinates.length == 0) {
             clicker.ClickerDebug.log("Clicked a clear cell");
-            clicker.ClickerInfo.singleton.showMessage("Clicking clear cells has no effect!");
             return;
         }
         // at least two cells must be affected to clear
         if (affectedCellCoordinates.length < 2) {
             clicker.ClickerDebug.log("Single cell not affected");
-            clicker.ClickerInfo.singleton.showMessage("Clicking clear cells has no effect!");
             return;
         }
         // deep clone all cells
@@ -22787,7 +22785,7 @@ var ClickerBoard = /** @class */ (function (_super) {
         clicker.ClickerBoard.lastMouseClickY = -1;
         if (elementMouseIsOver != null && elementMouseIsOver instanceof HTMLDivElement) {
             var divMouseIsOver = elementMouseIsOver;
-            console.log("mouse over div [" + divMouseIsOver.innerHTML + "]");
+            clicker.ClickerDebug.log("mouse over div [" + divMouseIsOver.innerHTML + "]");
             var splits = divMouseIsOver.innerHTML.split(",");
             var cellX = parseInt(splits[0]);
             var cellY = parseInt(splits[1]);
@@ -22880,11 +22878,12 @@ var ClickerInfo = /** @class */ (function (_super) {
     /***************************************************************************************************************
     *   Creates a new clicker information panel.
     ***************************************************************************************************************/
-    function ClickerInfo(props) {
-        var _this = _super.call(this, props) || this;
+    function ClickerInfo() {
+        var _this = _super.call(this) || this;
         _this.state =
             {
-                message: props.acclaim
+                message: "",
+                className: "clickerInfoHidden"
             };
         return _this;
     }
@@ -22895,7 +22894,7 @@ var ClickerInfo = /** @class */ (function (_super) {
     ***************************************************************************************************************/
     ClickerInfo.prototype.render = function () {
         clicker.ClickerDebug.log("render ClickerInfo");
-        return React.createElement("div", { className: "clickerInfo" }, this.state.message);
+        return React.createElement("div", { className: this.state.className }, this.state.message);
     };
     /***************************************************************************************************************
     *   Being invoked when this component did mount.
@@ -22907,9 +22906,10 @@ var ClickerInfo = /** @class */ (function (_super) {
     *   Updates the component and shows the given message.
     ***************************************************************************************************************/
     ClickerInfo.prototype.showMessage = function (msg) {
-        console.log("Show message [" + msg + "]");
+        clicker.ClickerDebug.log("Show message [" + msg + "]");
         this.setState({
-            message: msg
+            message: msg,
+            className: "clickerInfo"
         });
     };
     /** The singleton instance of this class. */
