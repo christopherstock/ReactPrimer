@@ -6,15 +6,9 @@
     /*******************************************************************************************************************
     *   The main class represents the application's entry point.
     *
-    *   TODO INIT   Animate disappearing columns?
-    *   TODO INIT   Particle effects and css animations?
-    *   TODO INIT   Create button and input fields for recreating the gamefield with own parameters!
-    *
-    *   TODO LOW    Learn 'React high-order component'
-    *   TODO LOW    Learn 'React delegates'
-    *   TODO LOW    Learn 'React promises'
-    *
-    *   TODO WEAK   Send to 'daniel.maul@web.de'
+    *   TODO INIT   Animate disappearing columns
+    *   TODO INIT   Particle effects and css animations
+    *   TODO INIT   Create button and input fields for recreating the gamefield
     *
     *   @author  Christopher Stock
     *   @version 1.0
