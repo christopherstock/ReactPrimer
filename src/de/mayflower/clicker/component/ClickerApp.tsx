@@ -17,18 +17,18 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
+            let clickerInfo:JSX.Element = <clicker.ClickerInfo
+                acclaim={ "Welcome to the ReactPrimer" }
+            />;
             let clickerBoard:JSX.Element = <clicker.ClickerBoard
                 boardSizeX={     this.props.boardSizeX     }
                 boardSizeY={     this.props.boardSizeY     }
                 numberOfColors={ this.props.numberOfColors }
             />;
-            let clickerInfo:JSX.Element = <clicker.ClickerInfo
-                acclaim={ "Welcome to the ReactPrimer" }
-            />;
 
             return <div className="gameContainer">
-                { clickerBoard }
                 { clickerInfo  }
+                { clickerBoard }
             </div>;
         }
     }

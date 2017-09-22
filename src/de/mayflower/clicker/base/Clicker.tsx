@@ -8,8 +8,6 @@
     *
     *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
     *
-    *   TODO ASK    Alter the message in the ClickerInfo component.
-    *
     *   TODO HIGH   Show "Cleared all cells!"
     *   TODO HIGH   Show "Sorry - no moves left!"
     *
@@ -20,8 +18,8 @@
     *   TODO HIGH   show state, score etc. in ClickerApp::render()?
     *   TODO LOW    Add animations and learn react callbacks etc.?
     *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters!
+    *   TODO LOW    Test on various browsers.
     *
-    *   TODO ASK    Check react .styl files!
     *   TODO ASK    Learn 'React high-order component'
     *   TODO ASK    Learn 'React delegates'
     *   TODO ASK    Learn 'React promises'

@@ -9801,8 +9801,6 @@ var clicker = __webpack_require__(14);
 *
 *   TODO INIT   Nice Styling (bg image, fg translucent blocks), rounded rects, tiny space between blocks ..
 *
-*   TODO ASK    Alter the message in the ClickerInfo component.
-*
 *   TODO HIGH   Show "Cleared all cells!"
 *   TODO HIGH   Show "Sorry - no moves left!"
 *
@@ -9813,8 +9811,8 @@ var clicker = __webpack_require__(14);
 *   TODO HIGH   show state, score etc. in ClickerApp::render()?
 *   TODO LOW    Add animations and learn react callbacks etc.?
 *   TODO LOW    Create button and input fields for recreating the gamefield with own parameters!
+*   TODO LOW    Test on various browsers.
 *
-*   TODO ASK    Check react .styl files!
 *   TODO ASK    Learn 'React high-order component'
 *   TODO ASK    Learn 'React delegates'
 *   TODO ASK    Learn 'React promises'
@@ -22583,11 +22581,11 @@ var ClickerApp = /** @class */ (function (_super) {
     *   @return The rendered React element.
     ***************************************************************************************************************/
     ClickerApp.prototype.render = function () {
-        var clickerBoard = React.createElement(clicker.ClickerBoard, { boardSizeX: this.props.boardSizeX, boardSizeY: this.props.boardSizeY, numberOfColors: this.props.numberOfColors });
         var clickerInfo = React.createElement(clicker.ClickerInfo, { acclaim: "Welcome to the ReactPrimer" });
+        var clickerBoard = React.createElement(clicker.ClickerBoard, { boardSizeX: this.props.boardSizeX, boardSizeY: this.props.boardSizeY, numberOfColors: this.props.numberOfColors });
         return React.createElement("div", { className: "gameContainer" },
-            clickerBoard,
-            clickerInfo);
+            clickerInfo,
+            clickerBoard);
     };
     return ClickerApp;
 }(React.Component));
